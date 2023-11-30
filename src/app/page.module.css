@@ -1,5 +1,54 @@
-
-
-.judul {
-    font-size: 100px;
+.countainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    position: relative;
 }
+
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #ADC178;
+}
+
+.nav img .logogambar {
+    width: 500px;
+}
+
+.nav .pencarian {
+    display: flex;
+    position: relative;
+    align-items:center;
+}
+
+.nav .pencarian .input input {
+    width: 400px;
+    height: 70px;
+    outline: none;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background-color: #F0EAD2;
+}
+
+.nav .pencarian .input input:focus {
+    outline: none;
+}
+
+
+.nav .pencarian .hilang {
+    position: absolute;
+    left: 10px;
+}
+
+.nav .pencarian .logocari {
+    display: flex;
+    font-size: 23px;
+    font-weight: bold;
+    opacity: 0.5;
+}   
