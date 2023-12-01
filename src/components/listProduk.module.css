@@ -24,21 +24,28 @@
 }
 
 .produk {
-    width: 300px;
+    width: 312px;
     margin: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .produk .gambar {
-    height: 250px;
-    width: 300px;
+    max-height: 250px;
+    max-width: 312px;
     border-radius: 5px;
     margin-bottom: 10px;
+    overflow: hidden;
 }
 
 .produk .gambar img {
     border-radius: 5px;
-    height: 250px;
-    width: 300px;
+    max-height: 250px;
+    max-width: 312px;
     background-position: center;
     object-fit: cover;
     object-position: center;
@@ -55,9 +62,29 @@
     font-weight: 500;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    align-items: center;
 }
 
+.produk .review .harga {
+    font-size: 24px;
+}
+
+.produk .review .logorating {
+    color:#f6bd60 ;
+    margin: 0 5px;
+}
+
+.produk .diskon {
+    display: block;
+    display: flex;
+}
+
+.produk .diskon .hargadiskon {
+    text-decoration: line-through;
+}
+.produk .diskon .persendiskon {
+    color: red;
+}
 
 .produk .beli {
     display: block;
@@ -68,6 +95,7 @@
     padding: 10px 0px;
     border-radius: 5px;
     position: relative;
+    margin-top: 10px;
 }
 
 .produk .beli:hover {
@@ -79,9 +107,12 @@
 .produk .beli .iconwa {
     position: absolute;
     top: 10px;
-    left: 50px;
+    left: 40px;
 }
 
+
+
+/* PAGINATION */
 .countainer .pagination {
     font-weight: bold;
     color: var(--color-primary);

@@ -15,7 +15,7 @@ export default function LayoutUtama({ children }) {
       <div className={styles.countainer}>
         <nav className={styles.nav}>
           <div className={styles.logogambar}>
-            <TbDiamond size={70} style={{ color: "white" }} />
+            <TbDiamond className={styles.logogambardalam} />
           </div>
           <div className={styles.pencarian} >
             <div className={styles.input}>
@@ -26,7 +26,7 @@ export default function LayoutUtama({ children }) {
             </div>
             <div className={styles.hilang} style={{ display: logo ? 'block' : 'none' }}>
               <div className={styles.logocari} >
-                <CiSearch size={30} />
+                <CiSearch  className={styles.logocaridalam} />
               </div>
             </div>
           </div>
@@ -41,9 +41,9 @@ export default function LayoutUtama({ children }) {
               © Website by <b>Natanael Rio Wijaya</b>
             </div>
             <div className={styles.sosmed}>
-              <Link href="/"> <FaFacebookSquare size={30} /></Link>
-              <Link href="/"> <FaInstagramSquare size={30} /></Link>
-              <Link href="/"><FaTwitterSquare size={30} /></Link>
+              <Link href="/"> <FaFacebookSquare  className={styles.sosmeddalam} /></Link>
+              <Link href="/"> <FaInstagramSquare  className={styles.sosmeddalam} /></Link>
+              <Link href="/"><FaTwitterSquare  className={styles.sosmeddalam} /></Link>
             </div>
           </div>
         </footer>

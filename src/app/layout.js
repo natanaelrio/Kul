@@ -4,8 +4,8 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Jual Barang Pertanian | Tokorio',
-  description: 'temukan barang murah dan berkualitas hanya di Tokorio.com',
+  title: 'Jual Hasil Pertanian | Tokorio',
+  description: 'temukan hasil pertanian murah dan berkualitas hanya di Tokorio.com',
 }
 
 export default function RootLayout({ children }) {

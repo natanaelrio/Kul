@@ -15,7 +15,7 @@ export default function ListProduk() {
         <LayoutUtama>
 
             <div className={styles.countainer}>
-            <Introduction/>
+                <Introduction />
             </div>
 
             <div className={styles.countainer}>
@@ -25,7 +25,8 @@ export default function ListProduk() {
             </div>
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
-                    <div className={styles.produk}>
+
+                    <a href="https://google.com" className={styles.produk}>
                         <div className={styles.gambar}>
                             <Image
                                 src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -38,8 +39,12 @@ export default function ListProduk() {
                             Kucing Persia
                         </div>
                         <div className={styles.review}>
-                            <div className={styles.harga}>20.000</div>
-                            <div className={styles.rating}><FaStar size={14} style={{ color: '#f6bd60' }} />4.5 | 100+terjual    </div>
+                            <div className={styles.harga}>Rp20.000</div>
+                            <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
+                        </div>
+                        <div className={styles.diskon}>
+                            <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
+                            <div className={styles.persendiskon}>(50%)</div>
                         </div>
                         <Link href="/">
                             <div className={styles.beli}>
@@ -49,9 +54,9 @@ export default function ListProduk() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+                    </a>
 
-                    <div className={styles.produk}>
+                    <a href="https://google.com" className={styles.produk}>
                         <div className={styles.gambar}>
                             <Image
                                 src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -64,8 +69,8 @@ export default function ListProduk() {
                             Kucing Persia
                         </div>
                         <div className={styles.review}>
-                            <div className={styles.harga}>20.000</div>
-                            <div className={styles.rating}><FaStar size={14} style={{ color: '#f6bd60' }} />4.5 | 100+terjual    </div>
+                            <div className={styles.harga}>Rp20.000</div>
+                            <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
                         </div>
                         <Link href="/">
                             <div className={styles.beli}>
@@ -75,9 +80,9 @@ export default function ListProduk() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+                    </a>
 
-                    <div className={styles.produk}>
+                    <a href="https://google.com" className={styles.produk}>
                         <div className={styles.gambar}>
                             <Image
                                 src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -90,8 +95,8 @@ export default function ListProduk() {
                             Kucing Persia
                         </div>
                         <div className={styles.review}>
-                            <div className={styles.harga}>20.000</div>
-                            <div className={styles.rating}><FaStar size={14} style={{ color: '#f6bd60' }} />4.5 | 100+terjual    </div>
+                            <div className={styles.harga}>Rp20.000</div>
+                            <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
                         </div>
                         <Link href="/">
                             <div className={styles.beli}>
@@ -101,9 +106,9 @@ export default function ListProduk() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+                    </a>
 
-                    <div className={styles.produk}>
+                    <a href="https://google.com" className={styles.produk}>
                         <div className={styles.gambar}>
                             <Image
                                 src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -116,8 +121,8 @@ export default function ListProduk() {
                             Kucing Persia
                         </div>
                         <div className={styles.review}>
-                            <div className={styles.harga}>20.000</div>
-                            <div className={styles.rating}><FaStar size={14} style={{ color: '#f6bd60' }} />4.5 | 100+terjual    </div>
+                            <div className={styles.harga}>Rp20.000</div>
+                            <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
                         </div>
                         <Link href="/">
                             <div className={styles.beli}>
@@ -127,9 +132,9 @@ export default function ListProduk() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+                    </a>
 
-                    <div className={styles.produk}>
+                    <a href="https://google.com" className={styles.produk}>
                         <div className={styles.gambar}>
                             <Image
                                 src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -142,8 +147,8 @@ export default function ListProduk() {
                             Kucing Persia
                         </div>
                         <div className={styles.review}>
-                            <div className={styles.harga}>20.000</div>
-                            <div className={styles.rating}><FaStar size={14} style={{ color: '#f6bd60' }} />4.5 | 100+terjual    </div>
+                            <div className={styles.harga}>Rp20.000</div>
+                            <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
                         </div>
                         <Link href="/">
                             <div className={styles.beli}>
@@ -153,11 +158,7 @@ export default function ListProduk() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
-
-
-
-
+                    </a>
                 </div>
             </div>
 
