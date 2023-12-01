@@ -1,0 +1,106 @@
+.countainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+
+/* JUDUL ATAS */
+.judulatas {
+    width: 1000px;
+    font-weight: bold;
+    color: var(--color-sekunder);
+    font-size: 30px;
+    margin-bottom: -30px;
+}
+
+
+/* LIST PRODUK */
+.listproduk {
+    width: 1000px;
+    display: flex;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+}
+
+.produk {
+    width: 300px;
+    margin: 10px;
+}
+
+.produk .gambar {
+    height: 250px;
+    width: 300px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.produk .gambar img {
+    border-radius: 5px;
+    height: 250px;
+    width: 300px;
+    background-position: center;
+    object-fit: cover;
+    object-position: center;
+}
+
+.produk .judul {
+    font-weight: bold;
+    font-size: 24px;
+    color: var(--color-sekunder);
+}
+
+.produk .review {
+    color: var(--color-sekunder);
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+
+.produk .beli {
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.produk .beli:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.produk .beli .iconwa {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+}
+
+.countainer .pagination {
+    font-weight: bold;
+    color: var(--color-primary);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.countainer .pagination .now {
+    font-size: 40px;
+    margin-left: 10px;
+    color: var(--color-sekunder);
+}
+
+.countainer .pagination .total {
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.countainer .pagination a:hover {
+    color: var(--color-sekunder);
+}
