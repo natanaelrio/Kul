@@ -54,7 +54,7 @@
 }
 
 .countainer .cari .logocaridalam {
-    font-size: 70px;
+    font-size: 100px;
 }
 
 
@@ -63,7 +63,7 @@
     .countainer {
         width: 90vw;
         font-size: 28px;
-        height: 30vh;
+        height: 220px;
     }
 
     .countainer .text .pertama {
@@ -79,11 +79,12 @@
     }
 
     .countainer .cari {
-        width: 100vw;
+        width: 95vw;
+        bottom: -80px;
     }
 
     .countainer .cari .logocaridalam {
-        font-size: 70px;
+        font-size: 80px;
     }
 }
 
@@ -93,7 +94,7 @@
     .countainer {
         width: 90vw;
         font-size: 20px;
-        height: 20vh;
+        height: 150px;
     }
 
     .countainer .text .pertama {
@@ -113,11 +114,11 @@
     }
 
     .countainer .cari {
-        width: 100vw;
-        bottom: -60px;
+        width: 95vw;
+        bottom: -58px;
     }
 
     .countainer .cari .logocaridalam {
-        font-size: 50px;
+        font-size: 60px;
     }
 }
