@@ -186,7 +186,7 @@
     .nav .logogambar {
         grid-area: 1/1/2/2;
         display: flex;
-        justify-content: center;
+        /* justify-content: center; */
         align-items: center;
     }
 
