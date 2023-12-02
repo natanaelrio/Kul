@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from '@/components/introduction.module.css'
+import { IoSearchCircleSharp } from "react-icons/io5";
 
 export default function Introduction() {
     return (
@@ -16,6 +17,9 @@ export default function Introduction() {
                 <div className={styles.textbawah}>
                     pusat kebutuhan rumah anda.<br />
                     terbesar,terlengkap, dan terpercaya di indonesia
+                </div>
+                <div className={styles.cari}>
+                    <IoSearchCircleSharp className={styles.logocaridalam} /> 
                 </div>
             </div>
         </div>

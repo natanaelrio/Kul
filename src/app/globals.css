@@ -4,7 +4,8 @@
   --color-primary: #ADC178;
   --color-sekunder: #6C584C;
   --color-third: #F0EAD2;
-  --color-white: #ffffff
+  --color-white: #ffffff;
+  --color-high: #da627d
 }
 
 * {

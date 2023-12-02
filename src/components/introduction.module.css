@@ -3,13 +3,18 @@
     display: flex;
     justify-content: center;
     font-size: 50px;
-    font-weight: 600;
+    font-weight: 900;
     color: var(--color-sekunder);
     height: 40vh;
     align-items: center;
     background-color: var(--color-third);
     border-radius: 10px;
 }
+
+.countainer .text {
+    position: relative;
+}
+
 
 .countainer .text .pertama {
     display: flex;
@@ -36,6 +41,22 @@
     font-size: 20px;
 }
 
+.countainer .text .cari {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.countainer .cari {
+    position: absolute;
+    bottom: -90px;
+    width: 1000px;
+}
+
+.countainer .cari .logocaridalam {
+    font-size: 70px;
+}
+
 
 /* Tablet styles using media query */
 @media only screen and (max-width: 768px) {
@@ -55,6 +76,14 @@
 
     .countainer .text .textbawah {
         font-size: 15px;
+    }
+
+    .countainer .cari {
+        width: 100vw;
+    }
+
+    .countainer .cari .logocaridalam {
+        font-size: 70px;
     }
 }
 
@@ -77,5 +106,18 @@
 
     .countainer .text .textbawah {
         font-size: 10px;
+    }
+
+    .countainer .cari .logocaridalam {
+        font-size: 50px;
+    }
+
+    .countainer .cari {
+        width: 100vw;
+        bottom: -60px;
+    }
+
+    .countainer .cari .logocaridalam {
+        font-size: 50px;
     }
 }
