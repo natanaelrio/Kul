@@ -45,7 +45,7 @@
 .produk .gambar img {
     border-radius: 5px;
     max-height: 250px;
-    max-width: 312px;
+    max-width: 100%;
     background-position: center;
     object-fit: cover;
     object-position: center;
@@ -53,7 +53,6 @@
 
 .produk .judul {
     font-weight: bold;
-    font-size: 24px;
     color: var(--color-sekunder);
 }
 
@@ -65,29 +64,29 @@
     align-items: center;
 }
 
-.produk .review .harga {
-    font-size: 24px;
-}
-
 .produk .review .logorating {
-    color:#f6bd60 ;
+    color: #f6bd60;
     margin: 0 5px;
 }
 
 .produk .diskon {
     display: block;
     display: flex;
+
 }
 
 .produk .diskon .hargadiskon {
     text-decoration: line-through;
 }
+
 .produk .diskon .persendiskon {
     color: red;
 }
 
 .produk .beli {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-primary);
     color: var(--color-white);
     text-align: center;
@@ -104,12 +103,33 @@
     border: 1px solid var(--color-primary);
 }
 
-.produk .beli .iconwa {
-    position: absolute;
-    top: 10px;
-    left: 40px;
+.produk .beli .iconwadalam {
+    font-size: 27px;
 }
 
+.produk .judul {
+    font-size: 24px;
+}
+
+.produk .review .harga {
+    font-size: 24px;
+}
+
+.produk .review .rating {
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.produk .diskon {
+    font-size: 18px;
+    color: var(--color-sekunder);
+}
+
+.produk .beli {
+    font-size: 18px;
+}
 
 
 /* PAGINATION */
@@ -134,4 +154,129 @@
 
 .countainer .pagination a:hover {
     color: var(--color-sekunder);
+}
+
+
+@media only screen and (max-width: 1015px) {
+
+    /* JUDUL ATAS */
+    .judulatas {
+        width: 90vw;
+    }
+
+    /* LIST PRODUK */
+    .listproduk {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .produk {
+        margin: 3px;
+        width: 30vw
+    }
+
+}
+
+/* Tablet styles using media query */
+@media only screen and (max-width: 768px) {
+
+    /* JUDUL ATAS */
+    .judulatas {
+        width: 90vw;
+        font-size: 30px;
+    }
+
+    /* LIST PRODUK */
+    .listproduk {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .produk {
+        margin: 0;
+        width: 47vw
+    }
+
+    .produk .gambar {
+        max-width: 100%;
+    }
+
+    .produk .judul {
+        font-size: 18px;
+    }
+
+    .produk .review .harga {
+        font-size: 18px;
+    }
+
+    .produk .review .rating {
+        font-size: 15px;
+    }
+
+    .produk .diskon {
+        font-size: 15px;
+        color: var(--color-sekunder);
+    }
+
+    .produk .beli {
+        font-size: 15px;
+        padding: 7px 0px;
+    }
+
+}
+
+
+
+/* Mobile styles using media query */
+@media only screen and (max-width: 480px) {
+
+    /* JUDUL ATAS */
+    .judulatas {
+        width: 90vw;
+        font-size: 20px;
+    }
+
+    /* LIST PRODUK */
+    .listproduk {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .produk {
+        margin: 0;
+        width: 47vw
+    }
+
+    .produk .gambar {
+        max-width: 100%;
+    }
+
+    .produk .judul {
+        font-size: 13px;
+    }
+
+    .produk .review .harga {
+        font-size: 13px;
+    }
+
+    .produk .review .rating {
+        font-size: 10px;
+    }
+
+    .produk .diskon {
+        font-size: 10px;
+        color: var(--color-sekunder);
+    }
+
+    .produk .beli {
+        font-size: 10px;
+        padding: 5px 0px;
+    }
+
+    .produk .beli .iconwadalam {
+        font-size: 20px;
+    }
 }

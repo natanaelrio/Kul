@@ -7,6 +7,8 @@
     color: var(--color-sekunder);
     height: 40vh;
     align-items: center;
+    background-color: var(--color-third);
+    border-radius: 10px;
 }
 
 .countainer .text .pertama {
@@ -32,4 +34,48 @@
     font-weight: lighter;
     color: var(--color-sekunder);
     font-size: 20px;
+}
+
+
+/* Tablet styles using media query */
+@media only screen and (max-width: 768px) {
+    .countainer {
+        width: 90vw;
+        font-size: 28px;
+        height: 30vh;
+    }
+
+    .countainer .text .pertama {
+        width: 95vw;
+    }
+
+    .countainer .text .kedua {
+        width: 95vw;
+    }
+
+    .countainer .text .textbawah {
+        font-size: 15px;
+    }
+}
+
+
+/* Mobile styles using media query */
+@media only screen and (max-width: 480px) {
+    .countainer {
+        width: 90vw;
+        font-size: 20px;
+        height: 20vh;
+    }
+
+    .countainer .text .pertama {
+        width: 95vw;
+    }
+
+    .countainer .text .kedua {
+        width: 95vw;
+    }
+
+    .countainer .text .textbawah {
+        font-size: 10px;
+    }
 }

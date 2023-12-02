@@ -12,8 +12,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 30px;
+    padding: 10px 20px;
     background-color: var(--color-primary);
+    display: grid;
+    grid-template-columns: 0.3fr 1fr 1fr;
+    position: sticky;
+    top: 0;
+    z-index: 9999;
 }
 
 .nav .logogambardalam {
@@ -21,21 +26,42 @@
     color: var(--color-white);
 }
 
+.nav .logogambar {
+    grid-area: 1/1/2/2;
+}
+
 .nav .pencarian {
     display: flex;
+    align-items: center;
+    /* display: block; */
+    grid-area: 1/3/2/4;
+    justify-content: flex-end;
+}
+
+.nav .pencarian .dalampencarian {
     position: relative;
-    align-items:center;
 }
 
 .nav .pencarian .input input {
-    width: 400px;
+    width: 100%;
     height: 70px;
     outline: none;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 500;
     border-radius: 5px;
     border: 1px solid #cccccc;
     background-color: var(--color-third);
+}
+
+.nav .pencarian .input .inputtrue {
+    border-color: none;
+    padding: 0 20px 0 50px
+}
+
+.nav .pencarian .input .inputfalse {
+    border-color: #6C584C;
+    padding: 0 20px 0 20px;
+    border-width: 5px;
 }
 
 .nav .pencarian .input input:focus {
@@ -46,6 +72,7 @@
 .nav .pencarian .hilang {
     position: absolute;
     left: 10px;
+    top: 20px;
 }
 
 .nav .pencarian .logocari {
@@ -53,7 +80,7 @@
     font-size: 23px;
     font-weight: bold;
     opacity: 0.5;
-}   
+}
 
 .nav .pencarian .logocaridalam {
     font-size: 30px;
@@ -75,6 +102,7 @@
     width: 1000px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 30px 0;
     border-top: 1px solid var(--color-third);
 }
@@ -87,11 +115,122 @@
     display: flex;
 }
 
+.bawah .isi .sosmed a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .bawah .isi .sosmed .sosmeddalam {
     color: var(--color-sekunder);
-    font-size: 30px;    
+    font-size: 30px;
 }
 
 .bawah .isi .sosmed a .sosmeddalam:hover {
     color: var(--color-primary);
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    /* NAVIGASI */
+    .nav {
+        padding: 10px 20px;
+    }
+
+    .nav .logogambardalam {
+        font-size: 50px;
+    }
+
+    .nav .logogambar {
+        grid-area: 1/1/2/2;
+    }
+
+    .nav .pencarian {
+        grid-area: 1/2/2/4;
+        display: block;
+    }
+
+    .nav .pencarian .input input {
+        width: 100%;
+        height: 50px;
+    }
+
+    .nav .pencarian .hilang {
+        left: 10px;
+        top: 10px;
+    }
+
+    .nav .pencarian .logocari {
+        font-size: 23px;
+    }
+
+    .nav .pencarian .logocaridalam {
+        font-size: 30px;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+
+    /* NAVIGASI */
+    .nav {
+        grid-template-columns: 0.4fr 1fr 1fr;
+        padding: 10px 10px;
+    }
+
+    .nav .logogambardalam {
+        font-size: 40px;
+    }
+
+    .nav .logogambar {
+        grid-area: 1/1/2/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav .pencarian {
+        grid-area: 1/2/2/4;
+        display: block;
+    }
+
+    .nav .pencarian .input input {
+        width: 100%;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .nav .pencarian .input input::placeholder {
+        font-size: 20px;
+    }
+
+
+
+    .nav .pencarian .input .inputtrue {
+        padding: 0 20px 0 35px
+    }
+
+    .nav .pencarian .hilang {
+        left: 10px;
+        top: 10px;
+    }
+
+    .nav .pencarian .logocari {
+        font-size: 23px;
+    }
+
+    .nav .pencarian .logocaridalam {
+        font-size: 20px;
+    }
+
+    /* FOOTER */
+    .bawah .isi {
+        flex-direction: column;
+        font-size: 13px;
+    }
+
+    .bawah .isi .sosmed {
+      margin-top: 5px;
+    }
 }

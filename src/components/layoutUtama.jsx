@@ -18,15 +18,18 @@ export default function LayoutUtama({ children }) {
             <TbDiamond className={styles.logogambardalam} />
           </div>
           <div className={styles.pencarian} >
-            <div className={styles.input}>
-              <input type="text"
-                placeholder={logo ? 'cari barang' : ''}
-                onClick={() => setLogo(0)}
-                style={logo ? { borderColor: '', padding: '0 20px 0 50px' } : { borderColor: '#6C584C', borderWidth: '5px', padding: '0 20px 0 20px' }} />
-            </div>
-            <div className={styles.hilang} style={{ display: logo ? 'block' : 'none' }}>
-              <div className={styles.logocari} >
-                <CiSearch  className={styles.logocaridalam} />
+            <div className={styles.dalampencarian} >
+              <div className={styles.input}>
+                <input type="text"
+                  placeholder={logo ? 'cari barang' : ''}
+                  onClick={() => setLogo(0)}
+                  className={logo ? styles.inputtrue : styles.inputfalse}
+                />
+              </div>
+              <div className={styles.hilang} style={{ display: logo ? 'block' : 'none' }}>
+                <div className={styles.logocari} >
+                  <CiSearch className={styles.logocaridalam} />
+                </div>
               </div>
             </div>
           </div>
@@ -41,9 +44,9 @@ export default function LayoutUtama({ children }) {
               © Website by <b>Natanael Rio Wijaya</b>
             </div>
             <div className={styles.sosmed}>
-              <Link href="/"> <FaFacebookSquare  className={styles.sosmeddalam} /></Link>
-              <Link href="/"> <FaInstagramSquare  className={styles.sosmeddalam} /></Link>
-              <Link href="/"><FaTwitterSquare  className={styles.sosmeddalam} /></Link>
+              <Link href="/"> <FaFacebookSquare className={styles.sosmeddalam} /></Link>
+              <Link href="/"> <FaInstagramSquare className={styles.sosmeddalam} /></Link>
+              <Link href="/"><FaTwitterSquare className={styles.sosmeddalam} /></Link>
             </div>
           </div>
         </footer>
