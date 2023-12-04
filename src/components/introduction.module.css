@@ -55,6 +55,12 @@
 
 .countainer .cari .logocaridalam {
     font-size: 100px;
+    cursor: pointer;
+}
+
+.countainer .cari .logocaridalam:hover {
+   opacity: 0.8;
+   transition: 0.2 ease;
 }
 
 

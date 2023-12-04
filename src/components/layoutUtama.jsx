@@ -5,11 +5,15 @@ import { CiSearch } from "react-icons/ci";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
+import Pencarian from './pencarian';
+
+import { Pencarianku } from '@/context/pencarianProvider'
+
 
 export default function LayoutUtama({ children }) {
-  const [logo, setLogo] = useState(1)
+  const { isopen, setIsopen } = useContext(Pencarianku);
   return (
     <>
       <div className={styles.countainer}>
@@ -19,14 +23,15 @@ export default function LayoutUtama({ children }) {
           </div>
           <div className={styles.pencarian} >
             <div className={styles.dalampencarian} >
-              <div className={styles.input}>
+              <div className={styles.input}
+              >
                 <input type="text"
-                  placeholder={logo ? 'cari barang' : ''}
-                  onClick={() => setLogo(0)}
-                  className={logo ? styles.inputtrue : styles.inputfalse}
+                  onClick={() => setIsopen(!isopen)}
+                  placeholder="cari barang..."
+                  className={styles.inputtrue}
                 />
               </div>
-              <div className={styles.hilang} style={{ display: logo ? 'block' : 'none' }}>
+              <div className={styles.hilang} >
                 <div className={styles.logocari} >
                   <CiSearch className={styles.logocaridalam} />
                 </div>
@@ -38,6 +43,7 @@ export default function LayoutUtama({ children }) {
         <main className={styles.main} >
           {children}
         </main>
+
         <footer className={styles.bawah}>
           <div className={styles.isi}>
             <div className={styles.powerby}>
@@ -51,10 +57,7 @@ export default function LayoutUtama({ children }) {
           </div>
         </footer>
       </div>
-      {logo ? null :
-        <div className="hilangkan"
-          onClick={() => setLogo(1)}>
-        </div>}
+      {isopen && <Pencarian />}
     </>
   )
 }
