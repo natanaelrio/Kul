@@ -13,5 +13,5 @@ const PencarianProvider = ({ children }) => {
   );
 }
 
-export const Pencarianku = ContextPencarian;
+export const PencarianContext = ContextPencarian;
 export default PencarianProvider

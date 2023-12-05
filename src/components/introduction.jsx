@@ -1,13 +1,13 @@
 'use client';
-import React, { useContext} from 'react'
+import React, { useContext } from 'react'
 import styles from '@/components/introduction.module.css'
 import { IoSearchCircleSharp } from "react-icons/io5";
 import Pencarian from './pencarian';
 
-import { Pencarianku } from '@/context/pencarianProvider'
+import { PencarianContext } from '@/context/pencarianProvider'
 
-export default function Introduction() {   
-    const { isopen, setIsopen } = useContext(Pencarianku);
+export default function Introduction() {
+    const { isopen, setIsopen } = useContext(PencarianContext);
 
     return (
         <>
@@ -33,7 +33,7 @@ export default function Introduction() {
                     </div>
                 </div>
             </div>
-            {isopen && <Pencarian/>}
+            {isopen && <Pencarian />}
         </>
     )
 }

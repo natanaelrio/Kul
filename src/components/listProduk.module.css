@@ -7,7 +7,7 @@
 
 /* JUDUL ATAS */
 .judulatas {
-    width: 1000px;
+    width: 1100px;
     font-weight: bold;
     color: var(--color-sekunder);
     font-size: 30px;
@@ -17,14 +17,18 @@
 
 /* LIST PRODUK */
 .listproduk {
-    width: 1000px;
-    display: flex;
-    /* justify-content: center; */
-    flex-wrap: wrap;
+    width: 1100px;
+}
+
+
+.gridlist {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 5px;
 }
 
 .produk {
-    width: 312px;
+    /* width: 312px; */
     margin: 10px;
     border-radius: 5px;
     border: 1px solid var(--color-primary);
@@ -36,7 +40,7 @@
 
 .produk .gambar {
     max-height: 250px;
-    max-width: 312px;
+    /* max-width: 312px; */
     border-radius: 5px;
     margin-bottom: 10px;
     overflow: hidden;
@@ -157,27 +161,6 @@
 }
 
 
-@media only screen and (max-width: 1015px) {
-
-    /* JUDUL ATAS */
-    .judulatas {
-        width: 90vw;
-    }
-
-    /* LIST PRODUK */
-    .listproduk {
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-    }
-
-    .produk {
-        margin: 3px;
-        width: 30vw
-    }
-
-}
-
 /* Tablet styles using media query */
 @media only screen and (max-width: 768px) {
 
@@ -190,13 +173,16 @@
     /* LIST PRODUK */
     .listproduk {
         width: 100vw;
-        display: flex;
-        justify-content: center;
+    }
+
+    .gridlist {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
     }
 
     .produk {
         margin: 0;
-        width: 47vw
+        /* width: 47vw */
     }
 
     .produk .gambar {
@@ -239,15 +225,18 @@
     }
 
     /* LIST PRODUK */
+    .gridlist {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+    }
+
     .listproduk {
         width: 100vw;
-        display: flex;
-        justify-content: center;
     }
 
     .produk {
         margin: 0;
-        width: 47vw
+        /* width: 47vw */
     }
 
     .produk .gambar {

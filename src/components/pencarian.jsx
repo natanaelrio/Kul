@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
 import styles from '@/components/pencarian.module.css'
 import { IoSearch } from "react-icons/io5";
-import { Pencarianku } from '@/context/pencarianProvider'
+import { PencarianContext } from '@/context/pencarianProvider'
 
 export default function Pencarian(props) {
-    const { isopen, setIsopen } = useContext(Pencarianku);
+    const { isopen, setIsopen } = useContext(PencarianContext);
     return (
         <>
             <div className={styles.container}>
