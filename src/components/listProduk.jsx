@@ -7,8 +7,6 @@ import { FaStar } from "react-icons/fa6";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-
-
 export default function ListProduk() {
     return (
         <>
@@ -20,26 +18,28 @@ export default function ListProduk() {
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-                        <Link href="https://google.com" className={styles.produk}>
-                            <div className={styles.gambar}>
-                                <Image
-                                    src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                    width={500}
-                                    height={500}
-                                    alt="Picture of the author"
-                                />
-                            </div>
-                            <div className={styles.judul}>
-                                Kucing Persia
-                            </div>
-                            <div className={styles.review}>
-                                <div className={styles.harga}>Rp20.000</div>
-                                <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
-                            </div>
-                            <div className={styles.diskon}>
-                                <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
-                                <div className={styles.persendiskon}>(50%)</div>
-                            </div>
+                        <div className={styles.produk}>
+                            <Link href={'/dashboard'}>
+                                <div className={styles.gambar}>
+                                    <Image
+                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
+                                        width={500}
+                                        height={500}
+                                        alt="Picture of the author"
+                                    />
+                                </div>
+                                <div className={styles.judul}>
+                                    Kucing Persia
+                                </div>
+                                <div className={styles.review}>
+                                    <div className={styles.harga}>Rp20.000</div>
+                                    <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
+                                </div>
+                                <div className={styles.diskon}>
+                                    <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
+                                    <div className={styles.persendiskon}>(50%)</div>
+                                </div>
+                            </Link>
                             <Link href="/" className={styles.beli}>
                                 <div className={styles.iconwa}>
                                     <FaWhatsapp className={styles.iconwadalam} />
@@ -48,58 +48,31 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </Link>
+                        </div>
 
-                        <Link href="https://google.com" className={styles.produk}>
-                            <div className={styles.gambar}>
-                                <Image
-                                    src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                    width={500}
-                                    height={500}
-                                    alt="Picture of the author"
-                                />
-                            </div>
-                            <div className={styles.judul}>
-                                Kucing Persia
-                            </div>
-                            <div className={styles.review}>
-                                <div className={styles.harga}>Rp20.000</div>
-                                <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
-                            </div>
-                            <div className={styles.diskon}>
-                                <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
-                                <div className={styles.persendiskon}>(50%)</div>
-                            </div>
-                            <Link href="/" className={styles.beli}>
-                                <div className={styles.iconwa}>
-                                    <FaWhatsapp className={styles.iconwadalam} />
-                                </div>
-                                <div className={styles.text}>
-                                    &nbsp;Beli via Whatapps
-                                </div>
-                            </Link>
-                        </Link>
 
-                        <Link href="https://google.com" className={styles.produk}>
-                            <div className={styles.gambar}>
-                                <Image
-                                    src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                    width={500}
-                                    height={500}
-                                    alt="Picture of the author"
-                                />
-                            </div>
-                            <div className={styles.judul}>
-                                Kucing Persia
-                            </div>
-                            <div className={styles.review}>
-                                <div className={styles.harga}>Rp20.000</div>
-                                <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
-                            </div>
-                            <div className={styles.diskon}>
-                                <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
-                                <div className={styles.persendiskon}>(50%)</div>
-                            </div>
+                        <div className={styles.produk}>
+                            <Link href={'/dashboard'}>
+                                <div className={styles.gambar}>
+                                    <Image
+                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
+                                        width={500}
+                                        height={500}
+                                        alt="Picture of the author"
+                                    />
+                                </div>
+                                <div className={styles.judul}>
+                                    Kucing Persia
+                                </div>
+                                <div className={styles.review}>
+                                    <div className={styles.harga}>Rp20.000</div>
+                                    <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
+                                </div>
+                                <div className={styles.diskon}>
+                                    <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
+                                    <div className={styles.persendiskon}>(50%)</div>
+                                </div>
+                            </Link>
                             <Link href="/" className={styles.beli}>
                                 <div className={styles.iconwa}>
                                     <FaWhatsapp className={styles.iconwadalam} />
@@ -108,28 +81,30 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </Link>
+                        </div>
 
-                        <Link href="https://google.com" className={styles.produk}>
-                            <div className={styles.gambar}>
-                                <Image
-                                    src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                    width={500}
-                                    height={500}
-                                    alt="Picture of the author"
-                                />
-                            </div>
-                            <div className={styles.judul}>
-                                Kucing Persia
-                            </div>
-                            <div className={styles.review}>
-                                <div className={styles.harga}>Rp20.000</div>
-                                <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
-                            </div>
-                            <div className={styles.diskon}>
-                                <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
-                                <div className={styles.persendiskon}>(50%)</div>
-                            </div>
+                        <div className={styles.produk}>
+                            <Link href={'/dashboard'}>
+                                <div className={styles.gambar}>
+                                    <Image
+                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
+                                        width={500}
+                                        height={500}
+                                        alt="Picture of the author"
+                                    />
+                                </div>
+                                <div className={styles.judul}>
+                                    Kucing Persia
+                                </div>
+                                <div className={styles.review}>
+                                    <div className={styles.harga}>Rp20.000</div>
+                                    <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
+                                </div>
+                                <div className={styles.diskon}>
+                                    <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
+                                    <div className={styles.persendiskon}>(50%)</div>
+                                </div>
+                            </Link>
                             <Link href="/" className={styles.beli}>
                                 <div className={styles.iconwa}>
                                     <FaWhatsapp className={styles.iconwadalam} />
@@ -138,28 +113,30 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </Link>
+                        </div>
 
-                        <Link href="https://google.com" className={styles.produk}>
-                            <div className={styles.gambar}>
-                                <Image
-                                    src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                    width={500}
-                                    height={500}
-                                    alt="Picture of the author"
-                                />
-                            </div>
-                            <div className={styles.judul}>
-                                Kucing Persia
-                            </div>
-                            <div className={styles.review}>
-                                <div className={styles.harga}>Rp20.000</div>
-                                <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
-                            </div>
-                            <div className={styles.diskon}>
-                                <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
-                                <div className={styles.persendiskon}>(50%)</div>
-                            </div>
+                        <div className={styles.produk}>
+                            <Link href={'/dashboard'}>
+                                <div className={styles.gambar}>
+                                    <Image
+                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
+                                        width={500}
+                                        height={500}
+                                        alt="Picture of the author"
+                                    />
+                                </div>
+                                <div className={styles.judul}>
+                                    Kucing Persia
+                                </div>
+                                <div className={styles.review}>
+                                    <div className={styles.harga}>Rp20.000</div>
+                                    <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
+                                </div>
+                                <div className={styles.diskon}>
+                                    <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
+                                    <div className={styles.persendiskon}>(50%)</div>
+                                </div>
+                            </Link>
                             <Link href="/" className={styles.beli}>
                                 <div className={styles.iconwa}>
                                     <FaWhatsapp className={styles.iconwadalam} />
@@ -168,13 +145,43 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </Link>
+                        </div>
+
+                        <div className={styles.produk}>
+                            <Link href={'/dashboard'}>
+                                <div className={styles.gambar}>
+                                    <Image
+                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
+                                        width={500}
+                                        height={500}
+                                        alt="Picture of the author"
+                                    />
+                                </div>
+                                <div className={styles.judul}>
+                                    Kucing Persia
+                                </div>
+                                <div className={styles.review}>
+                                    <div className={styles.harga}>Rp20.000</div>
+                                    <div className={styles.rating}><FaStar size={14} className={styles.logorating} />4.5 | 100+terjual    </div>
+                                </div>
+                                <div className={styles.diskon}>
+                                    <div className={styles.hargadiskon}>Rp40.000</div>&nbsp;
+                                    <div className={styles.persendiskon}>(50%)</div>
+                                </div>
+                            </Link>
+                            <Link href="/" className={styles.beli}>
+                                <div className={styles.iconwa}>
+                                    <FaWhatsapp className={styles.iconwadalam} />
+                                </div>
+                                <div className={styles.text}>
+                                    &nbsp;Beli via Whatapps
+                                </div>
+                            </Link>
+                        </div>
+
                     </div>
                 </div>
             </div>
-
-
-
 
             <div className={styles.countainer} style={{ marginTop: '-20px' }}>
                 <div className={styles.pagination}>

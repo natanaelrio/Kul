@@ -27,11 +27,8 @@
     gap: 5px;
 }
 
-.gridlist a {
-    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
-}
 
-.produk {
+.produk  {
     /* width: 312px; */
     margin: 10px;
     border-radius: 15px;
@@ -40,6 +37,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
 }
 
 .produk .gambar {
@@ -91,8 +89,9 @@
     color: red;
 }
 
-.produk .beli {
+.produk  .beli {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: var(--color-primary);

@@ -3,6 +3,7 @@ import { TbDiamond } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import { PencarianContext } from '@/context/pencarianProvider'
 import styles from '@/components/header.module.css'
+import Link from 'next/link';
 
 export default function Header() {
     const { isopen, setIsopen } = useContext(PencarianContext);
@@ -19,9 +20,9 @@ export default function Header() {
         <nav className={styles.nav}
             style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
         >
-            <div className={styles.logogambar}>
+            <Link href={'/'} className={styles.logogambar}>
                 <TbDiamond className={styles.logogambardalam} />
-            </div>
+            </Link>
             <div className={styles.pencarian} >
                 <div className={styles.dalampencarian}
                     onClick={() => setIsopen(!isopen)}>

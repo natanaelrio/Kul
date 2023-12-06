@@ -1,0 +1,269 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.width {
+    width: 1100px;
+}
+
+.grid {
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+}
+
+
+/* REVIEW PRODUK */
+.reviewproduk {
+    padding: 30px;
+    color: var(--color-sekunder);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+
+.reviewproduk .navigasi {
+    margin-bottom: 10px;
+}
+
+.reviewproduk .navigasi a:hover {
+    color: var(--color-primary);
+}
+
+.reviewproduk .judul {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.reviewproduk .terjual {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.reviewproduk .reviewharga {
+    display: flex;
+    align-items: center;
+}
+
+.reviewproduk .reviewharga .harga {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.reviewproduk .diskon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.reviewproduk .diskon .angkadiskon {
+    color: var(--color-diskon);
+    background-color: var(--bg-diskon);
+    padding: 3px 5px;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.reviewproduk .diskon .hargadiskon {
+    text-decoration: line-through;
+    font-weight: 300;
+}
+
+.reviewproduk .deskripsi {
+    margin-bottom: 10px;
+}
+
+.reviewproduk .tersedia {
+    color: var(--color-third);
+    display: block;
+    text-align: right;
+}
+
+.reviewproduk .beli {
+    display: block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    text-align: center;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviewproduk .beli:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.reviewproduk .beli .logobeli {
+    font-size: 25px;
+}
+
+.reviewproduk .garansi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+
+/* GAMBAR */
+.navigasimobile {
+    display: none;
+}
+
+.gambar {
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    padding: 30px;
+}
+
+.gambar img {
+    height: 400px;
+    width: 400px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f
+}
+
+@media only screen and (max-width: 1020px) {
+    .width {
+        width: 100vw;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    .gambar img {
+        width: 300px;
+    }
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .width {
+        width: 100vw;
+    }
+
+    .grid {
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        /* grid-template-rows: 1fr 1fr; */
+    }
+
+
+    /* REVIEW PRODUK */
+    .reviewproduk {
+        grid-area: 2/1/3/3;
+        padding: 20px;
+        font-size: 15px;
+        padding: 10px 30px 30px 30px;
+    }
+
+
+    .reviewproduk .navigasi {
+        display: none;
+    }
+
+    /* GAMBAR */
+
+    .gambar {
+        grid-area: 1/1/2/3;
+        height: fit-content;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    .navigasimobile {
+        display: block;
+        width: 95vw;
+        margin-bottom: 10px;
+        margin: 20px 0;
+    }
+
+    .gambar img {
+        height: 400px;
+        width: 95vw;
+        border-radius: 15px;
+    }
+
+}
+
+
+@media only screen and (max-width: 480px) {
+    .container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .width {
+        width: 100vw;
+    }
+
+    .grid {
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        /* grid-template-rows: 1fr 1fr; */
+    }
+
+
+    /* REVIEW PRODUK */
+    .reviewproduk {
+        grid-area: 2/1/3/3;
+        padding: 20px;
+        font-size: 15px;
+        padding: 10px 20px 20px 20px;
+    }
+
+
+    .reviewproduk .navigasi {
+        display: none;
+    }
+
+    /* GAMBAR */
+
+    .gambar {
+        grid-area: 1/1/2/3;
+        height: fit-content;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0px;
+    }
+
+    .navigasimobile {
+        display: block;
+        width: 95vw;
+        margin-bottom: 10px;
+        margin: 20px 0;
+    }
+
+    .gambar img {
+        height: 400px;
+        width: 95vw;
+        border-radius: 15px;
+    }
+}

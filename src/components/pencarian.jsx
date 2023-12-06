@@ -3,7 +3,7 @@ import styles from '@/components/pencarian.module.css'
 import { IoSearch } from "react-icons/io5";
 import { PencarianContext } from '@/context/pencarianProvider'
 
-export default function Pencarian(props) {
+export default function Pencarian() {
     const { isopen, setIsopen } = useContext(PencarianContext);
     return (
         <>

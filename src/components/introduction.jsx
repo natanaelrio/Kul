@@ -3,12 +3,10 @@ import React, { useContext } from 'react'
 import styles from '@/components/introduction.module.css'
 import { IoSearchCircleSharp } from "react-icons/io5";
 import Pencarian from '@/components/pencarian';
-
 import { PencarianContext } from '@/context/pencarianProvider'
 
 export default function Introduction() {
     const { isopen, setIsopen } = useContext(PencarianContext);
-
     return (
         <>
             <div className={styles.countainertengah}>

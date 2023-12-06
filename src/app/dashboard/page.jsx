@@ -1,7 +1,14 @@
-import React from 'react'
+import ListProduk from '@/components/listProduk'
+import HeaderFooter from '@/components/Layout/headerFooter'
+import Produk from '@/components/produk'
 
-export default function Page() {
+export default function Dashboard() {
   return (
-    <div>page</div>
+    <>
+      <HeaderFooter>
+        <Produk />
+        <ListProduk />
+      </HeaderFooter>
+    </>
   )
 }

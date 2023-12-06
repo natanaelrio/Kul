@@ -5,7 +5,9 @@
   --color-sekunder: #1A1A1A;
   --color-third: #ffb700;
   --color-white: #ffffff;
-  --color-high: #da627d
+  --color-high: #da627d;
+  --color-diskon: #F94D63;
+  --bg-diskon:#FFDBE2
 }
 
 * {
@@ -41,4 +43,3 @@ img {
   position: fixed;
   top: 0;
 }
-
