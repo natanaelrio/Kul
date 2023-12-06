@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import { PencarianContext } from '@/context/pencarianProvider'
@@ -6,17 +6,26 @@ import styles from '@/components/header.module.css'
 
 export default function Header() {
     const { isopen, setIsopen } = useContext(PencarianContext);
+    const [change, setChange] = useState(true)
+
+    useEffect(() => {
+        const windowScroll = () => {
+            window.scrollY <= 100 ? setChange(true) : setChange(false)
+        }
+        window.addEventListener('scroll', windowScroll)
+    }, [setChange]);
+
     return (
-        <nav className={styles.nav}>
+        <nav className={styles.nav}
+            style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
+        >
             <div className={styles.logogambar}>
                 <TbDiamond className={styles.logogambardalam} />
             </div>
             <div className={styles.pencarian} >
                 <div className={styles.dalampencarian}
-                    onClick={() => setIsopen(!isopen)}
-                >
-                    <div className={styles.input}
-                    >
+                    onClick={() => setIsopen(!isopen)}>
+                    <div className={styles.input}>
                         <input type="text"
                             onClick={() => setIsopen(!isopen)}
                             placeholder="cari barang..."
@@ -30,6 +39,6 @@ export default function Header() {
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav >
     )
 }

@@ -1,30 +1,31 @@
 .countainertengah {
     display: flex;
     justify-content: center;
-    margin: 10px 0;
+    /* margin: 10px 0; */
 }
 
 .countainer {
-    width: 1100px;
+    width: 100vw;
     display: flex;
     justify-content: center;
     font-weight: 900;
-    color: var(--color-sekunder);
-    height: 40vh;
-    align-items: center;
-    background-color: var(--color-third);
-    border-radius: 15px;
+    color: var(--color-white);
+    height: 300px;
+    /* align-items: center; */
+    background-color: var(--color-primary);
+    /* border-radius: 0 0 15px 15px; */
     container-type: inline-size;
     box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
 }
 
 .countainer .text {
-    font-size: 4.5cqw;
+    font-size: 4cqw;
     position: relative;
 }
 
 
 .countainer .text .pertama {
+    margin-top: 30px;
     display: flex;
     width: 1100px;
     justify-content: center;
@@ -37,7 +38,7 @@
 }
 
 .countainer .text .kedua .keduadalam {
-    color: var(--color-primary);
+    color: var(--color-third);
 }
 
 .countainer .text .textbawah {
@@ -45,8 +46,8 @@
     justify-content: center;
     text-align: center;
     font-weight: 300;
-    color: var(--color-sekunder);
-    font-size: 2.5cqw;
+    color: var(--color-white);
+    font-size: 1.5cqw;
 }
 
 .countainer .text .cari {
@@ -57,8 +58,9 @@
 
 .countainer .cari {
     position: absolute;
-    bottom: -90px;
+    bottom: -30px;
     width: 1100px;
+    color: var(--color-third);
 }
 
 .countainer .cari .logocaridalam {
@@ -67,7 +69,7 @@
 }
 
 .countainer .cari .logocaridalam:hover {
-    opacity: 0.8;
+    opacity: 0.9;
     transition: 0.2 ease;
 }
 
@@ -75,9 +77,9 @@
 /* Tablet styles using media query */
 @media only screen and (max-width: 768px) {
     .countainer {
-        width: 90vw;
+        width: 100vw;
         /* font-size: 28px; */
-        height: 220px;
+        height: 250px;
     }
 
     .countainer .text {
@@ -85,11 +87,11 @@
     }
 
     .countainer .text .pertama {
-        width: 95vw;
+        width: 100vw;
     }
 
     .countainer .text .kedua {
-        width: 95vw;
+        width: 100vw;
     }
 
     .countainer .text .textbawah {
@@ -97,8 +99,8 @@
     }
 
     .countainer .cari {
-        width: 95vw;
-        bottom: -80px;
+        width: 100vw;
+        bottom: -25px;
     }
 
     .countainer .cari .logocaridalam {
@@ -110,9 +112,9 @@
 /* Mobile styles using media query */
 @media only screen and (max-width: 480px) {
     .countainer {
-        width: 90vw;
+        width: 100vw;
         /* font-size: 20px; */
-        height: 150px;
+        height: 200px;
     }
 
 
@@ -122,11 +124,11 @@
 
 
     .countainer .text .pertama {
-        width: 95vw;
+        width: 100vw;
     }
 
     .countainer .text .kedua {
-        width: 95vw;
+        width: 100vw;
     }
 
     .countainer .text .textbawah {
@@ -138,11 +140,11 @@
     }
 
     .countainer .cari {
-        width: 95vw;
-        bottom: -58px;
+        width: 100vw;
+        bottom: -18px;
     }
 
     .countainer .cari .logocaridalam {
-        font-size: 60px;
+        font-size: 70px;
     }
 }

@@ -20,7 +20,7 @@ export default function ListProduk() {
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-                        <a href="https://google.com" className={styles.produk}>
+                        <Link href="https://google.com" className={styles.produk}>
                             <div className={styles.gambar}>
                                 <Image
                                     src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -48,9 +48,9 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </a>
+                        </Link>
 
-                        <a href="https://google.com" className={styles.produk}>
+                        <Link href="https://google.com" className={styles.produk}>
                             <div className={styles.gambar}>
                                 <Image
                                     src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -78,9 +78,9 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </a>
+                        </Link>
 
-                        <a href="https://google.com" className={styles.produk}>
+                        <Link href="https://google.com" className={styles.produk}>
                             <div className={styles.gambar}>
                                 <Image
                                     src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -108,9 +108,9 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </a>
+                        </Link>
 
-                        <a href="https://google.com" className={styles.produk}>
+                        <Link href="https://google.com" className={styles.produk}>
                             <div className={styles.gambar}>
                                 <Image
                                     src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -138,9 +138,9 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </a>
+                        </Link>
 
-                        <a href="https://google.com" className={styles.produk}>
+                        <Link href="https://google.com" className={styles.produk}>
                             <div className={styles.gambar}>
                                 <Image
                                     src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -168,7 +168,7 @@ export default function ListProduk() {
                                     &nbsp;Beli via Whatapps
                                 </div>
                             </Link>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
