@@ -8,11 +8,24 @@
 }
 
 .grid {
-    margin: 20px 0;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
 }
 
+.navigasi {
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.navigasi .dalamnav {
+    width: 100%;
+}
+
+.navigasi a:hover {
+    color: var(--color-primary);
+}
 
 /* REVIEW PRODUK */
 .reviewproduk {
@@ -25,13 +38,7 @@
 }
 
 
-.reviewproduk .navigasi {
-    margin-bottom: 10px;
-}
 
-.reviewproduk .navigasi a:hover {
-    color: var(--color-primary);
-}
 
 .reviewproduk .judul {
     font-weight: 700;
@@ -115,9 +122,6 @@
 
 
 /* GAMBAR */
-.navigasimobile {
-    display: none;
-}
 
 .gambar {
     height: 500px;
@@ -141,6 +145,10 @@
 
     .grid {
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    .navigasi .dalamnav {
+        width: 95vw;
     }
 
     .gambar img {
@@ -167,6 +175,10 @@
         /* grid-template-rows: 1fr 1fr; */
     }
 
+    .navigasi .dalamnav {
+        width: 95vw;
+    }
+
 
     /* REVIEW PRODUK */
     .reviewproduk {
@@ -176,10 +188,6 @@
         padding: 10px 30px 30px 30px;
     }
 
-
-    .reviewproduk .navigasi {
-        display: none;
-    }
 
     /* GAMBAR */
 
@@ -194,12 +202,6 @@
         padding: 0px;
     }
 
-    .navigasimobile {
-        display: block;
-        width: 95vw;
-        margin-bottom: 10px;
-        margin: 20px 0;
-    }
 
     .gambar img {
         height: 400px;
@@ -227,6 +229,9 @@
         /* grid-template-rows: 1fr 1fr; */
     }
 
+    .navigasi .dalamnav {
+        width: 95vw;
+    }
 
     /* REVIEW PRODUK */
     .reviewproduk {
@@ -236,10 +241,6 @@
         padding: 10px 20px 20px 20px;
     }
 
-
-    .reviewproduk .navigasi {
-        display: none;
-    }
 
     /* GAMBAR */
 
@@ -254,12 +255,6 @@
         padding: 0px;
     }
 
-    .navigasimobile {
-        display: block;
-        width: 95vw;
-        margin-bottom: 10px;
-        margin: 20px 0;
-    }
 
     .gambar img {
         height: 400px;

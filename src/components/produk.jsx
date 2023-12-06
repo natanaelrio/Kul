@@ -10,12 +10,15 @@ export default function Produk() {
     return (
         <div className={styles.container}>
             <div className={styles.width}>
+                <div className={styles.navigasi}>
+                    <div className={styles.dalamnav}>
+                        <Link href="/">Home</Link> / Products
+                    </div>
+                </div>
                 <div className={styles.grid}>
                     <div className={styles.reviewproduk}>
                         <div className={styles.containerreview}>
-                            <div className={styles.navigasi}>
-                                <Link href="/">Home</Link> / Products
-                            </div>
+
                             <div className={styles.judul}>Kucing Persia</div>
                             <div className={styles.terjual}>Terjual 100++ • <FaStar size={12} /> 4.7</div>
                             <div className={styles.reviewharga}>
@@ -37,9 +40,6 @@ export default function Produk() {
                         </div>
                     </div>
                     <div className={styles.gambar}>
-                        <div className={styles.navigasimobile}>
-                            <Link href="/">Home</Link> / Products
-                        </div>
                         <div className="gambardalam">
                             <Image
                                 src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
