@@ -2,12 +2,12 @@
 import styles from '@/components/Layout/headerFooter.module.css'
 import React, { useContext } from 'react'
 import Pencarian from '@/components/pencarian';
-import { PencarianContext } from '@/context/pencarianProvider';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import { useStore } from '@/lib/zustand'
 
 export default function HeaderFooter({ children }) {
-  const { isopen, setIsopen } = useContext(PencarianContext);
+  const open = useStore((state) => state.open)
   return (
     <>
       <div className={styles.countainer}>
@@ -17,7 +17,7 @@ export default function HeaderFooter({ children }) {
         </main>
         <Footer />
       </div>
-      {isopen && <Pencarian />}
+      {open && <Pencarian />}
     </>
   )
 }

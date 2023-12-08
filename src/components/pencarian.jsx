@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react'
 import styles from '@/components/pencarian.module.css'
 import { IoSearch } from "react-icons/io5";
-import { PencarianContext } from '@/context/pencarianProvider'
+import { useStore } from '@/lib/zustand'
 
 export default function Pencarian() {
-    const { isopen, setIsopen } = useContext(PencarianContext);
+    const setOpen = useStore((state) => state.setOpen)
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.backgroundblur}
-                    onClick={() => setIsopen(!isopen)}>
+                    onClick={setOpen}>
                 </div>
                 <div className={styles.containerpencarian}>
                     <div className={styles.pencarian}>

@@ -3,10 +3,11 @@ import React, { useContext } from 'react'
 import styles from '@/components/introduction.module.css'
 import { IoSearchCircleSharp } from "react-icons/io5";
 import Pencarian from '@/components/pencarian';
-import { PencarianContext } from '@/context/pencarianProvider'
+import { useStore } from '@/lib/zustand'
 
 export default function Introduction() {
-    const { isopen, setIsopen } = useContext(PencarianContext);
+    const isopen = useStore((state) => state.open)
+    const setOpen = useStore((state) => state.setOpen)
     return (
         <>
             <div className={styles.countainertengah}>
@@ -27,7 +28,7 @@ export default function Introduction() {
                         <div className={styles.cari}>
                             <IoSearchCircleSharp
                                 className={styles.logocaridalam}
-                                onClick={() => setIsopen(!isopen)}
+                                onClick={setOpen}
                             />
                         </div>
                     </div>
