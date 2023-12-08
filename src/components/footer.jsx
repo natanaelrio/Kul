@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '@/components/footer.module.css'
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";

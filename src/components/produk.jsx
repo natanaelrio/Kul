@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '@/components/produk.module.css'
 import Image from 'next/image'
 import { CiShoppingCart } from "react-icons/ci";

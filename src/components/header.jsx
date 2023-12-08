@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import styles from '@/components/header.module.css'
@@ -7,10 +7,7 @@ import { useStore } from '@/lib/zustand'
 
 export default function Header() {
     const [change, setChange] = useState(true)
-    const open = useStore((state) => state.open)
     const Setopen = useStore((state) => state.setOpen)
-
-    console.log(open);
 
     useEffect(() => {
         const windowScroll = () => {

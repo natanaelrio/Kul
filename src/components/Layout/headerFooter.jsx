@@ -1,6 +1,5 @@
 "use client"
 import styles from '@/components/Layout/headerFooter.module.css'
-import React, { useContext } from 'react'
 import Pencarian from '@/components/pencarian';
 import Header from '@/components/header';
 import Footer from '@/components/footer';

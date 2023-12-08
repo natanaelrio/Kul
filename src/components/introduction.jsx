@@ -1,5 +1,4 @@
 'use client';
-import React, { useContext } from 'react'
 import styles from '@/components/introduction.module.css'
 import { IoSearchCircleSharp } from "react-icons/io5";
 import Pencarian from '@/components/pencarian';

@@ -1,4 +1,3 @@
-import React, { useContext, useState } from 'react'
 import styles from '@/components/pencarian.module.css'
 import { IoSearch } from "react-icons/io5";
 import { useStore } from '@/lib/zustand'
@@ -22,7 +21,6 @@ export default function Pencarian() {
                         Tidak ada hasil Pencarian!
                     </div>
                 </div>
-
             </div>
         </>
     )
