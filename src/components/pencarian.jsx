@@ -3,12 +3,12 @@ import { IoSearch } from "react-icons/io5";
 import { useStore } from '@/lib/zustand'
 
 export default function Pencarian() {
-    const setOpen = useStore((state) => state.setOpen)
+    const setOpenPencarian = useStore((state) => state.setOpenPencarian)
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.backgroundblur}
-                    onClick={setOpen}>
+                    onClick={setOpenPencarian}>
                 </div>
                 <div className={styles.containerpencarian}>
                     <div className={styles.pencarian}>

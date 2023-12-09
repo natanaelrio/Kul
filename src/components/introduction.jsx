@@ -5,8 +5,8 @@ import Pencarian from '@/components/pencarian';
 import { useStore } from '@/lib/zustand'
 
 export default function Introduction() {
-    const isopen = useStore((state) => state.open)
-    const setOpen = useStore((state) => state.setOpen)
+    const openPencarian = useStore((state) => state.openPencarian)
+    const setOpenPencarian = useStore((state) => state.setOpenPencarian)
     return (
         <>
             <div className={styles.countainertengah}>
@@ -27,13 +27,13 @@ export default function Introduction() {
                         <div className={styles.cari}>
                             <IoSearchCircleSharp
                                 className={styles.logocaridalam}
-                                onClick={setOpen}
+                                onClick={setOpenPencarian}
                             />
                         </div>
                     </div>
                 </div>
             </div>
-            {isopen && <Pencarian />}
+            {openPencarian && <Pencarian />}
         </>
     )
 }

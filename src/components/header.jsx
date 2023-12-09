@@ -7,7 +7,7 @@ import { useStore } from '@/lib/zustand'
 
 export default function Header() {
     const [change, setChange] = useState(true)
-    const Setopen = useStore((state) => state.setOpen)
+    const SetopenPencarian = useStore((state) => state.setOpenPencarian)
 
     useEffect(() => {
         const windowScroll = () => {
@@ -26,7 +26,7 @@ export default function Header() {
                 </Link>
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
-                        onClick={Setopen}>
+                        onClick={SetopenPencarian}>
                         <div className={styles.input}>
                             <input type="text"
                                 placeholder="cari barang..."

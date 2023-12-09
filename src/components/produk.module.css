@@ -90,6 +90,32 @@
     text-align: right;
 }
 
+.reviewproduk .containerbeli {
+    display: flex;
+    align-items: center;
+}
+
+.reviewproduk .logokembaliluar {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    display: block;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.reviewproduk .logokembaliluar:hover {
+    opacity: 0.9;
+}
+
+.reviewproduk .logokembali {
+    font-size: 30px;
+}
+
 .reviewproduk .beli {
     display: block;
     background-color: var(--color-primary);
@@ -98,6 +124,13 @@
     border-radius: 15px;
     padding: 15px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.reviewproduk .beli .belisekarang {
     display: flex;
     align-items: center;
     justify-content: center;

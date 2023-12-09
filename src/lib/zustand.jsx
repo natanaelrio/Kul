@@ -1,11 +1,19 @@
 import { create } from 'zustand'
 
 export const useStore = create((set) => ({
-    open: false,
-    setOpen: () => {
+    openPencarian: false,
+    setOpenPencarian: () => {
         set((state) => ({
-                open: !state.open
-            })
+            openPencarian: !state.openPencarian
+        })
+        )
+    },
+
+    openJumlah: false,
+    setOpenJumlah: () => {
+        set((state) => ({
+            openJumlah: !state.openJumlah
+        })
         )
     }
 }))

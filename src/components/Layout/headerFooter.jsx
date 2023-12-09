@@ -6,7 +6,7 @@ import Footer from '@/components/footer';
 import { useStore } from '@/lib/zustand'
 
 export default function HeaderFooter({ children }) {
-  const open = useStore((state) => state.open)
+  const openPencarian = useStore((state) => state.openPencarian)
   return (
     <>
       <div className={styles.countainer}>
@@ -16,7 +16,7 @@ export default function HeaderFooter({ children }) {
         </main>
         <Footer />
       </div>
-      {open && <Pencarian />}
+      {openPencarian && <Pencarian />}
     </>
   )
 }
