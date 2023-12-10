@@ -7,7 +7,9 @@
   --color-white: #ffffff;
   --color-high: #da627d;
   --color-diskon: #F94D63;
-  --bg-diskon:#FFDBE2
+  --bg-diskon:#FFDBE2;
+  --bg-wa:#25d366;
+  --bg-bayar:#94FBAB
 }
 
 * {

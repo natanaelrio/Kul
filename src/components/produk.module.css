@@ -34,7 +34,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 
@@ -112,6 +112,7 @@
     opacity: 0.9;
 }
 
+
 .reviewproduk .logokembali {
     font-size: 30px;
 }
@@ -154,6 +155,60 @@
 }
 
 
+.reviewproduk .bayarchatkeranjang {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.reviewproduk .bayarchatkeranjang .bayar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 7px;
+    background-color: var(--bg-bayar);
+    color: var(--color-sekunder);
+    cursor: pointer;
+}
+
+.reviewproduk .bayarchatkeranjang .bayar:hover {
+   opacity: 0.9;
+}
+
+.reviewproduk .bayarchatkeranjang .chatwa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: var(--bg-wa);
+    color: var(--color-white);
+}
+
+.reviewproduk .bayarchatkeranjang .chatwa:hover {
+     opacity: 0.9;
+}
+
+.reviewproduk .bayarchatkeranjang .keranjang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 15px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: var(--color-third);
+    color: var(--color-white);
+}
+.reviewproduk .bayarchatkeranjang .keranjang:hover {
+     opacity: 0.9;
+}
+
+
 /* GAMBAR */
 
 .gambar {
@@ -182,6 +237,22 @@
 
     .navigasi .dalamnav {
         width: 95vw;
+    }
+
+    .reviewproduk .bayarchatkeranjang {
+       font-size: 18px;
+    }
+
+    .reviewproduk .bayarchatkeranjang .bayar {
+        padding: 5px 5px;
+    }
+    
+    .reviewproduk .bayarchatkeranjang .chatwa {
+        padding: 5px 5px;
+    }
+
+    .reviewproduk .bayarchatkeranjang .keranjang {
+        padding: 5px 5px;
     }
 
     .gambar img {
@@ -217,8 +288,20 @@
     .reviewproduk {
         grid-area: 2/1/3/3;
         padding: 20px;
-        font-size: 15px;
+        font-size: 18px;
         padding: 10px 30px 30px 30px;
+    }
+
+    .reviewproduk .bayarchatkeranjang .bayar {
+        padding: 5px 5px;
+    }
+    
+    .reviewproduk .bayarchatkeranjang .chatwa {
+        padding: 5px 5px;
+    }
+
+    .reviewproduk .bayarchatkeranjang .keranjang {
+        padding: 5px 5px;
     }
 
 
@@ -272,6 +355,22 @@
         padding: 20px;
         font-size: 15px;
         padding: 10px 20px 20px 20px;
+    }
+
+    .reviewproduk .bayarchatkeranjang {
+        font-size: 18px;
+    }
+
+    .reviewproduk .bayarchatkeranjang .bayar {
+        padding: 5px 5px;
+    }
+    
+    .reviewproduk .bayarchatkeranjang .chatwa {
+        padding: 5px 5px;
+    }
+
+    .reviewproduk .bayarchatkeranjang .keranjang {
+        padding: 5px 5px;
     }
 
 

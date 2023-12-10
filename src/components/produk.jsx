@@ -8,6 +8,9 @@ import { FaStar } from "react-icons/fa6";
 import { useStore } from '@/lib/zustand'
 import JumlahPesanan from '@/components/jumlahPesanan';
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { BiSolidShoppingBag } from "react-icons/bi";
+import { BsCash } from "react-icons/bs";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Produk() {
     const openJumlah = useStore((state) => state.openJumlah)
@@ -59,6 +62,15 @@ export default function Produk() {
                                             </div>
                                     }
                                 </div>
+                                {openJumlah ?
+                                    <div className={styles.bayarchatkeranjang}>
+                                    <div className={styles.chatwa}> <FaWhatsapp />&nbsp;Chat</div>
+                                    <div className={styles.bayar}><BsCash />&nbsp; Bayar</div>
+                                    <div className={styles.keranjang}><BiSolidShoppingBag />&nbsp; +Keranjang</div>
+                                </div> : null
+                                    
+                                }
+
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
                             </div>
                         </div>
