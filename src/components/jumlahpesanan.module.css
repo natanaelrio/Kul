@@ -6,6 +6,40 @@
     width: 100%;
 }
 
-.logo {
-    background-color: blue
+.text {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 25px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+.text .kurang {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text .tambah {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text .kurang:hover {
+    color: var(--color-third);
+}
+
+.text .tambah:hover {
+    color: var(--color-third);
 }

@@ -9,10 +9,10 @@ import { useStore } from '@/lib/zustand'
 import JumlahPesanan from '@/components/jumlahPesanan';
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
-
 export default function Produk() {
     const openJumlah = useStore((state) => state.openJumlah)
     const setOpenJumlah = useStore((state) => state.setOpenJumlah)
+
     return (
         <>
             <div className={styles.container}>
@@ -48,16 +48,16 @@ export default function Produk() {
                                         </div>
                                             : null
                                     }
-
-                                    <div className={styles.beli} onClick={setOpenJumlah}>
-                                        {
-                                            openJumlah ? < JumlahPesanan />
-                                                : < div className={styles.belisekarang}>
+                                    {
+                                        openJumlah ? < JumlahPesanan />
+                                            :
+                                            <div className={styles.beli} onClick={setOpenJumlah}>
+                                                < div className={styles.belisekarang}>
                                                     <CiShoppingCart className={styles.logobeli} />
                                                     &nbsp; Beli Sekarang!
                                                 </div>
-                                        }
-                                    </div>
+                                            </div>
+                                    }
                                 </div>
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
                             </div>

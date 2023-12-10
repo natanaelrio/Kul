@@ -15,5 +15,18 @@ export const useStore = create((set) => ({
             openJumlah: !state.openJumlah
         })
         )
+    },
+
+    angka: 1,
+    setTambahAngka: () => {
+        set((state) => ({
+            angka: state.angka + 1
+        }))
+    },
+    setKurangAngka: () => {
+        set((state) => ({
+            angka: state.angka <= 1 ? state.angka - 0 : state.angka - 1
+        }))
     }
+
 }))
