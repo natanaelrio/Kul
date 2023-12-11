@@ -10,30 +10,38 @@
     background-color: var(--color-primary);
     color: var(--color-white);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     font-size: 25px;
     border-radius: 15px;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
 .text .kurang {
     font-size: 30px;
     cursor: pointer;
-    padding: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: red; */
+    border-radius: 15px;
+    width: 40%;
+    padding: 10px;
+    border-right: 1px solid var(--color-third);
 }
 
 .text .tambah {
     font-size: 30px;
     cursor: pointer;
-    padding: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: red; */
+    border-radius: 15px;
+    border-left: 1px solid var(--color-third);
+    width: 40%;
+    padding: 10px;
 }
 
 .text .kurang:hover {
