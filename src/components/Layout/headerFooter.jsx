@@ -4,9 +4,12 @@ import Pencarian from '@/components/pencarian';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { useStore } from '@/lib/zustand'
+import FormPembelian from '@/components/formpembelian';
+
 
 export default function HeaderFooter({ children }) {
   const openPencarian = useStore((state) => state.openPencarian)
+  const openFormPembelian = useStore((state) => state.openFormPembelian)
   return (
     <>
       <div className={styles.countainer}>
@@ -17,6 +20,7 @@ export default function HeaderFooter({ children }) {
         <Footer />
       </div>
       {openPencarian && <Pencarian />}
+      {openFormPembelian && <FormPembelian />}
     </>
   )
 }

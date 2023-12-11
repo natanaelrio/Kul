@@ -1,11 +1,9 @@
 'use client';
 import styles from '@/components/introduction.module.css'
 import { IoSearchCircleSharp } from "react-icons/io5";
-import Pencarian from '@/components/pencarian';
 import { useStore } from '@/lib/zustand'
 
 export default function Introduction() {
-    const openPencarian = useStore((state) => state.openPencarian)
     const setOpenPencarian = useStore((state) => state.setOpenPencarian)
     return (
         <>
@@ -33,7 +31,6 @@ export default function Introduction() {
                     </div>
                 </div>
             </div>
-            {openPencarian && <Pencarian />}
         </>
     )
 }

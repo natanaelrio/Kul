@@ -8,6 +8,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openFormPembelian: false,
+    setOpenFormPembelian: () => {
+        set((state) => ({
+            openFormPembelian: !state.openFormPembelian
+        })
+        )
+    },
 
     openJumlah: false,
     setOpenJumlah: () => {
@@ -20,7 +27,7 @@ export const useStore = create((set) => ({
     angka: 1,
     setTambahAngka: () => {
         set((state) => ({
-            angka: state.angka + 1
+            angka: state.angka >= 10 ? state.angka : state.angka + 1
         }))
     },
     setKurangAngka: () => {

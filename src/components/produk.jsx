@@ -15,6 +15,7 @@ import { FaWhatsapp } from "react-icons/fa";
 export default function Produk() {
     const openJumlah = useStore((state) => state.openJumlah)
     const setOpenJumlah = useStore((state) => state.setOpenJumlah)
+    const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
 
     return (
         <>
@@ -65,7 +66,7 @@ export default function Produk() {
                                 {openJumlah ?
                                     <div className={styles.bayarchatkeranjang}>
                                     <div className={styles.chatwa}> <FaWhatsapp />&nbsp;Chat</div>
-                                    <div className={styles.bayar}><BsCash />&nbsp; Bayar</div>
+                                    <div className={styles.bayar} onClick={setOpenFormPembelian}><BsCash />&nbsp; Bayar</div>
                                     <div className={styles.keranjang}><BiSolidShoppingBag />&nbsp; +Keranjang</div>
                                 </div> : null
                                     

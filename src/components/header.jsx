@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import styles from '@/components/header.module.css'

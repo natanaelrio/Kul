@@ -1,44 +1,11 @@
-.container {
-    position: absolute;
-    position: fixed;
-    top: 0;
-    z-index: 99991;
-    min-height: 100vh;
-    /* width: 100vw; */
-    display: flex;
-    justify-content: center;
-}
-
-
-.backgroundblur {
-    width: 100vw;
-    height: 1000vw;
-    position: relative;
-    backdrop-filter: blur(5px);
-    background-color: black;
-    background-color: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px);
-}
-
-.containerpencarian {
-    z-index: 99992;
-    position: absolute;
-    top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 .pencarian {
     /* margin-top: 100px; */
-    width: 800px;
     height: 70px;
     background-color: var(--color-white);
-    border-radius: 10px 10px 0 0;
+    /* border-radius: 10px 10px 0 0; */
     padding: 10px 10px 15px 15px;
     color: var(--color-sekunder);
-    border-bottom: 5px solid var(--color-third);
+    border-bottom: 3px solid var(--color-third);
 }
 
 .pencarian .pencariandalam {
@@ -66,21 +33,19 @@
     padding: 15px;
     background-color: blue;
     height: 200px;
-    width: 800px;
     background-color: var(--color-white);
-    border-radius: 0 0 15px 15px;
+    /* border-radius: 0 0 10px 10px; */
 }
 
 
 /* Tablet styles using media query */
 @media only screen and (max-width: 768px) {
-
     .pencarian {
-        width: 80vw;
+        width: 100%;
     }
 
     .isipencarian {
-        width: 80vw;
+        width: 100%;
     }
 
 }
@@ -89,7 +54,7 @@
 @media only screen and (max-width: 480px) {
 
     .pencarian {
-        width: 90vw;
+        width: 100%;
     }
 
     .pencarian .logocaridalam {
@@ -101,6 +66,6 @@
     }
 
     .isipencarian {
-        width: 90vw;
+        width: 100%;
     }   
 }
