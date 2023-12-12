@@ -73,6 +73,10 @@
         border-radius: 0;
         font-size: 20px;
     }
+
+    .atasjudul .icon {
+        font-size: 24px;
+    }
 }
 
 
@@ -90,5 +94,9 @@
     .atasjudul {
         border-radius: 0;
         font-size: 18px;
+    }
+
+    .atasjudul .icon {
+        font-size: 24px;
     }
 }
