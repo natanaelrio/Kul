@@ -1,0 +1,230 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bungkusjudul {
+    width: 1200px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.judul {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-thirh);
+    margin: 10px 0;
+    padding: 5px;
+    border-bottom: 10px solid var(--color-primary);
+}
+
+.containerform {
+    width: 1200px;
+    /* background-color: yellow; */
+}
+
+.form {
+    /* width: 500px; */
+    /* display: flex;
+    flex-direction: column; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(595px, 1fr));
+    gap: 10px;
+    justify-content: center;
+}
+
+
+.form .kotak1 {
+    width: 100%;
+    /* background-color: red; */
+}
+
+.form .kotak2 {
+    width: 100%;
+    /* background-color: blue; */
+}
+
+.form label {
+    margin-top: 10px;
+    font-size: 16px;
+    display: flex;
+}
+
+.form input {
+    width: 100%;
+    padding: 20px 10px;
+    outline: none;
+    border-radius: 7px;
+    box-shadow: 0;
+    border: 1px solid var(--color-primary);
+    font-size: 28px;
+}
+
+.form textarea {
+    padding: 10px;
+    outline: none;
+    border-radius: 7px;
+    box-shadow: 0;
+    border: 1px solid var(--color-primary);
+    font-size: 28px;
+    width: 100%;
+}
+
+.form textarea:focus {
+    outline: none;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.form input:focus {
+    outline: none;
+    border: 2px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.form :placeholder-shown {
+    font-size: 17px;
+}
+
+.bagi2 {
+    display: flex;
+    width: 100%;
+}
+
+.bagi2 .harga {
+    width: 70%;
+    margin-right: 10px;
+}
+
+.bagi2 .harga input {
+    width: 100%;
+}
+
+.bagi2 .diskon {
+    width: 30%;
+}
+
+.bagi2 .diskon input {
+    width: 100%;
+}
+
+
+.form .dalamsubmit {
+    display: flex;
+    justify-content: flex-end;
+}
+.form button {
+    margin: 10px 0;
+    background-color: var(--color-primary);
+    padding: 15px 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color-white);
+    border: 0px solid;
+    border-radius: 10px;
+    width: 40%;
+}
+
+.form button:hover {
+    opacity: 0.9;
+}
+
+
+@media only screen and (max-width: 1200px) {
+
+
+    .bungkusjudul {
+        width: 95%;
+    }
+
+
+
+    .containerform {
+        width: 95%;
+    }
+
+    .form {
+        /* gap: 0; */
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+
+
+    .judul {
+        font-size: 25px;
+    }
+
+
+    .bungkusjudul {
+        width: 95%;
+    }
+
+    .containerform {
+        width: 95%;
+    }
+
+    .form {
+        gap: 0;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+
+}
+
+
+@media only screen and (max-width: 480px) {
+
+
+    .judul {
+        font-size: 20px;
+    }
+
+    .bungkusjudul {
+        width: 95%;
+    }
+
+    .containerform {
+        width: 95%;
+    }
+
+    .form :placeholder-shown {
+        font-size: 14px;
+    }
+
+    .form input {
+        width: 100%;
+        padding: 10px;
+        outline: none;
+        border-radius: 7px;
+        box-shadow: 0;
+        border: 1px solid var(--color-primary);
+        font-size: 18px;
+    }
+
+    .form textarea {
+        padding: 10px;
+        outline: none;
+        border-radius: 7px;
+        box-shadow: 0;
+        border: 1px solid var(--color-primary);
+        font-size: 18px;
+        width: 100%;
+    }
+
+
+    .form {
+        /* width: 500px; */
+        /* display: flex;
+        flex-direction: column; */
+        /* display: grid; */
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+}

@@ -40,7 +40,7 @@ export default function FormPembelian() {
         }),
         onSubmit: values => {
             alert(JSON.stringify(values, null, 1));
-            console.log(values);
+            // console.log(values);
         },
     });
     return (

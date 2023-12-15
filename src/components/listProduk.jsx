@@ -49,7 +49,6 @@ export default function ListProduk() {
                             </Link>
                         </div>
 
-
                         <div className={styles.produk}>
                             <Link href={'/dashboard'}>
                                 <div className={styles.gambar}>
