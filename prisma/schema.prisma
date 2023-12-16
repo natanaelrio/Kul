@@ -9,8 +9,7 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
-
-model cobadulu {
+model admin {
   id                     Int       @id @default(autoincrement())
   start                  DateTime  @default(now())
   end                    DateTime? @updatedAt
@@ -23,20 +22,6 @@ model cobadulu {
   diskripsi_barang       String?
   gambar_barang          String?
   slug_barang            String?
-}
-
-
-model cobadua {
-  id                     Int       @id @default(autoincrement())
-  start                  DateTime  @default(now())
-  end                    DateTime? @updatedAt
-  nama_barang            String    @unique
-  kategori_barang        String?
-  harga_barang           Int?
-  diskon_barang          Int?
-  rating_barang          Int?
-  total_penjualan_barang Int?
-  diskripsi_barang       String?
-  gambar_barang          String?
-  slug_barang            String?
+  kupon_barang           String?
+  view_barang            String?
 }

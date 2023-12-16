@@ -1,35 +1,26 @@
 "use client"
-
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/components/admin/kirim.module.css'
-
-// async function getUser(data) {
-
-//     const res = await fetch('http://localhost:3000/api/v1', {
-//         method: POST,
-//         body: ({
-//             end: null,
-//             nama_barang: 'wkwk',
-//             kategori_barang: 'wkwk',
-//             harga_barang: 12,
-//             diskon_barang: 124,
-//             rating_barang: 134,
-//             total_penjualan_barang: 241,
-//             diskripsi_barang: 'wkwk',
-//             gambar_barang: 'siappp',
-//             slug_barang: 'siapppp'
-//         }),
-//         headers: {
-//             authorization: process.env.NEXT_PUBLIC_SECREET
-//         },
-//     })
-//     return res.json()
-// }
+import { useState } from 'react';
 
 export default function Kirim() {
-    // const data = { end, nama_barang, kategori_barang, harga_barang, diskon_barang, rating_barang, total_penjualan_barang, diskripsi_barang, gambar_barang, slug_barang }
-    // const user = await getUser()
+    const [handleData, setHandleData] = useState()
+    const DataLain = {
+        end: null
+    }
+    const DataUtama = handleData
+    const GabungData = { ...DataUtama, ...DataLain }
+    const handleKirim = async () => {
+        await fetch('http://localhost:3000/api/v1', {
+            method: 'POST',
+            body: JSON.stringify(GabungData),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': process.env.NEXT_PUBLIC_SECREET
+            }
+        })
+    }
     const formik = useFormik({
         initialValues: {
             nama_barang: '',
@@ -80,8 +71,7 @@ export default function Kirim() {
                 .required('require'),
         }),
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 1));
-            // console.log(values);
+            setHandleData(values)
         },
     });
     return (
@@ -92,12 +82,8 @@ export default function Kirim() {
                 <div className={styles.bungkusjudul}>
                     <div className={styles.judul}>POST ADMIN</div>
                 </div>
-
                 <div className={styles.containerform}>
                     <form onSubmit={formik.handleSubmit} className={styles.form}>
-
-
-
                         <div className={styles.kotak1}>
                             <label htmlFor="nama_barang">Nama
                                 {formik.touched.nama_barang && formik.errors.nama_barang ? (
@@ -221,7 +207,7 @@ export default function Kirim() {
                             <input
                                 id="rating_barang"
                                 name="rating_barang"
-                                type="text"
+                                type="number"
                                 onChange={formik.handleChange}
                                 value={formik.values.rating_barang}
                                 placeholder='opsional'
@@ -236,7 +222,7 @@ export default function Kirim() {
                             <input
                                 id="total_penjualan_barang"
                                 name="total_penjualan_barang"
-                                type="text"
+                                type="number"
                                 onChange={formik.handleChange}
                                 value={formik.values.total_penjualan_barang}
                                 placeholder='opsional'
@@ -278,7 +264,7 @@ export default function Kirim() {
                                 style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
                             />
                             <div className={styles.dalamsubmit}>
-                                <button type="submit">Submit</button>
+                                <button onClick={handleKirim} type="submit">Submit</button>
                             </div>
                         </div>
 
