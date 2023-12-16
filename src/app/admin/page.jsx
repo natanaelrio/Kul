@@ -1,6 +1,8 @@
-import Kirim from '@/components/admin/kirim'
+import List from "@/components/admin/list"
 export default function Admin() {
-  return (
-    <Kirim />
-  )
+    return (
+        <>
+            <List />
+        </>
+    )
 }

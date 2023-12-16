@@ -1,0 +1,121 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    width: 700px;
+    /* padding: 10px; */
+}
+
+.pencarian {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.pencarian input {
+    background: var(--color-sekunder);
+    color: var(--color-white);
+    outline: none;
+    width: 91%;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.bungkusproduk {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: blue; */
+    margin-bottom: 5px;
+}
+
+.produk {
+    width: 100%;
+    /* background-color: red ; */
+    display: flex;
+    /* background-color: var(--color-sekunder);
+    color: var(--color-white); */
+    border: 1px solid var(--color-sekunder);
+}
+
+.produk .id {
+    padding: 10px;
+    width: 10%;
+}
+
+.produk .namaproduk {
+    padding: 10px;
+    width: 70%;
+}
+
+.produk .viewbarang {
+    width: 20%;
+    padding: 10px;
+}
+
+.produk .viewbarang .dalamview {
+    display: flex;
+    align-items: center;
+}
+
+
+.aksi {
+    width: 10%;
+    display: flex;
+    font-size: 24px;
+}
+
+.aksi .edit {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-sekunder);
+}
+
+.aksi .delete {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    color: red;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .list {
+        width: 95vw;
+        /* padding: 10px; */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .list {
+        width: 95vw;
+        /* padding: 10px; */
+        font-size: 15px;
+    }
+
+    .aksi {
+        display: flex;
+        font-size: 15px;
+        justify-content: center;
+    }
+
+    .aksi .edit {
+        padding: 3px;
+    }
+
+    .aksi .delete {
+        padding: 0px;
+        font-size: 25px;
+        text-align: right;
+    }
+
+    .pencarian input {
+        width: 100%;
+    }
+
+
+}
