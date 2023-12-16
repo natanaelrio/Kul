@@ -8,8 +8,27 @@
 .bungkusjudul {
     width: 1200px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
 }
+
+.bungkusjudul .iconjudul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bungkusjudul .icon {
+    font-size: 40px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.bungkusjudul .icon:hover {
+    color: var(--color-primary);
+}
+
 
 .judul {
     font-size: 30px;
@@ -115,6 +134,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .form button {
     margin: 10px 0;
     background-color: var(--color-primary);
@@ -187,6 +207,7 @@
 
     .bungkusjudul {
         width: 95%;
+        margin-top: 10px;
     }
 
     .containerform {

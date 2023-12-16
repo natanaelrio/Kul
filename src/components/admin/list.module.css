@@ -1,24 +1,112 @@
 .container {
     display: flex;
     justify-content: center;
+    min-height: 100vh;
+    position: relative;
 }
 
-.list {
-    width: 700px;
-    /* padding: 10px; */
+.container .post {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 100px;
+    animation: bounce 2s infinite;
+    cursor: pointer;
+}
+
+@-o-keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        -o-transform: translateY(0);
+    }
+
+    40% {
+        -o-transform: translateY(-30px);
+    }
+
+    60% {
+        -o-transform: translateY(-15px);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+
+/* ATAS */
+.containeratas {
+    display: flex;
+    justify-content: center;
+}
+
+.bungkusatas {
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    background-color: var(--color-primary);
+    z-index: 1000;
+    border-radius: 0 0 10px 10px;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.head .iconhead {
+    font-size: 50px;
+    padding-left: 50px;
+    color: var(--color-white);
+}
+
+.head .iconhead:hover {
+    opacity: 0.9;
 }
 
 .pencarian {
     width: 100%;
-    padding: 20px 0;
+    padding: 20px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .pencarian input {
-    background: var(--color-sekunder);
-    color: var(--color-white);
+    background: var(--color-white);
+    color: var(--color-primary);
     outline: none;
-    width: 91%;
-    padding: 20px;
+    width: 60%;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid var(--color-primary);
+    border-radius: 10px;
+}
+
+.pencarian input::placeholder {
+    color: var(--color-sekunder);
+}
+
+
+
+
+/* LIST */
+.list {
+    width: 1000px;
+    /* padding: 10px; */
+    margin-top: 100px;
+    margin-bottom: 200px;
     font-size: 20px;
 }
 
@@ -36,7 +124,8 @@
     display: flex;
     /* background-color: var(--color-sekunder);
     color: var(--color-white); */
-    border: 1px solid var(--color-sekunder);
+    border: 1px solid var(--color-primary);
+    color: var(--color-sekunder);
 }
 
 .produk .id {
@@ -63,7 +152,7 @@
 .aksi {
     width: 10%;
     display: flex;
-    font-size: 24px;
+    font-size: 3%;
 }
 
 .aksi .edit {
@@ -71,17 +160,25 @@
     display: flex;
     justify-content: center;
     cursor: pointer;
-    color: var(--color-sekunder);
+    color: var(--color-primary);
 }
 
 .aksi .delete {
     padding: 10px;
     display: flex;
     justify-content: center;
-    cursor: pointer;
     color: red;
+    font-size: 35px;
 }
 
+.aksi .deletedalam {
+    display: contents;
+    cursor: pointer;
+}
+
+.aksi .deletedalam:hover {
+    font-size: 40px;
+}
 
 @media only screen and (max-width: 768px) {
     .list {
@@ -91,6 +188,19 @@
 }
 
 @media only screen and (max-width: 480px) {
+
+    .bungkusatas {
+        width: 100vw;
+    }
+
+    .pencarian {
+       padding: 20px 10px 20px 5px;
+    }
+
+    .head .iconhead {
+        padding-left: 10px;
+    }
+
     .list {
         width: 95vw;
         /* padding: 10px; */
@@ -117,5 +227,28 @@
         width: 100%;
     }
 
+    .container .post {
+        font-size: 70px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    @-o-keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            -o-transform: translateY(0);
+        }
+
+        40% {
+            -o-transform: translateY(-15px);
+        }
+
+        60% {
+            -o-transform: translateY(-8px);
+        }
+    }
+
+    .aksi .delete {
+        font-size: 25px;
+    }
 
 }

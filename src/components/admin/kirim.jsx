@@ -3,6 +3,9 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/components/admin/kirim.module.css'
 import { useState } from 'react';
+import { IoHome } from "react-icons/io5";
+import { FaArrowCircleLeft } from "react-icons/fa";
+import Link from 'next/link';
 
 export default function Kirim() {
     const [handleData, setHandleData] = useState()
@@ -76,11 +79,20 @@ export default function Kirim() {
     });
     return (
         <>
-
             <div className={styles.container}>
 
                 <div className={styles.bungkusjudul}>
-                    <div className={styles.judul}>POST ADMIN</div>
+                    <div className={styles.iconjudul}>
+                        <Link href={'/'} className={styles.icon}>
+                            <IoHome />
+                        </Link>
+                        <div className={styles.judul}>POST ADMIN</div>
+                    </div>
+                    <div>
+                        <Link href={'/admin/list'} className={styles.icon}>
+                            <FaArrowCircleLeft />
+                        </Link>
+                    </div>
                 </div>
                 <div className={styles.containerform}>
                     <form onSubmit={formik.handleSubmit} className={styles.form}>

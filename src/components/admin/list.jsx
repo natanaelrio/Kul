@@ -1,19 +1,31 @@
+"use client"
 import styles from '@/components/admin/list.module.css'
 import { TiDelete } from "react-icons/ti";
-import { MdEditSquare } from "react-icons/md";
 import { GoEye } from "react-icons/go";
+import { MdOutlinePostAdd } from "react-icons/md";
+import Link from 'next/link';
+import { IoHome } from "react-icons/io5";
+
 export default function List() {
     return (
-
         <>
+
+            <div className={styles.containeratas}>
+                <div className={styles.bungkusatas}>
+                    <div className={styles.head}>
+                        <Link href={'/'}>
+                            <div className={styles.iconhead}>  <IoHome /></div>
+                        </Link> &nbsp;
+                        <div className={styles.pencarian}>
+                            <input type="text" placeholder='cari...' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div className={styles.container}>
                 <div className={styles.list}>
-
-                    <div className={styles.pencarian}>
-                        <input type="text" placeholder='cari...' />
-                    </div>
-
                     <div className={styles.bungkusproduk}>
                         <div className={styles.produk} style={{ fontWeight: '700' }}>
                             <div className={styles.id}>
@@ -31,6 +43,7 @@ export default function List() {
                             <div className={styles.delete}></div>
                         </div>
                     </div>
+
                     <div className={styles.bungkusproduk}>
                         <div className={styles.produk}>
                             <div className={styles.id}>
@@ -44,44 +57,104 @@ export default function List() {
                             </div>
                         </div>
                         <div className={styles.aksi}>
-                            <div className={styles.delete}> <TiDelete /></div>
+                            <div className={styles.delete}>
+                                <div className={styles.deletedalam}>
+                                    <TiDelete style={{ border: '1px solid red' }} />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div className={styles.bungkusproduk}>
                         <div className={styles.produk}>
                             <div className={styles.id}>
-                                1
+                                1000
                             </div>
                             <div className={styles.namaproduk}>
-                                Kucing Anggora
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore quod soluta id repellendus cupiditate sit illum debitis! Velit quae explicabo nesciunt maiores exercitationem incidunt consequatur sequi voluptatem voluptates ex.
                             </div>
                             <div className={styles.viewbarang}>
                                 <div className={styles.dalamview}> <GoEye /> 13124</div>
                             </div>
                         </div>
                         <div className={styles.aksi}>
-                            <div className={styles.delete}> <TiDelete /></div>
+                            <div className={styles.delete}>
+                                <div className={styles.deletedalam}>
+                                    <TiDelete style={{ border: '1px solid red' }} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className={styles.bungkusproduk}>
+                        <div className={styles.produk}>
+                            <div className={styles.id}>
+                                1000
+                            </div>
+                            <div className={styles.namaproduk}>
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nisi iusto nostrum totam sed atque assumenda iste error tenetur aspernatur saepe modi cum voluptatum. Animi veritatis at quisquam nesciunt ullam.
+                            </div>
+                            <div className={styles.viewbarang}>
+                                <div className={styles.dalamview}> <GoEye /> 13124</div>
+                            </div>
+                        </div>
+                        <div className={styles.aksi}>
+                            <div className={styles.delete}>
+                                <div className={styles.deletedalam}>
+                                    <TiDelete style={{ border: '1px solid red' }} />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div className={styles.bungkusproduk}>
                         <div className={styles.produk}>
                             <div className={styles.id}>
-                                1
+                                1000
                             </div>
                             <div className={styles.namaproduk}>
-                                Kucing Anggora
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nisi iusto nostrum totam sed atque assumenda iste error tenetur aspernatur saepe modi cum voluptatum. Animi veritatis at quisquam nesciunt ullam.
                             </div>
                             <div className={styles.viewbarang}>
                                 <div className={styles.dalamview}> <GoEye /> 13124</div>
                             </div>
                         </div>
                         <div className={styles.aksi}>
-                            <div className={styles.delete}> <TiDelete /></div>
+                            <div className={styles.delete}>
+                                <div className={styles.deletedalam}>
+                                    <TiDelete style={{ border: '1px solid red' }} />
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div className={styles.bungkusproduk}>
+                        <div className={styles.produk}>
+                            <div className={styles.id}>
+                                1000
+                            </div>
+                            <div className={styles.namaproduk}>
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nisi iusto nostrum totam sed atque assumenda iste error tenetur aspernatur saepe modi cum voluptatum. Animi veritatis at quisquam nesciunt ullam.
+                            </div>
+                            <div className={styles.viewbarang}>
+                                <div className={styles.dalamview}> <GoEye /> 13124</div>
+                            </div>
+                        </div>
+                        <div className={styles.aksi}>
+                            <div className={styles.delete}>
+                                <div className={styles.deletedalam}>
+                                    <TiDelete style={{ border: '1px solid red' }} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                <Link href={'/admin/post'} className={styles.post}>
+                    <MdOutlinePostAdd />
+                </Link>
             </div>
         </>
     )
