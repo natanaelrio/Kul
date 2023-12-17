@@ -65,25 +65,29 @@ export default function Produk() {
                                 </div>
                                 {openJumlah ?
                                     <div className={styles.bayarchatkeranjang}>
-                                    <div className={styles.chatwa}> <FaWhatsapp />&nbsp;Chat</div>
-                                    <div className={styles.bayar} onClick={setOpenFormPembelian}><BsCash />&nbsp; Bayar</div>
-                                    <div className={styles.keranjang}><BiSolidShoppingBag />&nbsp; +Keranjang</div>
-                                </div> : null
-                                    
+                                        <div className={styles.chatwa}> <FaWhatsapp />&nbsp;Chat</div>
+                                        <div className={styles.bayar} onClick={setOpenFormPembelian}><BsCash />&nbsp; Bayar</div>
+                                        <div className={styles.keranjang}><BiSolidShoppingBag />&nbsp; +Keranjang</div>
+                                    </div> : null
+
                                 }
 
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
                             </div>
                         </div>
                         <div className={styles.gambar}>
-                            <div className="gambardalam">
+                            <div className={styles.gambardalam}>
                                 <Image
                                     src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
                                     width={500}
                                     height={500}
                                     alt="Picture of the author"
                                 />
+                                <div className={styles.gratisongkir}>
+                                    Gratis Ongkir
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div >

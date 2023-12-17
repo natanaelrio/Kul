@@ -28,7 +28,7 @@
 }
 
 
-.produk  {
+.produk {
     /* width: 312px; */
     margin: 10px;
     border-radius: 15px;
@@ -37,6 +37,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    font-size: 20px;
 }
 
 .produk:hover {
@@ -60,7 +61,7 @@
     object-position: center;
 }
 
-.produk .judul {
+/* .produk .judul {
     font-weight: bold;
     color: var(--color-sekunder);
 }
@@ -90,9 +91,67 @@
 
 .produk .diskon .persendiskon {
     color: red;
+} */
+
+
+.produk .judul {
+    font-weight: 500;
+    margin-bottom: 5px;
 }
 
-.produk  .beli {
+.produk .harga {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.produk .harga .hargaasli {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.produk .harga .hargaasli .hargaaslidalam {
+    display: flex;
+    align-items: flex-end;
+}
+
+.produk .harga .hargaasli .hargaaslidalam .hargadalam {
+    font-size: 24px;
+}
+
+.produk .harga .hargadiskon {
+    font-weight: 300;
+    text-decoration: line-through;
+    margin-bottom: 5px;
+}
+
+.produk .diskon {
+    color: var(--color-diskon);
+    background: var(--bg-diskon);
+    display: inline-block;
+    padding: 3px;
+    border-radius: 7px;
+    margin-bottom: 5px;
+}
+
+.produk .ratingterjual {
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.ratingterjual .logorating {
+    color: var(--color-third);
+}
+
+.ratingterjual .garis {
+    opacity: 0.5;
+    padding: 0 5px;
+}
+
+
+
+.produk .beli {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -115,26 +174,6 @@
 
 .produk .beli .iconwadalam {
     font-size: 27px;
-}
-
-.produk .judul {
-    font-size: 24px;
-}
-
-.produk .review .harga {
-    font-size: 24px;
-}
-
-.produk .review .rating {
-    font-size: 18px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.produk .diskon {
-    font-size: 18px;
-    color: var(--color-sekunder);
 }
 
 .produk .beli {
@@ -195,21 +234,13 @@
         max-width: 100%;
     }
 
-    .produk .judul {
+
+    .produk {
         font-size: 18px;
     }
 
-    .produk .review .harga {
-        font-size: 18px;
-    }
-
-    .produk .review .rating {
-        font-size: 15px;
-    }
-
-    .produk .diskon {
-        font-size: 15px;
-        color: var(--color-sekunder);
+    .produk .harga .hargaasli .hargaaslidalam .hargadalam {
+        font-size: 20px;
     }
 
     .produk .beli {
@@ -249,29 +280,19 @@
         max-width: 100%;
     }
 
-    .produk .judul {
-        font-size: 13px;
+    .produk {
+        font-size: 15px;
     }
 
-    .produk .review .harga {
-        font-size: 13px;
-    }
-
-    .produk .review .rating {
-        font-size: 10px;
-    }
-
-    .produk .diskon {
-        font-size: 10px;
-        color: var(--color-sekunder);
-    }
-
-    .produk .beli {
-        font-size: 10px;
-        padding: 5px 0px;
+    .produk .harga .hargaasli .hargaaslidalam .hargadalam {
+        font-size: 17px;
     }
 
     .produk .beli .iconwadalam {
-        font-size: 20px;
+        font-size: 17px;
+    }
+
+    .produk .beli {
+        font-size: 10px!important;
     }
 }

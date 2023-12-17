@@ -227,6 +227,22 @@
     box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f
 }
 
+.gambar .gambardalam {
+    position: relative;
+
+}
+.gambar .gambardalam .gratisongkir {
+    position: absolute;
+    background-color: var(--color-third);
+    color: var(--color-white);
+    bottom: 30px;
+    /* top: 30px; */
+    left: 0;
+    padding: 10px 20px;
+    border-radius: 0 10px 10px 0;
+    font-weight: 700;
+}
+
 @media only screen and (max-width: 1020px) {
     .width {
         width: 100vw;
@@ -259,6 +275,8 @@
     .gambar img {
         width: 300px;
     }
+
+    
 }
 
 
@@ -330,6 +348,16 @@
         border-radius: 15px;
     }
 
+    .gambar .gratisongkir {
+        position: absolute;
+        background-color: var(--color-third);
+        color: var(--color-white);
+        bottom: 0!important;
+        left: 0;
+        padding: 10px 20px;
+        border-radius: 0 10px 10px 0;
+    }
+
 }
 
 
@@ -348,6 +376,10 @@
         display: grid;
         grid-template-columns: 1fr;
         /* grid-template-rows: 1fr 1fr; */
+    }
+
+    .navigasi {
+        display: none;
     }
 
     .navigasi .dalamnav {
@@ -400,7 +432,17 @@
 
     .gambar img {
         height: 400px;
-        width: 95vw;
-        border-radius: 15px;
+        width: 100vw;
+        border-radius: 0;
+    }
+
+    .gambar .gratisongkir {
+        position: absolute;
+        background-color: var(--color-third);
+        color: var(--color-white);
+        bottom: 0!important;
+        left: 0;
+        padding: 10px 20px;
+        border-radius: 0 10px 10px 0;
     }
 }

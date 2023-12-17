@@ -139,7 +139,7 @@
     /* NAVIGASI */
     .nav {
         grid-template-columns: 60px 1fr 1fr;
-        padding: 10px 10px;
+        /* padding: 10px 10px; */
     }
 
     .nav .logogambardalam {

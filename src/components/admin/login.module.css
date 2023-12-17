@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--color-sekunder);
+}
+
+.judul {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.login {
+    width: 300px;
+    color: var(--color-white);
+}
+
+.login input::placeholder {
+    color: var(--color-primary);
+}
+
+.login input {
+    padding: 20px;
+    font-size: 24px;
+    outline: none;
+}
+
+.login input {
+    color: var(--color-primary);;
+}
+
+.login .username input {
+    width: 100%;
+}
+
+.login .password input {
+    width: 100%;
+}
+
+.login .submit {
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login .submit button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 10px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+}
+
+
+.login .submit button:hover {
+    opacity: 0.9;
+}
