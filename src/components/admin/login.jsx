@@ -1,6 +1,9 @@
+"use client"
 import styles from '@/components/admin/login.module.css'
-
+import { useRouter } from 'next/navigation'
 export default function Login() {
+
+    const router = useRouter()
     return (
         <div className={styles.container}>
             <div className={styles.login}>
@@ -12,7 +15,7 @@ export default function Login() {
                     <input type="text" placeholder='password' />
                 </div>
                 <div className={styles.submit}>
-                    <button>Login</button>
+                    <button onClick={() => router.push('/admin/post')}>Login</button>
                 </div>
             </div>
         </div>

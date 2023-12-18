@@ -8,7 +8,7 @@ export async function POST(req) {
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const createCollection = await prisma.admin.create({ data })
         if (!createCollection)
-            return Response.json({ status: 500, isCreated: false })
+            return Response.json({ status: 300, isCreated: false })
         else
             return Response.json({ status: 200, isCreated: true })
     }

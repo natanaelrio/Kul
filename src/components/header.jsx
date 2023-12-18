@@ -3,6 +3,7 @@ import { TbDiamond } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
 import styles from '@/components/header.module.css'
 import Link from 'next/link';
+import { FaRegUserCircle } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 
 export default function Header() {
@@ -39,6 +40,9 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
+                    <Link href={'/admin'} className={styles.icon}>
+                        <FaRegUserCircle className={styles.iconuser}/>
+                    </Link>
                 </div>
             </nav >
         </>

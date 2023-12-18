@@ -147,19 +147,16 @@
     width: 40%;
 }
 
-.form button:hover {
+/* .form button:hover {
     opacity: 0.9;
-}
+} */
 
 
 @media only screen and (max-width: 1200px) {
 
-
     .bungkusjudul {
         width: 95%;
     }
-
-
 
     .containerform {
         width: 95%;

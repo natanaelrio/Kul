@@ -23,7 +23,7 @@
 
 .gridlist {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 5px;
 }
 
@@ -31,68 +31,45 @@
 .produk {
     /* width: 312px; */
     margin: 10px;
-    border-radius: 15px;
+    /* border-radius: 20px;
+    padding: 20px; */
     /* border: 1px solid var(--color-primary); */
-    padding: 5px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     font-size: 20px;
 }
 
-.produk:hover {
+.produk {
     box-shadow: 0 1px 10px #0000001a, 0 1px 10px #0000000f;
 }
 
+.produk:hover {
+    box-shadow: 0 1px 20px #0000001a, 0 1px 20px #0000000f;
+}
+
 .produk .gambar {
-    max-height: 250px;
+    max-height: 180px;
     /* max-width: 312px; */
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 10px 10px 0 0;
+    /* margin-bottom: 10px; */
     overflow: hidden;
 }
 
 .produk .gambar img {
-    border-radius: 10px;
-    max-height: 250px;
+    border-radius: 10px 10px 0 0;
+    max-height: 180px;
     max-width: 100%;
     background-position: center;
     object-fit: cover;
     object-position: center;
 }
 
-/* .produk .judul {
-    font-weight: bold;
-    color: var(--color-sekunder);
+
+.produk .tengah {
+    padding: 10px;
 }
-
-.produk .review {
-    color: var(--color-sekunder);
-    font-weight: 500;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.produk .review .logorating {
-    color: #f6bd60;
-    margin: 0 5px;
-}
-
-.produk .diskon {
-    display: block;
-    display: flex;
-
-}
-
-.produk .diskon .hargadiskon {
-    text-decoration: line-through;
-}
-
-.produk .diskon .persendiskon {
-    color: red;
-} */
-
 
 .produk .judul {
     font-weight: 500;
@@ -164,6 +141,7 @@
     border-radius: 15px;
     position: relative;
     margin-top: 10px;
+    display: none;
 }
 
 .produk .beli:hover {
@@ -251,7 +229,6 @@
 }
 
 
-
 /* Mobile styles using media query */
 @media only screen and (max-width: 480px) {
 
@@ -268,7 +245,7 @@
     }
 
     .listproduk {
-        width: 93vw;
+        width: 95vw;
     }
 
     .produk {
@@ -293,6 +270,6 @@
     }
 
     .produk .beli {
-        font-size: 10px!important;
+        font-size: 10px !important;
     }
 }

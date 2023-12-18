@@ -43,16 +43,22 @@
     width: 100%;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     font-weight: 700;
     font-size: 24px;
     color: var(--color-white);
     border-radius: 10px 10px 0 0;
+    position: relative;
 }
 
 .atasjudul .icon {
     cursor: pointer;
+    position: absolute;
+    left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .atasjudul .icon:hover {
   opacity: 0.9;
@@ -97,6 +103,7 @@
     }
 
     .atasjudul .icon {
-        font-size: 24px;
+        font-size: 27px;
+        left: 20px;
     }
 }

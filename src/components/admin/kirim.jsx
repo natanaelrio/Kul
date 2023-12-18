@@ -8,6 +8,7 @@ import { FaArrowCircleLeft } from "react-icons/fa";
 import Link from 'next/link';
 
 export default function Kirim() {
+    const [loading, setLoading] = useState(true)
     const [handleData, setHandleData] = useState()
     const DataLain = {
         end: null
@@ -15,7 +16,8 @@ export default function Kirim() {
     const DataUtama = handleData
     const GabungData = { ...DataUtama, ...DataLain }
     const handleKirim = async () => {
-        await fetch('http://localhost:3000/api/v1', {
+        setLoading(!loading)
+        const res = await fetch('http://localhost:3000/api/v1', {
             method: 'POST',
             body: JSON.stringify(GabungData),
             headers: {
@@ -23,6 +25,12 @@ export default function Kirim() {
                 'Authorization': process.env.NEXT_PUBLIC_SECREET
             }
         })
+        if (res.ok == false) {
+            return res
+        } else return res
+
+
+
     }
     const formik = useFormik({
         initialValues: {
@@ -276,7 +284,7 @@ export default function Kirim() {
                                 style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
                             />
                             <div className={styles.dalamsubmit}>
-                                <button onClick={handleKirim} type="submit">Submit</button>
+                                <button onClick={handleKirim} type='submit' > submit</button>
                             </div>
                         </div>
 

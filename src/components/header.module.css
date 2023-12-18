@@ -90,6 +90,16 @@
     font-size: 30px;
 }
 
+.nav .icon {
+    padding: 0 10px;
+}
+
+.nav .icon .iconuser {
+    font-size: 50px;
+    color: var(--color-white);
+    cursor: pointer;
+}
+
 @media only screen and (max-width: 768px) {
 
     /* NAVIGASI */
@@ -107,7 +117,7 @@
 
     .nav .pencarian {
         grid-area: 1/2/2/4;
-        display: block;
+        display: flex;
     }
 
     .nav .pencarian .input {
@@ -139,11 +149,11 @@
     /* NAVIGASI */
     .nav {
         grid-template-columns: 60px 1fr 1fr;
-        /* padding: 10px 10px; */
+        padding: 10px 10px;
     }
 
     .nav .logogambardalam {
-        font-size: 40px;
+        font-size: 50px;
     }
 
     .nav .logogambar {
@@ -152,7 +162,7 @@
 
     .nav .pencarian {
         grid-area: 1/2/2/4;
-        display: block;
+        display: flex;
     }
 
     .nav .pencarian .input {
@@ -186,6 +196,14 @@
 
     .nav .pencarian .logocaridalam {
         font-size: 20px;
+    }
+
+    .nav .icon {
+        width: 20%;
+    }
+
+    .nav .icon .iconuser {
+        font-size: 40px;
     }
 
     /* FOOTER */
