@@ -1,0 +1,22 @@
+.notif {
+    position: absolute;
+    top: 20px;
+    /* right: 20px; */
+    width: 300px;
+    border-radius: 7px;
+}
+
+.notif .text {
+    background: var(--berhasil);
+    color: var(--color-white);
+    padding: 20px 20px;
+    border-radius: 7px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0px 30px #0000001a, 0 0px 30px #0000000f;
+}
+
+
+.notif .close {
+    cursor: pointer;
+}

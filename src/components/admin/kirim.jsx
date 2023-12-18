@@ -6,32 +6,12 @@ import { useState } from 'react';
 import { IoHome } from "react-icons/io5";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import Link from 'next/link';
+import Berhasil from '@/components/alert/berhasil';
 
 export default function Kirim() {
+    const [matikan, setMatikan] = useState(false)
     const [loading, setLoading] = useState(true)
-    const [handleData, setHandleData] = useState()
-    const DataLain = {
-        end: null
-    }
-    const DataUtama = handleData
-    const GabungData = { ...DataUtama, ...DataLain }
-    const handleKirim = async () => {
-        setLoading(!loading)
-        const res = await fetch('http://localhost:3000/api/v1', {
-            method: 'POST',
-            body: JSON.stringify(GabungData),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
-            }
-        })
-        if (res.ok == false) {
-            return res
-        } else return res
 
-
-
-    }
     const formik = useFormik({
         initialValues: {
             nama_barang: '',
@@ -81,8 +61,26 @@ export default function Kirim() {
                 .max(10, 'harus 10 karakter')
                 .required('require'),
         }),
-        onSubmit: values => {
-            setHandleData(values)
+        onSubmit: async values => {
+            // setHandleData(values)
+            setMatikan(true)
+            setLoading(false)
+            const DataLain = {
+                end: null
+            }
+            const DataUtama = values
+            const GabungData = { ...DataUtama, ...DataLain }
+            await fetch('http://localhost:3000/api/v1', {
+                method: 'POST',
+                body: JSON.stringify(GabungData),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': process.env.NEXT_PUBLIC_SECREET
+                }
+            })
+            setMatikan(false)
+            setLoading(true)
+            formik.resetForm();
         },
     });
     return (
@@ -284,13 +282,12 @@ export default function Kirim() {
                                 style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
                             />
                             <div className={styles.dalamsubmit}>
-                                <button onClick={handleKirim} type='submit' > submit</button>
+                                <button type='submit' disabled={matikan} >{loading ? 'Submit' : 'tunggu!! 👌'}</button>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
+                {loading ? null : <Berhasil />}
             </div>
         </>
     )
