@@ -6,7 +6,33 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import Link from 'next/link';
 import { IoHome } from "react-icons/io5";
 
-export default function List() {
+async function GetList() {
+    const res = await fetch('http://localhost:3000/api/v1/admin/get', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': process.env.NEXT_PUBLIC_SECREET
+        }
+    })
+    return res.json()
+}
+
+
+
+
+export default async function List() {
+    const data = await GetList()
+    const handleDelete = async (e) => {
+        console.log('id', e);
+        // await fetch('http://localhost:3000/api/v1/admin/delete', {
+        //     method: 'DELETE',
+        //     body: JSON.stringify('e'),
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': process.env.NEXT_PUBLIC_SECREET
+        //     }
+        // })
+    }
     return (
         <>
 
@@ -44,112 +70,31 @@ export default function List() {
                         </div>
                     </div>
 
-                    <div className={styles.bungkusproduk}>
-                        <div className={styles.produk}>
-                            <div className={styles.id}>
-                                1000
+                    {data.data.map((data, i) =>
+                    (
+                        <div key={i} className={styles.bungkusproduk}>
+                            <div className={styles.produk}>
+                                <div className={styles.id}>
+                                    {data.id}
+                                </div>
+                                <div className={styles.namaproduk}>
+                                    {data.nama_barang}
+                                </div>
+                                <div className={styles.viewbarang}>
+                                    <div className={styles.dalamview}> <GoEye />  {data.view_barang}</div>
+                                </div>
                             </div>
-                            <div className={styles.namaproduk}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit quaerat ipsa ad odio distinctio voluptate suscipit, temporibus at iusto delectus! Cum a at, tempora eos ad odio deleniti repudiandae dicta doloremque nam? Unde voluptate dignissimos quidem minima iste, totam distinctio, accusantium tempora corrupti pariatur quo porro voluptates ea maiores, beatae sunt! Nesciunt minus, aliquam esse, ipsa quae adipisci minima dolorum laboriosam porro praesentium ab velit neque iste voluptatibus commodi harum doloremque eius necessitatibus officiis dicta, veniam consectetur facilis dolor quos. Odio minima, voluptatibus optio similique reiciendis voluptas maiores sed reprehenderit sunt saepe molestiae vel eum ratione sint libero culpa id.
-                            </div>
-                            <div className={styles.viewbarang}>
-                                <div className={styles.dalamview}> <GoEye /> 13124</div>
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.delete}>
-                                <div className={styles.deletedalam}>
-                                    <TiDelete style={{ border: '1px solid red' }} />
+                            <div className={styles.aksi}>
+                                <div className={styles.delete}>
+                                    <div className={styles.deletedalam} onClick={handleDelete(data.id)}>
+                                        <TiDelete style={{ border: '1px solid red' }} />
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    )
 
-                    <div className={styles.bungkusproduk}>
-                        <div className={styles.produk}>
-                            <div className={styles.id}>
-                                1000
-                            </div>
-                            <div className={styles.namaproduk}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore quod soluta id repellendus cupiditate sit illum debitis! Velit quae explicabo nesciunt maiores exercitationem incidunt consequatur sequi voluptatem voluptates ex.
-                            </div>
-                            <div className={styles.viewbarang}>
-                                <div className={styles.dalamview}> <GoEye /> 13124</div>
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.delete}>
-                                <div className={styles.deletedalam}>
-                                    <TiDelete style={{ border: '1px solid red' }} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className={styles.bungkusproduk}>
-                        <div className={styles.produk}>
-                            <div className={styles.id}>
-                                1000
-                            </div>
-                            <div className={styles.namaproduk}>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nisi iusto nostrum totam sed atque assumenda iste error tenetur aspernatur saepe modi cum voluptatum. Animi veritatis at quisquam nesciunt ullam.
-                            </div>
-                            <div className={styles.viewbarang}>
-                                <div className={styles.dalamview}> <GoEye /> 13124</div>
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.delete}>
-                                <div className={styles.deletedalam}>
-                                    <TiDelete style={{ border: '1px solid red' }} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.bungkusproduk}>
-                        <div className={styles.produk}>
-                            <div className={styles.id}>
-                                1000
-                            </div>
-                            <div className={styles.namaproduk}>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nisi iusto nostrum totam sed atque assumenda iste error tenetur aspernatur saepe modi cum voluptatum. Animi veritatis at quisquam nesciunt ullam.
-                            </div>
-                            <div className={styles.viewbarang}>
-                                <div className={styles.dalamview}> <GoEye /> 13124</div>
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.delete}>
-                                <div className={styles.deletedalam}>
-                                    <TiDelete style={{ border: '1px solid red' }} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={styles.bungkusproduk}>
-                        <div className={styles.produk}>
-                            <div className={styles.id}>
-                                1000
-                            </div>
-                            <div className={styles.namaproduk}>
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. A, nisi iusto nostrum totam sed atque assumenda iste error tenetur aspernatur saepe modi cum voluptatum. Animi veritatis at quisquam nesciunt ullam.
-                            </div>
-                            <div className={styles.viewbarang}>
-                                <div className={styles.dalamview}> <GoEye /> 13124</div>
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.delete}>
-                                <div className={styles.deletedalam}>
-                                    <TiDelete style={{ border: '1px solid red' }} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    )}
                 </div>
 
                 <Link href={'/admin/post'} className={styles.post}>

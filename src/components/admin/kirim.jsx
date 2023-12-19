@@ -7,11 +7,12 @@ import { IoHome } from "react-icons/io5";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import Link from 'next/link';
 import Berhasil from '@/components/alert/berhasil';
+import BarLoader from "react-spinners/BarLoader";
 
 export default function Kirim() {
     const [matikan, setMatikan] = useState(false)
     const [loading, setLoading] = useState(true)
-
+    const [alert, setAlert] = useState(true)
     const formik = useFormik({
         initialValues: {
             nama_barang: '',
@@ -70,7 +71,7 @@ export default function Kirim() {
             }
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
-            await fetch('http://localhost:3000/api/v1', {
+            await fetch('http://localhost:3000/api/v1/admin/post', {
                 method: 'POST',
                 body: JSON.stringify(GabungData),
                 headers: {
@@ -80,6 +81,7 @@ export default function Kirim() {
             })
             setMatikan(false)
             setLoading(true)
+            setAlert(false)
             formik.resetForm();
         },
     });
@@ -282,12 +284,30 @@ export default function Kirim() {
                                 style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
                             />
                             <div className={styles.dalamsubmit}>
-                                <button type='submit' disabled={matikan} >{loading ? 'Submit' : 'tunggu!! 👌'}</button>
+
+                                <div className={styles.isisum}>
+                                    {loading ?
+                                        <button type='submit' disabled={matikan}>Submit</button>
+                                        :
+                                        <>
+                                            <button type='submit' disabled={matikan}>Submit</button>
+                                            <div className={styles.loading}>
+                                                <BarLoader
+                                                    color={'#ffb700'}
+                                                    loading={loading}
+                                                    size={100}
+                                                    height={5}
+                                                    width={181}
+                                                />
+                                            </div>
+                                        </>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
-                {loading ? null : <Berhasil />}
+                {alert ? null : <Berhasil />}
             </div>
         </>
     )
