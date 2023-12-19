@@ -8,7 +8,7 @@ import { IoHome } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
 
 async function GetList() {
-    const res = await fetch('http://localhost:3000/api/v1/admin/get', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ export default async function List() {
     const router = useRouter()
     const data = await GetList()
     const HandleDelete = async (e) => {
-        await fetch('http://localhost:3000/api/v1/admin/delete', {
+        await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
             method: 'DELETE',
             body: JSON.stringify(e),
             headers: {

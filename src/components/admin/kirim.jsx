@@ -71,7 +71,7 @@ export default function Kirim() {
             }
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
-            await fetch('http://localhost:3000/api/v1/admin/post', {
+            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/post`, {
                 method: 'POST',
                 body: JSON.stringify(GabungData),
                 headers: {
