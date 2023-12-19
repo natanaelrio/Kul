@@ -5,7 +5,6 @@ import { GoEye } from "react-icons/go";
 import { MdOutlinePostAdd } from "react-icons/md";
 import Link from 'next/link';
 import { IoHome } from "react-icons/io5";
-import { useRouter } from 'next/navigation'
 
 async function GetList() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get`, {
@@ -20,7 +19,6 @@ async function GetList() {
 }
 
 export default async function List() {
-    const router = useRouter()
     const data = await GetList()
     const HandleDelete = async (e) => {
         await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
@@ -31,7 +29,6 @@ export default async function List() {
                 'Authorization': process.env.NEXT_PUBLIC_SECREET
             }
         })
-        router.refresh()
     }
 
     return (
