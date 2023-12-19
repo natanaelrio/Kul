@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  // previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id                     Int       @id @default(autoincrement())
+  start                  DateTime  @default(now())
+  end                    DateTime? @updatedAt
+  nama_barang            String    @unique
+  kategori_barang        String?
+  harga_barang           Int?
+  diskon_barang          Int?
+  rating_barang          Int?
+  total_penjualan_barang Int?
+  diskripsi_barang       String?
+  gambar_barang          String?
+  slug_barang            String?
+  kupon_barang           String?
+  view_barang            String?
+}
