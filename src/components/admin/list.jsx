@@ -5,6 +5,7 @@ import { GoEye } from "react-icons/go";
 import { MdOutlinePostAdd } from "react-icons/md";
 import Link from 'next/link';
 import { IoHome } from "react-icons/io5";
+import { useRouter } from 'next/navigation'
 
 async function GetList() {
     const res = await fetch('http://localhost:3000/api/v1/admin/get', {
@@ -12,30 +13,29 @@ async function GetList() {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': process.env.NEXT_PUBLIC_SECREET
-        }
+        },
+        next: { revalidate: 0 }
     })
     return res.json()
 }
 
-
-
-
 export default async function List() {
+    const router = useRouter()
     const data = await GetList()
-    const handleDelete = async (e) => {
-        console.log('id', e);
-        // await fetch('http://localhost:3000/api/v1/admin/delete', {
-        //     method: 'DELETE',
-        //     body: JSON.stringify('e'),
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Authorization': process.env.NEXT_PUBLIC_SECREET
-        //     }
-        // })
+    const HandleDelete = async (e) => {
+        await fetch('http://localhost:3000/api/v1/admin/delete', {
+            method: 'DELETE',
+            body: JSON.stringify(e),
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': process.env.NEXT_PUBLIC_SECREET
+            }
+        })
+        router.refresh()
     }
+
     return (
         <>
-
             <div className={styles.containeratas}>
                 <div className={styles.bungkusatas}>
                     <div className={styles.head}>
@@ -48,7 +48,6 @@ export default async function List() {
                     </div>
                 </div>
             </div>
-
 
             <div className={styles.container}>
                 <div className={styles.list}>
@@ -71,32 +70,27 @@ export default async function List() {
                     </div>
 
                     {data.data.map((data, i) =>
-                    (
-                        <div key={i} className={styles.bungkusproduk}>
-                            <div className={styles.produk}>
-                                <div className={styles.id}>
-                                    {data.id}
-                                </div>
-                                <div className={styles.namaproduk}>
-                                    {data.nama_barang}
-                                </div>
-                                <div className={styles.viewbarang}>
-                                    <div className={styles.dalamview}> <GoEye />  {data.view_barang}</div>
-                                </div>
+                    (<div key={i} className={styles.bungkusproduk}>
+                        <div className={styles.produk}>
+                            <div className={styles.id}>
+                                {data.id}
                             </div>
-                            <div className={styles.aksi}>
-                                <div className={styles.delete}>
-                                    <div className={styles.deletedalam} onClick={handleDelete(data.id)}>
-                                        <TiDelete style={{ border: '1px solid red' }} />
-                                    </div>
+                            <div className={styles.namaproduk}>
+                                {data.nama_barang}
+                            </div>
+                            <div className={styles.viewbarang}>
+                                <div className={styles.dalamview}> <GoEye />  {data.view_barang}</div>
+                            </div>
+                        </div>
+                        <div className={styles.aksi}>
+                            <div className={styles.delete}>
+                                <div className={styles.deletedalam} onClick={() => HandleDelete({ "id": data.id })} >
+                                    <TiDelete style={{ border: '1px solid red' }} />
                                 </div>
                             </div>
                         </div>
-                    )
-
-                    )}
+                    </div>))}
                 </div>
-
                 <Link href={'/admin/post'} className={styles.post}>
                     <MdOutlinePostAdd />
                 </Link>

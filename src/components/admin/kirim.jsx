@@ -63,9 +63,9 @@ export default function Kirim() {
                 .required('require'),
         }),
         onSubmit: async values => {
-            // setHandleData(values)
             setMatikan(true)
             setLoading(false)
+            setAlert(true)
             const DataLain = {
                 end: null
             }
@@ -84,6 +84,7 @@ export default function Kirim() {
             setAlert(false)
             formik.resetForm();
         },
+
     });
     return (
         <>
@@ -286,11 +287,9 @@ export default function Kirim() {
                             <div className={styles.dalamsubmit}>
 
                                 <div className={styles.isisum}>
-                                    {loading ?
-                                        <button type='submit' disabled={matikan}>Submit</button>
-                                        :
+                                    <button type='submit' disabled={matikan}>Submit</button>
+                                    {loading ? null :
                                         <>
-                                            <button type='submit' disabled={matikan}>Submit</button>
                                             <div className={styles.loading}>
                                                 <BarLoader
                                                     color={'#ffb700'}

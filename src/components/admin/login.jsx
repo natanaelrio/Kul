@@ -15,7 +15,7 @@ export default function Login() {
                     <input type="text" placeholder='password' />
                 </div>
                 <div className={styles.submit}>
-                    <button onClick={() => router.push('/admin/post')}>Login</button>
+                    <button onClick={() => router.push('/admin/list')}>Login</button>
                 </div>
             </div>
         </div>
