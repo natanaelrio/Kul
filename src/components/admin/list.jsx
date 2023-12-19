@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import styles from '@/components/admin/list.module.css'
 import { TiDelete } from "react-icons/ti";
 import { GoEye } from "react-icons/go";
@@ -7,23 +7,21 @@ import Link from 'next/link';
 import { IoHome } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
 
-
+async function GetList() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': process.env.NEXT_PUBLIC_SECREET
+        },
+        next: { revalidate: 0 }
+    })
+    return res.json()
+}
 
 export default async function List() {
-    async function GetList() {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
-            },
-            next: { revalidate: 0 }
-        })
-        return res.json()
-    }
     const router = useRouter()
     const data = await GetList()
-
     const HandleDelete = async (e) => {
         await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
             method: 'DELETE',
