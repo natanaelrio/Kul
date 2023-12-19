@@ -1,5 +1,5 @@
-// import { PrismaClient } from '@prisma/client';
-import { PrismaClient } from "@prisma/client/edge"
+import { PrismaClient } from '@prisma/client';
+
 declare const global: Global & { prisma?: PrismaClient };
 
 export let prisma: PrismaClient;
