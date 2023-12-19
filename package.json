@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && prisma generate",
+    "buildnet": "next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
