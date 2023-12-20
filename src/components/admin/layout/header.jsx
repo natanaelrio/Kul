@@ -1,3 +1,4 @@
+"use client"
 import styles from '@/components/admin/layout/header.module.css'
 import { IoHome } from "react-icons/io5";
 import { FaArrowCircleLeft } from "react-icons/fa";

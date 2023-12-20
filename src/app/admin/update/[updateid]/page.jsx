@@ -1,5 +1,6 @@
 import Update from "@/components/admin/update"
-
+import Header from '@/components/admin/layout/header';
+import ListProduk from '@/components/admin/listproduk';
 // export const metadata = {
 //   title: 'Admin UPDATE',
 //   description: 'Admin UPDATE',
@@ -17,7 +18,10 @@ export function generateMetadata({ params }) {
 export default function Page({ params }) {
   return (
     <>
-      <Update id={params.updateid} />
+      <Header judul={'UPDATE PRODUK'}>
+        <Update id={params.updateid} />
+        <ListProduk />
+      </Header>
     </>
   )
 }
