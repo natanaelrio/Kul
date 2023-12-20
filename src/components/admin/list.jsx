@@ -6,18 +6,8 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import Link from 'next/link';
 import { IoHome } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
+import { GetList } from '@/app/service/admin/getList';
 
-async function GetList() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': process.env.NEXT_PUBLIC_SECREET
-        },
-        next: { revalidate: 0 }
-    })
-    return res.json()
-}
 
 export default async function List() {
     const router = useRouter()
