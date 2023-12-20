@@ -4,12 +4,12 @@ import { TiDelete } from "react-icons/ti";
 import { GoEye } from "react-icons/go";
 import { MdOutlinePostAdd } from "react-icons/md";
 import Link from 'next/link';
-import { IoHome } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
 import axios from 'axios';
 import { useState } from 'react';
+import Header from '@/components/admin/layout/header';
 
-
+Link
 export default function List() {
     const [data, setData] = useState()
     const router = useRouter()
@@ -39,67 +39,60 @@ export default function List() {
         })
         router.refresh()
     }
+
     return (
         <>
-            <div className={styles.containeratas}>
-                <div className={styles.bungkusatas}>
-                    <div className={styles.head}>
-                        <Link href={'/'}>
-                            <div className={styles.iconhead}>  <IoHome /></div>
-                        </Link> &nbsp;
-                        <div className={styles.pencarian}>
-                            <input type="text" placeholder='cari...' />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className={styles.container}>
-                <div className={styles.list}>
-                    <div className={styles.bungkusproduk}>
-                        <div className={styles.produk} style={{ fontWeight: '700' }}>
-                            <div className={styles.id}>
-                                ID
-                            </div>
-                            <div className={styles.namaproduk}>
-                                NAMA
-                            </div>
-                            <div className={styles.viewbarang}>
-                                VIEW
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.edit}></div>
-                            <div className={styles.delete}></div>
-                        </div>
-                    </div>
-
-                    {data?.data?.map((data, i) =>
-                    (<div key={i} className={styles.bungkusproduk}>
-                        <div className={styles.produk}>
-                            <div className={styles.id}>
-                                {data.id}
-                            </div>
-                            <div className={styles.namaproduk}>
-                                {data.nama_barang}
-                            </div>
-                            <div className={styles.viewbarang}>
-                                <div className={styles.dalamview}> <GoEye />  {data.view_barang}</div>
-                            </div>
-                        </div>
-                        <div className={styles.aksi}>
-                            <div className={styles.delete}>
-                                <div className={styles.deletedalam} onClick={() => HandleDelete({ "id": data.id })} >
-                                    <TiDelete style={{ border: '1px solid red' }} />
+            <Header judul={'LIST PRODUK'}>
+                <div className={styles.container}>
+                    <div className={styles.list}>
+                        <div className={styles.bungkusproduk}>
+                            <div className={styles.produk} style={{ fontWeight: '700' }}>
+                                <div className={styles.id}>
+                                    ID
+                                </div>
+                                <div className={styles.namaproduk}>
+                                    NAMA
+                                </div>
+                                <div className={styles.viewbarang}>
+                                    VIEW
                                 </div>
                             </div>
+                            <div className={styles.aksi}>
+                                <div className={styles.edit}></div>
+                                <div className={styles.delete}></div>
+                            </div>
                         </div>
-                    </div>))}
-                </div>
-                <Link href={'/admin/post'} className={styles.post}>
-                    <MdOutlinePostAdd />
-                </Link>
-            </div >
+                        {data?.data?.map((data, i) =>
+                        (
+                            <div key={i} className={styles.bungkusproduk}   >
+                                <Link href={`/admin/update/${data.id}`} className={styles.produk}>
+                                    <div className={styles.id}>
+                                        {data.id}
+                                    </div>
+                                    <div className={styles.namaproduk} >
+                                        {data.nama_barang}
+                                    </div>
+                                    <div className={styles.viewbarang}>
+                                        <div className={styles.dalamview}> <GoEye />  {data.view_barang}</div>
+                                    </div>
+                                </Link>
+                                <div className={styles.aksi}>
+                                    <div className={styles.delete}>
+                                        <div className={styles.deletedalam} onClick={() => HandleDelete({ "id": data.id })} >
+                                            <TiDelete style={{ border: '1px solid red' }} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+
+
+                    </div>
+                    <Link href={'/admin/post'} className={styles.post}>
+                        <MdOutlinePostAdd />
+                    </Link>
+                </div >
+            </Header>
         </>
     )
 }

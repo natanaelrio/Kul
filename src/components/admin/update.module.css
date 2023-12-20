@@ -1,14 +1,20 @@
-.containerform {
+/* UPDATE */
+.update {
     width: 1200px;
-    /* background-color: yellow; */
+    margin-bottom: 5px;
+    border-top: 1px solid var(--color-primary);
+    border-right: 1px solid var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+    border-left: 1px solid var(--color-primary);
+    padding: 10px;
+    background-color: var(--color-hover-admin);
+    margin-top: 30px;
 }
 
+
 .form {
-    /* width: 500px; */
-    /* display: flex;
-    flex-direction: column; */
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(595px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(505px, 1fr));
     gap: 10px;
     justify-content: center;
 }
@@ -22,6 +28,29 @@
 .form .kotak2 {
     width: 100%;
     /* background-color: blue; */
+}
+
+.form label {
+    font-size: 16px;
+}
+
+
+.harga {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding-right: 5px;
+}
+
+.diskon {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding-left: 5px;
+}
+
+.bagi2 {
+    display: flex;
 }
 
 .form label {
@@ -66,27 +95,6 @@
     font-size: 17px;
 }
 
-.bagi2 {
-    display: flex;
-    width: 100%;
-}
-
-.bagi2 .harga {
-    width: 70%;
-    margin-right: 10px;
-}
-
-.bagi2 .harga input {
-    width: 100%;
-}
-
-.bagi2 .diskon {
-    width: 30%;
-}
-
-.bagi2 .diskon input {
-    width: 100%;
-}
 
 
 .form .dalamsubmit {
@@ -122,21 +130,18 @@
     background-color: var(--color-primary-hover);
 }
 
+
 .form .loading {
     position: absolute;
     bottom: 0;
 }
-
-/* .form button:hover {
-    opacity: 0.9;
-} */
 
 
 
 @media only screen and (max-width: 1200px) {
 
 
-    .containerform {
+    .update {
         width: 95%;
     }
 
@@ -152,7 +157,7 @@
 @media only screen and (max-width: 768px) {
 
 
-    .containerform {
+    .update {
         width: 95%;
     }
 
@@ -176,7 +181,7 @@
         margin-top: 10px;
     }
 
-    .containerform {
+    .update {
         width: 95%;
     }
 
@@ -206,10 +211,6 @@
 
 
     .form {
-        /* width: 500px; */
-        /* display: flex;
-        flex-direction: column; */
-        /* display: grid; */
         grid-template-columns: 1fr;
         gap: 10px;
     }

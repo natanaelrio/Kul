@@ -11,7 +11,8 @@
   --bg-diskon:#FFDBE2;
   --bg-wa:#25d366;
   --bg-bayar:#94FBAB;
-  --berhasil: #66A182
+  --berhasil: #66A182;
+  --color-hover-admin: #fafafa
 }
 
 * {

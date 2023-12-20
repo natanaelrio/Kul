@@ -1,0 +1,81 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.bungkusjudul {
+    width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.bungkusjudul .iconjudul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bungkusjudul .icon {
+    font-size: 40px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+
+.bungkusjudul .icon:hover {
+    color: var(--color-primary);
+}
+
+
+.judul {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-thirh);
+    margin: 10px 0;
+    padding: 5px;
+    border-bottom: 10px solid var(--color-primary);
+}
+
+.carikembali {
+    display: flex;
+    align-items: center;
+}
+
+
+@media only screen and (max-width: 1200px) {
+    .bungkusjudul {
+        width: 95%;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .judul {
+        font-size: 25px;
+    }
+
+
+    .bungkusjudul {
+        width: 95%;
+    }
+
+}
+
+
+@media only screen and (max-width: 480px) {
+
+
+    .judul {
+        font-size: 20px;
+    }
+
+    .bungkusjudul {
+        width: 95%;
+        margin-top: 10px;
+    }
+
+}
