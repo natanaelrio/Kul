@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import styles from '@/components/admin/list.module.css'
 import { TiDelete } from "react-icons/ti";
 import { GoEye } from "react-icons/go";
@@ -6,16 +6,32 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import Link from 'next/link';
 import { IoHome } from "react-icons/io5";
 import { useRouter } from 'next/navigation'
-import { GetList } from '@/app/service/admin/getList';
+import axios from 'axios';
+import { useState } from 'react';
 
 
-export default async function List() {
+export default function List() {
+    const [data, setData] = useState()
     const router = useRouter()
-    const data = await GetList()
-    const HandleDelete = async (e) => {
-        await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
+
+    axios.get(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': process.env.NEXT_PUBLIC_SECREET
+        },
+        next: { revalidate: 0 }
+    })
+        // .then(res => res.json())
+        .then((res) => {
+            setData(res.data)
+        })
+
+    const HandleDelete = (e) => {
+        axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
             method: 'DELETE',
-            body: JSON.stringify(e),
+            data: e,
+            // body: JSON.stringify(e),
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': process.env.NEXT_PUBLIC_SECREET
@@ -23,7 +39,6 @@ export default async function List() {
         })
         router.refresh()
     }
-
     return (
         <>
             <div className={styles.containeratas}>
@@ -59,7 +74,7 @@ export default async function List() {
                         </div>
                     </div>
 
-                    {data.data.map((data, i) =>
+                    {data?.data?.map((data, i) =>
                     (<div key={i} className={styles.bungkusproduk}>
                         <div className={styles.produk}>
                             <div className={styles.id}>
@@ -84,7 +99,7 @@ export default async function List() {
                 <Link href={'/admin/post'} className={styles.post}>
                     <MdOutlinePostAdd />
                 </Link>
-            </div>
+            </div >
         </>
     )
 }

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 
 export async function GET(req) {
-
+    'use server'
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const users = await prisma.admin.findMany(
