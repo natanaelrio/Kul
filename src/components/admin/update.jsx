@@ -82,7 +82,9 @@ export default function Update(props) {
             setLoading(true)
             setAlert(false)
 
-            router.push('/admin/list', undefined, { shallow: true })
+            setTimeout(() => {
+                router.push('/admin/list', undefined, { shallow: true })
+            }, 3000)
 
             // formik.resetForm();
         },
