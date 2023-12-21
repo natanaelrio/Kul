@@ -22,7 +22,7 @@ export default function Header() {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <Link href={'/'} className={styles.logogambar}>
+                <Link prefetch={false} href={'/'} className={styles.logogambar}>
                     <TbDiamond className={styles.logogambardalam} />
                 </Link>
                 <div className={styles.pencarian} >
@@ -40,7 +40,7 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <Link href={'/admin'} className={styles.icon}>
+                    <Link href={'/admin'} prefetch={false} className={styles.icon}>
                         <FaRegUserCircle className={styles.iconuser}/>
                     </Link>
                 </div>

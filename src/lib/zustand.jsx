@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 
 export const useStore = create((set) => ({
+    // USER
     openPencarian: false,
     setOpenPencarian: () => {
         set((state) => ({
@@ -34,6 +35,15 @@ export const useStore = create((set) => ({
         set((state) => ({
             angka: state.angka <= 1 ? state.angka - 0 : state.angka - 1
         }))
-    }
+    },
 
+
+    //ADMIN
+    openPencarianAdmin: false,
+    setOpenPencarianAdmin: () => {
+        set((state) => ({
+            openPencarianAdmin: !state.openPencarianAdmin
+        })
+        )
+    },
 }))

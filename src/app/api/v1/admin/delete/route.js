@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma"
 
 export async function DELETE(req) {
-    'use server'
     const { id } = await req.json()
     const data = { id }
     // console.log(data);

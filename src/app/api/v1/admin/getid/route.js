@@ -1,17 +1,15 @@
 import { prisma } from "@/lib/prisma"
 
 export async function GET(req) {
+    const searchParams = req.nextUrl.searchParams;
+    const id = searchParams.get('id');
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        const users = await prisma.admin.findMany(
-            {
-                select: {
-                    id: true,
-                    nama_barang: true,
-                    view_barang: true
-                }
-            }
-        )
+        const users = await prisma.admin.findUnique({
+            where: {
+                id: Number(id)
+            },
+          })
         if (users) {
             return Response.json({ status: 200, isCreated: true, data: users })
         } else Response.json({ status: 500, isCreated: false })

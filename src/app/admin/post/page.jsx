@@ -1,4 +1,5 @@
 import Kirim from '@/components/admin/kirim'
+import Header from '@/components/admin/layout/header';
 
 export const metadata = {
   title: 'Admin POST',
@@ -7,6 +8,8 @@ export const metadata = {
 
 export default function Post() {
   return (
-    <Kirim />
+    <Header judul={'POST ADMIN'}>
+      <Kirim />
+    </Header>
   )
 }

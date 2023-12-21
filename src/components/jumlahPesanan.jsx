@@ -1,4 +1,4 @@
-import styles from '@/components/jumlahpesanan.module.css'
+import styles from '@/components/jumlahPesanan.module.css'
 import { useStore } from '@/lib/zustand'
 import { CiCirclePlus } from "react-icons/ci";
 import { CiCircleMinus } from "react-icons/ci";

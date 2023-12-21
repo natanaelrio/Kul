@@ -19,7 +19,7 @@ export default function ListProduk() {
                     <div className={styles.gridlist}>
                         
                         <div className={styles.produk}>
-                            <Link href={'/dashboard'}>
+                            <Link prefetch={false} href={'/dashboard'}>
                                 <div className={styles.gambar}>
                                     <Image
                                         src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
@@ -103,7 +103,7 @@ export default function ListProduk() {
                         </div>
 
                         <div className={styles.produk}>
-                            <Link href={'/dashboard'}>
+                            <Link href={'/dashboard'} prefetch={false}>
                                 <div className={styles.gambar}>
                                     <Image
                                         src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"

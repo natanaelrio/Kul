@@ -1,4 +1,5 @@
 import List from "@/components/admin/list"
+import Header from '@/components/admin/layout/header';
 
 export const metadata = {
     title: 'Admin LIST',
@@ -8,7 +9,9 @@ export const metadata = {
 export default function Admin() {
     return (
         <>
-            <List />
+            <Header judul={'LIST PRODUK'}>
+                <List />
+            </Header>
         </>
     )
 }

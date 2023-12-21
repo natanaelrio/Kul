@@ -1,14 +1,13 @@
 'use client';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import styles from '@/components/formpembelian.module.css'
+import styles from '@/components/formPembelian.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 
 export default function FormPembelian() {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
-    // Pass the useFormik() hook initial form values and a submit function that will
-    // be called when the form is submitted
+    
     const formik = useFormik({
         initialValues: {
             namalengkap: '',

@@ -1,24 +1,30 @@
 "use client"
 import styles from '@/components/admin/update.module.css'
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import * as Yup from 'yup';
+import BarLoader from "react-spinners/BarLoader";
+import Berhasil from '@/components/alert/berhasil';
+import { useRouter } from 'next/navigation'
 
 export default function Update(props) {
-    // console.log(props.id);
-    // console.log(props.data.nama_barang);
+    const router = useRouter()
+    const [matikan, setMatikan] = useState(false)
+    const [loading, setLoading] = useState(true)
+    const [alert, setAlert] = useState(true)
     const formik = useFormik({
         initialValues: {
-            nama_barang: props.id,
-            kategori_barang: '',
-            harga_barang: '',
-            diskon_barang: '',
-            rating_barang: '',
-            total_penjualan_barang: '',
-            diskripsi_barang: '',
-            gambar_barang: '',
-            slug_barang: '',
-            view_barang: '',
-            kupon_barang: '',
+            nama_barang: props.data.nama_barang,
+            kategori_barang: props.data.kategori_barang,
+            harga_barang: props.data.harga_barang,
+            diskon_barang: props.data.diskon_barang,
+            rating_barang: props.data.rating_barang,
+            total_penjualan_barang: props.data.total_penjualan_barang,
+            diskripsi_barang: props.data.diskripsi_barang,
+            gambar_barang: props.data.gambar_barang,
+            slug_barang: props.data.slug_barang,
+            view_barang: props.data.view_barang,
+            kupon_barang: props.data.kupon_barang,
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
@@ -56,26 +62,29 @@ export default function Update(props) {
                 .required('require'),
         }),
         onSubmit: async values => {
-            // setMatikan(true)
-            // setLoading(false)
-            // setAlert(true)
-            const DataLain = {
-                end: null
-            }
+            setMatikan(true)
+            setLoading(false)
+            setAlert(true)
+            // const DataLain = {
+            //     end: null
+            // }
             const DataUtama = values
-            const GabungData = { ...DataUtama, ...DataLain }
-            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/post`, {
-                method: 'POST',
-                body: JSON.stringify(GabungData),
+            // const GabungData = { ...DataUtama, ...DataLain }
+            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/update?id=${props.data.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(DataUtama),
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': process.env.NEXT_PUBLIC_SECREET
                 }
             })
-            // setMatikan(false)
-            // setLoading(true)
-            // setAlert(false)
-            formik.resetForm();
+            setMatikan(false)
+            setLoading(true)
+            setAlert(false)
+
+            router.push('/admin/list', undefined, { shallow: true })
+
+            // formik.resetForm();
         },
 
     });
@@ -230,9 +239,6 @@ export default function Update(props) {
                     />
 
 
-
-
-
                     <label htmlFor="slug_barang">Slug Barang
                         {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -266,25 +272,26 @@ export default function Update(props) {
                     <div className={styles.dalamsubmit}>
 
                         <div className={styles.isisum}>
-                            <button type='submit'>Update</button>
-                            {/* {loading ? null :
-                <>
-                    <div className={styles.loading}>
-                        <BarLoader
-                            color={'#ffb700'}
-                            loading={loading}
-                            size={100}
-                            height={5}
-                            width={181}
-                        />
-                    </div>
-                </>
-            } */}
+                            <button type='submit' disabled={matikan}>Update</button>
+                            {loading ? null :
+                                <>
+                                    <div className={styles.loading}>
+                                        <BarLoader
+                                            color={'#ffb700'}
+                                            loading={loading}
+                                            size={100}
+                                            height={5}
+                                            width={181}
+                                        />
+                                    </div>
+                                </>
+                            }
                         </div>
                     </div>
                 </div>
             </form >
         </div >
+        {alert ? null : <Berhasil />}
     </>
     )
 }

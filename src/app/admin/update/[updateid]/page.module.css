@@ -1,0 +1,20 @@
+.judulatas {
+    width: 1000px;
+    font-weight: 700;
+    margin-top: 30px;
+    font-size: 24px;
+}
+
+.juduldalam {
+    padding: 20px 0 10px 0;
+    width: fit-content;
+    border-bottom: 5px solid var(--color-primary);
+}
+
+@media only screen and (max-width: 480px) {
+
+    .judulatas {
+        width: 95vw;
+    }
+
+}

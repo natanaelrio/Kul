@@ -23,7 +23,7 @@ export default function Produk() {
                 <div className={styles.width}>
                     <div className={styles.navigasi}>
                         <div className={styles.dalamnav}>
-                            <Link href="/">Home</Link> / Products
+                            <Link prefetch={false} href="/">Home</Link> / Products
                         </div>
                     </div>
                     <div className={styles.grid}>

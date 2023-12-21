@@ -5,7 +5,6 @@ import styles from '@/components/admin/kirim.module.css'
 import { useState } from 'react';
 import Berhasil from '@/components/alert/berhasil';
 import BarLoader from "react-spinners/BarLoader";
-import Header from '@/components/admin/layout/header';
 
 export default function Kirim() {
     const [matikan, setMatikan] = useState(false)
@@ -86,7 +85,6 @@ export default function Kirim() {
     });
     return (
         <>
-            <Header judul={'POST ADMIN'}>
                 <div className={styles.containerform}>
                     <form onSubmit={formik.handleSubmit} className={styles.form}>
                         <div className={styles.kotak1}>
@@ -291,7 +289,6 @@ export default function Kirim() {
                     </form>
                 </div>
                 {alert ? null : <Berhasil />}
-            </Header>
         </>
     )
 }
