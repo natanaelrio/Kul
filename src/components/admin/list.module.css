@@ -65,6 +65,8 @@
     border-right: 1px solid var(--color-primary);
     border-bottom: 0px solid var(--color-primary);
     border-left: 1px solid var(--color-primary);
+    position: relative;
+    padding: 10px 5px;
 }
 
 .bungkusproduk:hover {
@@ -73,11 +75,15 @@
     cursor: pointer;
 }
 
+
+
 .bungkusproduk:nth-child(1) {
     border-top: 1px solid var(--color-primary);
     border-right: 1px solid var(--color-primary);
     border-bottom: 0px solid var(--color-primary);
     border-left: 1px solid var(--color-primary);
+    background-color: var(--color-hover-admin);
+    padding: 0 10px;
 }
 
 .bungkusproduk:last-child {
@@ -88,24 +94,23 @@
     width: 100%;
     /* background-color: red ; */
     display: flex;
+    align-items: flex-start;
     /* background-color: var(--color-sekunder);
     color: var(--color-white); */
     color: var(--color-sekunder);
 }
 
 
-
-
-.produk .id {
+.produk .namaproduk {
     padding: 7px;
-    width: 10%;
+    width: 60%;
     display: flex;
     align-items: center;
 }
 
-.produk .namaproduk {
+.produk .terjual {
     padding: 7px;
-    width: 70%;
+    width: 20%;
     display: flex;
     align-items: center;
 }
@@ -117,6 +122,30 @@
     align-items: center;
 }
 
+.produk .arrow {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    display: none;
+    animation-name: geser;
+    animation-duration: 0.3s;
+}
+
+.bungkusproduk:hover .arrow {
+    display: block;
+}
+
+@keyframes geser {
+    from {
+        right: 20px;
+    }
+
+    to {
+        right: 10px;
+    }
+}
+
+
 .produk .viewbarang .dalamview {
     display: flex;
     align-items: center;
@@ -124,25 +153,9 @@
 
 
 .aksi {
-    width: 10%;
+    /* width: 10%; */
     display: flex;
     font-size: 3%;
-}
-
-.aksi .edit {
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--color-primary);
-}
-
-.aksi .delete {
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    color: red;
-    font-size: 35px;
 }
 
 .aksi .deletedalam {
@@ -154,6 +167,13 @@
     font-size: 40px;
 }
 
+
+@media only screen and (max-width: 1080px) {
+    .list {
+        width: 95vw;
+        /* padding: 10px; */
+    }
+}
 
 @media only screen and (max-width: 768px) {
     .list {

@@ -1,0 +1,111 @@
+.slug {
+    font-size: 20px;
+}
+
+.container {
+    padding: 0 0 20px 0;
+    height: 500px;
+    width: 100%;
+    font-size: 20px;
+    overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar {
+    width: 8px;
+    background-color: #F5F5F5;
+}
+
+.container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #555;
+}
+
+.containerdata {
+    display: flex;
+}
+
+.containerdata .judul {
+    width: 30%;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.containerdata .detail {
+    width: 70%;
+}
+
+.gambar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.gambar .gambardalam {
+    width: 200px;
+    height: 200px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+}
+
+.gambar .gambardalam img {
+    border-radius: 7px;
+}
+
+.deleteupdate {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.deleteupdate .delete {
+    font-size: 20px;
+    padding: 10px;
+    background-color: rgb(196, 75, 75);
+    color: var(--color-white);
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.deleteupdate .delete:hover {
+    transition: 0.3s ease;
+    background-color: red;
+}
+
+.deleteupdate .update {
+    font-size: 20px;
+    padding: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    cursor: pointer;
+}
+
+.deleteupdate .update:hover {
+    transition: 0.3s ease;
+    background-color: blue;
+}
+
+
+@media only screen and (max-width: 480px) {
+    
+    .gambar {
+        justify-content: center!important;
+    }
+
+    .slug {
+        font-size: 14px;
+    }
+
+    .container {
+        font-size: 14px;
+    }
+
+    .deleteupdate .delete {
+        font-size: 14px;
+    }
+
+    .deleteupdate .update {
+        font-size: 14px;
+    }
+}

@@ -46,4 +46,11 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openDetailProdukAdmin: false,
+    setOpenDetailProdukAdmin: () => {
+        set((state) => ({
+            openDetailProdukAdmin: !state.openDetailProdukAdmin
+        })
+        )
+    },
 }))

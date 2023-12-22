@@ -10,7 +10,7 @@ export async function DELETE(req) {
         // All posts that contain the word 'cat'.
         const deleteUser = await prisma.admin.delete({
             where: {
-                id: Number(data.id),
+                btoa: data.id
             },
         })
         if (deleteUser) {

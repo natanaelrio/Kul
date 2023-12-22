@@ -13,9 +13,10 @@ datasource db {
 
 model admin {
   id                     Int       @id @default(autoincrement())
+  btoa                   String?    @unique
   start                  DateTime  @default(now())
   end                    DateTime? @updatedAt
-  nama_barang            String    @unique
+  nama_barang            String    
   kategori_barang        String?
   harga_barang           Int?
   diskon_barang          Int?

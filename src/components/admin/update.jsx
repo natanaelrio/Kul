@@ -22,57 +22,55 @@ export default function Update(props) {
             total_penjualan_barang: props.data.total_penjualan_barang,
             diskripsi_barang: props.data.diskripsi_barang,
             gambar_barang: props.data.gambar_barang,
-            slug_barang: props.data.slug_barang,
             view_barang: props.data.view_barang,
             kupon_barang: props.data.kupon_barang,
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+                .max(200, 'harus 200 karakter')
                 .required('require'),
             kategori_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+                .max(200, 'harus 200 karakter')
                 .required('require'),
-            harga_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+            harga_barang: Yup.number()
+                .max(200, 'harus 200 karakter')
                 .required('require'),
-            diskon_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+            diskon_barang: Yup.number()
+                .max(200, 'harus 200 karakter')
                 .required('require'),
             rating_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
-            total_penjualan_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+            total_penjualan_barang: Yup.number()
+                .max(200, 'harus 200 karakter')
                 .required('require'),
             diskripsi_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+                .max(2000, 'harus 2000 karakter')
                 .required('require'),
             gambar_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
-                .required('require'),
-            slug_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+                .max(200, 'harus 200 karakter')
                 .required('require'),
             view_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+                .max(200, 'harus 200 karakter')
                 .required('require'),
             kupon_barang: Yup.string()
-                .max(10, 'harus 10 karakter')
+                .max(200, 'harus 200 karakter')
                 .required('require'),
         }),
         onSubmit: async values => {
             setMatikan(true)
             setLoading(false)
             setAlert(true)
-            // const DataLain = {
-            //     end: null
-            // }
+            const DataLain = {
+                btoa: btoa(values.nama_barang).substring(0, 27).split('=')[0],
+                slug_barang: values.nama_barang.split(' ').join('-')
+            }
+
             const DataUtama = values
-            // const GabungData = { ...DataUtama, ...DataLain }
+            const GabungData = { ...DataUtama, ...DataLain }
             await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/update?id=${props.data.id}`, {
                 method: 'PUT',
-                body: JSON.stringify(DataUtama),
+                body: JSON.stringify(GabungData),
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': process.env.NEXT_PUBLIC_SECREET
@@ -83,9 +81,9 @@ export default function Update(props) {
             setAlert(false)
 
             setTimeout(() => {
-                router.push('/admin/list', undefined, { shallow: true })
+                router.push('/admin/list')
             }, 3000)
-
+            router.refresh()
             // formik.resetForm();
         },
 
@@ -241,22 +239,6 @@ export default function Update(props) {
                     />
 
 
-                    <label htmlFor="slug_barang">Slug Barang
-                        {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
-                            <div style={{ color: 'red' }}>&nbsp;*</div>
-                        ) : null}
-                    </label>
-                    <input
-                        id="slug_barang"
-                        name="slug_barang"
-                        type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.slug_barang}
-                        placeholder='opsional'
-                        style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
-                    />
-
-
                     <label htmlFor="view_barang">View
                         {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -293,7 +275,7 @@ export default function Update(props) {
                 </div>
             </form >
         </div >
-        {alert ? null : <Berhasil />}
+        {alert ? null : <Berhasil data={"dirubah"}/>}
     </>
     )
 }

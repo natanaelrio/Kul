@@ -7,7 +7,7 @@ export async function GET(req) {
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const users = await prisma.admin.findUnique({
             where: {
-                id: Number(id)
+                btoa: id
             },
           })
         if (users) {

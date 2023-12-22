@@ -1,6 +1,7 @@
 "use client"
 import styles from '@/components/admin/pencarian.module.css'
 import { FaSearch } from "react-icons/fa";
+import BackLayang from '@/components/admin/layout/backlayang';
 import { useStore } from '@/lib/zustand'
 
 export default function Pencarian() {
@@ -8,21 +9,17 @@ export default function Pencarian() {
 
     return (
         <>
-            <div className={styles.container}>
-                <div className={styles.backgroundblur} onClick={setOpen}>
-                </div>
-                <div className={styles.pencarian}>
-                    <div className={styles.caridalam}>
-                        <div className={styles.logocari}>
-                            <FaSearch />
-                        </div>
-                        <input type="text" placeholder='cari...' />
+            <BackLayang setOpen={setOpen} judul={'Pencarian'}>
+                <div className={styles.caridalam}>
+                    <div className={styles.logocari}>
+                        <FaSearch />
                     </div>
-                    <div className="list">
-                        belum ada data!!
-                    </div>
+                    <input type="text" placeholder='cari...' />
                 </div>
-            </div >
+                <div className="list">
+                    belum ada data!!
+                </div>
+            </BackLayang>
         </>
     )
 }
