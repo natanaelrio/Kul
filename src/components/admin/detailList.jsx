@@ -1,6 +1,6 @@
 "use client"
 import styles from "@/components/admin/detailList.module.css"
-import BackLayang from '@/components/admin/layout/backlayang';
+import BackLayang from '@/components/admin/layout/backLayang';
 import { useStore } from '@/lib/zustand'
 import Image from 'next/image'
 import { useRouter } from "next/navigation";

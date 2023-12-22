@@ -1,7 +1,7 @@
 "use client"
 import styles from '@/components/admin/pencarian.module.css'
 import { FaSearch } from "react-icons/fa";
-import BackLayang from '@/components/admin/layout/backlayang';
+import BackLayang from '@/components/admin/layout/backLayang'
 import { useStore } from '@/lib/zustand'
 
 export default function Pencarian() {
