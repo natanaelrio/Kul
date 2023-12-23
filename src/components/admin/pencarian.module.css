@@ -7,7 +7,8 @@
 }
 
 .logocari {
-    width: 5%;
+    width: fit-content;
+    /* width: 5%; */
     z-index: 1010;
 }
 
@@ -24,6 +25,74 @@
     outline: none;
 }
 
+.containerlist {
+    margin-top: 10px;
+    min-height: 300px;
+    overflow-y: scroll;
+}
+
+
+/* LIST */
+.list {
+    position: relative;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.list:hover {
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: 0.3s ease all;
+}
+
+.list .logocari {
+    width: fit-content;
+    margin-right: 10px;
+}
+
+.list .judul {
+    overflow: hidden;
+    display: block;
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+    text-align: left;
+}
+
+.list .arrow {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    display: none;
+    animation-name: geser;
+    animation-duration: 0.3s;
+}
+
+.list:hover .arrow {
+    display: block;
+}
+
+@keyframes geser {
+    from {
+        right: 20px;
+    }
+
+    to {
+        right: 10px;
+    }
+}
+
+
+
+
 @media only screen and (max-width: 768px) {
     .caridalam input {
         width: 95%;
@@ -31,8 +100,21 @@
 }
 
 @media only screen and (max-width: 480px) {
+
+    .list .arrow {
+        top: 13px
+    }
+
+    .list {
+        padding: 10px;
+        font-size: 17px;
+    }
+
+    .caridalam input {
+        font-size: 17px;
+    }
+
     .logocari {
-        width: 10%;
-        z-index: 1010;
+        font-size: 17px;
     }
 }

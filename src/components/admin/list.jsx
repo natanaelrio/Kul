@@ -17,7 +17,6 @@ export default function List(props) {
     const HandleDetail = (e) => {
         setData(e)
     }
-    console.log(false || false || false || true ? 'masuk' : 'tidak masuk');
 
     return (
         <>
@@ -37,13 +36,6 @@ export default function List(props) {
                         </div>
                     </div>
 
-//TODO - HALAMAN FILTER DAN FALIDASI
-
-
-
-
-
-                    //ANCHOR - HALAMAN UTAMA
                     {props.data?.data ? null : <SkeletonPage />}
                     {props.data?.data?.map((data, i) =>
                     (<div key={i} className={styles.bungkusproduk} onClick={() => {
