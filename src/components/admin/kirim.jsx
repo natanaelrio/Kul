@@ -24,12 +24,17 @@ export default function Kirim() {
             gambar_barang: '',
             view_barang: '',
             kupon_barang: '',
+            tag_barang: '',
+            like_barang: '',
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             kategori_barang: Yup.string()
+                .max(200, 'harus 200 karakter')
+                .required('require'),
+            tag_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             harga_barang: Yup.number()
@@ -50,10 +55,13 @@ export default function Kirim() {
             gambar_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
-            view_barang: Yup.string()
+            view_barang: Yup.number()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             kupon_barang: Yup.string()
+                .max(200, 'harus 200 karakter')
+                .required('require'),
+            like_barang: Yup.number()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
         }),
@@ -69,21 +77,26 @@ export default function Kirim() {
 
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
-
-            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/post`, {
-                method: 'POST',
-                body: JSON.stringify(GabungData),
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': process.env.NEXT_PUBLIC_SECREET
-                }
-            })
+            try {
+                await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/post`, {
+                    method: 'POST',
+                    body: JSON.stringify(GabungData),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                    }
+                })
+            }
+            catch (e) {
+                console.error(e)
+            }
             setMatikan(false)
             setLoading(true)
             setAlert(false)
             setTimeout(() => {
                 router.push('/admin/list')
-            }, 2000)
+                router.refresh()
+            }, 1000)
             // formik.resetForm();
         },
 
@@ -156,9 +169,25 @@ export default function Kirim() {
                             type="text"
                             onChange={formik.handleChange}
                             value={formik.values.kategori_barang}
-                            placeholder='ex: bulu, santai, ramah ( pemisah tanda , )'
+                            placeholder='ex: rumah (tanpa space)'
                             style={formik.touched.kategori_barang && formik.errors.kategori_barang ? { border: '1px solid red' } : null}
                         />
+
+                        <label htmlFor="tag_barang">Tag
+                            {formik.touched.tag_barang && formik.errors.tag_barang ? (
+                                <div style={{ color: 'red' }}>&nbsp;*</div>
+                            ) : null}
+                        </label>
+                        <input
+                            id="tag_barang"
+                            name="tag_barang"
+                            type="text"
+                            onChange={formik.handleChange}
+                            value={formik.values.tag_barang}
+                            placeholder='ex: bulu, santai, ramah ( pemisah tanda , )'
+                            style={formik.touched.tag_barang && formik.errors.tag_barang ? { border: '1px solid red' } : null}
+                        />
+
 
                         <label htmlFor="gambar_barang">Gambar
                             {formik.touched.gambar_barang && formik.errors.gambar_barang ? (
@@ -172,7 +201,7 @@ export default function Kirim() {
                             onChange={formik.handleChange}
                             value={formik.values.gambar_barang}
                             placeholder='ex: http://google.com/kucing.png'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.gambar_barang && formik.errors.gambar_barang ? { border: '1px solid red' } : null}
                         />
 
                         <label htmlFor="diskripsi_barang">Diskripsi
@@ -187,7 +216,7 @@ export default function Kirim() {
                             onChange={formik.handleChange}
                             value={formik.values.diskripsi_barang}
                             placeholder='ex: terserah'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
                         />
                     </div>
 
@@ -205,7 +234,7 @@ export default function Kirim() {
                             onChange={formik.handleChange}
                             value={formik.values.kupon_barang}
                             placeholder='opsional'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.kupon_barang && formik.errors.kupon_barang ? { border: '1px solid red' } : null}
                         />
 
                         <label htmlFor="rating_barang">Rating
@@ -220,7 +249,7 @@ export default function Kirim() {
                             onChange={formik.handleChange}
                             value={formik.values.rating_barang}
                             placeholder='opsional'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.rating_barang && formik.errors.rating_barang ? { border: '1px solid red' } : null}
                         />
 
                         <label htmlFor="total_penjualan_barang">Total Penjualan
@@ -235,28 +264,9 @@ export default function Kirim() {
                             onChange={formik.handleChange}
                             value={formik.values.total_penjualan_barang}
                             placeholder='opsional'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.total_penjualan_barang && formik.errors.total_penjualan_barang ? { border: '1px solid red' } : null}
                         />
 
-
-
-
-
-                        {/* <label htmlFor="slug_barang">Slug Barang
-                            {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
-                                <div style={{ color: 'red' }}>&nbsp;*</div>
-                            ) : null}
-                        </label>
-                        <input
-                            id="slug_barang"
-                            name="slug_barang"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.slug_barang}
-                            placeholder='opsional'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
-                        />
- */}
 
                         <label htmlFor="view_barang">View
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
@@ -266,11 +276,26 @@ export default function Kirim() {
                         <input
                             id="view_barang"
                             name="view_barang"
-                            type="text"
+                            type="number"
                             onChange={formik.handleChange}
                             value={formik.values.view_barang}
                             placeholder='opsional'
-                            style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.view_barang && formik.errors.view_barang ? { border: '1px solid red' } : null}
+                        />
+
+                        <label htmlFor="like_barang">Like
+                            {formik.touched.like_barang && formik.errors.like_barang ? (
+                                <div style={{ color: 'red' }}>&nbsp;*</div>
+                            ) : null}
+                        </label>
+                        <input
+                            id="like_barang"
+                            name="like_barang"
+                            type="number"
+                            onChange={formik.handleChange}
+                            value={formik.values.like_barang}
+                            placeholder='opsional'
+                            style={formik.touched.like_barang && formik.errors.like_barang ? { border: '1px solid red' } : null}
                         />
                         <div className={styles.dalamsubmit}>
 

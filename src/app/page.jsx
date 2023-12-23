@@ -3,7 +3,8 @@ import HeaderFooter from '@/components/Layout/headerFooter'
 import Introduction from '@/components/introduction'
 
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
+// export const runtime = "edge"
 
 export const metadata = {
   title: 'Pusat Pembelanjaan Aneka Baju Berkualitas',

@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma"
 
 export async function GET(req) {
-
+    return Response.json({ status: 200, isCreated: true, })
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         // All posts that contain the word 'cat'.

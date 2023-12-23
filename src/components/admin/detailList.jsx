@@ -10,15 +10,20 @@ export default function DetailList(props) {
     const router = useRouter()
 
     const HandleDelete = async (e) => {
-        await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
-            method: 'DELETE',
-            // data: e,
-            body: JSON.stringify(e),
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
-            }
-        })
+        try {
+            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/delete`, {
+                method: 'DELETE',
+                // data: e,
+                body: JSON.stringify(e),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': process.env.NEXT_PUBLIC_SECREET
+                }
+            })
+        }
+        catch (e) {
+            console.error(e)
+        }
         router.refresh()
     }
     return (
