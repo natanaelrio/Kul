@@ -20,7 +20,7 @@ export default function Pencarian() {
             }
         })
         const data = await res.json()
-        setData(data.data)
+        setData(data?.data)
     }
 
     // console.log(data);
@@ -40,13 +40,12 @@ export default function Pencarian() {
                         return (
                             <div key={i} className={styles.list} onClick={() => {
                                 setOpenDetail(), setOpenPencarian()
-                            }
-                            }>
+                            }}>
                                 <div className={styles.logocari}>
                                     <FaSearch />
                                 </div>
                                 <div className={styles.judul}>
-                                    {data.nama_barang}
+                                    {data?.nama_barang}
                                 </div>
                                 <div className={styles.arrow}>
                                     <FaArrowRightFromBracket />

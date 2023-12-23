@@ -44,10 +44,10 @@ export default function List(props) {
                     }}>
                         <div className={styles.produk}>
                             <div className={styles.namaproduk}  >
-                                {data.nama_barang}
+                                {data?.nama_barang}
                             </div>
                             <div className={styles.terjual}>
-                                {data.total_penjualan_barang}
+                                {data?.total_penjualan_barang}
                             </div>
                             <div className={styles.viewbarang}>
                                 <div className={styles.dalamview}> <GoEye />  {data.view_barang}</div>

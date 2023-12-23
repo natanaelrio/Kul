@@ -14,16 +14,16 @@ export default function Update(props) {
     const [alert, setAlert] = useState(true)
     const formik = useFormik({
         initialValues: {
-            nama_barang: props.data.nama_barang,
-            kategori_barang: props.data.kategori_barang,
-            harga_barang: props.data.harga_barang,
-            diskon_barang: props.data.diskon_barang,
-            rating_barang: props.data.rating_barang,
-            total_penjualan_barang: props.data.total_penjualan_barang,
-            diskripsi_barang: props.data.diskripsi_barang,
-            gambar_barang: props.data.gambar_barang,
-            view_barang: props.data.view_barang,
-            kupon_barang: props.data.kupon_barang,
+            nama_barang: props.data?.nama_barang,
+            kategori_barang: props.data?.kategori_barang,
+            harga_barang: props.data?.harga_barang,
+            diskon_barang: props.data?.diskon_barang,
+            rating_barang: props.data?.rating_barang,
+            total_penjualan_barang: props.data?.total_penjualan_barang,
+            diskripsi_barang: props.data?.diskripsi_barang,
+            gambar_barang: props.data?.gambar_barang,
+            view_barang: props.data?.view_barang,
+            kupon_barang: props.data?.kupon_barang,
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
