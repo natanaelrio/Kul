@@ -130,6 +130,7 @@ export default function DetailList(props) {
                     alert('yakin ? hapus ?')
                     setOpen()
                     HandleDelete({ "id": props.data?.btoa })
+                    router.refresh()
                 }}>Delete</div>
                 <div className={styles.update} onClick={() => {
                     setOpen()

@@ -12,7 +12,7 @@ export function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const getListDataID = await GetListDataID(params.updateid)
-  
+
   return (
     <>
       <Header judul={'UPDATE PRODUK'}>

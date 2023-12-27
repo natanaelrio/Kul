@@ -37,6 +37,7 @@ export default function List(props) {
                     </div>
 
                     {props.data?.data ? null : <SkeletonPage />}
+
                     {props.data?.data?.map((data, i) =>
                     (<div key={i} className={styles.bungkusproduk} onClick={() => {
                         setOpen()
