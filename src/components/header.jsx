@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { CiSearch } from "react-icons/ci";
+import { LuShoppingCart } from "react-icons/lu";
+import { FaRegHeart } from "react-icons/fa";
 import styles from '@/components/header.module.css'
 import Link from 'next/link';
-import { FaRegUserCircle } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 
 export default function Header() {
@@ -40,8 +41,16 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    <Link href={'/admin'} prefetch={false} className={styles.icon}>
-                        <FaRegUserCircle className={styles.iconuser}/>
+                </div>
+                <div className={styles.pilihan}>
+                    <div className={styles.icon}>
+                        <FaRegHeart />
+                    </div>
+                    <div className={styles.icon}>
+                        <LuShoppingCart />
+                    </div>
+                    <Link href={'/admin'} className={styles.login}>
+                        Log in
                     </Link>
                 </div>
             </nav >

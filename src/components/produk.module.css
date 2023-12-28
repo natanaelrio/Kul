@@ -1,10 +1,13 @@
 .container {
     display: flex;
     justify-content: center;
+   
 }
 
 .width {
     width: 1100px;
+    /* margin-top: 20px; */
+    /* box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f; */
 }
 
 .grid {
@@ -95,56 +98,77 @@
     align-items: center;
 }
 
-.reviewproduk .logokembaliluar {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    display: block;
-    padding: 10px;
+
+/* JUMLAH */
+.reviewproduk .jumlah {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border-radius: 15px;
-    margin-right: 5px;
+}
+
+.reviewproduk .button {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-grey);
+    color: var(--color-sekunder);
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: 700;
+}
+
+.reviewproduk .button button {
+    background-color: var(--color-grey);
+    color: var(--color-sekunder);
+    padding: 0px 30px;
     cursor: pointer;
-}
-
-.reviewproduk .logokembaliluar:hover {
-    opacity: 0.9;
-}
-
-
-.reviewproduk .logokembali {
-    font-size: 30px;
-}
-
-.reviewproduk .beli {
-    display: block;
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    text-align: center;
-    border-radius: 15px;
-    padding: 15px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.reviewproduk .beli .belisekarang {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.reviewproduk .beli:hover {
-    background-color: var(--color-white);
-    color: var(--color-primary);
-    border: 1px solid var(--color-primary);
-}
-
-.reviewproduk .beli .logobeli {
+    outline: none;
+    border: 0;
     font-size: 25px;
+}
+
+/* ADD CARD */
+.reviewproduk .keranjang button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border: 0;
+    outline: 0;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    letter-spacing: 1.1px;
+}
+
+.reviewproduk .keranjang button:hover {
+    background-color: var(--hover-color-primary);
+}
+
+
+/* BUYNOW */
+.reviewproduk .belisekarang button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    width: 100%;
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
+    border: 0;
+    outline: 0;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    letter-spacing: 1.1px;
+}
+
+.reviewproduk .belisekarang button:hover {
+    background-color: var(--hover-color-sekunder);
 }
 
 .reviewproduk .garansi {
@@ -153,62 +177,6 @@
     justify-content: center;
     padding: 20px 0;
 }
-
-
-.reviewproduk .bayarchatkeranjang {
-    display: flex;
-    margin-top: 20px;
-    width: 100%;
-    justify-content: space-between;
-    font-size: 22px;
-    font-weight: 500;
-}
-
-.reviewproduk .bayarchatkeranjang .bayar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border-radius: 7px;
-    background-color: var(--bg-bayar);
-    color: var(--color-sekunder);
-    cursor: pointer;
-}
-
-.reviewproduk .bayarchatkeranjang .bayar:hover {
-    opacity: 0.9;
-}
-
-.reviewproduk .bayarchatkeranjang .chatwa {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border-radius: 7px;
-    cursor: pointer;
-    background-color: var(--bg-wa);
-    color: var(--color-white);
-}
-
-.reviewproduk .bayarchatkeranjang .chatwa:hover {
-    opacity: 0.9;
-}
-
-.reviewproduk .bayarchatkeranjang .keranjang {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    border-radius: 7px;
-    cursor: pointer;
-    background-color: var(--color-third);
-    color: var(--color-white);
-}
-
-.reviewproduk .bayarchatkeranjang .keranjang:hover {
-    opacity: 0.9;
-}
-
 
 /* GAMBAR */
 
@@ -231,6 +199,7 @@
     position: relative;
 
 }
+
 .gambar .gambardalam .gratisongkir {
     position: absolute;
     background-color: var(--color-third);
@@ -252,31 +221,12 @@
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     }
 
-    .navigasi .dalamnav {
-        width: 95vw;
-    }
-
-    .reviewproduk .bayarchatkeranjang {
-        font-size: 15px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .bayar {
-        padding: 12px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .chatwa {
-        padding: 12px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .keranjang {
-        padding: 12px;
-    }
 
     .gambar img {
         width: 300px;
     }
 
-    
+
 }
 
 
@@ -298,10 +248,6 @@
         /* grid-template-rows: 1fr 1fr; */
     }
 
-    .navigasi .dalamnav {
-        width: 95vw;
-    }
-
 
     /* REVIEW PRODUK */
     .reviewproduk {
@@ -309,22 +255,6 @@
         padding: 20px;
         font-size: 18px;
         padding: 10px 30px 30px 30px;
-    }
-
-    .reviewproduk .bayarchatkeranjang {
-        font-size: 20px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .bayar {
-        padding: 15px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .chatwa {
-        padding: 15px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .keranjang {
-        padding: 15px;
     }
 
 
@@ -352,7 +282,7 @@
         position: absolute;
         background-color: var(--color-third);
         color: var(--color-white);
-        bottom: 0!important;
+        bottom: 0 !important;
         left: 0;
         padding: 10px 20px;
         border-radius: 0 10px 10px 0;
@@ -378,13 +308,6 @@
         /* grid-template-rows: 1fr 1fr; */
     }
 
-    .navigasi {
-        display: none;
-    }
-
-    .navigasi .dalamnav {
-        width: 95vw;
-    }
 
     /* REVIEW PRODUK */
     .reviewproduk {
@@ -394,26 +317,6 @@
         padding: 10px 20px 20px 20px;
     }
 
-    .reviewproduk .bayarchatkeranjang {
-        font-size: 15px;
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .reviewproduk .bayarchatkeranjang .bayar {
-        padding: 10px;
-        margin-bottom: 5px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .chatwa {
-        padding: 10px;
-        margin-bottom: 5px;
-    }
-
-    .reviewproduk .bayarchatkeranjang .keranjang {
-        padding: 10px;
-        margin-bottom: 5px;
-    }
 
 
     /* GAMBAR */
@@ -440,7 +343,7 @@
         position: absolute;
         background-color: var(--color-third);
         color: var(--color-white);
-        bottom: 0!important;
+        bottom: 0 !important;
         left: 0;
         padding: 10px 20px;
         border-radius: 0 10px 10px 0;

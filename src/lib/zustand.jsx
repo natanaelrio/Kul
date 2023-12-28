@@ -16,15 +16,6 @@ export const useStore = create((set) => ({
         })
         )
     },
-
-    openJumlah: false,
-    setOpenJumlah: () => {
-        set((state) => ({
-            openJumlah: !state.openJumlah
-        })
-        )
-    },
-
     angka: 1,
     setTambahAngka: () => {
         set((state) => ({
