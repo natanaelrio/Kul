@@ -77,12 +77,10 @@
     object-position: center;
 }
 
-.produk .gambar:hover img {
+.produk:hover img {
     transition: all ease 0.3s;
     scale: 1.07;
 }
-
-
 
 .produk .tengah {
     padding: 10px;

@@ -13,7 +13,7 @@ export default function Header() {
 
     useEffect(() => {
         const windowScroll = () => {
-            window.scrollY <= 100 ? setChange(true) : setChange(false)
+            window.scrollY <= 50 ? setChange(true) : setChange(false)
         }
         window.addEventListener('scroll', windowScroll)
     }, [setChange]);

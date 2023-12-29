@@ -4,58 +4,111 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
-    background-color: var(--color-sekunder);
+    background-color: var(--color-white);
+    position: relative;
 }
 
 .judul {
     font-size: 30px;
     font-weight: 700;
+    text-align: center;
 }
 
 .login {
-    width: 300px;
-    color: var(--color-white);
+    width: 400px;
+    color: var(--color-primary);
 }
 
 .login input::placeholder {
     color: var(--color-primary);
+    opacity: 0.8;
+    font-size: 14px;
 }
 
 .login input {
-    padding: 20px;
-    font-size: 24px;
+    padding: 20px 10px;
+    font-size: 18px;
     outline: none;
+    border-radius: 8px;
+    outline: 0;
+    border: 0.5px solid var(--hover-color-sekunder);
 }
 
 .login input {
-    color: var(--color-primary);;
+    color: var(--color-primary);
+    ;
+}
+
+
+.login .username {
+    margin: 10px 0
+}
+
+.login .username label {
+    font-weight: 700;
 }
 
 .login .username input {
     width: 100%;
+    margin-top: 10px;
+}
+
+.login .password {
+    margin: 10px 0
+}
+
+.login .password label {
+    font-weight: 700;
 }
 
 .login .password input {
     width: 100%;
+    margin-top: 10px;
 }
+
+
+
 
 .login .submit {
     margin-top: 10px;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    /* justify-content: flex-end; */
 }
 
 .login .submit button {
+    width: 100%;
     background-color: var(--color-primary);
     color: var(--color-white);
-    padding: 10px;
+    padding: 15px 10px;
     outline: 0;
     border: 0;
     cursor: pointer;
+    border-radius: 7px;
+    font-weight: 700;
 }
 
 
 .login .submit button:hover {
     opacity: 0.9;
+}
+
+
+.back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+
+@media only screen and (max-width: 480px) {
+    .container {
+        height: 80vh;
+    }
+
+    .login {
+        width: 90vw;
+    }
 }
