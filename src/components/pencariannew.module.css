@@ -1,5 +1,5 @@
 .hasil {
-    top: 50px;
+    top: 40px;
     position: absolute;
     background-color: var(--color-white);
     width: 500px;
@@ -81,7 +81,7 @@
     }
 
     .hasil {
-        width: 100%;
-        top: 50px;
+        width: 95%;
+        top: 40px;
     }
 }

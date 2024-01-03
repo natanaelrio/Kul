@@ -2,13 +2,6 @@ import { create } from 'zustand'
 
 export const useStore = create((set) => ({
     // USER
-    openPencarian: false,
-    setOpenPencarian: () => {
-        set((state) => ({
-            openPencarian: !state.openPencarian
-        })
-        )
-    },
     openFormPembelian: false,
     setOpenFormPembelian: () => {
         set((state) => ({
