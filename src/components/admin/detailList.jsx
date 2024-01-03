@@ -30,97 +30,102 @@ export default function DetailList(props) {
         <BackLayang setOpen={setOpen} judul={'Detail Produk'}>
             <div className={styles.slug}>{props.data?.slug_barang}</div>
             <div className={styles.container}>
+                <div className={styles.kotak1}>
+                    <div className={styles.gambar}>
+                        <div className={styles.gambardalam}>
 
-                <div className={styles.gambar}>
-                    <div className={styles.gambardalam}>
-                        <Image
-                            src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                            width={200}
-                            height={200}
-                            alt="Picture of the author"
-                        />
-                    </div>
-                </div>
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Nama
-                    </div>
-                    <div className={styles.detail}>
-                        {props.data?.nama_barang}
+                            <Image
+                                src={props.data.gambar_barang ? props.data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                width={200}
+                                height={200}
+                                alt={props.data?.nama_barang}
+                            />
+                        </div>
                     </div>
                 </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Deskripsi
+                <div className={styles.kotak2}>
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Nama
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.nama_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.diskripsi_barang}
-                    </div>
-                </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Harga
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Deskripsi
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.diskripsi_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.harga_barang}
-                    </div>
-                </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Diskon
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Harga
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.harga_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.diskon_barang}
-                    </div>
-                </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Kategori
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Diskon
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.diskon_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.kategori_barang}
-                    </div>
-                </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Kupon
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Kategori
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.kategori_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.kupon_barang}
-                    </div>
-                </div>
 
-                <br />
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Kupon
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.kupon_barang}
+                        </div>
+                    </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Rating
-                    </div>
-                    <div className={styles.detail}>
-                        {props.data?.rating_barang}
-                    </div>
-                </div>
+                    <br />
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        Total Penjualan
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Rating
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.rating_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.total_penjualan_barang}
-                    </div>
-                </div>
 
-                <div className={styles.containerdata}>
-                    <div className={styles.judul}>
-                        View
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            Total Penjualan
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.total_penjualan_barang}
+                        </div>
                     </div>
-                    <div className={styles.detail}>
-                        {props.data?.view_barang}
+
+                    <div className={styles.containerdata}>
+                        <div className={styles.judul}>
+                            View
+                        </div>
+                        <div className={styles.detail}>
+                            {props.data?.view_barang}
+                        </div>
                     </div>
                 </div>
             </div>

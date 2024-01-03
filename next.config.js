@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ['d3544la1u8djza.cloudfront.net'],
+    domains: [
+      'localhost',
+      'd3544la1u8djza.cloudfront.net',
+      'ik.imagekit.io'
+    ],
   }
 }
 

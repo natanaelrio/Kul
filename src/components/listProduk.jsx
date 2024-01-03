@@ -1,3 +1,5 @@
+"use client"
+import 'react-loading-skeleton/dist/skeleton.css'
 import styles from '@/components/listProduk.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -6,8 +8,17 @@ import { FaStar } from "react-icons/fa6";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
+import { useStore } from '@/utils/user-front/zustand'
+import { useEffect } from 'react';
+import SkletonList from '@/components/skletonList'
 
 export default function ListProduk() {
+    const datalist = useStore((state) => state.datalist)
+    const fetchdatalist = useStore((state) => state.fetchdatalist)
+    useEffect(() => {
+        fetchdatalist()
+    }, [fetchdatalist])
+
     return (
         <>
             <div className={styles.countainer}>
@@ -15,186 +26,64 @@ export default function ListProduk() {
                     Produk Terbaru
                 </div>
             </div>
+
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
+                        {datalist.data ? null : <SkletonList />}
+                        {datalist.data?.map((data, i) => {
+                            console.log(data);
+                            return (
+                                <div key={i} className={styles.produk}>
+                                    <Link href={`/${data?.slug_barang}`} title={data?.nama_barang}>
+                                        <div className={styles.gambar}>
+                                            <Image
+                                                src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                                width={500}
+                                                height={500}
+                                                alt={data?.nama_barang}
+                                            />
+                                            <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                        </div>
 
-                        <div className={styles.produk}>
-                            <Link href={'/dashboard'}>
-                                <div className={styles.gambar}>
-                                    <Image
-                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                        width={500}
-                                        height={500}
-                                        alt="Picture of the author"
-                                    />
-                                    <div className={styles.diskon}> <MdDiscount /> 50%</div>
-                                </div>
-
-                                <div className={styles.tengah}>
-                                    <div className={styles.judul}>
-                                        Kucing Persia
-                                    </div>
-                                    <div className={styles.harga}>
-                                        <div className={styles.hargaasli}>
-                                            <div className={styles.hargaaslidalam}>
-                                                <div className={styles.rp}>Rp</div>
-                                                <div className={styles.hargadalam}>20.000</div>
+                                        <div className={styles.tengah}>
+                                            <div className={styles.judul}>
+                                                {data?.nama_barang}
                                             </div>
-                                        </div> &nbsp;
-                                        <div className={styles.hargadiskon}>Rp10.000</div>
-                                    </div>
-
-                                    <div className={styles.ratingterjual}>
-                                        <FaStar className={styles.logorating}></FaStar>&nbsp;4.5
-                                        <div className={styles.garis} > | </div>
-                                        <div className="terjual">1241 terjual</div>
-                                    </div>
-                                </div>
-                            </Link>
-                            <Link href="/" className={styles.beli}>
-                                <div className={styles.iconwa}>
-                                    <FaWhatsapp className={styles.iconwadalam} />
-                                </div>
-                                <div className={styles.text}>
-                                    &nbsp;Beli via Whatapps
-                                </div>
-                            </Link>
-                        </div>
-
-                        <div className={styles.produk}>
-                            <Link href={'/dashboard'}>
-                                <div className={styles.gambar}>
-                                    <Image
-                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                        width={500}
-                                        height={500}
-                                        alt="Picture of the author"
-                                    />
-                                </div>
-
-                                <div className={styles.tengah}>
-                                    <div className={styles.judul}>
-                                        Kucing Persia
-                                    </div>
-                                    <div className={styles.harga}>
-                                        <div className={styles.hargaasli}>
-                                            <div className={styles.hargaaslidalam}>
-                                                <div className={styles.rp}>Rp</div>
-                                                <div className={styles.hargadalam}>20.000</div>
+                                            <div className={styles.harga}>
+                                                <div className={styles.hargaasli}>
+                                                    <div className={styles.hargaaslidalam}>
+                                                        <div className={styles.rp}>Rp</div>
+                                                        <div className={styles.hargadalam}>{data?.harga_barang}</div>
+                                                    </div>
+                                                </div> &nbsp;
+                                                <div className={styles.hargadiskon}>
+                                                    Rp{((data?.harga_barang * data?.diskon_barang) / 100) + data?.harga_barang}</div>
                                             </div>
-                                        </div> &nbsp;
-                                        <div className={styles.hargadiskon}>Rp10.000</div>
-                                    </div>
 
-                                    <div className={styles.ratingterjual}>
-                                        <FaStar className={styles.logorating}></FaStar>&nbsp;4.5
-                                        <div className={styles.garis} > | </div>
-                                        <div className="terjual">1241 terjual</div>
-                                    </div>
-                                </div>
-                            </Link>
-                            <Link href="/" className={styles.beli}>
-                                <div className={styles.iconwa}>
-                                    <FaWhatsapp className={styles.iconwadalam} />
-                                </div>
-                                <div className={styles.text}>
-                                    &nbsp;Beli via Whatapps
-                                </div>
-                            </Link>
-                        </div>
-
-                        <div className={styles.produk}>
-                            <Link href={'/dashboard'}>
-                                <div className={styles.gambar}>
-                                    <Image
-                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                        width={500}
-                                        height={500}
-                                        alt="Picture of the author"
-                                    />
-                                </div>
-
-                                <div className={styles.tengah}>
-                                    <div className={styles.judul}>
-                                        Kucing Persia
-                                    </div>
-                                    <div className={styles.harga}>
-                                        <div className={styles.hargaasli}>
-                                            <div className={styles.hargaaslidalam}>
-                                                <div className={styles.rp}>Rp</div>
-                                                <div className={styles.hargadalam}>20.000</div>
+                                            <div className={styles.ratingterjual}>
+                                                <FaStar className={styles.logorating}></FaStar>&nbsp;{data?.rating_barang}
+                                                <div className={styles.garis} > | </div>
+                                                <div className="terjual">{data?.total_penjualan_barang} terjual</div>
                                             </div>
-                                        </div> &nbsp;
-                                        <div className={styles.hargadiskon}>Rp10.000</div>
-                                    </div>
-
-                                    <div className={styles.ratingterjual}>
-                                        <FaStar className={styles.logorating}></FaStar>&nbsp;4.5
-                                        <div className={styles.garis} > | </div>
-                                        <div className="terjual">1241 terjual</div>
-                                    </div>
+                                        </div>
+                                    </Link>
+                                    <Link href="/" className={styles.beli}>
+                                        <div className={styles.iconwa}>
+                                            <FaWhatsapp className={styles.iconwadalam} />
+                                        </div>
+                                        <div className={styles.text}>
+                                            &nbsp;Beli via Whatapps
+                                        </div>
+                                    </Link>
                                 </div>
-                            </Link>
-                            <Link href="/" className={styles.beli}>
-                                <div className={styles.iconwa}>
-                                    <FaWhatsapp className={styles.iconwadalam} />
-                                </div>
-                                <div className={styles.text}>
-                                    &nbsp;Beli via Whatapps
-                                </div>
-                            </Link>
-                        </div>
-
-                        <div className={styles.produk}>
-                            <Link href={'/dashboard'}>
-                                <div className={styles.gambar}>
-                                    <Image
-                                        src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
-                                        width={500}
-                                        height={500}
-                                        alt="Picture of the author"
-                                    />
-                                </div>
-
-                                <div className={styles.tengah}>
-                                    <div className={styles.judul}>
-                                        Kucing Persia
-                                    </div>
-                                    <div className={styles.harga}>
-                                        <div className={styles.hargaasli}>
-                                            <div className={styles.hargaaslidalam}>
-                                                <div className={styles.rp}>Rp</div>
-                                                <div className={styles.hargadalam}>20.000</div>
-                                            </div>
-                                        </div> &nbsp;
-                                        <div className={styles.hargadiskon}>Rp10.000</div>
-                                    </div>
-
-                                    <div className={styles.ratingterjual}>
-                                        <FaStar className={styles.logorating}></FaStar>&nbsp;4.5
-                                        <div className={styles.garis} > | </div>
-                                        <div className="terjual">1241 terjual</div>
-                                    </div>
-                                </div>
-                            </Link>
-                            <Link href="/" className={styles.beli}>
-                                <div className={styles.iconwa}>
-                                    <FaWhatsapp className={styles.iconwadalam} />
-                                </div>
-                                <div className={styles.text}>
-                                    &nbsp;Beli via Whatapps
-                                </div>
-                            </Link>
-                        </div>
-
-
-
-
+                            )
+                        })}
 
                     </div>
                 </div>
             </div>
+
 
             <div className={styles.countainer} style={{ marginTop: '-20px' }}>
                 <div className={styles.pagination}>

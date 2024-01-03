@@ -41,7 +41,7 @@ a {
 img {
   width: 100%;
   background-position: center;
-  object-fit: cover;
+  /* object-fit: cover; */
   object-position: center;
 }
 

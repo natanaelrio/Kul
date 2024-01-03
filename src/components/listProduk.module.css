@@ -21,13 +21,14 @@
 .gridlist {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1px;
+    gap: 10px;
+    justify-content: center;
 }
 
 
 .produk {
     /* width: 312px; */
-    margin: 10px;
+    /* margin: 10px; */
     /* border-radius: 20px;
     padding: 20px; */
     /* border: 1px solid var(--color-primary); */
@@ -47,7 +48,7 @@
 }
 
 .produk .gambar {
-    max-height: 210px;
+    max-height: 250px;
     /* max-width: 312px; */
     border-radius: 10px 10px 0 0;
     /* margin-bottom: 10px; */
@@ -66,20 +67,21 @@
     color: var(--color-white);
     padding: 3px;
     border-radius: 7px;
+    font-size: 14px;
 }
 
 .produk .gambar img {
     border-radius: 10px 10px 0 0;
-    max-height: 210px;
+    max-height: 250px;
     max-width: 100%;
     background-position: center;
-    object-fit: cover;
+    /* object-fit: cover; */
     object-position: center;
 }
 
 .produk:hover img {
     transition: all ease 0.3s;
-    scale: 1.07;
+    scale: 1.01;
 }
 
 .produk .tengah {
@@ -115,6 +117,7 @@
     font-weight: 300;
     text-decoration: line-through;
     margin-bottom: 5px;
+    display: flex;
 }
 
 /* .produk .diskon {

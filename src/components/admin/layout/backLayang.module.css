@@ -26,7 +26,7 @@
 .backlayang {
     position: absolute;
     top: 50px;
-    width: 700px;
+    width: 900px;
     min-height: 300px;
     background-color: var(--color-hover-admin);
     padding: 20px;
@@ -49,19 +49,28 @@
 
 .judulclose .close {
     cursor: pointer;
+    font-weight: 900;
+    font-size: 30px;
 }
 
 
 @media only screen and (max-width: 768px) {
     .backlayang {
         width: 95%;
+        padding: 10px;
+        /* height: 95vh; */
+        top: 10px;
     }
 }
 
 
 @media only screen and (max-width: 480px) {
+
+
     .backlayang {
         width: 95%;
         padding: 10px;
+        /* height: 95vh; */
+        top: 10px;
     }
 }

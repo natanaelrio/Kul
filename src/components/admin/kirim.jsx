@@ -38,31 +38,28 @@ export default function Kirim() {
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             harga_barang: Yup.number()
-                .max(200, 'harus 200 karakter')
+                .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
             diskon_barang: Yup.number()
-                .max(200, 'harus 200 karakter')
+                .max(100, 'harus 100 karakter')
                 .required('require'),
             rating_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             total_penjualan_barang: Yup.number()
-                .max(200, 'harus 200 karakter')
+                .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
             diskripsi_barang: Yup.string()
                 .max(2000, 'harus 2000 karakter')
                 .required('require'),
-            gambar_barang: Yup.string()
-                .max(200, 'harus 200 karakter')
-                .required('require'),
             view_barang: Yup.number()
-                .max(200, 'harus 200 karakter')
+                .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
             kupon_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             like_barang: Yup.number()
-                .max(200, 'harus 200 karakter')
+                .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
         }),
         onSubmit: async values => {
@@ -93,10 +90,10 @@ export default function Kirim() {
             setMatikan(false)
             setLoading(true)
             setAlert(false)
-            setTimeout(() => {
-                router.push('/admin/list')
-                router.refresh()
-            }, 1000)
+            // setTimeout(() => {
+            //     router.push('/admin/list')
+            //     router.refresh()                             
+            // }, 1000)
             // formik.resetForm();
         },
 
@@ -112,7 +109,7 @@ export default function Kirim() {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
+                        <textarea
                             id="nama_barang"
                             name="nama_barang"
                             type="text"

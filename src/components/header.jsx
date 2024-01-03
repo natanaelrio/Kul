@@ -31,7 +31,7 @@ export default function Header() {
                         onClick={SetopenPencarian}>
                         <div className={styles.input}>
                             <input type="text"
-                                placeholder="cari barang..."
+                                placeholder="cari produk..."
                                 className={styles.inputtrue}
                             />
                         </div>
