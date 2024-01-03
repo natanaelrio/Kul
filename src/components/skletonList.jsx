@@ -11,6 +11,8 @@ export default function SkletonList() {
             <Skeleton className={styles.skleton} />
             <Skeleton className={styles.skleton} />
             <Skeleton className={styles.skleton} />
+            <Skeleton className={styles.skleton} />
+            <Skeleton className={styles.skleton} />
         </>
     )
 }

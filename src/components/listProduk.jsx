@@ -32,7 +32,6 @@ export default function ListProduk() {
                     <div className={styles.gridlist}>
                         {datalist.data ? null : <SkletonList />}
                         {datalist.data?.map((data, i) => {
-                            console.log(data);
                             return (
                                 <div key={i} className={styles.produk}>
                                     <Link href={`/${data?.slug_barang}`} title={data?.nama_barang}>
@@ -79,7 +78,53 @@ export default function ListProduk() {
                                 </div>
                             )
                         })}
+                        {datalist.data?.map((data, i) => {
+                            return (
+                                <div key={i} className={styles.produk}>
+                                    <Link href={`/${data?.slug_barang}`} title={data?.nama_barang}>
+                                        <div className={styles.gambar}>
+                                            <Image
+                                                src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                                width={500}
+                                                height={500}
+                                                alt={data?.nama_barang}
+                                            />
+                                            <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                        </div>
 
+                                        <div className={styles.tengah}>
+                                            <div className={styles.judul}>
+                                                {data?.nama_barang}
+                                            </div>
+                                            <div className={styles.harga}>
+                                                <div className={styles.hargaasli}>
+                                                    <div className={styles.hargaaslidalam}>
+                                                        <div className={styles.rp}>Rp</div>
+                                                        <div className={styles.hargadalam}>{data?.harga_barang}</div>
+                                                    </div>
+                                                </div> &nbsp;
+                                                <div className={styles.hargadiskon}>
+                                                    Rp{((data?.harga_barang * data?.diskon_barang) / 100) + data?.harga_barang}</div>
+                                            </div>
+
+                                            <div className={styles.ratingterjual}>
+                                                <FaStar className={styles.logorating}></FaStar>&nbsp;{data?.rating_barang}
+                                                <div className={styles.garis} > | </div>
+                                                <div className="terjual">{data?.total_penjualan_barang} terjual</div>
+                                            </div>
+                                        </div>
+                                    </Link>
+                                    <Link href="/" className={styles.beli}>
+                                        <div className={styles.iconwa}>
+                                            <FaWhatsapp className={styles.iconwadalam} />
+                                        </div>
+                                        <div className={styles.text}>
+                                            &nbsp;Beli via Whatapps
+                                        </div>
+                                    </Link>
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@ export default function Pencarian() {
     const [data, setData] = useState()
 
     const HandlePencarian = async (e) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/pencarian?cari=${e}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${e}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

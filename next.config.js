@@ -5,7 +5,8 @@ const nextConfig = {
     domains: [
       'localhost',
       'd3544la1u8djza.cloudfront.net',
-      'ik.imagekit.io'
+      'ik.imagekit.io',
+      'kul.vercel.app'
     ],
   }
 }
