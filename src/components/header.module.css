@@ -107,7 +107,7 @@
 .pilihan .icon {
     margin-right: 10px;
     padding: 10px;
-    color: var(--color-primary);
+    color: var(--color-sekunder);
     font-size: 25px;
     display: flex;
     align-items: center;
@@ -124,7 +124,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 25px;
+    padding: 0px 15px;
     border-radius: 5px;
     font-weight: 700;
     white-space: nowrap;
@@ -198,8 +198,8 @@
     /* NAVIGASI */
     .nav {
         grid-template-columns: 60px 1fr 1fr;
-        padding: 10px 10px 5px 5px;
-        gap: 10px;
+        padding: 15px 5px 5px 5px;
+        gap: 15px;
     }
 
     .nav .logogambardalam {
@@ -213,6 +213,7 @@
 
     .pilihan .login {
         font-size: 14px;
+        padding: 0px 10px;
     }
 
     .nav .logogambar {
