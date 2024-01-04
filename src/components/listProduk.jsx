@@ -5,8 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaWhatsapp } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
-import { FaArrowCircleLeft } from "react-icons/fa";
-import { FaArrowCircleRight } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
 import { useStore } from '@/utils/user-front/zustand'
 import { useEffect } from 'react';
@@ -34,7 +32,7 @@ export default function ListProduk() {
                         {datalist.data?.map((data, i) => {
                             return (
                                 <div key={i} className={styles.produk}>
-                                    <Link href={`/${data?.slug_barang}`} title={data?.nama_barang}>
+                                    <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
                                         <div className={styles.gambar}>
                                             <Image
                                                 src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
@@ -81,7 +79,7 @@ export default function ListProduk() {
                         {datalist.data?.map((data, i) => {
                             return (
                                 <div key={i} className={styles.produk}>
-                                    <Link href={`/${data?.slug_barang}`} title={data?.nama_barang}>
+                                    <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
                                         <div className={styles.gambar}>
                                             <Image
                                                 src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
@@ -132,10 +130,7 @@ export default function ListProduk() {
 
             <div className={styles.countainer} style={{ marginTop: '-20px' }}>
                 <div className={styles.pagination}>
-                    <Link href="/"><FaArrowCircleLeft size={30} /></Link>
-                    <div className={styles.now}>1</div>
-                    <div className={styles.total}>/5</div>
-                    <Link href="/"><FaArrowCircleRight size={30} /></Link>
+                    Load More
                 </div>
             </div>
         </>

@@ -5,7 +5,8 @@ import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { useStore } from '@/lib/zustand'
 
-export default function Produk() {
+export default function Produk(props) {
+    const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const angka = useStore((state) => state.angka)
     const setTambahAngka = useStore((state) => state.setTambahAngka)
@@ -18,17 +19,17 @@ export default function Produk() {
                     <div className={styles.grid}>
                         <div className={styles.reviewproduk}>
                             <div className={styles.containerreview}>
-                                <div className={styles.judul}>Kucing Persia</div>
-                                <div className={styles.terjual}>Terjual 100++ • <FaStar size={12} /> 4.7</div>
+                                <div className={styles.judul}>{data?.nama_barang}</div>
+                                <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
                                 <div className={styles.reviewharga}>
-                                    <div className={styles.harga}>Rp20.000</div> &nbsp;|&nbsp; <div className={styles.kategori}>#Hewan</div>
+                                    <div className={styles.harga}>Rp{data?.harga_barang}</div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                 </div>
                                 <div className={styles.diskon}>
-                                    <div className={styles.angkadiskon}>90%</div>
+                                    <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
                                     &nbsp;
-                                    <div className={styles.hargadiskon}>Rp.10.000</div>
+                                    <div className={styles.hargadiskon}>Rp{((data?.harga_barang * data?.diskon_barang) / 100) + data?.harga_barang}</div>
                                 </div>
-                                <div className={styles.deskripsi}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo, unde vero fugit et magni numquam culpa exercitationem eaque harum aspernatur pariatur omnis, recusandae sit. Soluta similique nisi itaque eveniet earum?
+                                <div className={styles.deskripsi}>{data?.diskripsi_barang}
                                 </div>
                             </div>
                             <div>
@@ -55,10 +56,10 @@ export default function Produk() {
                         <div className={styles.gambar}>
                             <div className={styles.gambardalam}>
                                 <Image
-                                    src="https://d3544la1u8djza.cloudfront.net/APHI/Blog/2016/10_October/persians/Persian+Cat+Facts+History+Personality+and+Care+_+ASPCA+Pet+Health+Insurance+_+white+Persian+cat+resting+on+a+brown+sofa-min.jpg"
+                                    src={data?.gambar_barang ? data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
                                     width={500}
                                     height={500}
-                                    alt="Picture of the author"
+                                    alt={data?.nama_barang}
                                 />
                                 <div className={styles.gratisongkir}>
                                     Gratis Ongkir

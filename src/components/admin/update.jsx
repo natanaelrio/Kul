@@ -22,7 +22,6 @@ export default function Update(props) {
             total_penjualan_barang: props.data?.total_penjualan_barang,
             diskripsi_barang: props.data?.diskripsi_barang,
             gambar_barang: props.data?.gambar_barang,
-            view_barang: props.data?.view_barang,
             kupon_barang: props.data?.kupon_barang,
             tag_barang: props.data?.tag_barang,
             like_barang: props.data?.like_barang,
@@ -52,9 +51,6 @@ export default function Update(props) {
             diskripsi_barang: Yup.string()
                 .max(2000, 'harus 2000 karakter')
                 .required('require'),
-            view_barang: Yup.number()
-                .max(2000000000, 'harus 2000000000 karakter')
-                .required('require'),
             kupon_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
@@ -68,7 +64,7 @@ export default function Update(props) {
             setAlert(true)
             const DataLain = {
                 btoa: btoa(values.nama_barang).substring(0, 27).split('=')[0],
-                slug_barang: values.nama_barang.split(' ').join('-')
+                slug_barang: values.nama_barang.split(' ').join('-').toLowerCase()
             }
 
             const DataUtama = values
@@ -201,7 +197,9 @@ export default function Update(props) {
                         placeholder='ex: http://google.com/kucing.png'
                         style={formik.touched.gambar_barang && formik.errors.gambar_barang ? { border: '1px solid red' } : null}
                     />
+                </div>
 
+                <div className={styles.kotak2}>
                     <label htmlFor="diskripsi_barang">Diskripsi
                         {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -216,9 +214,6 @@ export default function Update(props) {
                         placeholder='ex: terserah'
                         style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
                     />
-                </div>
-
-                <div className={styles.kotak2}>
 
                     <label htmlFor="kupon_barang">Kupon
                         {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
@@ -265,21 +260,6 @@ export default function Update(props) {
                         style={formik.touched.total_penjualan_barang && formik.errors.total_penjualan_barang ? { border: '1px solid red' } : null}
                     />
 
-
-                    <label htmlFor="view_barang">View
-                        {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
-                            <div style={{ color: 'red' }}>&nbsp;*</div>
-                        ) : null}
-                    </label>
-                    <input
-                        id="view_barang"
-                        name="view_barang"
-                        type="number"
-                        onChange={formik.handleChange}
-                        value={formik.values.view_barang}
-                        placeholder='opsional'
-                        style={formik.touched.view_barang && formik.errors.view_barang ? { border: '1px solid red' } : null}
-                    />
 
                     <label htmlFor="like_barang">Like
                         {formik.touched.like_barang && formik.errors.like_barang ? (

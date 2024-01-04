@@ -24,9 +24,10 @@ export default function Header() {
     const [border, setBorder] = useState()
     const [notfound, setNotFound] = useState(true)
     const [value, setValue] = useState()
+    const [skleton, setSkleton] = useState(true)
+
     const HandlePencarian = async (e) => {
         setValue(e)
-        e[0] ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${e}`, {
             method: 'GET',
             headers: {
@@ -35,7 +36,10 @@ export default function Header() {
             }
         })
         const data = await res.json()
+        console.log(data.data);
+        e[0] ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
         e.length < 0 || data.data.length > 0 ? setNotFound(true) : setNotFound(false)
+        e.length > 0 ? setSkleton(false) : setSkleton(true)
         setData(data?.data)
     }
 
@@ -71,7 +75,11 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    {klikcari ? <Pencariannew data={data} notfound={notfound} /> : null}
+                    {klikcari ? <Pencariannew
+                        data={data}
+                        notfound={notfound}
+                        skleton={skleton}
+                    /> : null}
                 </div>
                 <div className={styles.pilihan}>
                     <div className={styles.icon}>

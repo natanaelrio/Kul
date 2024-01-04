@@ -28,7 +28,7 @@ model admin {
   total_penjualan_barang Int?
   diskripsi_barang       String?
   gambar_barang          String?
-  slug_barang            String?
+  slug_barang            String? @unique
   kupon_barang           String?
   view_barang            Int?
   like_barang            Int?

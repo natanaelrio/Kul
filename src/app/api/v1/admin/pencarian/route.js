@@ -14,6 +14,7 @@ export async function GET(req) {
             where: {
                 nama_barang: {
                     contains: cari,
+                    mode: 'insensitive'
                 },
             },
         })

@@ -2,6 +2,7 @@ import styles from "@/components/pencariannew.module.css"
 import Image from "next/image"
 import { useStore } from '@/utils/user-front/zustand'
 import { useEffect } from "react"
+import SkletonSearch from "@/components/skletonSearch"
 
 export default function Pencariannew(props) {
 
@@ -14,9 +15,10 @@ export default function Pencariannew(props) {
 
     // console.log(props.value);
     // console.log(datasearch);
-
+    // console.log(props.skleton);
     return (
         <div className={styles.hasil}>
+            {props.data || props.skleton ? null : <SkletonSearch />}
             {props.data?.map((data, i) => {
                 return (
                     <div key={i} className={styles.list}>

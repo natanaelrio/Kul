@@ -181,24 +181,10 @@
 .countainer .pagination {
     font-weight: bold;
     color: var(--color-primary);
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-}
-
-.countainer .pagination .now {
-    font-size: 40px;
-    margin-left: 10px;
-    color: var(--color-sekunder);
-}
-
-.countainer .pagination .total {
-    font-size: 25px;
-    margin-right: 10px;
-}
-
-.countainer .pagination a:hover {
-    color: var(--color-sekunder);
+    padding: 5px 10px;
+    border: 1px solid var(--color-primary);
+    cursor: pointer;
+    border-radius: 7px;
 }
 
 
