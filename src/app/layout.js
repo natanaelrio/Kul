@@ -8,8 +8,8 @@ export default function RootLayout({ children }) {
     <>
       <html lang="en">
         <body>
-          <NextTopLoader />
-          <NextNProgress color="#ffb700" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
+          {/* <NextTopLoader />
+          <NextNProgress color="#ffb700" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} /> */}
           {children}
         </body>
       </html>

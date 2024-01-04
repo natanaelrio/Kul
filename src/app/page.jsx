@@ -3,8 +3,8 @@ import HeaderFooter from '@/components/Layout/headerFooter'
 import Introduction from '@/components/introduction'
 import { Suspense } from 'react'
 
-export const dynamic = 'force-dynamic'
-// export const runtime = "edge"
+// export const dynamic = 'force-dynamic'
+export const runtime = "edge"
 
 export const metadata = {
   title: 'Pusat Pembelian Gratis Ongkir',

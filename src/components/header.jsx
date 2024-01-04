@@ -5,14 +5,17 @@ import { LuShoppingCart } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import styles from '@/components/header.module.css'
 import Link from 'next/link';
-// import { useStore } from '@/lib/zustand'
 import Pencariannew from '@/components/pencariannew';
-
 
 export default function Header() {
     const [change, setChange] = useState(true)
-    // const SetopenPencarian = useStore((state) => state.setOpenPencarian)
     const [data, setData] = useState()
+    const [klikcari, setKlikcari] = useState(false)
+    const [border, setBorder] = useState()
+    const [notfound, setNotFound] = useState(true)
+    const [value, setValue] = useState()
+    const [skleton, setSkleton] = useState(true)
+
     useEffect(() => {
         const windowScroll = () => {
             window.scrollY <= 50 ? setChange(true) : setChange(false)
@@ -20,29 +23,35 @@ export default function Header() {
         window.addEventListener('scroll', windowScroll)
     }, [setChange]);
 
-    const [klikcari, setKlikcari] = useState(false)
-    const [border, setBorder] = useState()
-    const [notfound, setNotFound] = useState(true)
-    const [value, setValue] = useState()
-    const [skleton, setSkleton] = useState(true)
-
-    const HandlePencarian = async (e) => {
-        setValue(e)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${e}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
+    useEffect(() => {
+        const debounce = setTimeout(() => {
+            const fetchData = async () => {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${value}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                    }
+                })
+                const data = await res.json()
+                setData(data?.data)
             }
-        })
-        const data = await res.json()
-        console.log(data.data);
-        e[0] ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
-        e.length < 0 || data.data.length > 0 ? setNotFound(true) : setNotFound(false)
-        e.length > 0 ? setSkleton(false) : setSkleton(true)
-        setData(data?.data)
-    }
+            fetchData()
+        }, 1000);
+        return () => clearTimeout(debounce)
+    }, [value])
 
+    const [arayy, setArayy] = useState(true)
+    const HandlePencarian = (e) => {
+        e[0] ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
+        data[0] && [] ? setArayy(false) : setArayy(true)
+        e.length > 0 && arayy ? setNotFound(true) : setNotFound(false)
+        e.length > 0 ? setSkleton(false) : setSkleton(true)
+        // console.log(data[0] && [] ? true : false);
+    }
+    // console.log();
+    // console.log(data);
+    // console.log(value);
     return (
         <>
 
@@ -65,7 +74,10 @@ export default function Header() {
                                 type="search"
                                 placeholder="cari produk..."
                                 className={styles.inputtrue}
-                                onChange={(e) => HandlePencarian(e.target.value)}
+                                onChange={(e) => {
+                                    setValue(e.target.value),
+                                        HandlePencarian(e.target.value)
+                                }}
                                 value={value}
                             />
                         </div>

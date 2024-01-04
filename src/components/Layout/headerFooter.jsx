@@ -9,7 +9,6 @@ export default function HeaderFooter({ children }) {
   const openFormPembelian = useStore((state) => state.openFormPembelian)
   return (
     <>
-    
       <div className={styles.countainer}>
         <Header />
         <main className={styles.main} >
