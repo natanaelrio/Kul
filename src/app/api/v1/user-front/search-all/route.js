@@ -11,12 +11,13 @@ export async function GET(req) {
 
 
         const result = await prisma.admin.findMany({
-            take: 5,
+            take: cari ? 5 : 0,
             select: {
                 nama_barang: true,
                 harga_barang: true,
                 diskon_barang: true,
-                gambar_barang:true
+                gambar_barang: true,
+                slug_barang: true
             },
             where: {
                 nama_barang: {

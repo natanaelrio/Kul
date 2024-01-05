@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
-import { CiSearch } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import styles from '@/components/header.module.css'
 import Link from 'next/link';
 import Pencariannew from '@/components/pencariannew';
+import SkletonSearch from "@/components/skletonSearch"
 
 export default function Header() {
     const [change, setChange] = useState(true)
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
     const [klikcari, setKlikcari] = useState(false)
-    const [border, setBorder] = useState()
+    const [border, setBorder] = useState(false)
     const [notfound, setNotFound] = useState(true)
-    const [value, setValue] = useState()
+    const [value, setValue] = useState('')
     const [skleton, setSkleton] = useState(true)
 
     useEffect(() => {
@@ -34,24 +35,30 @@ export default function Header() {
                     }
                 })
                 const data = await res.json()
+                // Notfound data
+                data?.data?.length && value ? setNotFound(true) :
+                    value == '' ? setNotFound(true) : setNotFound(false)
+
+
+
+
                 setData(data?.data)
             }
             fetchData()
-        }, 1000);
+        }, 2000);
         return () => clearTimeout(debounce)
     }, [value])
 
-    const [arayy, setArayy] = useState(true)
-    const HandlePencarian = (e) => {
-        e[0] ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
-        data[0] && [] ? setArayy(false) : setArayy(true)
-        e.length > 0 && arayy ? setNotFound(true) : setNotFound(false)
-        e.length > 0 ? setSkleton(false) : setSkleton(true)
-        // console.log(data[0] && [] ? true : false);
-    }
-    // console.log();
-    // console.log(data);
-    // console.log(value);
+
+    useEffect(() => {
+        //SKELTOON
+        value ?
+            data?.length && value ? setSkleton(true) : notfound ? setSkleton(false, setBorder(true)) : setSkleton(true)
+            : setSkleton(true)
+
+        // Notfound value
+        value ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
+    }, [value, data, skleton])
     return (
         <>
 
@@ -65,7 +72,8 @@ export default function Header() {
                     <div className={styles.dalampencarian}
                         onClick={() => {
                             setKlikcari(true),
-                                setBorder(border)
+                                setBorder(border),
+                                setNotFound(true)
                         }}
                     >
                         <div className={styles.input}>
@@ -74,23 +82,25 @@ export default function Header() {
                                 type="search"
                                 placeholder="cari produk..."
                                 className={styles.inputtrue}
-                                onChange={(e) => {
-                                    setValue(e.target.value),
-                                        HandlePencarian(e.target.value)
-                                }}
+                                onChange={(e) => { setValue(e.target.value) }}
                                 value={value}
                             />
                         </div>
                         <div className={styles.hilang} >
                             <div className={styles.logocari} >
-                                <CiSearch className={styles.logocaridalam} />
+                                <FaSearch className={styles.logocaridalam} />
                             </div>
                         </div>
                     </div>
+                    {skleton ?
+                        null : <div className={styles.skletoncontainer}>
+                            <SkletonSearch />
+                        </div>
+                    }
+
                     {klikcari ? <Pencariannew
                         data={data}
                         notfound={notfound}
-                        skleton={skleton}
                     /> : null}
                 </div>
                 <div className={styles.pilihan}>

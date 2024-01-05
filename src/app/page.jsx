@@ -4,7 +4,7 @@ import Introduction from '@/components/introduction'
 import { Suspense } from 'react'
 
 // export const dynamic = 'force-dynamic'
-export const runtime = "edge"
+// export const runtime = "edge"
 
 export const metadata = {
   title: 'Pusat Pembelian Gratis Ongkir',
@@ -18,6 +18,7 @@ export const metadata = {
   },
 }
 
+  
 export default function Home() {
   return (
     <>

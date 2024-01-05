@@ -181,10 +181,16 @@
 .countainer .pagination {
     font-weight: bold;
     color: var(--color-primary);
-    padding: 5px 10px;
+    padding: 10px 15px;
     border: 1px solid var(--color-primary);
     cursor: pointer;
     border-radius: 7px;
+}
+
+.countainer .pagination:hover {
+    transition: 0.2s ease all;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 
