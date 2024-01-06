@@ -22,9 +22,9 @@ export async function GET(req) {
                 { id: 'desc' },
             // { view_barang: 'asc' },
         })
-        if (users) {
+        if (users.length) {
             return Response.json({ status: 200, isCreated: true, data: users })
-        } else Response.json({ status: 500, isCreated: false })
+        } else return Response.json({ status: 500, isCreated: false })
     }
     else
         return Response.json({ status: 500, isCreated: false, contact: 'natanael rio wijaya 08971041460' })

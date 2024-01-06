@@ -3,6 +3,7 @@ import HeaderFooter from '@/components/Layout/headerFooter'
 import Produk from '@/components/produk'
 import { GetProducts } from '@/utils/user-front/getproducts'
 import { Suspense } from 'react'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }) {
   const data = await GetProducts(params.uid)
@@ -39,6 +40,8 @@ export async function generateMetadata({ params }) {
 
 export default async function Products({ params }) {
   const data = await GetProducts(params.uid)
+  data.status == 404 ? notFound() : null
+
   return (
     <>
       <HeaderFooter>

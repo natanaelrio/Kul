@@ -1,6 +1,5 @@
 import ListProduk from '@/components/listProduk'
 import HeaderFooter from '@/components/Layout/headerFooter'
-import Introduction from '@/components/introduction'
 import { Suspense } from 'react'
 
 // export const dynamic = 'force-dynamic'
@@ -23,7 +22,6 @@ export default function Home() {
   return (
     <>
       <HeaderFooter>
-        {/* <Introduction /> */}
         <Suspense>
           <ListProduk />
         </Suspense>

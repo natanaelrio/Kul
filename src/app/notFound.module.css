@@ -1,0 +1,39 @@
+.notfound {
+    display: flex;
+    height: 70vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.notfound h2 {
+    margin-bottom: 10px;
+    font-size: 50px;
+}
+
+.notfound a {
+    padding: 15px 20px;
+    border-radius: 7px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 500;
+}
+
+.notfound a:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+@media only screen and (max-width: 768px) {
+    .notfound h2 {
+        font-size: 40px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .notfound h2 {
+        font-size: 30px;
+    }
+}

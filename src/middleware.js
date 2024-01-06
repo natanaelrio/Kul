@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { notFound } from 'next/navigation'
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request) {

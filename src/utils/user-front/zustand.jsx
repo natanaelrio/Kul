@@ -18,7 +18,7 @@ export const useStore = create((set) => ({
 
     datasearch: {},
     fetchdatasearch: async (e) => {
-        console.log('ZUZ',e);
+        // console.log('ZUZ',e);
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${value}`, {
             method: 'GET',
             headers: {

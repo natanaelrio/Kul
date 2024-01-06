@@ -1,5 +1,4 @@
 /* FOOTER */
-
 .bawah {
     display: flex;
     justify-content: center;
@@ -10,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 30px 0;
+    padding: 30px 10px;
     border-top: 1px solid var(--color-third);
 }
 
@@ -35,6 +34,13 @@
 
 .bawah .isi .sosmed a .sosmeddalam:hover {
     color: var(--color-primary);
+}
+
+
+@media only screen and (max-width: 768px) {
+    .bawah .isi {
+        padding: 30px 10px;
+    }
 }
 
 
