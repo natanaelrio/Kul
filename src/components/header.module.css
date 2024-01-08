@@ -124,21 +124,19 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    position: relative;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
-.pilihan .icon .numberlove {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: var(--color-diskon);
-    color: var(--color-white);
-    padding: 5px;
-    font-size: 12px;
+
+.pilihan .icon .number {
     display: flex;
     align-items: center;
-    border-radius: 100%;
-    font-weight: 700;
+    justify-content: center;
+    color: var(--color-diskon);
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .pilihan .icon:hover {
@@ -294,9 +292,9 @@
         font-size: 20px;
     }
 
-    .nav .icon {
+    /* .nav .icon {
         width: 20%;
-    }
+    } */
 
     .nav .icon .iconuser {
         font-size: 40px;
@@ -319,4 +317,3 @@
         top: 40px;
     }
 }
-

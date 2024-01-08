@@ -138,6 +138,39 @@
 }
 
 
+/* NOTFOUND */
+.notfound {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.notfound .belum {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+
+.notfound .kembali {
+    background-color: var(--color-primary);
+    cursor: pointer;
+    padding: 10px 10px;
+    color: var(--color-white);
+    border-radius: 7px;
+}
+
+.notfound .kembali:hover {
+    transition: 0.2s ease all;
+    background-color: var(--hover-color-primary);
+}
+
+
 
 @media only screen and (max-width: 480px) {
 
@@ -173,6 +206,10 @@
 
     .total .totalpembayaran {
         padding: 5px;
+        font-size: 20px;
+    }
+
+    .notfound .belum {
         font-size: 20px;
     }
 }

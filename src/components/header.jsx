@@ -107,9 +107,7 @@ export default function Header() {
                 </div>
                 <div className={styles.pilihan}>
                     <div className={styles.icon} onClick={setOpenLove}>
-                        {loveZ.length ? <div className={styles.numberlove}>
-                            <div className={styles.number}>{loveZ.length}</div>
-                        </div> : null}
+                        {loveZ.length ? <div className={styles.number}>{loveZ.length}</div> : null}
                         <FaRegHeart />
                     </div>
                     <div className={styles.icon}>

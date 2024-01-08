@@ -13,6 +13,14 @@ export default function Produk(props) {
     const setTambahAngka = useStore((state) => state.setTambahAngka)
     const setKurangAngka = useStore((state) => state.setKurangAngka)
 
+    const harga = data.harga_barang.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+    const diskonharga = (((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
     return (
         <>
             <div className={styles.container}>
@@ -27,12 +35,12 @@ export default function Produk(props) {
                                 <div className={styles.section}>
                                     <div>
                                         <div className={styles.reviewharga}>
-                                            <div className={styles.harga}>Rp{data?.harga_barang}</div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
+                                            <div className={styles.harga}>{harga}</div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                         </div>
                                         <div className={styles.diskon}>
                                             <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
                                             &nbsp;
-                                            <div className={styles.hargadiskon}>Rp{((data?.harga_barang * data?.diskon_barang) / 100) + data?.harga_barang}</div>
+                                            <div className={styles.hargadiskon}>{diskonharga}</div>
                                         </div>
                                     </div>
 

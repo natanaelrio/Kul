@@ -44,6 +44,14 @@ export default function ListProduk() {
                     <div className={styles.gridlist}>
                         {datalist.data ? null : <SkletonList />}
                         {datalist.data?.map((data, i) => {
+                            const harga = data.harga_barang.toLocaleString('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            })
+                            const diskonharga = (((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            })
                             return (
                                 <div key={i} className={styles.produk}>
                                     <div href={`/products/${data?.slug_barang}`} >
@@ -71,12 +79,12 @@ export default function ListProduk() {
                                                 <div className={styles.harga}>
                                                     <div className={styles.hargaasli}>
                                                         <div className={styles.hargaaslidalam}>
-                                                            <div className={styles.rp}>Rp</div>
-                                                            <div className={styles.hargadalam}>{data?.harga_barang}</div>
+                                                            <div className={styles.hargadalam}>{harga}</div>
                                                         </div>
-                                                    </div> &nbsp;
+                                                    </div>
                                                     <div className={styles.hargadiskon}>
-                                                        Rp{((data?.harga_barang * data?.diskon_barang) / 100) + data?.harga_barang}</div>
+                                                        {diskonharga}
+                                                    </div>
                                                 </div>
 
                                                 <div className={styles.ratingterjual}>
