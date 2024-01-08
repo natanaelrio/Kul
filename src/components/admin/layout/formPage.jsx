@@ -1,30 +1,32 @@
 "use client"
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import styles from '@/components/admin/kirim.module.css'
+import styles from '@/components/admin/layout/formPage.module.css'
 import { useState } from 'react';
 import Berhasil from '@/components/alert/berhasil';
 import BarLoader from "react-spinners/BarLoader";
 import { useRouter } from 'next/navigation'
+import { BiSolidCategory } from "react-icons/bi";
+import { MdDriveFileRenameOutline } from "react-icons/md";
+import { BsTagsFill } from "react-icons/bs";
 
-export default function Kirim() {
-    const router = useRouter()
+export default function FormPage({ urlFetch, method, data }) {
     const [matikan, setMatikan] = useState(false)
     const [loading, setLoading] = useState(true)
     const [alert, setAlert] = useState(true)
     const formik = useFormik({
         initialValues: {
-            nama_barang: '',
-            kategori_barang: '',
-            harga_barang: '',
-            diskon_barang: '',
-            rating_barang: '',
-            total_penjualan_barang: '',
-            diskripsi_barang: '',
-            gambar_barang: '',
-            kupon_barang: '',
-            tag_barang: '',
-            like_barang: '',
+            nama_barang: data ? data?.nama_barang : '',
+            kategori_barang: data ? data?.kategori_barang : '',
+            harga_barang: data ? data?.harga_barang : '',
+            diskon_barang: data ? data?.diskon_barang : '',
+            rating_barang: data ? data?.rating_barang : '',
+            total_penjualan_barang: data ? data?.total_penjualan_barang : '',
+            diskripsi_barang: data ? data?.diskripsi_barang : '',
+            gambar_barang: data ? data?.gambar_barang : '',
+            kupon_barang: data ? data?.kupon_barang : '',
+            tag_barang: data ? data?.tag_barang : '',
+            like_barang: data ? data?.like_barang : '',
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
@@ -71,8 +73,8 @@ export default function Kirim() {
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
             try {
-                await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/post`, {
-                    method: 'POST',
+                await fetch(`${process.env.NEXT_PUBLIC_URL}` + urlFetch, {
+                    method: method,
                     body: JSON.stringify(GabungData),
                     headers: {
                         'Content-Type': 'application/json',
@@ -105,15 +107,18 @@ export default function Kirim() {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <textarea
-                            id="nama_barang"
-                            name="nama_barang"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.nama_barang}
-                            placeholder='ex: Baju Santai'
-                            style={formik.touched.nama_barang && formik.errors.nama_barang ? { border: '1px solid red' } : null}
-                        />
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><MdDriveFileRenameOutline /></div>
+                            <textarea
+                                id="nama_barang"
+                                name="nama_barang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.nama_barang}
+                                placeholder='Baju Santai'
+                                style={formik.touched.nama_barang && formik.errors.nama_barang ? { border: '1px solid red' } : null}
+                            />
+                        </div>
                         <div className={styles.bagi2}>
 
                             <div className={styles.harga}>
@@ -122,15 +127,18 @@ export default function Kirim() {
                                         <div style={{ color: 'red' }}>&nbsp;*</div>
                                     ) : null}
                                 </label>
-                                <input
-                                    id="harga_barang"
-                                    name="harga_barang"
-                                    type="number"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.harga_barang}
-                                    placeholder='ex: 100000 ( tanpa space )'
-                                    style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
-                                />
+                                <div className={styles.inputicon}>
+                                    <div className={styles.text}>Rp</div>
+                                    <input
+                                        id="harga_barang"
+                                        name="harga_barang"
+                                        type="number"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.harga_barang}
+                                        placeholder='20000'
+                                        style={formik.touched.harga_barang && formik.errors.harga_barang ? { border: '1px solid red' } : null}
+                                    />
+                                </div>
                             </div>
                             <div className={styles.diskon}>
                                 <label htmlFor="diskon_barang">Diskon
@@ -138,15 +146,19 @@ export default function Kirim() {
                                         <div style={{ color: 'red' }}>&nbsp;*</div>
                                     ) : null}
                                 </label>
-                                <input
-                                    id="diskon_barang"
-                                    name="diskon_barang"
-                                    type="number"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.diskon_barang}
-                                    placeholder='ex: 50 ( tanpa % )'
-                                    style={formik.touched.diskon_barang && formik.errors.diskon_barang ? { border: '1px solid red' } : null}
-                                />
+                                <div className={styles.inputicon}>
+                                    <input
+                                        maxLength={100}
+                                        id="diskon_barang"
+                                        name="diskon_barang"
+                                        type="number"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.diskon_barang}
+                                        placeholder='50'
+                                        style={formik.touched.diskon_barang && formik.errors.diskon_barang ? { border: '1px solid red' } : null}
+                                    />
+                                    <div className={styles.text}>%</div>
+                                </div>
                             </div>
                         </div>
 
@@ -156,31 +168,35 @@ export default function Kirim() {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="kategori_barang"
-                            name="kategori_barang"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.kategori_barang}
-                            placeholder='ex: rumah (tanpa space)'
-                            style={formik.touched.kategori_barang && formik.errors.kategori_barang ? { border: '1px solid red' } : null}
-                        />
-
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><BiSolidCategory /></div>
+                            <input
+                                id="kategori_barang"
+                                name="kategori_barang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.kategori_barang}
+                                placeholder='ex: rumah (tanpa space)'
+                                style={formik.touched.kategori_barang && formik.errors.kategori_barang ? { border: '1px solid red' } : null}
+                            />
+                        </div>
                         <label htmlFor="tag_barang">Tag
                             {formik.touched.tag_barang && formik.errors.tag_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="tag_barang"
-                            name="tag_barang"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.tag_barang}
-                            placeholder='ex: bulu, santai, ramah ( pemisah tanda , )'
-                            style={formik.touched.tag_barang && formik.errors.tag_barang ? { border: '1px solid red' } : null}
-                        />
-
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}>#</div>
+                            <input
+                                id="tag_barang"
+                                name="tag_barang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.tag_barang}
+                                placeholder='bulu, santai, ramah'
+                                style={formik.touched.tag_barang && formik.errors.tag_barang ? { border: '1px solid red' } : null}
+                            />
+                        </div>
 
                         <label htmlFor="gambar_barang">Gambar
                             {formik.touched.gambar_barang && formik.errors.gambar_barang ? (
@@ -204,29 +220,35 @@ export default function Kirim() {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <textarea
-                            id="diskripsi_barang"
-                            name="diskripsi_barang"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.diskripsi_barang}
-                            placeholder='ex: terserah'
-                            style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
-                        />
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><MdDriveFileRenameOutline /></div>
+                            <textarea
+                                id="diskripsi_barang"
+                                name="diskripsi_barang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.diskripsi_barang}
+                                placeholder='ex: terserah'
+                                style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
+                            />
+                        </div>
                         <label htmlFor="kupon_barang">Kupon
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="kupon_barang"
-                            name="kupon_barang"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.kupon_barang}
-                            placeholder='opsional'
-                            style={formik.touched.kupon_barang && formik.errors.kupon_barang ? { border: '1px solid red' } : null}
-                        />
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><BsTagsFill /></div>
+                            <input
+                                id="kupon_barang"
+                                name="kupon_barang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.kupon_barang}
+                                placeholder='opsional'
+                                style={formik.touched.kupon_barang && formik.errors.kupon_barang ? { border: '1px solid red' } : null}
+                            />
+                        </div>
 
                         <label htmlFor="rating_barang">Rating
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (

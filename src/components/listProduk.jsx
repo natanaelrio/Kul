@@ -9,6 +9,7 @@ import { MdDiscount } from "react-icons/md";
 import { useStore } from '@/utils/user-front/zustand'
 import { useEffect } from 'react';
 import SkletonList from '@/components/skletonList'
+import { FaRegHeart } from "react-icons/fa";
 
 export default function ListProduk() {
     const datalist = useStore((state) => state.datalist)
@@ -41,6 +42,11 @@ export default function ListProduk() {
                                                 alt={data?.nama_barang}
                                             />
                                             <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                            <div className={styles.love}>
+                                                <div className={styles.icon}>
+                                                    <FaRegHeart />
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div className={styles.tengah}>
@@ -76,7 +82,7 @@ export default function ListProduk() {
                                 </div>
                             )
                         })}
-                        {datalist.data?.map((data, i) => {
+                         {datalist.data?.map((data, i) => {
                             return (
                                 <div key={i} className={styles.produk}>
                                     <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
@@ -88,6 +94,11 @@ export default function ListProduk() {
                                                 alt={data?.nama_barang}
                                             />
                                             <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                            <div className={styles.love}>
+                                                <div className={styles.icon}>
+                                                    <FaRegHeart />
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div className={styles.tengah}>
@@ -123,6 +134,7 @@ export default function ListProduk() {
                                 </div>
                             )
                         })}
+
                     </div>
                 </div>
             </div>

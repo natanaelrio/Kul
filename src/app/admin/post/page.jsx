@@ -1,4 +1,4 @@
-import Kirim from '@/components/admin/kirim'
+import FormPage from '@/components/admin/layout/formPage';
 import Header from '@/components/admin/layout/header';
 
 export const metadata = {
@@ -9,7 +9,11 @@ export const metadata = {
 export default function Post() {
   return (
     <Header judul={'POST ADMIN'}>
-      <Kirim />
+      <FormPage
+        urlFetch={'/api/v1/admin/post'}
+        method={'POST'}
+        suppressHydrationWarning={false}
+      />
     </Header>
   )
 }

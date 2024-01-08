@@ -1,6 +1,6 @@
-import Update from "@/components/admin/update"
 import Header from '@/components/admin/layout/header';
 import { GetListDataID } from "@/utils/admin/getListDataID";
+import FormPage from '@/components/admin/layout/formPage';
 
 export function generateMetadata({ params }) {
   // read route params
@@ -16,7 +16,12 @@ export default async function Page({ params }) {
   return (
     <>
       <Header judul={'UPDATE PRODUK'}>
-        <Update data={getListDataID.data} />
+        <FormPage
+          urlFetch={`/api/v1/admin/update?id=${getListDataID.data.id}`}
+          method={'PUT'}
+          data={getListDataID.data}
+          suppressHydrationWarning={false}
+        />
       </Header>
     </>
   )

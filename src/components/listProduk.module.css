@@ -70,6 +70,33 @@
     font-size: 10px;
 }
 
+
+.produk .love {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    z-index: 1;
+    background-color: var(--color-grey-love);
+    border-radius: 50%;
+}
+
+.produk .love:hover {
+    transition: 0.1s ease all;
+    background-color: var(--color-hover-grey-love);
+}
+
+.produk .love .icon {
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white);
+}
+
+
+
+
 .produk .gambar img {
     border-radius: 10px 10px 0 0;
     max-height: 220px;
