@@ -2,7 +2,6 @@
     padding: 15px;
     height: 400px;
     overflow-y: scroll;
-    flex: auto;
 }
 
 /* .container::-webkit-scrollbar {
@@ -168,6 +167,8 @@
     .total {
         flex-direction: column;
         align-items: flex-end;
+        position: absolute;
+        bottom: 0;
     }
 
     .total .totalpembayaran {
