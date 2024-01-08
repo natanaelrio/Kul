@@ -5,6 +5,7 @@ import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/zustand'
 import { FaRegHeart } from "react-icons/fa";
+import { LuShoppingCart } from "react-icons/lu";
 
 export default function Love() {
     const setOpenLove = useStore((state) => state.setOpenLove)
@@ -22,7 +23,7 @@ export default function Love() {
 
 
     return (
-        <FloatingBlur setOpen={setOpenLove} judul={'Keranjang Cinta'} >
+        <FloatingBlur setOpen={setOpenLove} judul={`List Favorit`} >
 
             {loveZ && loveZ.length == 0 ? <div className={styles.notfound}>
                 <div className={styles.belum}>
@@ -61,8 +62,8 @@ export default function Love() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className={styles.tambahkurang}>
-                                                    <div className={styles.kurang}>-</div><div className={styles.nilai}>12</div> <div className={styles.tambah}>+</div>
+                                                <div className={styles.tambahkeranjang}>
+                                                    <LuShoppingCart />&nbsp;Keranjang +
                                                 </div>
                                             </div>
                                         </div>
@@ -74,14 +75,15 @@ export default function Love() {
                         })}
 
                     </div>
-                    <div className={styles.total}>
+                    <div style={{ padding: '5px' }}></div>
+                    {/* <div className={styles.total}>
                         <div className={styles.harga}>
                             Total :<div className={styles.totalpembayaran}>{totalBarang}</div>
                         </div>
                         <div>
                             <div className={styles.bayarlangsung}>Bayar Langsung</div>
                         </div>
-                    </div>
+                    </div> */}
                 </>}
         </FloatingBlur>
 

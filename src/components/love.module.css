@@ -112,8 +112,25 @@
     align-items: center;
 }
 
+.list .tambahkeranjang {
+    background-color: var(--color-primary);
+    padding: 5px;
+    color: var(--color-white);
+    text-align: center;
+    border-radius: 7px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
 
-.list .tambahkurang .tambah {
+.list .tambahkeranjang:hover {
+    background-color: var(--hover-color-primary);
+    transition: 0.2s ease all;
+}
+
+/* .list .tambahkurang .tambah {
     padding: 5px 10px;
     cursor: pointer;
     background-color: var(--color-grey);
@@ -129,7 +146,7 @@
     padding: 5px 10px;
     background-color: var(--color-grey);
     font-weight: 500;
-}
+} */
 
 .delete {
     color: var(--color-diskon);
@@ -177,7 +194,9 @@
     .container {
         padding: 15px 5px;
         font-size: 12px;
+        /* height: 100vh; */
     }
+
 
     .list .detail {
         padding: 0 10px 10px 10px;

@@ -5,13 +5,23 @@ import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
+import { useStoreDataFront } from '@/utils/user-front/zustand'
+import { useState } from 'react';
 
 export default function Produk(props) {
     const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
+    const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
     const angka = useStore((state) => state.angka)
     const setTambahAngka = useStore((state) => state.setTambahAngka)
     const setKurangAngka = useStore((state) => state.setKurangAngka)
+
+
+    const [dataLove, setDataLove] = useState([])
+    const handleLove = (e) => {
+        setDataLove([...dataLove, e])
+        setdataLoveZ([...dataLove, e])
+    }
 
     const harga = data.harga_barang.toLocaleString('id-ID', {
         style: 'currency',
@@ -44,7 +54,7 @@ export default function Produk(props) {
                                         </div>
                                     </div>
 
-                                    <div className={styles.icon}><FaRegHeart /></div>
+                                    <div className={styles.icon} onClick={() => handleLove(data)}><FaRegHeart /></div>
                                 </div>
                                 <div className={styles.deskripsi}>{data?.diskripsi_barang}
                                 </div>
