@@ -9,6 +9,14 @@ export const useStore = create((set) => ({
         })
         )
     },
+    
+    openLove: false,
+    setOpenLove: () => {
+        set((state) => ({
+            openLove: !state.openLove
+        })
+        )
+    },
     angka: 1,
     setTambahAngka: () => {
         set((state) => ({

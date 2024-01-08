@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export const useStore = create((set) => ({
+export const useStoreDataFront = create((set) => ({
 
     datalist: {},
     fetchdatalist: async () => {
@@ -30,5 +30,9 @@ export const useStore = create((set) => ({
         set({ datasearch: await res.json() })
     },
 
-   
+    loveZ: [],
+    setdataLoveZ: (loveZ) => {
+        set({ loveZ: [...new Set(loveZ)] })
+    }
+
 }))

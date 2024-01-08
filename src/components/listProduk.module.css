@@ -59,8 +59,8 @@
 .produk .diskon {
     position: absolute;
     top: 10px;
-    font-weight: 500;
     left: 10px;
+    font-weight: 500;
     background-color: var(--color-high);
     display: flex;
     align-items: center;

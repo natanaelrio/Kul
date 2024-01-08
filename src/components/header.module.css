@@ -124,6 +124,21 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    position: relative;
+}
+
+.pilihan .icon .numberlove {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--color-diskon);
+    color: var(--color-white);
+    padding: 5px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    border-radius: 100%;
+    font-weight: 700;
 }
 
 .pilihan .icon:hover {

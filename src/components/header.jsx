@@ -7,6 +7,8 @@ import styles from '@/components/header.module.css'
 import Link from 'next/link';
 import Pencariannew from '@/components/pencariannew';
 import SkletonSearch from "@/components/skletonSearch"
+import { useStore } from '@/lib/zustand'
+import { useStoreDataFront } from '@/utils/user-front/zustand'
 
 export default function Header() {
     const [change, setChange] = useState(true)
@@ -16,6 +18,8 @@ export default function Header() {
     const [notfound, setNotFound] = useState(true)
     const [value, setValue] = useState('')
     const [skleton, setSkleton] = useState(true)
+    const setOpenLove = useStore((state) => state.setOpenLove)
+    const loveZ = useStoreDataFront((state) => state.loveZ)
 
     useEffect(() => {
         const windowScroll = () => {
@@ -23,6 +27,7 @@ export default function Header() {
         }
         window.addEventListener('scroll', windowScroll)
     }, [setChange]);
+
 
     useEffect(() => {
         const debounce = setTimeout(() => {
@@ -38,9 +43,6 @@ export default function Header() {
                 // Notfound data
                 data?.data?.length && value ? setNotFound(true) :
                     value == '' ? setNotFound(true) : setNotFound(false)
-
-
-
 
                 setData(data?.data)
             }
@@ -104,7 +106,10 @@ export default function Header() {
                     /> : null}
                 </div>
                 <div className={styles.pilihan}>
-                    <div className={styles.icon}>
+                    <div className={styles.icon} onClick={setOpenLove}>
+                        {loveZ.length ? <div className={styles.numberlove}>
+                            <div className={styles.number}>{loveZ.length}</div>
+                        </div> : null}
                         <FaRegHeart />
                     </div>
                     <div className={styles.icon}>
@@ -123,6 +128,8 @@ export default function Header() {
             }
             }></div>
                 : null}
+
+
         </>
     )
 }

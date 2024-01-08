@@ -83,6 +83,26 @@
     font-weight: 300;
 }
 
+.reviewproduk .section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviewproduk .icon {
+    font-size: 30px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.reviewproduk .icon:hover {
+   background-color: var(--color-grey);
+   border-radius: 50%;
+}
+
 .reviewproduk .deskripsi {
     margin-bottom: 10px;
 }
