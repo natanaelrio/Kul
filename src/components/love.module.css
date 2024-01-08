@@ -2,6 +2,7 @@
     padding: 15px;
     height: 400px;
     overflow-y: scroll;
+    flex: auto;
 }
 
 /* .container::-webkit-scrollbar {
@@ -34,6 +35,7 @@
     font-weight: 700;
     cursor: pointer;
     border-radius: 7px;
+    white-space: nowrap;
 }
 
 .total .bayarlangsung:hover {
@@ -165,5 +167,11 @@
 
     .total {
         flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .total .totalpembayaran {
+        padding: 5px;
+        font-size: 20px;
     }
 }
