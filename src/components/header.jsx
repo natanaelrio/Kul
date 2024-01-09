@@ -8,7 +8,7 @@ import Link from 'next/link';
 import Pencariannew from '@/components/pencariannew';
 import SkletonSearch from "@/components/skletonSearch"
 import { useStore } from '@/lib/zustand'
-import { useStoreDataFront } from '@/utils/user-front/zustand'
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 
 export default function Header() {
     const [change, setChange] = useState(true)
@@ -109,11 +109,11 @@ export default function Header() {
                 </div>
                 <div className={styles.pilihan}>
                     <div className={styles.icon} onClick={setOpenLove}>
-                        {loveZ.length ? <div className={styles.number}>{loveZ.length}</div> : null}
+                        {loveZ.length ? <div className={styles.number}>{loveZ.length}</div> : <div> </div>}
                         <FaRegHeart />
                     </div>
                     <div className={styles.icon} onClick={setOpenKeranjang}>
-                        {keranjangZ.length ? <div className={styles.number}>{keranjangZ.length}</div> : null}
+                        {keranjangZ.length ? <div className={styles.number}>{keranjangZ.length}</div> : <div> </div>}
                         <LuShoppingCart />
                     </div>
                     <Link href={'/admin'} className={styles.login}>

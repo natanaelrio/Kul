@@ -3,22 +3,22 @@ import Image from 'next/image'
 import { MdDelete } from "react-icons/md";
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
-import { useStoreDataFront } from '@/utils/user-front/zustand'
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { LuShoppingCart } from "react-icons/lu";
 
 export default function Keranjang() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
+    const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
 
     const totalBarang = keranjangZ.map((data) => data.harga_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     });
+
     const handleDelete = (e) => {
-        const newTodos = [...keranjangZ]
-        newTodos.splice(e, 1)
-        setdataKeranjangZ(newTodos)
+        setDeleteKeranjangZ([...keranjangZ], e)
     }
 
     return (
@@ -70,7 +70,7 @@ export default function Keranjang() {
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} onClick={() => handleDelete(i)}><MdDelete /></div>
+                                    <div className={styles.delete} onClick={() => handleDelete(data.id)}><MdDelete /></div>
                                 </div>
                             )
                         })}

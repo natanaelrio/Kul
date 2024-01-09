@@ -6,36 +6,32 @@ import Link from 'next/link'
 import { FaWhatsapp } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
-import { useStoreDataFront } from '@/utils/user-front/zustand'
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
+import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useEffect, useState } from 'react';
 import SkletonList from '@/components/skletonList'
-import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 export default function ListProduk() {
-    const datalist = useStoreDataFront((state) => state.datalist)
-    const fetchdatalist = useStoreDataFront((state) => state.fetchdatalist)
+    const datalist = useStoreListDataProduct((state) => state.datalist)
+    const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
 
     useEffect(() => {
         fetchdatalist()
     }, [fetchdatalist])
 
-
+    const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
-    const [dataLove, setDataLove] = useState([])
 
     const handleLove = (e) => {
-        setDataLove([...dataLove, e])
-        setdataLoveZ([...dataLove, e])
+        setdataLoveZ([...loveZ, e])
     }
 
+    const handleDelete = (e) => {
+        setDeleteLoveZ([...loveZ], e)
+    }
 
-    useEffect(() => {
-        localStorage.setItem('items', JSON.stringify(loveZ));
-        const cek = localStorage.getItem('items');
-        console.log(cek);
-    }, [loveZ]);
-    // console.log(loveZ);
 
     return (
         <>
@@ -72,9 +68,20 @@ export default function ListProduk() {
                                             </Link>
                                             <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
                                             <div className={styles.love}>
-                                                <div className={styles.icon} onClick={() => { handleLove(data) }}>
-                                                    <FaRegHeart />
-                                                </div>
+
+                                                {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
+                                                    <div className={styles.icon}
+                                                        style={{ background: 'var(--color-high)', borderRadius: '100%' }}
+                                                        onClick={() => handleDelete(data.id)}
+                                                    >
+                                                        <FaHeart />
+                                                    </div>
+                                                    :
+                                                    <div className={styles.icon}
+                                                        onClick={() => { handleLove(data) }}>
+                                                        <FaHeart />
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                         <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>

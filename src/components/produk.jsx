@@ -5,32 +5,34 @@ import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
-import { useStoreDataFront } from '@/utils/user-front/zustand'
-import { useState } from 'react';
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 
 export default function Produk(props) {
     const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
+    const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
+    const loveZ = useStoreDataFront((state) => state.loveZ)
+
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
+
 
     const angka = useStore((state) => state.angka)
     const setTambahAngka = useStore((state) => state.setTambahAngka)
     const setKurangAngka = useStore((state) => state.setKurangAngka)
 
 
-    const [dataKeranjang, setDataKeranjang] = useState([])
     const handleKeranjang = (e) => {
-        setDataKeranjang([...dataKeranjang, e])
-        setdataKeranjangZ([...dataKeranjang, e])
+        setdataKeranjangZ([...keranjangZ, e])
     }
 
-
-    const [dataLove, setDataLove] = useState([])
     const handleLove = (e) => {
-        setDataLove([...dataLove, e])
-        setdataLoveZ([...dataLove, e])
+        setdataLoveZ([...loveZ, e])
+    }
+
+    const handleDelete = (e) => {
+        setDeleteLoveZ([...loveZ], e)
     }
 
     const harga = data.harga_barang.toLocaleString('id-ID', {
@@ -64,7 +66,19 @@ export default function Produk(props) {
                                         </div>
                                     </div>
 
-                                    <div className={styles.icon} onClick={() => handleLove(data)}><FaRegHeart /></div>
+                                    {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
+                                        <div className={styles.icon}
+                                            style={{ background: 'var(--color-high)', borderRadius: '100%', color: 'var(--color-white)' }}
+                                            onClick={() => handleDelete(data.id)}
+                                        ><FaRegHeart />
+                                        </div>
+                                        :
+                                        <div className={styles.icon}
+                                            onClick={() => handleLove(data)}>
+                                            <FaRegHeart />
+                                        </div>
+                                    }
+
                                 </div>
                                 <div className={styles.deskripsi}>{data?.diskripsi_barang}
                                 </div>

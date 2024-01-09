@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-export const useStoreDataFront = create((set) => ({
+export const useStoreListDataProduct = create((set) => ({
 
     datalist: {},
     fetchdatalist: async () => {
@@ -30,14 +30,6 @@ export const useStoreDataFront = create((set) => ({
         set({ datasearch: await res.json() })
     },
 
-    loveZ: [],
-    setdataLoveZ: (loveZ) => {
-        set({ loveZ: [...new Set(loveZ)] })
-    },
-
-    keranjangZ: [],
-    setdataKeranjangZ: (keranjangZ) => {
-        set({ keranjangZ: [...new Set(keranjangZ)] })
-    }
-
 }))
+
+

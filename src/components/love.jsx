@@ -3,35 +3,26 @@ import Image from 'next/image'
 import { MdDelete } from "react-icons/md";
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
-import { useStoreDataFront } from '@/utils/user-front/zustand'
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
-import { useState } from 'react';
 
 export default function Love() {
     const setOpenLove = useStore((state) => state.setOpenLove)
     const loveZ = useStoreDataFront((state) => state.loveZ)
-
-
-
-    const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
+    const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
 
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
-    console.log(keranjangZ);
-
-    const [dataKeranjang, setDataKeranjang] = useState([])
     const handleKeranjang = (e) => {
-        setDataKeranjang([...dataKeranjang, e])
-        setdataKeranjangZ([...dataKeranjang, e])
+        setdataKeranjangZ([...keranjangZ, e])
     }
 
     const handleDelete = (e) => {
-        const newTodos = [...loveZ]
-        newTodos.splice(e, 1)
-        setdataLoveZ(newTodos)
+        setDeleteLoveZ([...loveZ], e)
     }
+
 
     return (
         <FloatingBlur setOpen={setOpenLove} judul={`List Favorit`} >
@@ -79,7 +70,7 @@ export default function Love() {
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} onClick={() => handleDelete(i)}><MdDelete /></div>
+                                    <div className={styles.delete} onClick={() => handleDelete(data.id)}><MdDelete /></div>
                                 </div>
                             )
                         })}
