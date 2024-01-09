@@ -1,7 +1,7 @@
 import ListProduk from '@/components/listProduk'
 import HeaderFooter from '@/components/Layout/headerFooter'
 import { Suspense } from 'react'
-import Loading from '@/components/Loading';
+// import Loading from '@/components/Loading';
 // export const dynamic = 'force-dynamic'
 // export const runtime = "edge"
 
