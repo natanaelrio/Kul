@@ -7,7 +7,7 @@ export const useStoreDataFront = create(
 
             loveZ: [],
             setdataLoveZ: (loveZ) => {
-                set({ loveZ: [...new Set(loveZ)] })
+                set({ loveZ: [...new Set(loveZ.reverse())] })
             },
             setDeleteLoveZ: (data, e) => {
                 set({ loveZ: data.filter((todo) => todo.id !== e) })
@@ -15,7 +15,7 @@ export const useStoreDataFront = create(
 
             keranjangZ: [],
             setdataKeranjangZ: (keranjangZ) => {
-                set({ keranjangZ: [...new Set(keranjangZ)] })
+                set({ keranjangZ: [...new Set(keranjangZ.reverse())] })
             },
             setDeleteKeranjangZ: (data, e) => {
                 set({ keranjangZ: data.filter((todo) => todo.id !== e) })

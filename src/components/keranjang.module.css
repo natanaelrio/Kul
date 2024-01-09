@@ -194,6 +194,7 @@
     .container {
         padding: 15px 5px;
         font-size: 14px;
+        max-height: 40vh;
         /* height: 100vh; */
     }
 
@@ -212,7 +213,6 @@
     .list .gambar img {
         width: 100px;
         height: 80px;
-
     }
 
 
