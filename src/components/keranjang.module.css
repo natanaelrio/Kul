@@ -193,7 +193,7 @@
 
     .container {
         padding: 15px 5px;
-        font-size: 12px;
+        font-size: 14px;
         /* height: 100vh; */
     }
 
@@ -204,14 +204,14 @@
 
 
     .list .gambar {
-        width: 80px;
-        height: 70px;
+        width: 100px;
+        height: 80px;
 
     }
 
     .list .gambar img {
-        width: 80px;
-        height: 70px;
+        width: 100px;
+        height: 80px;
 
     }
 

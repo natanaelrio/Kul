@@ -3,7 +3,7 @@
     position: fixed;
     top: 0;
     z-index: 99991;
-    min-height: 100vh;
+    min-height: 100dvh;
     /* width: 100vw; */
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@
 
 .backgroundblur {
     width: 100vw;
-    height: 1000vw;
+    height: 100dvh;
     position: relative;
     backdrop-filter: blur(5px);
     background-color: black;
@@ -23,6 +23,7 @@
 .containerfloating {
     z-index: 99992;
     position: absolute;
+    /* bottom: 0; */
     top: 100px;
     display: flex;
     justify-content: center;
@@ -39,7 +40,7 @@
 }
 
 .atasjudul {
-    background-color:var(--color-primary);
+    background-color: var(--color-primary);
     width: 100%;
     padding: 10px;
     display: flex;
@@ -60,19 +61,24 @@
     justify-content: center;
     align-items: center;
 }
+
 .atasjudul .icon:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 @media only screen and (max-width: 768px) {
+
     .containerfloating {
-        top: 0;
+        top: auto;
+        bottom: 0 !important;
+        border-radius: 15px 15px 0 0;
+
     }
 
     .containerfloatingdalam {
         width: 100vw;
+        border-radius: 15px 15px 0 0;
         /* min-height: 100vh; */
-        border-radius: 0 0 15px 15px;
         /* display: flex;
         flex-direction: column;
         justify-content: space-between; */
@@ -80,7 +86,7 @@
     }
 
     .atasjudul {
-        border-radius: 0;
+        border-radius: 15px 15px 0 0;
         font-size: 20px;
     }
 
@@ -92,17 +98,20 @@
 
 @media only screen and (max-width: 480px) {
     .containerfloating {
-        top: 0;
+        top: auto;
+        bottom: 0 !important;
+        border-radius: 15px 15px 0 0;
+
     }
 
     .containerfloatingdalam {
+        border-radius: 15px 15px 0 0;
         width: 100vw;
         /* min-height: 100vh; */
-        border-radius: 0 0 15px 15px;
     }
 
     .atasjudul {
-        border-radius: 0;
+        border-radius: 15px 15px 0 0;
         font-size: 18px;
     }
 
