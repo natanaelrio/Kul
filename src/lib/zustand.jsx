@@ -17,6 +17,14 @@ export const useStore = create((set) => ({
         })
         )
     },
+
+    openKeranjang: false,
+    setOpenKeranjang: () => {
+        set((state) => ({
+            openKeranjang: !state.openKeranjang
+        })
+        )
+    },
     angka: 1,
     setTambahAngka: () => {
         set((state) => ({

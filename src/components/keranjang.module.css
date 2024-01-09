@@ -130,6 +130,23 @@
     transition: 0.2s ease all;
 }
 
+.list .tambahkurang .tambah {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: var(--color-grey);
+}
+
+.list .tambahkurang .kurang {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: var(--color-grey);
+}
+
+.list .tambahkurang .nilai {
+    padding: 5px 10px;
+    background-color: var(--color-grey);
+    font-weight: 500;
+}
 
 .delete {
     color: var(--color-diskon);

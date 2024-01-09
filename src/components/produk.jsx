@@ -12,9 +12,19 @@ export default function Produk(props) {
     const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
+    const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
+    const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
+
     const angka = useStore((state) => state.angka)
     const setTambahAngka = useStore((state) => state.setTambahAngka)
     const setKurangAngka = useStore((state) => state.setKurangAngka)
+
+
+    const [dataKeranjang, setDataKeranjang] = useState([])
+    const handleKeranjang = (e) => {
+        setDataKeranjang([...dataKeranjang, e])
+        setdataKeranjangZ([...dataKeranjang, e])
+    }
 
 
     const [dataLove, setDataLove] = useState([])
@@ -72,7 +82,7 @@ export default function Produk(props) {
                                     </div>
                                 </div>
                                 <div className={styles.keranjang}>
-                                    <button>Tambahkan Keranjang</button>
+                                    <button onClick={() => handleKeranjang(data)}>Tambahkan Keranjang</button>
                                 </div>
                                 <div className={styles.belisekarang}>
                                     <button onClick={setOpenFormPembelian}>Beli Sekarang</button>

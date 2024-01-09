@@ -1,51 +1,40 @@
-import styles from '@/components/love.module.css'
+import styles from '@/components/keranjang.module.css'
 import Image from 'next/image'
 import { MdDelete } from "react-icons/md";
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/zustand'
-import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
-import { useState } from 'react';
 
-export default function Love() {
-    const setOpenLove = useStore((state) => state.setOpenLove)
-    const loveZ = useStoreDataFront((state) => state.loveZ)
-
-
-
-    const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
-
+export default function Keranjang() {
+    const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
-    console.log(keranjangZ);
-
-    const [dataKeranjang, setDataKeranjang] = useState([])
-    const handleKeranjang = (e) => {
-        setDataKeranjang([...dataKeranjang, e])
-        setdataKeranjangZ([...dataKeranjang, e])
-    }
-
+    const totalBarang = keranjangZ.map((data) => data.harga_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    });
     const handleDelete = (e) => {
-        const newTodos = [...loveZ]
+        const newTodos = [...keranjangZ]
         newTodos.splice(e, 1)
-        setdataLoveZ(newTodos)
+        setdataKeranjangZ(newTodos)
     }
 
     return (
-        <FloatingBlur setOpen={setOpenLove} judul={`List Favorit`} >
+        <FloatingBlur setOpen={setOpenKeranjang} judul={`List Belanja`} >
 
-            {loveZ && loveZ.length == 0 ? <div className={styles.notfound}>
+            {keranjangZ && keranjangZ.length == 0 ? <div className={styles.notfound}>
                 <div className={styles.belum}>
-                    Belum Ada Pilihan &nbsp;<FaRegHeart />
+                    Belum Ada Pilihan &nbsp;<LuShoppingCart />
                 </div>
-                <div className={styles.kembali} onClick={setOpenLove}>Kembali Beranda</div>
+                <div className={styles.kembali} onClick={setOpenKeranjang}>Kembali Beranda</div>
             </div>
+
                 : <>
                     <div className={styles.container}>
 
-                        {loveZ.map((data, i) => {
+                        {keranjangZ.map((data, i) => {
                             const harga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
@@ -72,8 +61,10 @@ export default function Love() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className={styles.tambahkeranjang} onClick={() => handleKeranjang(data)}>
-                                                    <LuShoppingCart />&nbsp;Keranjang +
+                                                <div className={styles.tambahkurang}>
+                                                    <div className={styles.kurang}>-</div>
+                                                    <div className={styles.nilai}>12</div>
+                                                    <div className={styles.tambah}>+</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -86,6 +77,14 @@ export default function Love() {
 
                     </div>
                     <div style={{ padding: '5px' }}></div>
+                    <div className={styles.total}>
+                        <div className={styles.harga}>
+                            Total :<div className={styles.totalpembayaran}>{totalBarang}</div>
+                        </div>
+                        <div>
+                            <div className={styles.bayarlangsung}>Bayar Langsung</div>
+                        </div>
+                    </div>
                 </>}
         </FloatingBlur>
 

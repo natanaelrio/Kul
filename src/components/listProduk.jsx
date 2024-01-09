@@ -29,6 +29,12 @@ export default function ListProduk() {
         setdataLoveZ([...dataLove, e])
     }
 
+
+    useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(loveZ));
+        const cek = localStorage.getItem('items');
+        console.log(cek);
+    }, [loveZ]);
     // console.log(loveZ);
 
     return (

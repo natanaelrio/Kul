@@ -5,10 +5,12 @@ import Footer from '@/components/footer';
 import { useStore } from '@/lib/zustand'
 import FormPembelian from '@/components/formPembelian';
 import Love from '@/components/love';
+import Keranjang from '@/components/keranjang';
 
 export default function HeaderFooter({ children }) {
   const openFormPembelian = useStore((state) => state.openFormPembelian)
   const openLove = useStore((state) => state.openLove)
+  const openKeranjang = useStore((state) => state.openKeranjang)
   return (
     <>
       <div className={styles.countainer}>
@@ -20,6 +22,7 @@ export default function HeaderFooter({ children }) {
       </div>
       {openFormPembelian && <FormPembelian />}
       {openLove && <Love />}
+      {openKeranjang && <Keranjang />}
     </>
   )
 }

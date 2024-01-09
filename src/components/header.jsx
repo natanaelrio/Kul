@@ -19,7 +19,9 @@ export default function Header() {
     const [value, setValue] = useState('')
     const [skleton, setSkleton] = useState(true)
     const setOpenLove = useStore((state) => state.setOpenLove)
+    const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const loveZ = useStoreDataFront((state) => state.loveZ)
+    const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
     useEffect(() => {
         const windowScroll = () => {
@@ -110,7 +112,8 @@ export default function Header() {
                         {loveZ.length ? <div className={styles.number}>{loveZ.length}</div> : null}
                         <FaRegHeart />
                     </div>
-                    <div className={styles.icon}>
+                    <div className={styles.icon} onClick={setOpenKeranjang}>
+                        {keranjangZ.length ? <div className={styles.number}>{keranjangZ.length}</div> : null}
                         <LuShoppingCart />
                     </div>
                     <Link href={'/admin'} className={styles.login}>

@@ -33,6 +33,11 @@ export const useStoreDataFront = create((set) => ({
     loveZ: [],
     setdataLoveZ: (loveZ) => {
         set({ loveZ: [...new Set(loveZ)] })
+    },
+
+    keranjangZ: [],
+    setdataKeranjangZ: (keranjangZ) => {
+        set({ keranjangZ: [...new Set(keranjangZ)] })
     }
 
 }))
