@@ -133,7 +133,6 @@
 
 .delete {
     color: var(--color-diskon);
-    cursor: pointer;
     font-size: 20px;
 }
 

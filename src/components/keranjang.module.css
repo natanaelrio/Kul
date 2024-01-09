@@ -150,7 +150,6 @@
 
 .delete {
     color: var(--color-diskon);
-    cursor: pointer;
     font-size: 20px;
 }
 
@@ -194,7 +193,7 @@
     .container {
         padding: 15px 5px;
         font-size: 14px;
-        max-height: 40vh;
+        max-height: 50vh;
         /* height: 100vh; */
     }
 

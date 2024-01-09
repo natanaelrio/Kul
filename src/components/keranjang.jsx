@@ -70,7 +70,7 @@ export default function Keranjang() {
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} onClick={() => handleDelete(data.id)}><MdDelete /></div>
+                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleDelete(data.id)} /></div>
                                 </div>
                             )
                         })}

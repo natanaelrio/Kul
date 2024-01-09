@@ -12,6 +12,7 @@ export default function Love() {
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
 
+    const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
@@ -21,6 +22,10 @@ export default function Love() {
 
     const handleDelete = (e) => {
         setDeleteLoveZ([...loveZ], e)
+    }
+
+    const handleDeleteKeranjang = (e) => {
+        setDeleteKeranjangZ([...keranjangZ], e)
     }
 
 
@@ -63,14 +68,22 @@ export default function Love() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className={styles.tambahkeranjang} onClick={() => handleKeranjang(data)}>
-                                                    <LuShoppingCart />&nbsp;Keranjang +
-                                                </div>
+                                                {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
+                                                    <div className={styles.tambahkeranjang}
+                                                        style={{ background: 'var(--color-high' }}
+                                                        onClick={() => handleDeleteKeranjang(data.id)}>
+                                                        <LuShoppingCart />&nbsp;Keranjang -
+                                                    </div>
+                                                    :
+                                                    <div className={styles.tambahkeranjang} onClick={() => handleKeranjang(data)}>
+                                                        <LuShoppingCart />&nbsp;Keranjang +
+                                                    </div>
+                                                }
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} onClick={() => handleDelete(data.id)}><MdDelete /></div>
+                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleDelete(data.id)} /></div>
                                 </div>
                             )
                         })}
