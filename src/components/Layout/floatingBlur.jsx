@@ -1,8 +1,9 @@
 import styles from '@/components/Layout/floatingBlur.module.css'
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 export default function FloatingBlur({ judul, setOpen, children }) {
-
+    useLockBodyScroll()
     return (
         <div className={styles.container}>
             <div className={styles.backgroundblur}
