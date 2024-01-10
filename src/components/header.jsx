@@ -18,6 +18,7 @@ export default function Header() {
     const [notfound, setNotFound] = useState(true)
     const [value, setValue] = useState('')
     const [skleton, setSkleton] = useState(true)
+
     const setOpenLove = useStore((state) => state.setOpenLove)
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const loveZ = useStoreDataFront((state) => state.loveZ)
@@ -28,8 +29,7 @@ export default function Header() {
             window.scrollY <= 50 ? setChange(true) : setChange(false)
         }
         window.addEventListener('scroll', windowScroll)
-    }, [setChange]);
-
+    }, [setChange, keranjangZ]);
 
     useEffect(() => {
         const debounce = setTimeout(() => {

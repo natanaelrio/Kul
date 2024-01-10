@@ -8,7 +8,7 @@ import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import SkletonList from '@/components/skletonList'
 import { FaHeart } from "react-icons/fa";
 
@@ -28,10 +28,27 @@ export default function ListProduk() {
         setdataLoveZ([...loveZ, e])
     }
 
-    const handleDelete = (e) => {
+    const handleDeleteLove = (e) => {
         setDeleteLoveZ([...loveZ], e)
     }
 
+    // LOVE
+    const handleLovePlus = async (e) => {
+        try {
+            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-love-products?id=${e.slug_barang}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': process.env.NEXT_PUBLIC_SECREET
+                },
+                body: JSON.stringify({
+                    like_barang: e.like_barang ? e.like_barang + 1 : 1
+                }),
+                next: { revalidate: 0 }
+            })
+        }
+        catch (e) { console.error(e); }
+    }
 
     return (
         <>
@@ -72,13 +89,13 @@ export default function ListProduk() {
                                                 {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                     <div className={styles.icon}
                                                         style={{ background: 'var(--color-high)', borderRadius: '100%' }}
-                                                        onClick={() => handleDelete(data.id)}
+                                                        onClick={() => handleDeleteLove(data.id)}
                                                     >
                                                         <FaHeart />
                                                     </div>
                                                     :
                                                     <div className={styles.icon}
-                                                        onClick={() => { handleLove(data) }}>
+                                                        onClick={() => { handleLove(data), handleLovePlus(data) }}>
                                                         <FaHeart />
                                                     </div>
                                                 }

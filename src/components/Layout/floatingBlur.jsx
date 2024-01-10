@@ -1,6 +1,6 @@
 import styles from '@/components/Layout/floatingBlur.module.css'
-import { FaArrowAltCircleLeft } from "react-icons/fa";
 import { useLockBodyScroll } from "@uidotdev/usehooks";
+import { IoMdClose } from "react-icons/io";
 
 export default function FloatingBlur({ judul, setOpen, children }) {
     useLockBodyScroll()
@@ -12,7 +12,7 @@ export default function FloatingBlur({ judul, setOpen, children }) {
             <div className={styles.containerfloating}>
                 <div className={styles.containerfloatingdalam}>
                     <div className={styles.atasjudul}>
-                        <div className={styles.icon} onClick={setOpen}><FaArrowAltCircleLeft /></div>
+                        <div className={styles.icon} onClick={setOpen}><IoMdClose /></div>
                         <div className={styles.judul}>{judul}</div>
                         <div></div>
                     </div>

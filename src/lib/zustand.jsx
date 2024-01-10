@@ -25,18 +25,6 @@ export const useStore = create((set) => ({
         })
         )
     },
-    angka: 1,
-    setTambahAngka: () => {
-        set((state) => ({
-            angka: state.angka >= 10 ? state.angka : state.angka + 1
-        }))
-    },
-    setKurangAngka: () => {
-        set((state) => ({
-            angka: state.angka <= 1 ? state.angka - 0 : state.angka - 1
-        }))
-    },
-
 
     //ADMIN
     openPencarianAdmin: false,

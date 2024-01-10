@@ -1,9 +1,10 @@
 import styles from "@/components/pencariannew.module.css"
 import Image from "next/image"
-
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link"
 
 export default function Pencariannew(props) {
+    useLockBodyScroll()
     return (
         <div className={styles.hasil}>
 

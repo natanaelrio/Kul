@@ -26,7 +26,7 @@ export default function FormPage({ urlFetch, method, data }) {
             gambar_barang: data ? data?.gambar_barang : '',
             kupon_barang: data ? data?.kupon_barang : '',
             tag_barang: data ? data?.tag_barang : '',
-            like_barang: data ? data?.like_barang : '',
+            jumlah_barang: data ? data?.jumlah_barang : '',
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
@@ -56,7 +56,7 @@ export default function FormPage({ urlFetch, method, data }) {
             kupon_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
-            like_barang: Yup.number()
+            jumlah_barang: Yup.number()
                 .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
         }),
@@ -281,19 +281,19 @@ export default function FormPage({ urlFetch, method, data }) {
                         />
 
 
-                        <label htmlFor="like_barang">Like
-                            {formik.touched.like_barang && formik.errors.like_barang ? (
+                        <label htmlFor="jumlah_barang">Jumlah Barang
+                            {formik.touched.jumlah_barang && formik.errors.jumlah_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
                         <input
-                            id="like_barang"
-                            name="like_barang"
+                            id="jumlah_barang"
+                            name="jumlah_barang"
                             type="number"
                             onChange={formik.handleChange}
-                            value={formik.values.like_barang}
+                            value={formik.values.jumlah_barang}
                             placeholder='opsional'
-                            style={formik.touched.like_barang && formik.errors.like_barang ? { border: '1px solid red' } : null}
+                            style={formik.touched.jumlah_barang && formik.errors.jumlah_barang ? { border: '1px solid red' } : null}
                         />
                         <div className={styles.dalamsubmit}>
 

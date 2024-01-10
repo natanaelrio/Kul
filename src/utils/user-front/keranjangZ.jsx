@@ -20,6 +20,10 @@ export const useStoreDataFront = create(
             setDeleteKeranjangZ: (data, e) => {
                 set({ keranjangZ: data.filter((todo) => todo.id !== e) })
             },
+            setdataKeranjangCountZ: (keranjangZ) => {
+                set({ keranjangZ: keranjangZ })
+            }
+            
 
         }),
         {

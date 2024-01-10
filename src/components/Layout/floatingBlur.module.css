@@ -56,7 +56,7 @@
 .atasjudul .icon {
     cursor: pointer;
     position: absolute;
-    left: 15px;
+    right: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,6 +117,5 @@
 
     .atasjudul .icon {
         font-size: 27px;
-        left: 20px;
     }
 }

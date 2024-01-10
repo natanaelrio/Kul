@@ -9,6 +9,7 @@ import { LuShoppingCart } from "react-icons/lu";
 export default function Keranjang() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
+    const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
 
@@ -17,8 +18,22 @@ export default function Keranjang() {
         currency: 'IDR'
     });
 
-    const handleDelete = (e) => {
+    const handleDeleteKeranjang = (e) => {
         setDeleteKeranjangZ([...keranjangZ], e)
+    }
+
+    const handleCountKeranjang = (id, value) => {
+        if (value > 0) {
+            setdataKeranjangCountZ(
+                keranjangZ.map((data) => data.id == id ?
+                    {
+                        ...data,
+                        value: value,
+                        harga_barang: data.harga_asli_barang * (data.value + 1)
+                    }
+                    : data)
+            )
+        }
     }
 
     return (
@@ -62,15 +77,18 @@ export default function Keranjang() {
                                             </div>
                                             <div>
                                                 <div className={styles.tambahkurang}>
-                                                    <div className={styles.kurang}>-</div>
-                                                    <div className={styles.nilai}>12</div>
-                                                    <div className={styles.tambah}>+</div>
+                                                    <button className={styles.kurang}
+                                                        style={data.value <= 1 ? { color: '#c2c2c2' } : null}
+                                                        onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}>-</button>
+                                                    <button className={styles.nilai}>{data.value}</button>
+                                                    <button className={styles.tambah}
+                                                        onClick={() => { handleCountKeranjang(data.id, data.value + 1) }}>+</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleDelete(data.id)} /></div>
+                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleDeleteKeranjang(data.id)} /></div>
                                 </div>
                             )
                         })}

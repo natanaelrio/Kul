@@ -123,6 +123,7 @@
     justify-content: center;
     align-items: center;
     width: fit-content;
+
 }
 
 .list .tambahkeranjang:hover {
@@ -130,21 +131,28 @@
     transition: 0.2s ease all;
 }
 
+.list .tambahkurang {
+    border: 2px solid var(--color-grey);
+    width: fit-content;
+    border-radius: 7px;
+    padding: 2px;
+}
+
 .list .tambahkurang .tambah {
     padding: 5px 10px;
     cursor: pointer;
-    background-color: var(--color-grey);
+    background-color: var(--color-white);
 }
 
 .list .tambahkurang .kurang {
     padding: 5px 10px;
     cursor: pointer;
-    background-color: var(--color-grey);
+    background-color: var(--color-white);
 }
 
 .list .tambahkurang .nilai {
-    padding: 5px 10px;
-    background-color: var(--color-grey);
+    padding: 5px 20px;
+    background-color: var(--color-white);
     font-weight: 500;
 }
 

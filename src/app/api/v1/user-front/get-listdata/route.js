@@ -17,6 +17,7 @@ export async function GET(req) {
                 gambar_barang: true,
                 slug_barang: true,
                 diskon_barang: true,
+                like_barang: true
             },
             orderBy:
                 { id: 'desc' },

@@ -48,9 +48,7 @@ export default async function Products({ params }) {
         <Suspense>
           <Produk data={data} />
         </Suspense>
-        <Suspense>
           <ListProduk />
-        </Suspense>
       </HeaderFooter>
     </>
   )

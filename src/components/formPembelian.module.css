@@ -62,6 +62,7 @@
     cursor: pointer;
     border-radius: 7px;
     outline: none;
+    border: 0;
 }
 
 .form button:hover {

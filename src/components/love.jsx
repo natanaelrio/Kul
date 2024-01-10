@@ -17,7 +17,12 @@ export default function Love() {
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
     const handleKeranjang = (e) => {
-        setdataKeranjangZ([...keranjangZ, e])
+        const value = {
+            value: Number(1),
+            harga_asli_barang: e.harga_barang
+        }
+        const gabungData = { ...e, ...value }
+        setdataKeranjangZ([...keranjangZ, gabungData])
     }
 
     const handleDelete = (e) => {
