@@ -6,7 +6,7 @@ import { FaStar } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import { useState } from 'react';
+import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 
 export default function Produk(props) {
     const data = props.data?.data
@@ -19,16 +19,25 @@ export default function Produk(props) {
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
+    const ValueKeranjang = useKeranjangCount((state) => state.ValueKeranjang)
+    const setKurangValueKeranjang = useKeranjangCount((state) => state.setKurangValueKeranjang)
+    const setTambahValueKeranjang = useKeranjangCount((state) => state.setTambahValueKeranjang)
+    const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
     const jumlahBarang = data.jumlah_barang
+
     // Data OFF
-    const [angka, setAngka] = useState(1)
+    // const [angka, setAngka] = useState(ValueResetKeranjang)
     const handleAngkaKurang = () => {
-        angka > 1 ? setAngka(angka - 1) : null
+        ValueKeranjang > 1 ? setKurangValueKeranjang() : null
     }
     const handleAngkaTambah = () => {
-        angka >= jumlahBarang ? null : setAngka(angka + 1)
+        ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
     }
+    const handleResetValue = () => {
+        resetValueKeranjang()
+    }
+
 
     // DATA LOVE
     const handleLove = (e) => {
@@ -42,7 +51,7 @@ export default function Produk(props) {
     // DATA KERANJANG
     const handleDataKeranjang = (e) => {
         const value = {
-            value: Number(angka),
+            value: Number(ValueKeranjang),
             harga_asli_barang: e.harga_barang,
             harga_barang: hargatotal
         }
@@ -69,7 +78,7 @@ export default function Produk(props) {
         }
     }
 
-    const hargatotal = data.harga_barang * angka
+    const hargatotal = data.harga_barang * ValueKeranjang
     const harga = (hargatotal).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -92,7 +101,8 @@ export default function Produk(props) {
 
     // LOVE
     const handleLovePlus = async () => {
-        try { await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-love-products?id=${data.slug_barang}`, {
+        try {
+            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-love-products?id=${data.slug_barang}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -174,11 +184,11 @@ export default function Produk(props) {
                                     <div className={styles.kata}>Kuantitas</div>
                                     <div className={styles.button}>
                                         <button onClick={() => handleAngkaKurang()}
-                                            style={angka <= 1 ? { color: '#c2c2c2' } : null
+                                            style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
                                             }>-</button>
-                                        <div className={styles.angka}>{angka}</div>
+                                        <div className={styles.angka}>{ValueKeranjang}</div>
                                         <button
-                                            style={angka >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                            style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
                                             onClick={() => handleAngkaTambah()}>+</button>
                                     </div>
                                 </div>
@@ -187,7 +197,7 @@ export default function Produk(props) {
                             {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                                 <div className={styles.keranjang}>
                                     <button style={{ background: 'var(--color-high' }}
-                                        onClick={() => { handleDeleteKeranjang(data.id), setAngka(1) }
+                                        onClick={() => { handleDeleteKeranjang(data.id), handleResetValue() }
                                         }>Hapus Keranjang</button>
                                 </div> :
                                 <div className={styles.keranjang}>

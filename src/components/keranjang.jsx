@@ -5,6 +5,7 @@ import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { LuShoppingCart } from "react-icons/lu";
+import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 
 export default function Keranjang() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
@@ -12,6 +13,8 @@ export default function Keranjang() {
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
+    const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
+
 
     const totalBarang = keranjangZ.map((data) => data.harga_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
@@ -22,20 +25,26 @@ export default function Keranjang() {
         setDeleteKeranjangZ([...keranjangZ], e)
     }
 
-    const handleCountKeranjang = (id, value) => {
+    const handleCountKeranjang = (id, value, jumlah) => {
         if (value > 0) {
-            setdataKeranjangCountZ(
-                keranjangZ.map((data) => data.id == id ?
-                    {
-                        ...data,
-                        value: value,
-                        harga_barang: data.harga_asli_barang * (data.value + 1)
-                    }
-                    : data)
-            )
+            value > jumlah ? null :
+                setdataKeranjangCountZ(
+                    keranjangZ.map((data) => data.id == id ?
+                        {
+                            ...data,
+                            value: value,
+                            harga_barang: data.harga_asli_barang * (data.value + 1)
+                        }
+                        : data)
+                )
         }
     }
 
+    const handleResetValue = () => {
+        resetValueKeranjang()
+    }
+
+    console.log(keranjangZ);
     return (
         <FloatingBlur setOpen={setOpenKeranjang} judul={`List Belanja`} >
 
@@ -75,20 +84,22 @@ export default function Keranjang() {
                                                     <div className={styles.hargadiskon}>{diskonharga}</div>
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div className={styles.jumlahbarang}>
                                                 <div className={styles.tambahkurang}>
                                                     <button className={styles.kurang}
                                                         style={data.value <= 1 ? { color: '#c2c2c2' } : null}
                                                         onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}>-</button>
                                                     <button className={styles.nilai}>{data.value}</button>
                                                     <button className={styles.tambah}
-                                                        onClick={() => { handleCountKeranjang(data.id, data.value + 1) }}>+</button>
+                                                        style={data.value >= data.jumlah_barang ? { color: '#c2c2c2' } : null}
+                                                        onClick={() => { handleCountKeranjang(data.id, data.value + 1, data.jumlah_barang) }}>+</button>
                                                 </div>
+                                                <div className={styles.stokbarang}>Stok :{data.jumlah_barang}</div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleDeleteKeranjang(data.id)} /></div>
+                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => { handleDeleteKeranjang(data.id), handleResetValue() }} /></div>
                                 </div>
                             )
                         })}

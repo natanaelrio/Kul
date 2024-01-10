@@ -5,6 +5,7 @@ export const useStoreDataFront = create(
     persist(
         (set, get) => ({
 
+            // LOVE
             loveZ: [],
             setdataLoveZ: (loveZ) => {
                 set({ loveZ: [...new Set(loveZ.reverse())] })
@@ -13,6 +14,7 @@ export const useStoreDataFront = create(
                 set({ loveZ: data.filter((todo) => todo.id !== e) })
             },
 
+            // KERANJANG
             keranjangZ: [],
             setdataKeranjangZ: (keranjangZ) => {
                 set({ keranjangZ: [...new Set(keranjangZ.reverse())] })
@@ -22,9 +24,9 @@ export const useStoreDataFront = create(
             },
             setdataKeranjangCountZ: (keranjangZ) => {
                 set({ keranjangZ: keranjangZ })
-            }
-            
+            },
 
+          
         }),
         {
             name: 'shop-storage', // name of the item in the storage (must be unique)
