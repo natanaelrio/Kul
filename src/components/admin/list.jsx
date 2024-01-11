@@ -64,7 +64,7 @@ export default function List(props) {
                         HandleDetail(data)
                     }}>
                         <div className={styles.produk}>
-                            <div className={styles.namaproduk}  >
+                            <div className={styles.namaproduk} style={{ fontWeight: '500' }} >
                                 {data?.nama_barang}
                             </div>
                             <div className={styles.terjual}>
