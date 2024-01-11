@@ -25,7 +25,7 @@ export default function ListProduk() {
     }, [fetchdatalist])
 
     const setOpenAnimasiLove = useStore((state) => state.setOpenAnimasiLove)
-  
+
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)

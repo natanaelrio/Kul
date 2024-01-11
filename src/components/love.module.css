@@ -179,7 +179,8 @@
     .container {
         padding: 15px 5px;
         font-size: 14px;
-        max-height: 70vh;
+        height: 0;
+        min-height: 68dvh;
         /* height: 100vh; */
     }
 
