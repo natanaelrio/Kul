@@ -8,16 +8,36 @@ import { FaArrowRightFromBracket } from "react-icons/fa6";
 import DetailList from '@/components/admin/detailList';
 import { useStore } from '@/lib/zustand'
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function List(props) {
     const [data, setData] = useState()
     const Open = useStore((state) => state.openDetailProdukAdmin)
     const setOpen = useStore((state) => state.setOpenDetailProdukAdmin)
+    const valueDelete = useStore((state) => state.valueDelete)
+    const setValueDelete = useStore((state) => state.setValueDelete)
 
     const HandleDetail = (e) => {
         setData(e)
     }
 
+    // VALIDASI ERROR DAN BERHASIL
+    const Berhasil = () => {
+        toast.success('Berhasil di hapus', {
+            draggablePercent: 60
+        },
+            setValueDelete([]))
+    }
+
+    const Gagal = () => {
+        toast.error("Gagal di hapus", {
+            draggablePercent: 60,
+        },
+            setValueDelete([]))
+    }
+    valueDelete.status === undefined ? null : valueDelete.status == 200 ? Berhasil() : Gagal()
+    
     return (
         <>
             <div className={styles.container}>
@@ -60,10 +80,11 @@ export default function List(props) {
                     </div>
                     ))}
                 </div>
-                <Link prefetch={false} href={'/admin/post'} className={styles.post}>
+                <Link target='_blank' href={'/admin/post'} className={styles.post}>
                     <MdOutlinePostAdd />
                 </Link>
             </div >
+            <ToastContainer limit={1} autoClose={3000} />
             {Open ? <DetailList data={data} /> : null}
         </>
     )

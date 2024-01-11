@@ -3,17 +3,32 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/components/admin/layout/formPage.module.css'
 import { useState } from 'react';
-import Berhasil from '@/components/alert/berhasil';
 import BarLoader from "react-spinners/BarLoader";
-import { useRouter } from 'next/navigation'
 import { BiSolidCategory } from "react-icons/bi";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { BsTagsFill } from "react-icons/bs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation';
 
-export default function FormPage({ urlFetch, method, data }) {
+export default function FormPage({ urlFetch, method, data, change, value }) {
+    const router = useRouter()
     const [matikan, setMatikan] = useState(false)
-    const [loading, setLoading] = useState(true)
-    const [alert, setAlert] = useState(true)
+    const [loading, setLoading] = useState(false)
+
+    // VALIDASI ERROR DAN BERHASIL
+    const Berhasil = () => {
+        toast.success("Produk Berhasil " + `${change}`, {
+            draggablePercent: 60
+        })
+    }
+
+    const Gagal = () => {
+        toast.error("Produk Gagal " + `${change}`, {
+            draggablePercent: 60,
+        })
+    }
+
     const formik = useFormik({
         initialValues: {
             nama_barang: data ? data?.nama_barang : '',
@@ -62,8 +77,7 @@ export default function FormPage({ urlFetch, method, data }) {
         }),
         onSubmit: async values => {
             setMatikan(true)
-            setLoading(false)
-            setAlert(true)
+            setLoading(true)
             const DataLain = {
                 end: null,
                 btoa: btoa(values.nama_barang).substring(0, 27).split('=')[0],
@@ -73,7 +87,7 @@ export default function FormPage({ urlFetch, method, data }) {
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
             try {
-                await fetch(`${process.env.NEXT_PUBLIC_URL}` + urlFetch, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + urlFetch, {
                     method: method,
                     body: JSON.stringify(GabungData),
                     headers: {
@@ -81,22 +95,25 @@ export default function FormPage({ urlFetch, method, data }) {
                         'Authorization': process.env.NEXT_PUBLIC_SECREET
                     }
                 })
+                const data = await res.json()
+                data.status == 200 ? Berhasil() : Gagal()
             }
             catch (e) {
                 console.error(e)
             }
-            setMatikan(false)
-            setLoading(true)
-            setAlert(false)
-            // setTimeout(() => {
-            //     router.push('/admin/list')
-            //     router.refresh()                             
-            // }, 1000)
-            // formik.resetForm();
+
+
+            setTimeout(() => {
+                setMatikan(false)
+                setLoading(false)
+                value ? formik.resetForm() : router.push('/admin/list')
+            }, 3000)
         },
 
     });
 
+
+    // console.log(loading);
     return (
         <>
             <div className={styles.containerform}>
@@ -299,25 +316,25 @@ export default function FormPage({ urlFetch, method, data }) {
 
                             <div className={styles.isisum}>
                                 <button type='submit' disabled={matikan}>Submit</button>
-                                {loading ? null :
-                                    <>
-                                        <div className={styles.loading}>
-                                            <BarLoader
-                                                color={'#ffb700'}
-                                                loading={loading}
-                                                size={100}
-                                                height={5}
-                                                width={181}
-                                            />
-                                        </div>
-                                    </>
+                                {matikan ?
+                                    <div className={styles.loading}>
+                                        <BarLoader
+                                            color={'#ffb700'}
+                                            loading={loading}
+                                            size={100}
+                                            height={5}
+                                            width={181}
+                                        />
+                                    </div> : null
                                 }
+
                             </div>
                         </div>
                     </div>
+
                 </form>
             </div>
-            {alert ? null : <Berhasil data={"diinput"} />}
+            <ToastContainer limit={3} autoClose={3000} />
         </>
     )
 }

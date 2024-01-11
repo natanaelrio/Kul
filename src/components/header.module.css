@@ -127,9 +127,40 @@
     /* display: flex;
     justify-content: center;
     align-items: center; */
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.pilihan .animasi {
+    animation: Shake 0.5s;
+   
+}
+
+
+@keyframes Shake {
+    0% {
+        transform: rotate(5deg);
+    }
+
+    25% {
+        transform: rotate(-6deg);
+    }
+
+    50% {
+        transform: rotate(5deg);
+    }
+
+    75% {
+        transform: rotate(-6deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+    }
 }
 
 

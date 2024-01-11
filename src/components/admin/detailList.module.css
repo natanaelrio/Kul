@@ -86,6 +86,12 @@
     background-color: blue;
 }
 
+.dataperforma {
+    background-color: var(--color-grey);
+    padding: 5px;
+    border-radius: 8px;
+}
+
 @media only screen and (max-width: 768px) {
 
     .container {

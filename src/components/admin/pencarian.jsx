@@ -3,27 +3,39 @@ import styles from '@/components/admin/pencarian.module.css'
 import { FaSearch } from "react-icons/fa";
 import BackLayang from '@/components/admin/layout/backLayang'
 import { useStore } from '@/lib/zustand'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 
 export default function Pencarian() {
     const setOpenPencarian = useStore((state) => state.setOpenPencarianAdmin)
     const setOpenDetail = useStore((state) => state.setOpenDetailProdukAdmin)
-    const [data, setData] = useState()
+    const [data, setData] = useState([])
+    const [value, setValue] = useState('')
+    const [loading, setLoading] = useState(false)
 
-    const HandlePencarian = async (e) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${e}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
+    useEffect(() => {
+        const debounce = setTimeout(() => {
+            const HandlePencarian = async () => {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${value}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                    }
+                })
+                const data = await res.json()
+                setData(data?.data)
             }
-        })
-        const data = await res.json()
-        setData(data?.data)
-    }
+            HandlePencarian()
+        }, 5000);
+        return () => clearTimeout(debounce)
+    }, [value])
 
-    // console.log(data);
+    
+    useEffect(() => {
+        value ? data.length ? setLoading(false) : setLoading(true) : null
+    }, [value, data.length])
+
     return (
         <>
             <BackLayang setOpen={setOpenPencarian} judul={'Pencarian'}>
@@ -33,7 +45,7 @@ export default function Pencarian() {
                     </div>
                     <input type="text"
                         placeholder='cari...'
-                        onChange={(e) => HandlePencarian(e.target.value)} />
+                        onChange={(e) => setValue(e.target.value)} />
                 </div>
                 <div className={styles.containerlist}>
                     {data?.map((data, i) => {
@@ -52,6 +64,7 @@ export default function Pencarian() {
                                 </div>
                             </div>)
                     })}
+                    {loading ? <div>Loading....</div> : null}
                 </div>
             </BackLayang>
         </>

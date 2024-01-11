@@ -1,8 +1,9 @@
 "use client"
 import styles from '@/components/admin/layout/backLayang.module.css'
+import { useLockBodyScroll } from "@uidotdev/usehooks";
 
 export default function BackLayang({ children, setOpen,judul }) {
-
+    useLockBodyScroll()
     return (
         <>
             <div className={styles.container}>

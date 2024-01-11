@@ -6,6 +6,7 @@ import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }) {
+
   const data = await GetProducts(params.uid)
   return {
     title: `${data?.data?.nama_barang}`,
@@ -48,7 +49,7 @@ export default async function Products({ params }) {
         <Suspense>
           <Produk data={data} />
         </Suspense>
-          <ListProduk />
+        <ListProduk />
       </HeaderFooter>
     </>
   )

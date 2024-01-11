@@ -24,12 +24,26 @@ export default function Header() {
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
+    const openAnimasiLove = useStore((state) => state.openAnimasiLove)
+    const openAnimasiKeranjang = useStore((state) => state.openAnimasiKeranjang)
+
+    // MATCH SERVER DAN CLIENT
+    const [love, setLove] = useState([])
+    const [keranjang, setKeranjang] = useState([])
+
+    useEffect(() => {
+        setLove(loveZ)
+        setKeranjang(keranjangZ)
+    }, [loveZ, keranjangZ])
+
+    // SCROLL EFFECK
     useEffect(() => {
         const windowScroll = () => {
             window.scrollY <= 50 ? setChange(true) : setChange(false)
         }
         window.addEventListener('scroll', windowScroll)
     }, [setChange, keranjangZ]);
+
 
     useEffect(() => {
         const debounce = setTimeout(() => {
@@ -63,6 +77,7 @@ export default function Header() {
         // Notfound value
         value ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
     }, [value, data, skleton])
+
     return (
         <>
 
@@ -108,13 +123,17 @@ export default function Header() {
                     /> : null}
                 </div>
                 <div className={styles.pilihan}>
-                    <div className={styles.icon} onClick={setOpenLove}>
-                        {loveZ.length ? <div className={styles.number}>{loveZ.length}</div> : <div> </div>}
-                        <FaRegHeart />
+                    <div className={openAnimasiLove ? styles.animasi : null}>
+                        <div className={styles.icon} onClick={setOpenLove}>
+                            {love?.length ? <div className={styles.number}>{love?.length}</div> : <div> </div>}
+                            <FaRegHeart />
+                        </div>
                     </div>
-                    <div className={styles.icon} onClick={setOpenKeranjang}>
-                        {keranjangZ.length ? <div className={styles.number}>{keranjangZ.length}</div> : <div> </div>}
-                        <LuShoppingCart />
+                    <div className={openAnimasiKeranjang ? styles.animasi : null}>
+                        <div className={styles.icon} onClick={setOpenKeranjang}>
+                            {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
+                            <LuShoppingCart />
+                        </div>
                     </div>
                     <Link href={'/admin'} className={styles.login}>
                         Log in
@@ -129,8 +148,6 @@ export default function Header() {
             }
             }></div>
                 : null}
-
-
         </>
     )
 }

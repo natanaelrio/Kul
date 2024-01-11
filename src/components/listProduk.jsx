@@ -8,11 +8,15 @@ import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+import { useStore } from '@/lib/zustand'
 import { useEffect } from 'react';
 import SkletonList from '@/components/skletonList'
 import { FaHeart } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 export default function ListProduk() {
+    const router = useRouter()
+
     const datalist = useStoreListDataProduct((state) => state.datalist)
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
 
@@ -20,6 +24,8 @@ export default function ListProduk() {
         fetchdatalist()
     }, [fetchdatalist])
 
+    const setOpenAnimasiLove = useStore((state) => state.setOpenAnimasiLove)
+  
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
@@ -30,6 +36,7 @@ export default function ListProduk() {
 
     const handleDeleteLove = (e) => {
         setDeleteLoveZ([...loveZ], e)
+        router.refresh()
     }
 
     // LOVE
@@ -48,6 +55,7 @@ export default function ListProduk() {
             })
         }
         catch (e) { console.error(e); }
+        router.refresh()
     }
 
     return (
@@ -73,58 +81,58 @@ export default function ListProduk() {
                             })
                             return (
                                 <div key={i} className={styles.produk}>
-                                    <div href={`/products/${data?.slug_barang}`} >
-                                        <div className={styles.gambar}>
-                                            <Link href={`/products/${data?.slug_barang}`} >
-                                                <Image
-                                                    src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
-                                                    width={500}
-                                                    height={500}
-                                                    alt={data?.nama_barang}
-                                                />
-                                            </Link>
-                                            <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
-                                            <div className={styles.love}>
 
-                                                {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
-                                                    <div className={styles.icon}
-                                                        style={{ background: 'var(--color-high)', borderRadius: '100%' }}
-                                                        onClick={() => handleDeleteLove(data.id)}
-                                                    >
-                                                        <FaHeart />
+                                    <div className={styles.gambar}>
+                                        <Link href={`/products/${data?.slug_barang}`} >
+                                            <Image
+                                                src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                                width={500}
+                                                height={500}
+                                                alt={data?.nama_barang}
+                                            />
+                                        </Link>
+                                        <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                        <div className={styles.love}>
+
+                                            {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
+                                                <div className={styles.icon}
+                                                    style={{ background: 'var(--color-high)', borderRadius: '100%' }}
+                                                    onClick={() => { handleDeleteLove(data.id), setOpenAnimasiLove() }}
+                                                >
+                                                    <FaHeart />
+                                                </div>
+                                                :
+                                                <div className={styles.icon}
+                                                    onClick={() => { handleLove(data), handleLovePlus(data), setOpenAnimasiLove() }}>
+                                                    <FaHeart />
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
+                                        <div className={styles.tengah}>
+                                            <div className={styles.judul}>
+                                                {data?.nama_barang}
+                                            </div>
+                                            <div className={styles.harga}>
+                                                <div className={styles.hargaasli}>
+                                                    <div className={styles.hargaaslidalam}>
+                                                        <div className={styles.hargadalam}>{harga}</div>
                                                     </div>
-                                                    :
-                                                    <div className={styles.icon}
-                                                        onClick={() => { handleLove(data), handleLovePlus(data) }}>
-                                                        <FaHeart />
-                                                    </div>
-                                                }
+                                                </div>
+                                                <div className={styles.hargadiskon}>
+                                                    {diskonharga}
+                                                </div>
+                                            </div>
+
+                                            <div className={styles.ratingterjual}>
+                                                <FaStar className={styles.logorating}></FaStar>&nbsp;{data?.rating_barang}
+                                                <div className={styles.garis} > | </div>
+                                                <div className="terjual">{data?.total_penjualan_barang} terjual</div>
                                             </div>
                                         </div>
-                                        <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
-                                            <div className={styles.tengah}>
-                                                <div className={styles.judul}>
-                                                    {data?.nama_barang}
-                                                </div>
-                                                <div className={styles.harga}>
-                                                    <div className={styles.hargaasli}>
-                                                        <div className={styles.hargaaslidalam}>
-                                                            <div className={styles.hargadalam}>{harga}</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className={styles.hargadiskon}>
-                                                        {diskonharga}
-                                                    </div>
-                                                </div>
+                                    </Link>
 
-                                                <div className={styles.ratingterjual}>
-                                                    <FaStar className={styles.logorating}></FaStar>&nbsp;{data?.rating_barang}
-                                                    <div className={styles.garis} > | </div>
-                                                    <div className="terjual">{data?.total_penjualan_barang} terjual</div>
-                                                </div>
-                                            </div>
-                                        </Link>
-                                    </div>
                                     <Link href="/" className={styles.beli}>
                                         <div className={styles.iconwa}>
                                             <FaWhatsapp className={styles.iconwadalam} />

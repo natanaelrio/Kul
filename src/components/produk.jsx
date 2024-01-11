@@ -7,10 +7,14 @@ import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
+import { useEffect, useState } from 'react';
 
 export default function Produk(props) {
     const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
+    const setOpenAnimasiLove = useStore((state) => state.setOpenAnimasiLove)
+    const setOpenAnimasiKeranjang = useStore((state) => state.setOpenAnimasiKeranjang)
+
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
@@ -26,8 +30,16 @@ export default function Produk(props) {
 
     const jumlahBarang = data.jumlah_barang
 
+    // MATCH SERVER DAN CLIENT
+    const [love, setLove] = useState([])
+    const [keranjang, setKeranjang] = useState([])
+
+    useEffect(() => {
+        setLove(loveZ)
+        setKeranjang(keranjangZ)
+    }, [loveZ, keranjangZ])
+
     // Data OFF
-    // const [angka, setAngka] = useState(ValueResetKeranjang)
     const handleAngkaKurang = () => {
         ValueKeranjang > 1 ? setKurangValueKeranjang() : null
     }
@@ -42,14 +54,17 @@ export default function Produk(props) {
     // DATA LOVE
     const handleLove = (e) => {
         setdataLoveZ([...loveZ, e])
+        setOpenAnimasiLove()
     }
 
     const handleDeleteLove = (e) => {
         setDeleteLoveZ([...loveZ], e)
+        setOpenAnimasiLove()
     }
 
     // DATA KERANJANG
     const handleDataKeranjang = (e) => {
+        setOpenAnimasiKeranjang()
         const value = {
             value: Number(ValueKeranjang),
             harga_asli_barang: e.harga_barang,
@@ -59,6 +74,7 @@ export default function Produk(props) {
         setdataKeranjangZ([...keranjangZ, gabungData])
     }
     const handleDeleteKeranjang = (e) => {
+        setOpenAnimasiKeranjang()
         setDeleteKeranjangZ([...keranjangZ], e)
     }
 
@@ -131,20 +147,19 @@ export default function Produk(props) {
                                 <div className={styles.wkwk}>
                                     <div className={styles.reviewharga}>
                                         <div className={styles.harga}>
-                                            {keranjangZ.length === 1 ? hargaKeranjang : harga}
-
+                                            {keranjang?.length === 1 ? hargaKeranjang : harga}
                                         </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                     </div>
                                     <div className={styles.diskon}>
                                         <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
                                         &nbsp;
                                         <div className={styles.hargadiskon}>
-                                            {keranjangZ.length === 1 ? diskonhargaKeranjang : diskonharga}
+                                            {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga}
                                         </div>
                                     </div>
                                 </div>
 
-                                {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
+                                {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                     <button suppressHydrationWarning
                                         className={styles.lovebg}
                                         onClick={() => handleDeleteLove(data.id)}>
@@ -164,8 +179,8 @@ export default function Produk(props) {
 
                         <div>
                             <div className={styles.jumlahbarang}>stok : {jumlahBarang}</div>
-                            {keranjangZ.length === 1 ?
-                                keranjangZ.map((data) => {
+                            {keranjang?.length === 1 ?
+                                keranjang?.map((data) => {
                                     return (
                                         <div key={data.id} className={styles.jumlah}>
                                             <div className={styles.kata}>Kuantitas</div>
@@ -194,7 +209,7 @@ export default function Produk(props) {
                                 </div>
                             }
 
-                            {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
+                            {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                                 <div className={styles.keranjang}>
                                     <button style={{ background: 'var(--color-high' }}
                                         onClick={() => { handleDeleteKeranjang(data.id), handleResetValue() }

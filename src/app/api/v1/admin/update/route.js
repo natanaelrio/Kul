@@ -17,7 +17,7 @@ export async function PUT(req) {
         })
         if (users) {
             return Response.json({ status: 200, isUpdate: true, })
-        } else Response.json({ status: 500, isUpdate: false })
+        } else return Response.json({ status: 500, isUpdate: false })
     }
     else
         return Response.json({ status: 500, isUpdate: false, contact: 'natanael rio wijaya 08971041460' })

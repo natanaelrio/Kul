@@ -20,7 +20,8 @@ export default async function Page({ params }) {
           urlFetch={`/api/v1/admin/update?id=${getListDataID.data.id}`}
           method={'PUT'}
           data={getListDataID.data}
-          suppressHydrationWarning={false}
+          change={' di Rubuah 😁'}
+          value={false}
         />
       </Header>
     </>

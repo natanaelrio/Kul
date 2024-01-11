@@ -9,7 +9,7 @@ export const useStore = create((set) => ({
         })
         )
     },
-    
+
     openLove: false,
     setOpenLove: () => {
         set((state) => ({
@@ -22,6 +22,20 @@ export const useStore = create((set) => ({
     setOpenKeranjang: () => {
         set((state) => ({
             openKeranjang: !state.openKeranjang
+        })
+        )
+    },
+    openAnimasiLove: false,
+    setOpenAnimasiLove: () => {
+        set((state) => ({
+            openAnimasiLove: !state.openAnimasiLove
+        })
+        )
+    },
+    openAnimasiKeranjang: false,
+    setOpenAnimasiKeranjang: () => {
+        set((state) => ({
+            openAnimasiKeranjang: !state.openAnimasiKeranjang
         })
         )
     },
@@ -41,4 +55,8 @@ export const useStore = create((set) => ({
         })
         )
     },
+    valueDelete: [],
+    setValueDelete: (e) => {
+        set({ valueDelete: e })
+    }
 }))

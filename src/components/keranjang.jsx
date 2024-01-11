@@ -9,7 +9,6 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 
 export default function Keranjang() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
-    const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
@@ -44,7 +43,6 @@ export default function Keranjang() {
         resetValueKeranjang()
     }
 
-    console.log(keranjangZ);
     return (
         <FloatingBlur setOpen={setOpenKeranjang} judul={`List Belanja`} >
 

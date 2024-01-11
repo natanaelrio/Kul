@@ -12,7 +12,8 @@ export default function Post() {
       <FormPage
         urlFetch={'/api/v1/admin/post'}
         method={'POST'}
-        suppressHydrationWarning={false}
+        change={' di Posting 😁'}
+        value={true}
       />
     </Header>
   )

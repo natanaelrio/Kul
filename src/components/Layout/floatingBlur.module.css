@@ -24,7 +24,7 @@
     z-index: 99992;
     position: absolute;
     /* bottom: 0; */
-    top: 100px;
+    top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;

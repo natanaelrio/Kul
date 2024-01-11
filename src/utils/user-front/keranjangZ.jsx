@@ -26,11 +26,12 @@ export const useStoreDataFront = create(
                 set({ keranjangZ: keranjangZ })
             },
 
-          
+
         }),
         {
             name: 'shop-storage', // name of the item in the storage (must be unique)
             storage: createJSONStorage(() => localStorage), // (optional) by def
+            partialize: (state) => ({ loveZ: state.loveZ, keranjangZ: state.keranjangZ }),
         },
     ),
 )
