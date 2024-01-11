@@ -35,7 +35,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     font-size: 14px;
 }
 

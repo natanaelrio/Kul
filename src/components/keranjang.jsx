@@ -15,7 +15,7 @@ export default function Keranjang() {
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
 
-    const totalBarang = keranjangZ.map((data) => data.harga_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+    const totalBarang = keranjangZ.map((data) => data.harga_total_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     });
@@ -32,7 +32,7 @@ export default function Keranjang() {
                         {
                             ...data,
                             value: value,
-                            harga_barang: data.harga_asli_barang * (data.value + 1)
+                            harga_total_barang: data.harga_barang * (data.value + 1)
                         }
                         : data)
                 )
@@ -57,11 +57,11 @@ export default function Keranjang() {
                     <div className={styles.container}>
 
                         {keranjangZ.map((data, i) => {
-                            const harga = data.harga_barang.toLocaleString('id-ID', {
+                            const harga = data.harga_total_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const diskonharga = (((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
+                            const diskonharga = (((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })

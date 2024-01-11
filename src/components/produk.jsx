@@ -53,7 +53,13 @@ export default function Produk(props) {
 
     // DATA LOVE
     const handleLove = (e) => {
-        setdataLoveZ([...loveZ, e])
+        const value = {
+            value: Number(1),
+            harga_total_barang: e.harga_barang,
+            kondisi: true
+        }
+        const gabungData = { ...e, ...value }
+        setdataLoveZ([...loveZ, gabungData])
         setOpenAnimasiLove()
     }
 
@@ -67,12 +73,13 @@ export default function Produk(props) {
         setOpenAnimasiKeranjang()
         const value = {
             value: Number(ValueKeranjang),
-            harga_asli_barang: e.harga_barang,
-            harga_barang: hargatotal
+            harga_total_barang: hargatotal,
+            // harga_barang: hargatotal
         }
         const gabungData = { ...e, ...value }
         setdataKeranjangZ([...keranjangZ, gabungData])
     }
+
     const handleDeleteKeranjang = (e) => {
         setOpenAnimasiKeranjang()
         setDeleteKeranjangZ([...keranjangZ], e)
@@ -87,7 +94,7 @@ export default function Produk(props) {
                         {
                             ...data,
                             value: value,
-                            harga_barang: data.harga_asli_barang * (data.value + 1)
+                            harga_total_barang: data.harga_barang * (data.value + 1)
                         }
                         : data)
                 )
@@ -105,12 +112,12 @@ export default function Produk(props) {
     })
 
 
-    const hargaKeranjang = keranjangZ[0]?.harga_barang.toLocaleString('id-ID', {
+    const hargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
 
-    const diskonhargaKeranjang = ((((keranjangZ[0]?.harga_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_barang)).toLocaleString('id-ID', {
+    const diskonhargaKeranjang = ((((keranjangZ[0]?.harga_total_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_barang)).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })

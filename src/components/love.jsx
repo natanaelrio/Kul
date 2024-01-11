@@ -19,7 +19,7 @@ export default function Love() {
     const handleKeranjang = (e) => {
         const value = {
             value: Number(1),
-            harga_asli_barang: e.harga_barang
+            harga_total_barang: e.harga_barang,
         }
         const gabungData = { ...e, ...value }
         setdataKeranjangZ([...keranjangZ, gabungData])
