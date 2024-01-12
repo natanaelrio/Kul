@@ -73,12 +73,6 @@
     color: var(--color-primary);
 }
 
-
-/* .form .inputicon input:focus {
-    border: 2px solid var(--color-primary);
-} */
-    
-
 .form :placeholder-shown {
     font-size: 17px;
 }
@@ -107,12 +101,12 @@
 
 
 .inputicon {
-   display: flex;
-   align-items: center;
-   background-color: var(--color-grey);
-   border-radius: 7px;
-   font-weight: 700;
-   border: 1px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    background-color: var(--color-grey);
+    border-radius: 7px;
+    font-weight: 700;
+    border: 1px solid var(--color-primary);
 }
 
 
@@ -132,7 +126,7 @@
 }
 
 .form .isisum {
-    width: 100%;
+    /* width: 100%; */
     position: relative;
     height: 70px;
     display: flex;
@@ -162,17 +156,13 @@
 .form .loading {
     position: absolute;
     bottom: 0;
+    background-color: red;
+    height: 5px;
+    width: 100%;
 }
-
-/* .form button:hover {
-    opacity: 0.9;
-} */
-
 
 
 @media only screen and (max-width: 1200px) {
-
-
     .containerform {
         width: 95%;
     }
@@ -183,12 +173,7 @@
     }
 }
 
-
-
-
 @media only screen and (max-width: 768px) {
-
-
     .containerform {
         width: 95%;
     }
@@ -197,13 +182,10 @@
         gap: 0;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     }
-
 }
 
 
 @media only screen and (max-width: 480px) {
-
-
     .judul {
         font-size: 20px;
     }

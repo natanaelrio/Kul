@@ -123,7 +123,7 @@ export default function Header() {
                     /> : null}
                 </div>
                 <div className={styles.pilihan}>
-                    <div className={openAnimasiLove ? styles.animasi : null}>
+                    <div className={openAnimasiLove ? styles.animasi : null} >
                         <div className={styles.icon} onClick={setOpenLove}>
                             {love?.length ? <div className={styles.number}>{love?.length}</div> : <div> </div>}
                             <FaRegHeart />

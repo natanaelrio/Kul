@@ -31,10 +31,12 @@ export default function ListProduk() {
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
 
     const handleLove = (e) => {
+        setOpenAnimasiLove(true)
         setdataLoveZ([...loveZ, e])
     }
 
     const handleDeleteLove = (e) => {
+        setOpenAnimasiLove(false)
         setDeleteLoveZ([...loveZ], e)
         router.refresh()
     }
@@ -97,13 +99,13 @@ export default function ListProduk() {
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                 <div className={styles.icon}
                                                     style={{ background: 'var(--color-high)', borderRadius: '100%' }}
-                                                    onClick={() => { handleDeleteLove(data.id), setOpenAnimasiLove() }}
+                                                    onClick={() => { handleDeleteLove(data.id) }}
                                                 >
                                                     <FaHeart />
                                                 </div>
                                                 :
                                                 <div className={styles.icon}
-                                                    onClick={() => { handleLove(data), handleLovePlus(data), setOpenAnimasiLove() }}>
+                                                    onClick={() => { handleLove(data), handleLovePlus(data) }}>
                                                     <FaHeart />
                                                 </div>
                                             }

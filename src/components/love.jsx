@@ -16,6 +16,8 @@ export default function Love() {
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
+    const setOpenAnimasiKeranjang = useStore((state) => state.setOpenAnimasiKeranjang)
+
     const handleKeranjang = (e) => {
         const value = {
             value: Number(1),
@@ -23,6 +25,7 @@ export default function Love() {
         }
         const gabungData = { ...e, ...value }
         setdataKeranjangZ([...keranjangZ, gabungData])
+        setOpenAnimasiKeranjang(true)
     }
 
     const handleDelete = (e) => {
@@ -31,6 +34,7 @@ export default function Love() {
 
     const handleDeleteKeranjang = (e) => {
         setDeleteKeranjangZ([...keranjangZ], e)
+        setOpenAnimasiKeranjang(false)
     }
 
 

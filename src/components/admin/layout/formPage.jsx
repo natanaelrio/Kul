@@ -14,7 +14,6 @@ import { useRouter } from 'next/navigation';
 export default function FormPage({ urlFetch, method, data, change, value }) {
     const router = useRouter()
     const [matikan, setMatikan] = useState(false)
-    const [loading, setLoading] = useState(false)
 
     // VALIDASI ERROR DAN BERHASIL
     const Berhasil = () => {
@@ -77,7 +76,6 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
         }),
         onSubmit: async values => {
             setMatikan(true)
-            setLoading(true)
             const DataLain = {
                 end: null,
                 btoa: btoa(values.nama_barang).substring(0, 27).split('=')[0],
@@ -105,7 +103,6 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
 
             setTimeout(() => {
                 setMatikan(false)
-                setLoading(false)
                 value ? formik.resetForm() : router.push('/admin/list')
             }, 3000)
         },
@@ -320,10 +317,11 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                                     <div className={styles.loading}>
                                         <BarLoader
                                             color={'#ffb700'}
-                                            loading={loading}
+                                            loading={matikan}
                                             size={100}
                                             height={5}
                                             width={181}
+                                          
                                         />
                                     </div> : null
                                 }

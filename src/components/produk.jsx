@@ -60,17 +60,17 @@ export default function Produk(props) {
         }
         const gabungData = { ...e, ...value }
         setdataLoveZ([...loveZ, gabungData])
-        setOpenAnimasiLove()
+        setOpenAnimasiLove(true)
     }
 
     const handleDeleteLove = (e) => {
         setDeleteLoveZ([...loveZ], e)
-        setOpenAnimasiLove()
+        setOpenAnimasiLove(false)
     }
 
     // DATA KERANJANG
     const handleDataKeranjang = (e) => {
-        setOpenAnimasiKeranjang()
+        setOpenAnimasiKeranjang(true)
         const value = {
             value: Number(ValueKeranjang),
             harga_total_barang: hargatotal,
@@ -81,7 +81,7 @@ export default function Produk(props) {
     }
 
     const handleDeleteKeranjang = (e) => {
-        setOpenAnimasiKeranjang()
+        setOpenAnimasiKeranjang(false)
         setDeleteKeranjangZ([...keranjangZ], e)
     }
 

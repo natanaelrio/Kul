@@ -18,8 +18,8 @@
   --hover-color-grey: #cacccc;
   --color-grey: #f2f4f5;
 
-  --color-grey-love:#989898;
-  --color-hover-grey-love:#4b4b4b
+  --color-grey-love: #989898;
+  --color-hover-grey-love: #4b4b4b
 }
 
 * {
@@ -91,8 +91,26 @@ input[type=number] {
 }
 
 button {
-  -webkit-user-select: none; /* Safari */
-  -ms-user-select: none; /* IE 10 and IE 11 */
-  user-select: none; /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  user-select: none;
+  /* Standard syntax */
   border: 0;
+}
+
+
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    width: max-content !important;
+    height: 10px !important;
+    /* position: absolute!important; */
+    top: 20px !important;
+    right: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%)!important;
+    font-size: 14px !important;
+  }
 }

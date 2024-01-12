@@ -33,9 +33,9 @@ export const useStore = create((set) => ({
         )
     },
     openAnimasiKeranjang: false,
-    setOpenAnimasiKeranjang: () => {
+    setOpenAnimasiKeranjang: (e) => {
         set((state) => ({
-            openAnimasiKeranjang: !state.openAnimasiKeranjang
+            openAnimasiKeranjang: e
         })
         )
     },
