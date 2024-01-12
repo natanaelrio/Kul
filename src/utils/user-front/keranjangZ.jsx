@@ -7,8 +7,16 @@ export const useStoreDataFront = create(
 
             // LOVE
             loveZ: [],
-            setdataLoveZ: (loveZ) => {
-                set({ loveZ: [...new Set(loveZ.reverse())] })
+            setdataLoveZ: (loveZ, harga_barang) => {
+                set((state) => ({
+                    loveZ: [...new Set([...state.loveZ, {
+                        ...loveZ, ...{
+                            value: Number(1),
+                            harga_total_barang: harga_barang,
+                            kondisi: true
+                        }
+                    }].reverse())]
+                }))
             },
             setDeleteLoveZ: (data, e) => {
                 set({ loveZ: data.filter((todo) => todo.id !== e) })
@@ -16,8 +24,16 @@ export const useStoreDataFront = create(
 
             // KERANJANG
             keranjangZ: [],
-            setdataKeranjangZ: (keranjangZ) => {
-                set({ keranjangZ: [...new Set(keranjangZ.reverse())] })
+            setdataKeranjangZ: (keranjangZ, harga_barang) => {
+                set((state) => ({
+                    keranjangZ: [...new Set([...state.keranjangZ, {
+                        ...keranjangZ, ...{
+                            value: Number(1),
+                            harga_total_barang: harga_barang,
+                            kondisi: true
+                        }
+                    }].reverse())]
+                }))
             },
             setDeleteKeranjangZ: (data, e) => {
                 set({ keranjangZ: data.filter((todo) => todo.id !== e) })

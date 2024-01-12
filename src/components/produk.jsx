@@ -52,14 +52,8 @@ export default function Produk(props) {
 
 
     // DATA LOVE
-    const handleLove = (e) => {
-        const value = {
-            value: Number(1),
-            harga_total_barang: e.harga_barang,
-            kondisi: true
-        }
-        const gabungData = { ...e, ...value }
-        setdataLoveZ([...loveZ, gabungData])
+    const handleDataLove = (e) => {
+        setdataLoveZ(e, e.harga_barang)
         setOpenAnimasiLove(true)
     }
 
@@ -70,14 +64,8 @@ export default function Produk(props) {
 
     // DATA KERANJANG
     const handleDataKeranjang = (e) => {
+        setdataKeranjangZ(e, e.harga_barang)
         setOpenAnimasiKeranjang(true)
-        const value = {
-            value: Number(ValueKeranjang),
-            harga_total_barang: hargatotal,
-            // harga_barang: hargatotal
-        }
-        const gabungData = { ...e, ...value }
-        setdataKeranjangZ([...keranjangZ, gabungData])
     }
 
     const handleDeleteKeranjang = (e) => {
@@ -174,7 +162,7 @@ export default function Produk(props) {
                                     </button>
                                     :
                                     <button className={styles.icon}
-                                        onClick={() => { handleLove(data), handleLovePlus() }}>
+                                        onClick={() => { handleDataLove(data), handleLovePlus() }}>
                                         <FaRegHeart />
                                     </button>
                                 }

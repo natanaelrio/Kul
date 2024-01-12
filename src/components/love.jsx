@@ -18,13 +18,8 @@ export default function Love() {
 
     const setOpenAnimasiKeranjang = useStore((state) => state.setOpenAnimasiKeranjang)
 
-    const handleKeranjang = (e) => {
-        const value = {
-            value: Number(1),
-            harga_total_barang: e.harga_barang,
-        }
-        const gabungData = { ...e, ...value }
-        setdataKeranjangZ([...keranjangZ, gabungData])
+    const handleDataKeranjang = (e) => {
+        setdataKeranjangZ(e, e.harga_barang)
         setOpenAnimasiKeranjang(true)
     }
 
@@ -84,7 +79,7 @@ export default function Love() {
                                                         <LuShoppingCart />&nbsp;Keranjang -
                                                     </div>
                                                     :
-                                                    <div className={styles.tambahkeranjang} onClick={() => handleKeranjang(data)}>
+                                                    <div className={styles.tambahkeranjang} onClick={() => handleDataKeranjang(data)}>
                                                         <LuShoppingCart />&nbsp;Keranjang +
                                                     </div>
                                                 }

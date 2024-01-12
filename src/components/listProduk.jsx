@@ -30,9 +30,9 @@ export default function ListProduk() {
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
 
-    const handleLove = (e) => {
+    const handleDataLove = (e) => {
         setOpenAnimasiLove(true)
-        setdataLoveZ([...loveZ, e])
+        setdataLoveZ(e, e.harga_barang)
     }
 
     const handleDeleteLove = (e) => {
@@ -105,7 +105,7 @@ export default function ListProduk() {
                                                 </div>
                                                 :
                                                 <div className={styles.icon}
-                                                    onClick={() => { handleLove(data), handleLovePlus(data) }}>
+                                                    onClick={() => { handleDataLove(data), handleLovePlus(data) }}>
                                                     <FaHeart />
                                                 </div>
                                             }
