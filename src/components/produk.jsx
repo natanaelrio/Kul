@@ -67,6 +67,7 @@ export default function Produk(props) {
         }
     }
 
+    // Data OFF
     const hargatotal = data.harga_barang * ValueKeranjang
     const harga = (hargatotal).toLocaleString('id-ID', {
         style: 'currency',
@@ -77,16 +78,17 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
-
+    // DATA KERANJANG
     const hargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
 
-    const diskonhargaKeranjang = ((((keranjangZ[0]?.harga_total_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_barang)).toLocaleString('id-ID', {
+    const diskonhargaKeranjang = ((((keranjangZ[0]?.harga_total_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_total_barang)).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
+
 
     return (
         <div className={styles.container}>
@@ -171,7 +173,7 @@ export default function Produk(props) {
                                         }>Hapus Keranjang</button>
                                 </div> :
                                 <div className={styles.keranjang}>
-                                    <button onClick={() => setdataKeranjangZ(data, harga)}>Tambahkan Keranjang</button>
+                                    <button onClick={() => setdataKeranjangZ(data, hargatotal)}>Tambahkan Keranjang</button>
                                 </div>
                             }
 

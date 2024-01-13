@@ -24,8 +24,14 @@ export default function ListProduk() {
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
 
+    const HandlePushLove = (e) => {
+        setdataLoveZ(e, e.harga_barang, true)
+    }
+
     const HandleDeleteLove = (e) => {
-        setDeleteLoveZ(e.id), fetchdatalist()
+        setTimeout(() => {
+            setDeleteLoveZ(e.id), fetchdatalist()
+        }, 500);
     }
 
     return (
@@ -63,7 +69,6 @@ export default function ListProduk() {
                                         </Link>
                                         <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
                                         <div className={styles.love}>
-
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                 <div className={styles.icon}
                                                     style={{ background: 'var(--color-high)', borderRadius: '100%' }}
@@ -73,7 +78,7 @@ export default function ListProduk() {
                                                 </div>
                                                 :
                                                 <div className={styles.icon}
-                                                    onClick={() => setdataLoveZ(data, data.harga_barang, true)}>
+                                                    onClick={() => HandlePushLove(data)}>
                                                     <FaHeart />
                                                 </div>
                                             }
