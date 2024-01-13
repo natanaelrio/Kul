@@ -12,8 +12,6 @@ import { useEffect, useState } from 'react';
 export default function Produk(props) {
     const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
-    const setOpenAnimasiLove = useStore((state) => state.setOpenAnimasiLove)
-    const setOpenAnimasiKeranjang = useStore((state) => state.setOpenAnimasiKeranjang)
 
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
@@ -23,6 +21,7 @@ export default function Produk(props) {
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
+
     const ValueKeranjang = useKeranjangCount((state) => state.ValueKeranjang)
     const setKurangValueKeranjang = useKeranjangCount((state) => state.setKurangValueKeranjang)
     const setTambahValueKeranjang = useKeranjangCount((state) => state.setTambahValueKeranjang)
@@ -39,6 +38,7 @@ export default function Produk(props) {
         setKeranjang(keranjangZ)
     }, [loveZ, keranjangZ])
 
+
     // Data OFF
     const handleAngkaKurang = () => {
         ValueKeranjang > 1 ? setKurangValueKeranjang() : null
@@ -46,31 +46,9 @@ export default function Produk(props) {
     const handleAngkaTambah = () => {
         ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
     }
-    const handleResetValue = () => {
-        resetValueKeranjang()
-    }
 
-
-    // DATA LOVE
-    const handleDataLove = (e) => {
-        setdataLoveZ(e, e.harga_barang)
-        setOpenAnimasiLove(true)
-    }
-
-    const handleDeleteLove = (e) => {
-        setDeleteLoveZ([...loveZ], e)
-        setOpenAnimasiLove(false)
-    }
-
-    // DATA KERANJANG
-    const handleDataKeranjang = (e) => {
-        setdataKeranjangZ(e, e.harga_barang)
-        setOpenAnimasiKeranjang(true)
-    }
-
-    const handleDeleteKeranjang = (e) => {
-        setOpenAnimasiKeranjang(false)
-        setDeleteKeranjangZ([...keranjangZ], e)
+    const handleKeranjangdanResetValue = (e) => {
+        setDeleteKeranjangZ(e), resetValueKeranjang()
     }
 
 
@@ -110,24 +88,6 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
-    // LOVE
-    const handleLovePlus = async () => {
-        try {
-            await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-love-products?id=${data.slug_barang}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': process.env.NEXT_PUBLIC_SECREET
-                },
-                body: JSON.stringify({
-                    like_barang: data.like_barang ? data.like_barang + 1 : 1
-                }),
-                next: { revalidate: 0 }
-            })
-        }
-        catch (e) { console.error(e); }
-    }
-
     return (
         <div className={styles.container}>
             <div className={styles.width}>
@@ -157,12 +117,12 @@ export default function Produk(props) {
                                 {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                     <button suppressHydrationWarning
                                         className={styles.lovebg}
-                                        onClick={() => handleDeleteLove(data.id)}>
+                                        onClick={() => setDeleteLoveZ(data.id)}>
                                         <FaRegHeart />
                                     </button>
                                     :
                                     <button className={styles.icon}
-                                        onClick={() => { handleDataLove(data), handleLovePlus() }}>
+                                        onClick={() => setdataLoveZ(data, data.harga_barang, false)}>
                                         <FaRegHeart />
                                     </button>
                                 }
@@ -207,11 +167,11 @@ export default function Produk(props) {
                             {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                                 <div className={styles.keranjang}>
                                     <button style={{ background: 'var(--color-high' }}
-                                        onClick={() => { handleDeleteKeranjang(data.id), handleResetValue() }
+                                        onClick={() => handleKeranjangdanResetValue(data.id)
                                         }>Hapus Keranjang</button>
                                 </div> :
                                 <div className={styles.keranjang}>
-                                    <button onClick={() => handleDataKeranjang(data)}>Tambahkan Keranjang</button>
+                                    <button onClick={() => setdataKeranjangZ(data, harga)}>Tambahkan Keranjang</button>
                                 </div>
                             }
 

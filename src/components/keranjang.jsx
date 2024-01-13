@@ -14,15 +14,10 @@ export default function Keranjang() {
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
-
     const totalBarang = keranjangZ.map((data) => data.harga_total_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     });
-
-    const handleDeleteKeranjang = (e) => {
-        setDeleteKeranjangZ([...keranjangZ], e)
-    }
 
     const handleCountKeranjang = (id, value, jumlah) => {
         if (value > 0) {
@@ -39,9 +34,10 @@ export default function Keranjang() {
         }
     }
 
-    const handleResetValue = () => {
-        resetValueKeranjang()
+    const handleKeranjangdanResetValue = (e) => {
+        setDeleteKeranjangZ(e), resetValueKeranjang()
     }
+
 
     return (
         <FloatingBlur setOpen={setOpenKeranjang} judul={`List Belanja`} >
@@ -97,7 +93,7 @@ export default function Keranjang() {
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => { handleDeleteKeranjang(data.id), handleResetValue() }} /></div>
+                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleKeranjangdanResetValue(data.id)} /></div>
                                 </div>
                             )
                         })}

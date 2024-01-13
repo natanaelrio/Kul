@@ -23,13 +23,13 @@ export default function Header() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
-
-    const openAnimasiLove = useStore((state) => state.openAnimasiLove)
-    const openAnimasiKeranjang = useStore((state) => state.openAnimasiKeranjang)
+    const kondisiLove = useStoreDataFront((state) => state.kondisiLove)
+    const kondisiKeranjang = useStoreDataFront((state) => state.kondisiKeranjang)
 
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
     const [keranjang, setKeranjang] = useState([])
+
     useEffect(() => {
         setLove(loveZ)
         setKeranjang(keranjangZ)
@@ -122,13 +122,13 @@ export default function Header() {
                     /> : null}
                 </div>
                 <div className={styles.pilihan}>
-                    <div className={openAnimasiLove ? styles.animasi : null} >
+                    <div className={kondisiLove ? styles.animasi : null} >
                         <div className={styles.icon} onClick={setOpenLove}>
                             {love?.length ? <div className={styles.number}>{love?.length}</div> : <div> </div>}
                             <FaRegHeart />
                         </div>
                     </div>
-                    <div className={openAnimasiKeranjang ? styles.animasi : null}>
+                    <div className={kondisiKeranjang ? styles.animasi : null}>
                         <div className={styles.icon} onClick={setOpenKeranjang}>
                             {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
                             <LuShoppingCart />

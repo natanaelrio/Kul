@@ -7,23 +7,40 @@ export const useStoreDataFront = create(
 
             // LOVE
             loveZ: [],
-            setdataLoveZ: (loveZ, harga_barang) => {
+            kondisiLove: false,
+            setdataLoveZ: async (loveZ, harga_barang, kondisi) => {
                 set((state) => ({
                     loveZ: [...new Set([...state.loveZ, {
                         ...loveZ, ...{
                             value: Number(1),
                             harga_total_barang: harga_barang,
-                            kondisi: true
+                            kondisiLove: true
                         }
-                    }].reverse())]
-                }))
+                    }].reverse())],
+                })),
+                    set({ kondisiLove: true }),
+                    kondisi ?
+                        await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-love-products?id=${loveZ.slug_barang}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': process.env.NEXT_PUBLIC_SECREET
+                            },
+                            body: JSON.stringify({
+                                like_barang: loveZ.like_barang ? loveZ.like_barang + 1 : 1
+                            }),
+                            next: { revalidate: 0 }
+                        }) : null
+
             },
-            setDeleteLoveZ: (data, e) => {
-                set({ loveZ: data.filter((todo) => todo.id !== e) })
+            setDeleteLoveZ: (e) => {
+                set((state) => ({ loveZ: [...state.loveZ].filter((todo) => todo.id !== e) })),
+                    set({ kondisiLove: false })
             },
 
             // KERANJANG
             keranjangZ: [],
+            kondisiKeranjang: false,
             setdataKeranjangZ: (keranjangZ, harga_barang) => {
                 set((state) => ({
                     keranjangZ: [...new Set([...state.keranjangZ, {
@@ -33,10 +50,12 @@ export const useStoreDataFront = create(
                             kondisi: true
                         }
                     }].reverse())]
-                }))
+                })),
+                    set({ kondisiKeranjang: true })
             },
-            setDeleteKeranjangZ: (data, e) => {
-                set({ keranjangZ: data.filter((todo) => todo.id !== e) })
+            setDeleteKeranjangZ: (e) => {
+                set((state) => ({ keranjangZ: [...state.keranjangZ].filter((todo) => todo.id !== e) })),
+                    set({ kondisiKeranjang: false })
             },
             setdataKeranjangCountZ: (keranjangZ) => {
                 set({ keranjangZ: keranjangZ })

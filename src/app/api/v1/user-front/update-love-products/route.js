@@ -5,8 +5,9 @@ export async function PUT(req) {
     const id = searchParams.get('id');
     const { slug_barang, like_barang } = await req.json()
     const data = { slug_barang, like_barang }
-
     const authorization = req.headers.get('authorization')
+
+
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const users = await prisma.admin.update({
             where: {

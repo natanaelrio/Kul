@@ -9,6 +9,7 @@ import { LuShoppingCart } from "react-icons/lu";
 
 export default function Love() {
     const setOpenLove = useStore((state) => state.setOpenLove)
+
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
 
@@ -16,26 +17,8 @@ export default function Love() {
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
-    const setOpenAnimasiKeranjang = useStore((state) => state.setOpenAnimasiKeranjang)
-
-    const handleDataKeranjang = (e) => {
-        setdataKeranjangZ(e, e.harga_barang)
-        setOpenAnimasiKeranjang(true)
-    }
-
-    const handleDelete = (e) => {
-        setDeleteLoveZ([...loveZ], e)
-    }
-
-    const handleDeleteKeranjang = (e) => {
-        setDeleteKeranjangZ([...keranjangZ], e)
-        setOpenAnimasiKeranjang(false)
-    }
-
-
     return (
         <FloatingBlur setOpen={setOpenLove} judul={`List Favorit`} >
-
             {loveZ && loveZ.length == 0 ? <div className={styles.notfound}>
                 <div className={styles.belum}>
                     Belum Ada Pilihan &nbsp;<FaRegHeart />
@@ -75,11 +58,11 @@ export default function Love() {
                                                 {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                                                     <div className={styles.tambahkeranjang}
                                                         style={{ background: 'var(--color-high' }}
-                                                        onClick={() => handleDeleteKeranjang(data.id)}>
+                                                        onClick={() => setDeleteKeranjangZ(data.id)}>
                                                         <LuShoppingCart />&nbsp;Keranjang -
                                                     </div>
                                                     :
-                                                    <div className={styles.tambahkeranjang} onClick={() => handleDataKeranjang(data)}>
+                                                    <div className={styles.tambahkeranjang} onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
                                                         <LuShoppingCart />&nbsp;Keranjang +
                                                     </div>
                                                 }
@@ -87,7 +70,7 @@ export default function Love() {
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleDelete(data.id)} /></div>
+                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>
                                 </div>
                             )
                         })}

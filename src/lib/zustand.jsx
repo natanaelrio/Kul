@@ -25,20 +25,6 @@ export const useStore = create((set) => ({
         })
         )
     },
-    openAnimasiLove: false,
-    setOpenAnimasiLove: () => {
-        set((state) => ({
-            openAnimasiLove: !state.openAnimasiLove
-        })
-        )
-    },
-    openAnimasiKeranjang: false,
-    setOpenAnimasiKeranjang: (e) => {
-        set((state) => ({
-            openAnimasiKeranjang: e
-        })
-        )
-    },
 
     //ADMIN
     openPencarianAdmin: false,
