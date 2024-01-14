@@ -4,21 +4,13 @@
     overflow-y: scroll;
 }
 
-/* .container::-webkit-scrollbar {
-    width: 0px;
-    background-color: #F5F5F5;
-}
-
-.container:hover::-webkit-scrollbar {
-    width: 8px;
-} */
-
 .total {
     display: flex;
     width: 100%;
     justify-content: flex-end;
     align-items: center;
     padding: 15px;
+    font-size: 0.7rem;
 }
 
 .total .harga {
@@ -76,6 +68,7 @@
     justify-content: space-between;
     flex-direction: column;
     width: 100%;
+    font-size: 0.6rem;
 }
 
 .list .detail .judul {
@@ -101,6 +94,7 @@
 
 .list .detail .hargadalam {
     font-weight: 500;
+    font-size: 0.7rem;
 }
 
 .list .detail .hargadiskon {
@@ -157,6 +151,7 @@
     background-color: var(--color-white);
     font-weight: 500;
 }
+
 .list .jumlahbarang {
     display: flex;
     align-items: center;
@@ -172,7 +167,7 @@
 
 .delete {
     color: var(--color-diskon);
-    font-size: 20px;
+    font-size: 0.9rem;
 }
 
 
@@ -190,7 +185,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 0.9rem;
     margin-bottom: 5px;
 }
 
@@ -201,6 +196,7 @@
     padding: 10px 10px;
     color: var(--color-white);
     border-radius: 7px;
+    font-size: 0.7rem;
 }
 
 .notfound .kembali:hover {
@@ -214,9 +210,7 @@
 
     .container {
         padding: 15px 5px;
-        font-size: 14px;
         max-height: 50vh;
-        /* height: 100vh; */
     }
 
 
@@ -240,16 +234,9 @@
     .total {
         flex-direction: column;
         align-items: flex-end;
-        /* position: absolute;
-        bottom: 0; */
     }
 
     .total .totalpembayaran {
         padding: 5px;
-        font-size: 20px;
-    }
-
-    .notfound .belum {
-        font-size: 20px;
     }
 }

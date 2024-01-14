@@ -2,6 +2,7 @@
 .bawah {
     display: flex;
     justify-content: center;
+    font-size: 0.6rem;
 }
 
 .bawah .isi {
@@ -29,7 +30,7 @@
 
 .bawah .isi .sosmed .sosmeddalam {
     color: var(--color-sekunder);
-    font-size: 30px;
+    font-size:1.2rem
 }
 
 .bawah .isi .sosmed a .sosmeddalam:hover {
@@ -49,7 +50,6 @@
     /* FOOTER */
     .bawah .isi {
         flex-direction: column;
-        font-size: 13px;
     }
 
     .bawah .isi .sosmed {

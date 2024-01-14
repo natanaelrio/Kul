@@ -6,8 +6,6 @@
     max-height: 400px;
     box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
     border-radius: 0 0 15px 15px;
-    /* padding: 10px 10px 0 0; */
-    /* overflow-y: scroll; */
 }
 
 /* NAVIGASI */
@@ -21,21 +19,17 @@
     grid-template-columns: 0.3fr 1fr 0.3fr;
     position: sticky;
     top: 0;
-    /* background-color: red; */
-    /* transition: 0.2 ease; */
-    /* position: relative; */
     z-index: 10;
 }
 
 .nav .logogambardalam {
-    font-size: 50px;
+    font-size: 2rem;
     color: var(--color-primary);
 }
 
 .nav .logogambar {
     grid-area: 1/1/2/2;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
 }
 
@@ -43,16 +37,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* display: block; */
     grid-area: 1/2/2/3;
-    /* justify-content: flex-end; */
     flex-direction: column;
     position: relative;
 }
 
 .nav .pencarian .dalampencarian {
     position: relative;
-    /* width: 100%; */
 }
 
 
@@ -65,9 +56,8 @@
     width: 100%;
     height: 40px;
     outline: none;
-    font-size: 17px;
+    font-size: 0.7rem;
     font-weight: 500;
-    /* border-radius: 15px; */
     border: 1px solid #cccccc;
     background-color: var(--color-grey);
 }
@@ -86,7 +76,6 @@
 }
 
 .nav .pencarian .input input:focus {
-    /* border: 2px solid var(--color-primary); */
     background-color: var(--color-white);
     outline: none;
 }
@@ -100,13 +89,13 @@
 
 .nav .pencarian .logocari {
     display: flex;
-    font-size: 23px;
+    font-size: 0.9rem;
     font-weight: bold;
     opacity: 0.5;
 }
 
 .nav .pencarian .logocaridalam {
-    font-size: 20px;
+    font-size: 0.9rem;
 }
 
 .pilihan {
@@ -120,13 +109,10 @@
     margin-right: 10px;
     padding: 10px;
     color: var(--color-sekunder);
-    font-size: 25px;
+    font-size: 0.9rem;
     display: flex;
     align-items: center;
     cursor: pointer;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     -webkit-user-select: none;
     /* Safari */
     -ms-user-select: none;
@@ -170,7 +156,7 @@
     justify-content: center;
     color: var(--color-diskon);
     font-weight: 500;
-    font-size: 20px;
+    font-size: 0.9rem;
 }
 
 .pilihan .icon:hover {
@@ -187,7 +173,7 @@
     border-radius: 5px;
     font-weight: 700;
     white-space: nowrap;
-    font-size: 14px;
+    font-size: 0.7rem;
     height: 40px;
 }
 
@@ -215,10 +201,6 @@
         gap: 5px;
     }
 
-    .nav .logogambardalam {
-        font-size: 40px;
-    }
-
     .nav .logogambar {
         grid-area: 1/1/2/2;
     }
@@ -240,12 +222,6 @@
         height: 40px;
     }
 
-
-    .nav .pencarian .logocari {
-        font-size: 23px;
-    }
-
-
     .pilihan .icon {
         margin-right: 5px;
         padding: 5px;
@@ -266,20 +242,11 @@
         gap: 15px;
     }
 
-    .nav .logogambardalam {
-        font-size: 40px;
-    }
-
     .pilihan {
         justify-content: center;
     }
 
-    .pilihan .icon {
-        font-size: 20px;
-    }
-
     .pilihan .login {
-        font-size: 14px;
         padding: 0px 10px;
     }
 
@@ -299,14 +266,11 @@
     .nav .pencarian .input input {
         width: 100%;
         height: 40px;
-        font-size: 14px;
     }
 
     .nav .pencarian .input input::placeholder {
-        font-size: 14px;
         font-weight: 700;
     }
-
 
 
     .nav .pencarian .input .inputtrue {
@@ -318,33 +282,9 @@
         top: 10px;
     }
 
-    .nav .pencarian .logocari {
-        font-size: 23px;
-    }
-
-    .nav .pencarian .logocaridalam {
-        font-size: 20px;
-    }
-
-    /* .nav .icon {
-        width: 20%;
-    } */
-
     .nav .icon .iconuser {
         font-size: 40px;
     }
-
-    /* FOOTER */
-    .bawah .isi {
-        flex-direction: column;
-        font-size: 13px;
-    }
-
-    .bawah .isi .sosmed {
-        margin-top: 5px;
-    }
-
-
 
     .skletoncontainer {
         width: 95%;

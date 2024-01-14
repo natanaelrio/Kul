@@ -173,7 +173,7 @@ export default function Produk(props) {
                                         }>Hapus Keranjang</button>
                                 </div> :
                                 <div className={styles.keranjang}>
-                                    <button onClick={() => setdataKeranjangZ(data, hargatotal)}>Tambahkan Keranjang</button>
+                                    <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
                                 </div>
                             }
 

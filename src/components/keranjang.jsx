@@ -19,15 +19,18 @@ export default function Keranjang() {
         currency: 'IDR'
     });
 
-    const handleCountKeranjang = (id, value, jumlah) => {
+    const handleCountKeranjang = (data, kondisi) => {
+        const id = data.id
+        const value = kondisi ? data.value + 1 : data.value - 1
+        const jumlahBarang = data.jumlah_barang
         if (value > 0) {
-            value > jumlah ? null :
+            value > jumlahBarang ? null :
                 setdataKeranjangCountZ(
                     keranjangZ.map((data) => data.id == id ?
                         {
                             ...data,
                             value: value,
-                            harga_total_barang: data.harga_barang * (data.value + 1)
+                            harga_total_barang: data.harga_barang * value
                         }
                         : data)
                 )
@@ -37,7 +40,6 @@ export default function Keranjang() {
     const handleKeranjangdanResetValue = (e) => {
         setDeleteKeranjangZ(e), resetValueKeranjang()
     }
-
 
     return (
         <FloatingBlur setOpen={setOpenKeranjang} judul={`List Belanja`} >
@@ -57,7 +59,7 @@ export default function Keranjang() {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const diskonharga = (((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
+                            const diskonharga = (((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_total_barang).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
@@ -82,11 +84,11 @@ export default function Keranjang() {
                                                 <div className={styles.tambahkurang}>
                                                     <button className={styles.kurang}
                                                         style={data.value <= 1 ? { color: '#c2c2c2' } : null}
-                                                        onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}>-</button>
+                                                        onClick={() => { handleCountKeranjang(data, false) }}>-</button>
                                                     <button className={styles.nilai}>{data.value}</button>
                                                     <button className={styles.tambah}
                                                         style={data.value >= data.jumlah_barang ? { color: '#c2c2c2' } : null}
-                                                        onClick={() => { handleCountKeranjang(data.id, data.value + 1, data.jumlah_barang) }}>+</button>
+                                                        onClick={() => { handleCountKeranjang(data, true) }}>+</button>
                                                 </div>
                                                 <div className={styles.stokbarang}>Stok :{data.jumlah_barang}</div>
                                             </div>

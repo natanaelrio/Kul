@@ -1,10 +1,8 @@
 .container {
-    /* position: absolute; */
     position: fixed;
     top: 0;
     z-index: 99991;
     min-height: 100dvh;
-    /* width: 100vw; */
     display: flex;
     justify-content: center;
 }
@@ -23,7 +21,6 @@
 .containerfloating {
     z-index: 99992;
     position: absolute;
-    /* bottom: 0; */
     top: 50px;
     display: flex;
     justify-content: center;
@@ -47,7 +44,7 @@
     justify-content: center;
     align-items: center;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 0.9rem;
     color: var(--color-white);
     border-radius: 10px 10px 0 0;
     position: relative;
@@ -60,6 +57,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 0.9rem;
 }
 
 .atasjudul .icon:hover {
@@ -78,21 +76,12 @@
     .containerfloatingdalam {
         width: 100vw;
         border-radius: 15px 15px 0 0;
-        /* min-height: 100vh; */
-        /* display: flex;
-        flex-direction: column;
-        justify-content: space-between; */
-        /* position: relative; */
     }
 
     .atasjudul {
         border-radius: 15px 15px 0 0;
-        font-size: 20px;
     }
 
-    .atasjudul .icon {
-        font-size: 24px;
-    }
 }
 
 
@@ -112,10 +101,6 @@
 
     .atasjudul {
         border-radius: 15px 15px 0 0;
-        font-size: 18px;
     }
 
-    .atasjudul .icon {
-        font-size: 27px;
-    }
 }

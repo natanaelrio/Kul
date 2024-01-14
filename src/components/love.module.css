@@ -4,15 +4,6 @@
     overflow-y: scroll;
 }
 
-/* .container::-webkit-scrollbar {
-    width: 0px;
-    background-color: #F5F5F5;
-}
-
-.container:hover::-webkit-scrollbar {
-    width: 8px;
-} */
-
 .total {
     display: flex;
     width: 100%;
@@ -35,16 +26,6 @@
     cursor: pointer;
     border-radius: 7px;
     white-space: nowrap;
-}
-
-.total .bayarlangsung:hover {
-    transition: 0.2s ease all;
-    background-color: var(--hover-color-primary);
-}
-
-.total .totalpembayaran {
-    padding: 15px;
-    font-size: 25px;
 }
 
 .list {
@@ -74,6 +55,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    font-size: 0.6rem;
 }
 
 .list .detail .judul {
@@ -136,7 +118,7 @@
 
 .delete {
     color: var(--color-diskon);
-    font-size: 20px;
+    font-size: 0.9rem;
 }
 
 
@@ -154,7 +136,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 0.9rem;
     margin-bottom: 5px;
 }
 
@@ -165,6 +147,7 @@
     padding: 10px 10px;
     color: var(--color-white);
     border-radius: 7px;
+    font-size: 0.7rem;
 }
 
 .notfound .kembali:hover {
@@ -178,10 +161,8 @@
 
     .container {
         padding: 15px 5px;
-        font-size: 14px;
         height: 0;
         min-height: 68dvh;
-        /* height: 100vh; */
     }
 
 
@@ -205,8 +186,6 @@
     .total {
         flex-direction: column;
         align-items: flex-end;
-        /* position: absolute;
-        bottom: 0; */
     }
 
 

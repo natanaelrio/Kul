@@ -9,7 +9,7 @@
     width: 1100px;
     font-weight: bold;
     color: var(--color-sekunder);
-    font-size: 25px;
+    font-size: 0.9rem;
     margin-bottom: -30px;
 }
 
@@ -27,16 +27,10 @@
 
 
 .produk {
-    /* width: 312px; */
-    /* margin: 10px; */
-    /* border-radius: 20px;
-    padding: 20px; */
-    /* border: 1px solid var(--color-primary); */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    font-size: 14px;
+    font-size: 0.6rem;
 }
 
 .produk {
@@ -48,10 +42,8 @@
 }
 
 .produk .gambar {
-    max-height: 250px;
-    /* max-width: 312px; */
+    max-height: 180px;
     border-radius: 10px 10px 0 0;
-    /* margin-bottom: 10px; */
     overflow: hidden;
     position: relative;
 }
@@ -96,10 +88,9 @@
 
 .produk .gambar img {
     border-radius: 10px 10px 0 0;
-    max-height: 220px;
+    max-height: 180px;
     max-width: 100%;
     background-position: center;
-    /* object-fit: cover; */
     object-position: center;
 }
 
@@ -119,7 +110,6 @@
 
 .produk .harga {
     display: flex;
-    /* align-items: center; */
     margin-bottom: 5px;
     flex-direction: column;
 }
@@ -135,24 +125,14 @@
 }
 
 .produk .harga .hargaasli .hargaaslidalam .hargadalam {
-    font-size: 17px;
+    font-size: 0.7rem;
 }
 
 .produk .harga .hargadiskon {
     font-weight: 300;
     text-decoration: line-through;
-    /* margin-bottom: 5px; */
     display: flex;
 }
-
-/* .produk .diskon {
-    color: var(--color-diskon);
-    background: var(--bg-diskon);
-    display: inline-block;
-    padding: 3px;
-    border-radius: 7px;
-    margin-bottom: 5px;
-} */
 
 .produk .ratingterjual {
     display: flex;
@@ -210,6 +190,7 @@
     border: 1px solid var(--color-primary);
     cursor: pointer;
     border-radius: 7px;
+    font-size: 0.7rem;
 }
 
 .countainer .pagination:hover {
@@ -231,13 +212,11 @@
 }
 
 
-/* Tablet styles using media query */
 @media only screen and (max-width: 768px) {
 
     /* JUDUL ATAS */
     .judulatas {
         width: 90vw;
-        font-size: 30px;
     }
 
     /* LIST PRODUK */
@@ -254,23 +233,13 @@
 
     .produk {
         margin: 0;
-        /* width: 47vw */
     }
 
     .produk .gambar {
         max-width: 100%;
     }
 
-    .produk {
-        font-size: 18px;
-    }
-
-    .produk .harga .hargaasli .hargaaslidalam .hargadalam {
-        font-size: 20px;
-    }
-
     .produk .beli {
-        font-size: 15px;
         padding: 7px 0px;
     }
 
@@ -283,7 +252,6 @@
     /* JUDUL ATAS */
     .judulatas {
         width: 90vw;
-        font-size: 20px;
     }
 
     /* LIST PRODUK */
@@ -305,21 +273,5 @@
 
     .produk .gambar {
         max-width: 100%;
-    }
-
-    .produk {
-        font-size: 15px;
-    }
-
-    .produk .harga .hargaasli .hargaaslidalam .hargadalam {
-        font-size: 17px;
-    }
-
-    .produk .beli .iconwadalam {
-        font-size: 17px;
-    }
-
-    .produk .beli {
-        font-size: 10px !important;
     }
 }
