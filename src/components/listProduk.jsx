@@ -70,16 +70,18 @@ export default function ListProduk() {
                                         <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
                                         <div className={styles.love}>
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
-                                                <div className={styles.icon}
+                                                <div className={styles.bgicon}
                                                     style={{ background: 'var(--color-high)', borderRadius: '100%' }}
                                                     onClick={() => HandleDeleteLove(data)}
                                                 >
                                                     <FaHeart />
                                                 </div>
                                                 :
-                                                <div className={styles.icon}
-                                                    onClick={() => HandlePushLove(data)}>
-                                                    <FaHeart />
+                                                <div className={styles.iconlogo} onClick={() => HandlePushLove(data)}>
+                                                    <div className={styles.logo}>
+                                                        <FaHeart />
+                                                    </div>
+                                                    <div className={styles.bgiconpush}></div>
                                                 </div>
                                             }
                                         </div>

@@ -62,7 +62,7 @@ export default function Header() {
                 setData(data?.data)
             }
             fetchData()
-        }, 2000);
+        }, 1000);
         return () => clearTimeout(debounce)
     }, [value])
 

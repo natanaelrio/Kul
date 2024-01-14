@@ -27,7 +27,7 @@ export default function Pencarian() {
                 setData(data?.data)
             }
             HandlePencarian()
-        }, 5000);
+        }, 1000);
         return () => clearTimeout(debounce)
     }, [value])
 

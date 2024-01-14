@@ -38,11 +38,6 @@
     font-size: 0.7rem;
 }
 
-.reviewproduk button {
-    font-size: 0.9rem;
-}
-
-
 .reviewproduk .judul {
     font-weight: 700;
 }
@@ -87,7 +82,7 @@
 }
 
 .reviewproduk .icon {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -150,7 +145,7 @@
     align-items: center;
     background-color: var(--color-grey);
     color: var(--color-sekunder);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 5px;
     font-weight: 700;
 }
@@ -158,13 +153,23 @@
 .reviewproduk .button button {
     background-color: var(--color-grey);
     color: var(--color-sekunder);
-    padding: 0px 30px;
+    padding: 0px 15px;
     cursor: pointer;
     outline: none;
     border: 0;
 }
 
+.reviewproduk .button .angka {
+    margin: 0 15px;
+}
+
+
 /* ADD CARD */
+
+.reviewproduk button {
+    font-size: 0.7rem;
+}
+
 .reviewproduk .keranjang button {
     display: flex;
     align-items: center;
@@ -175,8 +180,8 @@
     color: var(--color-white);
     border: 0;
     outline: 0;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 15px;
     cursor: pointer;
     letter-spacing: 1.1px;
 }
@@ -197,8 +202,8 @@
     color: var(--color-white);
     border: 0;
     outline: 0;
-    padding: 15px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 15px;
     cursor: pointer;
     letter-spacing: 1.1px;
 }
