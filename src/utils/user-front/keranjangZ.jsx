@@ -57,8 +57,17 @@ export const useStoreDataFront = create(
                 set((state) => ({ keranjangZ: [...state.keranjangZ].filter((todo) => todo.id !== e) })),
                     set({ kondisiKeranjang: false })
             },
-            setdataKeranjangCountZ: (keranjangZ) => {
-                set({ keranjangZ: keranjangZ })
+            setdataKeranjangCountZ: (id, value) => {
+                set((state) => ({
+                    keranjangZ:
+                        state.keranjangZ.map((data) => data.id == id ?
+                            {
+                                ...data,
+                                value: value,
+                                harga_total_barang: data.harga_barang * value
+                            }
+                            : data)
+                }))
             },
 
 

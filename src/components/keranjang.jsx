@@ -25,15 +25,7 @@ export default function Keranjang() {
         const jumlahBarang = data.jumlah_barang
         if (value > 0) {
             value > jumlahBarang ? null :
-                setdataKeranjangCountZ(
-                    keranjangZ.map((data) => data.id == id ?
-                        {
-                            ...data,
-                            value: value,
-                            harga_total_barang: data.harga_barang * value
-                        }
-                        : data)
-                )
+                setdataKeranjangCountZ(id, value)
         }
     }
 

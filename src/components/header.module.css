@@ -60,6 +60,7 @@
     font-weight: 500;
     border: 1px solid #cccccc;
     background-color: var(--color-grey);
+    color: var(--color-sekunder);
 }
 
 .nav .pencarian .input .inputtrue {
@@ -77,6 +78,7 @@
 
 .nav .pencarian .input input:focus {
     background-color: var(--color-white);
+    color: var(--color-sekunder);
     outline: none;
 }
 
@@ -166,6 +168,7 @@
 
 .pilihan .login {
     background-color: var(--color-grey);
+    color: var(--color-sekunder);
     display: flex;
     justify-content: center;
     align-items: center;
