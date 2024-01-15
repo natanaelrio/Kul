@@ -5,7 +5,7 @@
     width: 500px;
     max-height: 400px;
     box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
-    border-radius: 0 0 15px 15px;
+    border-radius: 0 0 12px 12px;
 }
 
 /* NAVIGASI */
@@ -58,9 +58,9 @@
     outline: none;
     font-size: 0.7rem;
     font-weight: 500;
-    border: 1px solid #cccccc;
     background-color: var(--color-grey);
     color: var(--color-sekunder);
+    border: none;
 }
 
 .nav .pencarian .input .inputtrue {
@@ -69,17 +69,11 @@
 }
 
 
-
-.nav .pencarian .input .inputfalse {
-    border-color: #6C584C;
-    padding: 0 20px 0 20px;
-    border-width: 5px;
-}
-
 .nav .pencarian .input input:focus {
     background-color: var(--color-white);
     color: var(--color-sekunder);
-    outline: none;
+    outline: none; 
+    border: 3px solid var(--color-grey);
 }
 
 
@@ -172,7 +166,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px 15px;
-    border-radius: 15px;
+    border-radius: 12px;
     font-weight: 700;
     white-space: nowrap;
     font-size: 0.7rem;
