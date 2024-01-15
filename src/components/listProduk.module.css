@@ -129,7 +129,7 @@
 
 .produk .tengah {
     padding: 7px;
-    color: var(--color-sekunder);
+    color: var(--color-sekunder-listproduk);
 }
 
 .produk .judul {
