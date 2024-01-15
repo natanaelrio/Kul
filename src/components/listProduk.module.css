@@ -78,7 +78,7 @@
 }
 
 .produk .love .bgicon {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -100,7 +100,7 @@
     top: 0;
     bottom: 0;
     margin: auto;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--color-white);
 }
 
@@ -286,5 +286,13 @@
 
     .produk .gambar {
         max-width: 100%;
+    }
+
+    .produk .love .bgicon {
+        font-size: 1.2rem;
+    }
+    
+    .produk .love .logo {
+        font-size: 1.2rem;
     }
 }
