@@ -10,6 +10,7 @@ import SkletonSearch from "@/components/skletonSearch"
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useRouter } from 'next/navigation';
+import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 
 export default function Header() {
     const router = useRouter()
@@ -28,6 +29,9 @@ export default function Header() {
     const kondisiLove = useStoreDataFront((state) => state.kondisiLove)
     const kondisiKeranjang = useStoreDataFront((state) => state.kondisiKeranjang)
 
+
+    const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
+
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
     const [keranjang, setKeranjang] = useState([])
@@ -45,6 +49,13 @@ export default function Header() {
         window.addEventListener('scroll', windowScroll)
     }, [setChange, keranjangZ]);
 
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            setKlikcari(false)
+            setBorder(false)
+        }
+    };
 
     useEffect(() => {
         const debounce = setTimeout(() => {
@@ -78,12 +89,7 @@ export default function Header() {
         value ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
     }, [value, data, skleton])
 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            setKlikcari()
-            setBorder(false)
-        }
-    };
+
 
     return (
         <>
@@ -103,7 +109,7 @@ export default function Header() {
                         }}
                     >
                         <div className={styles.input}>
-                            <form onSubmit={(e) => { e.preventDefault(), router.push(`/search?query=${value}`) }} >
+                            <form onSubmit={(e) => { e.preventDefault(), fetchdatasearch(value), router.push(`/search?query=${value}`) }} >
                                 <input
                                     style={{ borderRadius: border ? '15px 15px 0 0' : '15px' }}
                                     type="search"

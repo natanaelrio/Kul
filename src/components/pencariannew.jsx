@@ -38,11 +38,11 @@ export default function Pencariannew({ data, notfound, value }) {
                                 </div>
                             </div>
                         </Link >
+
                     </>
                 )
             })}
-
-            {notfound ? null : <div className={styles.notfound}>coba cari lainnya....</div>}
+            {notfound ? null : <div className={styles.notfound}>hasil pencarian <span style={{color: 'var(--color-primary)'}}>{value}</span> tidak ditemukan</div>}
         </div>
     )
 }

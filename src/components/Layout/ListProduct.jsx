@@ -10,8 +10,9 @@ import SkletonList from '@/components/skletonList'
 import { FaRegHeart } from "react-icons/fa";
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 
-export default function ListProduk({ data, judul, fetchMain }) {
+export default function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
+    const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
 
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
@@ -23,7 +24,7 @@ export default function ListProduk({ data, judul, fetchMain }) {
 
     const HandleDeleteLove = (e) => {
         setTimeout(() => {
-            setDeleteLoveZ(e.id), fetchMain && fetchdatalist()
+            setDeleteLoveZ(e.id), fetchMain && fetchdatalist() || fetchSearch && fetchdatasearch(value)
         }, 500);
     }
 
