@@ -1,4 +1,4 @@
-import ListProduk from '@/components/listProduk'
+import ListProduk from '@/components/listProductMain'
 import HeaderFooter from '@/components/Layout/headerFooter'
 import Produk from '@/components/produk'
 import { GetProducts } from '@/utils/user-front/getproducts'

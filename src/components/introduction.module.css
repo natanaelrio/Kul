@@ -1,0 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    font-size: 1.1rem;
+}
+
+.typingeffect {
+    animation: typing 3s steps(20);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 22ch;
+    }
+}
+
+.cursoreffect {
+    animation: cursor .75s infinite;
+}
+
+@keyframes cursor {
+    from {
+        color: black;
+    }
+
+    to {
+        color: var(--color-grey);
+    }
+}

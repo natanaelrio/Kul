@@ -1,3 +1,13 @@
+.result:nth-child(1) {
+    padding: 7px;
+    font-size: 0.6rem;
+    color: var(--color-sekunder);
+}
+
+.result:nth-child(n+2) {
+    display: none;
+}
+
 .hasil {
     top: 40px;
     position: absolute;
@@ -15,13 +25,13 @@
 .list:hover {
     background-color: var(--color-grey);
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 12px;
 }
 
 .gambar {
     width: 50px;
     border-radius: 7px;
-    padding: 10px;
+    padding: 7px;
 }
 
 .gambar img {
@@ -30,14 +40,14 @@
 }
 
 .judulhargadiskon {
-    padding: 10px;
+    padding: 7px;
     margin-left: 10px;
     font-size: 0.6rem;
     color: var(--color-sekunder);
+    font-weight: 700;
 }
 
 .judulhargadiskon .judul {
-    font-weight: 700;
     overflow: hidden;
     display: block;
     -webkit-line-clamp: 2;
@@ -54,7 +64,7 @@
 
 .hargahargadiskon .harga {
     color: var(--color-primary);
-    font-weight: 500;
+    /* font-weight: 500; */
 }
 
 

@@ -1,6 +1,7 @@
-import ListProduk from '@/components/listProduk'
+import ListProductMain from '@/components/listProductMain'
 import HeaderFooter from '@/components/Layout/headerFooter'
 import { Suspense } from 'react'
+import Introduction from '@/components/introduction'
 // import RouteLoader from '@/components/cek';
 // import Loading from '@/components/Loading';
 // export const dynamic = 'force-dynamic'
@@ -22,8 +23,9 @@ export default function Home() {
   return (
     <>
       <HeaderFooter>
+        <Introduction />
         <Suspense>
-          <ListProduk />
+          <ListProductMain />
         </Suspense>
       </HeaderFooter>
     </>

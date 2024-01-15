@@ -17,7 +17,7 @@ export async function GET(req) {
                 harga_barang: true,
                 diskon_barang: true,
                 gambar_barang: true,
-                slug_barang: true
+                slug_barang: true,
             },
             where: {
                 nama_barang: {

@@ -9,8 +9,10 @@ import Pencariannew from '@/components/pencariannew';
 import SkletonSearch from "@/components/skletonSearch"
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
+    const router = useRouter()
     const [change, setChange] = useState(true)
     const [data, setData] = useState([])
     const [klikcari, setKlikcari] = useState(false)
@@ -47,7 +49,7 @@ export default function Header() {
     useEffect(() => {
         const debounce = setTimeout(() => {
             const fetchData = async () => {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${value}`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-header?cari=${value}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -66,7 +68,6 @@ export default function Header() {
         return () => clearTimeout(debounce)
     }, [value])
 
-
     useEffect(() => {
         //SKELTOON
         value ?
@@ -76,6 +77,13 @@ export default function Header() {
         // Notfound value
         value ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
     }, [value, data, skleton])
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            setKlikcari()
+            setBorder(false)
+        }
+    };
 
     return (
         <>
@@ -95,14 +103,17 @@ export default function Header() {
                         }}
                     >
                         <div className={styles.input}>
-                            <input
-                                style={{ borderRadius: border ? '15px 15px 0 0' : '15px' }}
-                                type="search"
-                                placeholder="cari produk..."
-                                className={styles.inputtrue}
-                                onChange={(e) => { setValue(e.target.value) }}
-                                value={value}
-                            />
+                            <form onSubmit={(e) => { e.preventDefault(), router.push(`/search?query=${value}`) }} >
+                                <input
+                                    style={{ borderRadius: border ? '15px 15px 0 0' : '15px' }}
+                                    type="search"
+                                    placeholder="cari produk..."
+                                    className={styles.inputtrue}
+                                    onChange={(e) => { setValue(e.target.value) }}
+                                    value={value}
+                                    onKeyDown={handleKeyDown}
+                                />
+                            </form>
                         </div>
                         <div className={styles.hilang} >
                             <div className={styles.logocari} >
@@ -119,6 +130,7 @@ export default function Header() {
                     {klikcari ? <Pencariannew
                         data={data}
                         notfound={notfound}
+                        value={value}
                     /> : null}
                 </div>
                 <div className={styles.pilihan}>

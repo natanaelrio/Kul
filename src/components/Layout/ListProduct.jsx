@@ -1,24 +1,17 @@
 "use client"
 import 'react-loading-skeleton/dist/skeleton.css'
-import styles from '@/components/listProduk.module.css'
+import styles from '@/components/Layout/ListProduct.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaWhatsapp } from "react-icons/fa";
 import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-import { useEffect } from 'react';
 import SkletonList from '@/components/skletonList'
 import { FaRegHeart } from "react-icons/fa";
+import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 
-export default function ListProduk() {
-    const datalist = useStoreListDataProduct((state) => state.datalist)
+export default function ListProduk({ data, judul, fetchMain }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
-
-    useEffect(() => {
-        fetchdatalist()
-    }, [fetchdatalist])
 
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
@@ -30,23 +23,22 @@ export default function ListProduk() {
 
     const HandleDeleteLove = (e) => {
         setTimeout(() => {
-            setDeleteLoveZ(e.id), fetchdatalist()
+            setDeleteLoveZ(e.id), fetchMain && fetchdatalist()
         }, 500);
     }
 
     return (
         <>
             <div className={styles.countainer}>
-                <div className={styles.judulatas}>
-                    Produk Terbaru
+                <div className={styles.judulatas} dangerouslySetInnerHTML={{ __html: judul }}>
                 </div>
             </div>
 
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-                        {datalist.data ? null : <SkletonList />}
-                        {datalist.data?.map((data, i) => {
+                        {data?.data ? null : <SkletonList />}
+                        {data?.data?.map((data, i) => {
                             const harga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
@@ -57,7 +49,6 @@ export default function ListProduk() {
                             })
                             return (
                                 <div key={i} className={styles.produk}>
-
                                     <div className={styles.gambar}>
                                         <Link href={`/products/${data?.slug_barang}`} >
                                             <Image
@@ -110,7 +101,6 @@ export default function ListProduk() {
                                 </div>
                             )
                         })}
-
                     </div>
                 </div>
             </div>

@@ -33,26 +33,6 @@ export default function SkletonSearch() {
                     <Skeleton className={styles.skletonicontext} width={200} />
                 </div>
             </div>
-
-            <div className={styles.skleton} >
-                <div className={styles.gambar}>
-                    <Skeleton className={styles.skletonicongambar} />
-                </div>
-                <div className={styles.semuatext}>
-                    <Skeleton className={styles.skletonicontext} />
-                    <Skeleton className={styles.skletonicontext} width={200} />
-                </div>
-            </div>
-
-            <div className={styles.skleton} >
-                <div className={styles.gambar}>
-                    <Skeleton className={styles.skletonicongambar} />
-                </div>
-                <div className={styles.semuatext}>
-                    <Skeleton className={styles.skletonicontext} />
-                    <Skeleton className={styles.skletonicontext} width={200} />
-                </div>
-            </div>
         </div>
     )
 }
