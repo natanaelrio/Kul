@@ -89,27 +89,29 @@
 
 .produk .love .iconlogo {
     position: relative;
-
+    height: 43px;
+    width: 43px;
 }
 
 .produk .love .logo {
     position: absolute;
-    right: 10px;
-    left: 10px;
-    top: 10px;
-    bottom: 10px;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
     margin: auto;
     font-size: 0.9rem;
     color: var(--color-white);
 }
 
 .produk .love .bgiconpush {
+    position: absolute;
     z-index: -1;
-    background-color:var(--color-sekunder);
+    background-color: var(--color-sekunder);
+    border-radius: 100%;
+    opacity: 0.5;
     height: 43px;
     width: 43px;
-    border-radius: 100%;
-    opacity: 0.3;
 }
 
 .produk .gambar img {
@@ -198,18 +200,17 @@
 /* PAGINATION */
 .countainer .pagination {
     font-weight: bold;
-    color: var(--color-primary);
     padding: 10px 15px;
-    border: 1px solid var(--color-primary);
+    background-color: var(--color-grey);
+    color: var(--color-sekunder);
     cursor: pointer;
-    border-radius: 7px;
+    border-radius: 12px;
     font-size: 0.7rem;
 }
 
 .countainer .pagination:hover {
     transition: 0.2s ease all;
-    background-color: var(--color-primary);
-    color: var(--color-white);
+    background-color: var(--hover-color-grey);
 }
 
 

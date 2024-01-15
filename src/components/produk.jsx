@@ -117,7 +117,7 @@ export default function Produk(props) {
                                 </div>
 
                                 {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
-                                    <button suppressHydrationWarning
+                                    <button
                                         className={styles.lovebg}
                                         onClick={() => setDeleteLoveZ(data.id)}>
                                         <FaRegHeart />

@@ -10,7 +10,7 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useEffect } from 'react';
 import SkletonList from '@/components/skletonList'
-import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 
 export default function ListProduk() {
     const datalist = useStoreListDataProduct((state) => state.datalist)
@@ -74,13 +74,11 @@ export default function ListProduk() {
                                                     style={{ background: 'var(--color-high)', borderRadius: '100%' }}
                                                     onClick={() => HandleDeleteLove(data)}
                                                 >
-                                                    <FaHeart />
+                                                    <FaRegHeart />
                                                 </div>
                                                 :
                                                 <div className={styles.iconlogo} onClick={() => HandlePushLove(data)}>
-                                                    <div className={styles.logo}>
-                                                        <FaHeart />
-                                                    </div>
+                                                    <FaRegHeart className={styles.logo} />
                                                     <div className={styles.bgiconpush}></div>
                                                 </div>
                                             }
@@ -107,15 +105,6 @@ export default function ListProduk() {
                                                 <div className={styles.garis} > | </div>
                                                 <div className="terjual">{data?.total_penjualan_barang} terjual</div>
                                             </div>
-                                        </div>
-                                    </Link>
-
-                                    <Link href="/" className={styles.beli}>
-                                        <div className={styles.iconwa}>
-                                            <FaWhatsapp className={styles.iconwadalam} />
-                                        </div>
-                                        <div className={styles.text}>
-                                            &nbsp;Beli via Whatapps
                                         </div>
                                     </Link>
                                 </div>
