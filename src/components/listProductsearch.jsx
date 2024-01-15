@@ -17,7 +17,7 @@ export default function ListProductsearch() {
 
     return (
         <>
-            <ListProduk data={datasearch} fetchSearch={true} value={query} judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearch?.data?.length == 0 ? 'tidak ditemukan' : 'ditemukan'}`} />
+            <ListProduk data={datasearch} fetchSearch={true} value={query} judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearch?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${datasearch?.data?.length}`}`} />
         </>
     )
 }

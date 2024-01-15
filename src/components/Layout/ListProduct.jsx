@@ -28,6 +28,11 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
         }, 500);
     }
 
+    const HighlightText = (e) => {
+        const cek = new RegExp(value, 'gi')
+        return e.replace(cek, match => `<span style='font-weight:700'>${match}</span>`)
+    }
+
     return (
         <>
             <div className={styles.countainer}>
@@ -78,8 +83,9 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                     </div>
                                     <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
                                         <div className={styles.tengah}>
-                                            <div className={styles.judul}>
-                                                {data?.nama_barang}
+                                            <div className={styles.judul}
+                                                dangerouslySetInnerHTML={{ __html: HighlightText(data?.nama_barang) }}
+                                            >
                                             </div>
                                             <div className={styles.harga}>
                                                 <div className={styles.hargaasli}>
