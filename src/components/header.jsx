@@ -11,16 +11,10 @@ import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useRouter } from 'next/navigation';
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+import { useDebounce } from "@uidotdev/usehooks";
 
 export default function Header() {
     const router = useRouter()
-    const [change, setChange] = useState(true)
-    const [data, setData] = useState([])
-    const [klikcari, setKlikcari] = useState(false)
-    const [border, setBorder] = useState(false)
-    const [notfound, setNotFound] = useState(true)
-    const [value, setValue] = useState('')
-    const [skleton, setSkleton] = useState(true)
 
     const setOpenLove = useStore((state) => state.setOpenLove)
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
@@ -28,7 +22,6 @@ export default function Header() {
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const kondisiLove = useStoreDataFront((state) => state.kondisiLove)
     const kondisiKeranjang = useStoreDataFront((state) => state.kondisiKeranjang)
-
 
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
 
@@ -49,18 +42,36 @@ export default function Header() {
         window.addEventListener('scroll', windowScroll)
     }, [setChange, keranjangZ]);
 
+    const [change, setChange] = useState(true)
+    const [klikcari, setKlikcari] = useState(false)
+    const [border, setBorder] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('');
+    const [results, setResults] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [value, setValue] = useState('')
+    const [notfound, setNotFound] = useState(true)
+    const [enter, setEnter] = useState(true)
+    const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             setKlikcari(false)
             setBorder(false)
+            setEnter(false)
         }
     };
 
+    const handleChange = (e) => {
+        setSearchTerm(e.target.value)
+        setValue(e.target.value)
+
+    };
+
     useEffect(() => {
-        const debounce = setTimeout(() => {
-            const fetchData = async () => {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-header?cari=${value}`, {
+        const searchHN = async () => {
+            setIsLoading(true);
+            if (debouncedSearchTerm) {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-header?cari=${debouncedSearchTerm}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -68,28 +79,23 @@ export default function Header() {
                     }
                 })
                 const data = await res.json()
-                // Notfound data
-                data?.data?.length && value ? setNotFound(true) :
-                    value == '' ? setNotFound(true) : setNotFound(false)
-
-                setData(data?.data)
+                setResults(data?.data || [])
+                setIsLoading(true);
             }
-            fetchData()
-        }, 1000);
-        return () => clearTimeout(debounce)
-    }, [value])
+            setIsLoading(false);
+        };
+        searchHN()
+    }, [debouncedSearchTerm]);
 
     useEffect(() => {
-        //SKELTOON
-        value ?
-            data?.length && value ? setSkleton(true) : notfound ? setSkleton(false, setBorder(true)) : setSkleton(true)
-            : setSkleton(true)
+        // Jika Value Kosong
+        !value.length ?
+            setKlikcari(false, setBorder(false))
+            : setKlikcari(true, setBorder(true))
 
-        // Notfound value
-        value ? setKlikcari(true, setBorder(true)) : setKlikcari(false, setBorder(false))
-    }, [value, data, skleton])
-
-
+        // Jika data Tidak Ada
+        !results.length ? setNotFound(false, setKlikcari(false, setBorder(false))) : setNotFound(true)
+    }, [value, results])
 
     return (
         <>
@@ -115,8 +121,7 @@ export default function Header() {
                                     type="search"
                                     placeholder="cari produk..."
                                     className={styles.inputtrue}
-                                    onChange={(e) => { setValue(e.target.value) }}
-                                    value={value}
+                                    onChange={handleChange}
                                     onKeyDown={handleKeyDown}
                                 />
                             </form>
@@ -127,17 +132,15 @@ export default function Header() {
                             </div>
                         </div>
                     </div>
-                    {skleton ?
-                        null : <div className={styles.skletoncontainer}>
-                            <SkletonSearch />
-                        </div>
-                    }
 
-                    {klikcari ? <Pencariannew
-                        data={data}
-                        notfound={notfound}
-                        value={value}
-                    /> : null}
+                    {enter && isLoading && value.length ?
+                        <div className={styles.skletoncontainer}>
+                            <SkletonSearch />
+                        </div> : enter && value.length ? <Pencariannew
+                            data={results}
+                            notfound={notfound}
+                            value={value}
+                        /> : null}
                 </div>
                 <div className={styles.pilihan}>
                     <div className={kondisiLove ? styles.animasi : null} >
