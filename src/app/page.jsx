@@ -22,7 +22,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <HeaderFooter>
+      <HeaderFooter kondisiFalseSearch={true}>
         <Introduction />
         <Suspense>
           <ListProductMain />

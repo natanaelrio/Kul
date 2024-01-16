@@ -7,14 +7,14 @@ import FormPembelian from '@/components/formPembelian';
 import Love from '@/components/love';
 import Keranjang from '@/components/keranjang';
 
-export default function HeaderFooter({ children }) {
+export default function HeaderFooter({ children, kondisiFalseSearch }) {
   const openFormPembelian = useStore((state) => state.openFormPembelian)
   const openLove = useStore((state) => state.openLove)
   const openKeranjang = useStore((state) => state.openKeranjang)
   return (
     <>
       <div className={styles.countainer}>
-        <Header />
+        <Header kondisiFalseSearch={kondisiFalseSearch} />
         <main className={styles.main} >
           {children}
         </main>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { FaSearch } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
@@ -12,9 +12,11 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useRouter } from 'next/navigation';
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useDebounce } from "@uidotdev/usehooks";
+import { useSearchParams } from 'next/navigation'
 
-export default function Header() {
+export default function Header({ kondisiFalseSearch }) {
     const router = useRouter()
+
 
     const setOpenLove = useStore((state) => state.setOpenLove)
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
@@ -24,6 +26,7 @@ export default function Header() {
     const kondisiKeranjang = useStoreDataFront((state) => state.kondisiKeranjang)
 
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
+    const datasearch = useStoreListDataProduct((state) => state.datasearch)
 
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
@@ -34,6 +37,7 @@ export default function Header() {
         setKeranjang(keranjangZ)
     }, [loveZ, keranjangZ])
 
+    const [change, setChange] = useState(true)
     // SCROLL EFFECK
     useEffect(() => {
         const windowScroll = () => {
@@ -42,7 +46,6 @@ export default function Header() {
         window.addEventListener('scroll', windowScroll)
     }, [setChange, keranjangZ]);
 
-    const [change, setChange] = useState(true)
     const [klikcari, setKlikcari] = useState(false)
     const [border, setBorder] = useState(false)
     const [searchTerm, setSearchTerm] = useState('');
@@ -50,36 +53,46 @@ export default function Header() {
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('')
     const [notfound, setNotFound] = useState(true)
-    const [enter, setEnter] = useState(true)
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+    const searchParams = useSearchParams()
+    const createQueryString = useCallback(
+        (name, value) => {
+            const params = new URLSearchParams(searchParams)
+            params.set(name, value)
+
+            return params.toString()
+        },
+        [searchParams]
+    )
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             setKlikcari(false)
             setBorder(false)
-            setEnter(false)
         }
     };
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value)
         setValue(e.target.value)
-
+        kondisiFalseSearch ? null : router.push(`${process.env.NEXT_PUBLIC_URL}` + '/search?' + createQueryString('query', e.target.value))
     };
 
     useEffect(() => {
         const searchHN = async () => {
             setIsLoading(true);
             if (debouncedSearchTerm) {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-header?cari=${debouncedSearchTerm}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': process.env.NEXT_PUBLIC_SECREET
-                    }
-                })
-                const data = await res.json()
-                setResults(data?.data || [])
+                // const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-header?cari=${debouncedSearchTerm}`, {
+                //     method: 'GET',
+                //     headers: {
+                //         'Content-Type': 'application/json',
+                //         'Authorization': process.env.NEXT_PUBLIC_SECREET
+                //     }
+                // })
+                fetchdatasearch(debouncedSearchTerm)
+                // const data = await res.json()
+                setResults(datasearch?.data || [])
                 setIsLoading(true);
             }
             setIsLoading(false);
@@ -90,11 +103,11 @@ export default function Header() {
     useEffect(() => {
         // Jika Value Kosong
         !value.length ?
-            setKlikcari(false, setBorder(false))
-            : setKlikcari(true, setBorder(true))
+            kondisiFalseSearch && setKlikcari(false) || setBorder(false)
+            : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
 
         // Jika data Tidak Ada
-        !results.length ? setNotFound(false, setKlikcari(false, setBorder(false))) : setNotFound(true)
+        !results.length ? kondisiFalseSearch && setNotFound(false) : kondisiFalseSearch && setNotFound(true)
     }, [value, results])
 
     return (
@@ -109,7 +122,7 @@ export default function Header() {
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
                         onClick={() => {
-                            setKlikcari(true),
+                            kondisiFalseSearch ? setKlikcari(true) : setKlikcari(false),
                                 setBorder(border),
                                 setNotFound(true)
                         }}
@@ -133,10 +146,10 @@ export default function Header() {
                         </div>
                     </div>
 
-                    {enter && isLoading && value.length ?
+                    {kondisiFalseSearch && isLoading && value.length ?
                         <div className={styles.skletoncontainer}>
                             <SkletonSearch />
-                        </div> : enter && value.length ? <Pencariannew
+                        </div> : kondisiFalseSearch && value.length ? <Pencariannew
                             data={results}
                             notfound={notfound}
                             value={value}
