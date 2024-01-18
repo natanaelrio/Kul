@@ -26,6 +26,14 @@ export const useStore = create((set) => ({
         )
     },
 
+    openFilter: false,
+    setOpenFilter: () => {
+        set((state) => ({
+            openFilter: !state.openFilter
+        })
+        )
+    },
+
     //ADMIN
     openPencarianAdmin: false,
     setOpenPencarianAdmin: () => {

@@ -23,7 +23,8 @@ export async function GET(req) {
             orderBy:
                 { id: 'desc' },
             // { view_barang: 'asc' },
-        })
+        }
+        )
         if (users.length) {
             return Response.json({ status: 200, isCreated: true, data: users })
         } else return Response.json({ status: 500, isCreated: false })

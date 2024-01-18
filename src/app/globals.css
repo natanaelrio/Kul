@@ -70,8 +70,9 @@ img {
   position: absolute;
   position: fixed;
   top: 0;
-  background-color: red;
-  z-index: 9999;
+  background-color: black;
+  opacity: 0.3;
+  z-index: 10;
 }
 
 

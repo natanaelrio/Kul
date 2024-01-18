@@ -17,7 +17,6 @@ import { useSearchParams } from 'next/navigation'
 export default function Header({ kondisiFalseSearch }) {
     const router = useRouter()
 
-
     const setOpenLove = useStore((state) => state.setOpenLove)
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const loveZ = useStoreDataFront((state) => state.loveZ)
@@ -66,13 +65,6 @@ export default function Header({ kondisiFalseSearch }) {
         [searchParams]
     )
 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            setKlikcari(false)
-            setBorder(false)
-        }
-    };
-
     const handleChange = (e) => {
         setSearchTerm(e.target.value)
         setValue(e.target.value)
@@ -83,15 +75,7 @@ export default function Header({ kondisiFalseSearch }) {
         const searchHN = async () => {
             setIsLoading(true);
             if (debouncedSearchTerm) {
-                // const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-header?cari=${debouncedSearchTerm}`, {
-                //     method: 'GET',
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //         'Authorization': process.env.NEXT_PUBLIC_SECREET
-                //     }
-                // })
                 fetchdatasearch(debouncedSearchTerm)
-                // const data = await res.json()
                 setResults(datasearch?.data || [])
                 setIsLoading(true);
             }
@@ -135,7 +119,7 @@ export default function Header({ kondisiFalseSearch }) {
                                     placeholder="cari produk..."
                                     className={styles.inputtrue}
                                     onChange={handleChange}
-                                    onKeyDown={handleKeyDown}
+                                    value={searchParams.get('query')}
                                 />
                             </form>
                         </div>

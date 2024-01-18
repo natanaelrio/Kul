@@ -3,7 +3,12 @@ import { prisma } from "@/lib/prisma"
 export async function GET(req) {
     const searchParams = req.nextUrl.searchParams;
     const cari = searchParams.get('cari');
+    const sortby = searchParams.get('sortby');
+    const kondisiSortBy = sortby == 'price_high_to_low' || sortby == 'price_low_to_high'
     const authorization = req.headers.get('authorization')
+
+    // console.log(sortby == 'price_low_to_high' ? true : false);
+    // console.log( ?true : false);
 
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         // const pencarian = `%${cari}%`
@@ -31,7 +36,7 @@ export async function GET(req) {
                     mode: 'insensitive'
                 },
             },
-            orderBy: { id: 'desc' },
+            orderBy: kondisiSortBy ? { harga_barang: sortby == 'price_low_to_high' && 'asc' || sortby == 'price_high_to_low' && 'desc' || 'asc' } : { id: 'desc' }
         })
 
         if (result) {

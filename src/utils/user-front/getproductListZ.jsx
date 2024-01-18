@@ -17,8 +17,8 @@ export const useStoreListDataProduct = create((set) => ({
 
 
     datasearch: {},
-    fetchdatasearch: async (e) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-page-all?cari=${e}`, {
+    fetchdatasearch: async (e, sortby) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-page-all?cari=${e}&sortby=${sortby == null ? '' : sortby}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
