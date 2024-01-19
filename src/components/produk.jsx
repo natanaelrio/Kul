@@ -89,6 +89,7 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
+    // console.log(window.innerWidth <= '400' ? true : false)
 
     return (
         <div className={styles.container}>
@@ -121,14 +122,14 @@ export default function Produk(props) {
                                         className={styles.lovebg}
                                         onClick={() => setDeleteLoveZ(data.id)}
                                         aria-label={'logoheart'}
-                                        >
+                                    >
                                         <FaRegHeart />
                                     </button>
                                     :
                                     <button className={styles.icon}
                                         onClick={() => setdataLoveZ(data, data.harga_barang, false)}
                                         aria-label={'logoheart'}
-                                        >
+                                    >
                                         <FaRegHeart />
                                     </button>
                                 }

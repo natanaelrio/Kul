@@ -59,8 +59,8 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                         <Link href={`/products/${data?.slug_barang}`} >
                                             <Image
                                                 src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
-                                                width={270}
-                                                height={230}
+                                                width={200}
+                                                height={200}
                                                 alt={data?.nama_barang}
                                             />
                                         </Link>

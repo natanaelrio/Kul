@@ -15,7 +15,6 @@
     "@uidotdev/usehooks": "^2.4.1",
     "formik": "^2.4.5",
     "next": "14.0.3",
-    "next13-progressbar": "^1.1.3",
     "nextjs-toploader": "^1.6.4",
     "react": "^18",
     "react-dom": "^18",
