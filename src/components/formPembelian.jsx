@@ -4,131 +4,203 @@ import * as Yup from 'yup';
 import styles from '@/components/formPembelian.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
+import { useState } from 'react';
+import MoonLoader from "react-spinners/MoonLoader";
+import { useRouter } from 'next/navigation';
 
-export default function FormPembelian() {
+export default function FormPembelian({ dataFormLangsung }) {
+    const router = useRouter()
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
-    
+    const openKeranjang = useStore((state) => state.openKeranjang)
+    const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
+    const kuponBarang = dataFormLangsung.map((data) => data.kupon_barang)[0].toString()
+    const hargaBarangDiskonNormal = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
+    const hargaBarangDiskonKupon = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
+
+    const [kupon, setKupon] = useState('')
+    const HandleKupon = (e) => {
+        setKupon(e.target.value)
+    }
+
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleSuccess = () => {
+        router.push('/')
+        setIsLoading(false)
+        setOpenFormPembelian()
+        openKeranjang && setOpenKeranjang()
+    }
+
     const formik = useFormik({
         initialValues: {
-            namalengkap: '',
-            nohp: '',
-            alamatlengkap: '',
-            kodepos: '',
-            catatan: '',
-            kupon: ''
+            nama_lengkap_user: '',
+            no_hp_user: '',
+            alamat_lengkap_user: '',
+            kode_pos_user: '',
+            catatan_user: ''
         },
         validationSchema: Yup.object({
-            namalengkap: Yup.string()
-                .max(10, 'harus 10 karakter')
+            nama_lengkap_user: Yup.string()
+                .max(1000)
                 .required('require'),
-            nohp: Yup.string()
-                .max(10, 'harus 10 karakter')
+            no_hp_user: Yup.number()
+                .max(999999999999999)
                 .required('require'),
-            alamatlengkap: Yup.string()
-                .max(10, 'harus 10 karakter')
+            alamat_lengkap_user: Yup.string()
+                .max(10000)
                 .required('require'),
-            kodepos: Yup.string()
-                .max(10, 'harus 10 karakter')
+            kode_pos_user: Yup.number()
+                .max(999999)
                 .required('require'),
-            catatan: Yup.string()
-                .max(200, 'harus 200 karakter')
-                .required('require'),
-            kupon: Yup.string()
-                .max(10, 'harus 10 karakter'),
+            catatan_user: Yup.string()
+                .max(20000)
         }),
-        onSubmit: values => {
-            alert(JSON.stringify(values, null, 1));
-            // console.log(values);
+        onSubmit: async values => {
+            setIsLoading(true)
+            const dataPesanan = dataFormLangsung.map((data) =>
+            ({
+                nama_barang_user: data?.nama_barang,
+                jumlah_barang_user: data?.value_barang,
+                harga_barang_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? ((data.harga_barang - ((data.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data.value_barang) : ((data.harga_barang - ((data.harga_barang * data.diskon_barang) / 100)) * data.value_barang),
+                kupon_user: kupon,
+                validasi_kupon_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? true : false
+            })
+            )
+
+            const dataTambahanNew = { dataPesanan }
+            const dataUtama = values
+            const GabungData = { ...dataUtama, ...dataTambahanNew }
+            try {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/user-front/post-formpembelian', {
+                    method: 'POST',
+                    body: JSON.stringify(GabungData),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                    }
+                })
+                const data = await res.json()
+                data.status == 200 ? handleSuccess() : Gagal()
+            }
+            catch (e) {
+                console.error(e)
+            }
         },
     });
     return (
         <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
             <div className={styles.containerform}>
+
+                {isLoading ? <div className={styles.loading}>
+                    <div className={styles.hitam}></div>
+
+                    <div className={styles.logoloading}>
+                        <MoonLoader
+                            color={'var(--color-white)'}
+                        />
+                        Loading
+                    </div>
+                </div>
+                    : null
+                }
                 <form onSubmit={formik.handleSubmit} className={styles.form}>
-                    <label htmlFor="namalengkap">Nama Lengkap
-                        {formik.touched.namalengkap && formik.errors.namalengkap ? (
+                    <label htmlFor="nama_lengkap_user">Nama Lengkap
+                        {formik.touched.nama_lengkap_user && formik.errors.nama_lengkap_user ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
                         ) : null}
                     </label>
                     <input
-                        id="namalengkap"
-                        name="namalengkap"
+                        id="nama_lengkap_user"
+                        name="nama_lengkap_user"
                         type="text"
                         onChange={formik.handleChange}
-                        value={formik.values.namalengkap}
+                        value={formik.values.nama_lengkap_user}
                         placeholder='ex: natanael rio wijaya'
-                        style={formik.touched.namalengkap && formik.errors.namalengkap ? { border: '1px solid red' } : null}
+                        style={formik.touched.nama_lengkap_user && formik.errors.nama_lengkap_user ? { border: '1px solid red' } : null}
                     />
 
 
-                    <label htmlFor="nohp">NO HP
-                        {formik.touched.nohp && formik.errors.nohp ? (
+                    <label htmlFor="no_hp_user">NO HP
+                        {formik.touched.no_hp_user && formik.errors.no_hp_user ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
                         ) : null}
                     </label>
                     <input
-                        id="nohp"
-                        name="nohp"
+                        id="no_hp_user"
+                        name="no_hp_user"
                         type="number"
                         onChange={formik.handleChange}
-                        value={formik.values.nohp}
+                        value={formik.values.no_hp_user}
                         placeholder='ex: 0812488124004'
-                        style={formik.touched.nohp && formik.errors.nohp ? { border: '1px solid red' } : null}
+                        style={formik.touched.no_hp_user && formik.errors.no_hp_user ? { border: '1px solid red' } : null}
                     />
 
 
 
-                    <label htmlFor="Alamatlengkap">Alamat Lengkap
-                        {formik.touched.alamatlengkap && formik.errors.alamatlengkap ? (
+                    <label htmlFor="alamat_lengkap_user">Alamat Lengkap
+                        {formik.touched.alamat_lengkap_user && formik.errors.alamat_lengkap_user ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
                         ) : null}
                     </label>
                     <input
-                        id="alamatlengkap"
-                        name="alamatlengkap"
+                        id="alamat_lengkap_user"
+                        name="alamat_lengkap_user"
                         type="text"
                         onChange={formik.handleChange}
-                        value={formik.values.alamatlengkap}
+                        value={formik.values.alamat_lengkap_user}
                         placeholder='ex: jl merdeka, rt 01/03. keboyan'
-                        style={formik.touched.alamatlengkap && formik.errors.alamatlengkap ? { border: '1px solid red' } : null}
+                        style={formik.touched.alamat_lengkap_user && formik.errors.alamat_lengkap_user ? { border: '1px solid red' } : null}
                     />
 
-                    <label htmlFor="kodepos">Kode POS
-                        {formik.touched.kodepos && formik.errors.kodepos ? (
+                    <label htmlFor="kode_pos_user">Kode POS
+                        {formik.touched.kode_pos_user && formik.errors.kode_pos_user ? (
                             <div style={{ color: 'red' }}>&nbsp;*</div>
                         ) : null}
                     </label>
                     <input
-                        id="kodepos"
-                        name="kodepos"
+                        id="kode_pos_user"
+                        name="kode_pos_user"
                         type="number"
                         onChange={formik.handleChange}
-                        value={formik.values.kodepos}
+                        value={formik.values.kode_pos_user}
                         placeholder='ex: 53235'
-                        style={formik.touched.kodepos && formik.errors.kodepos ? { border: '1px solid red' } : null}
+                        style={formik.touched.kode_pos_user && formik.errors.kode_pos_user ? { border: '1px solid red' } : null}
                     />
 
 
-                    <label htmlFor="catatan">Catatan</label>
+                    <label htmlFor="catatan_user">catatan_user</label>
                     <textarea
-                        id="catatan"
-                        name="catatan"
+                        id="catatan_user"
+                        name="catatan_user"
                         type="text"
                         onChange={formik.handleChange}
-                        value={formik.values.catatan}
+                        value={formik.values.catatan_user}
                         placeholder='opsional'
                     />
 
-                    <label htmlFor="kupon">Kupon</label>
+                    <label htmlFor="kupon">Kupon &nbsp;<div className={styles.kuponharga}>({kuponBarang + process.env.NEXT_PUBLIC_DISKON})</div></label>
                     <input
                         id="kupon"
                         name="kupon"
                         type="text"
-                        onChange={formik.handleChange}
-                        value={formik.values.kupon}
+                        onChange={HandleKupon}
+                        value={kupon}
                         placeholder='opsional'
                     />
-                    <button type="submit">Bayar Sekarang</button>
+
+                    <button type="submit" disabled={isLoading} >Bayar Sekarang &nbsp;
+                        {kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? (
+                            hargaBarangDiskonKupon.toLocaleString('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            })
+                        ) : (
+                            hargaBarangDiskonNormal.toLocaleString('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            })
+                        )}
+                    </button>
                 </form>
             </div>
         </FloatingBlur>

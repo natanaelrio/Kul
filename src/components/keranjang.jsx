@@ -9,15 +9,17 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 
 export default function Keranjang() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
+    const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
-    const totalBarang = keranjangZ.map((data) => data.harga_total_barang).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+    const totalBarang = keranjangZ.map((data) => (data.harga_total_barang - ((data.harga_total_barang * data.diskon_barang) / 100))).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     });
+
 
     const handleCountKeranjang = (data, kondisi) => {
         const id = data.id
@@ -33,6 +35,7 @@ export default function Keranjang() {
         setDeleteKeranjangZ(e), resetValueKeranjang()
     }
 
+
     return (
         <FloatingBlur setOpen={setOpenKeranjang} judul={`List Belanja`} >
 
@@ -47,11 +50,11 @@ export default function Keranjang() {
                     <div className={styles.container}>
 
                         {keranjangZ.map((data, i) => {
-                            const harga = data.harga_total_barang.toLocaleString('id-ID', {
+                            const diskonharga = data.harga_total_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const diskonharga = (((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_total_barang).toLocaleString('id-ID', {
+                            const harga = (data.harga_total_barang - (((((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_total_barang)) - data.harga_total_barang)).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
@@ -99,7 +102,7 @@ export default function Keranjang() {
                             Total :<div className={styles.totalpembayaran}>{totalBarang}</div>
                         </div>
                         <div>
-                            <div className={styles.bayarlangsung}>Bayar Langsung</div>
+                            <div className={styles.bayarlangsung} onClick={setOpenFormPembelian}>Bayar Langsung</div>
                         </div>
                     </div>
                 </>}

@@ -18,7 +18,8 @@ export async function GET(req) {
                 slug_barang: true,
                 diskon_barang: true,
                 like_barang: true,
-                jumlah_barang: true
+                jumlah_barang: true,
+                kupon_barang: true,
             },
             orderBy:
                 { id: 'desc' },

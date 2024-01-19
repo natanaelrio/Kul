@@ -96,7 +96,6 @@ export default function Header({ kondisiFalseSearch }) {
 
     return (
         <>
-
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
@@ -119,7 +118,7 @@ export default function Header({ kondisiFalseSearch }) {
                                     placeholder="cari produk..."
                                     className={styles.inputtrue}
                                     onChange={handleChange}
-                                    value={searchParams.get('query')}
+                                    value={searchParams.get('query') || searchTerm}
                                 />
                             </form>
                         </div>
@@ -131,9 +130,7 @@ export default function Header({ kondisiFalseSearch }) {
                     </div>
 
                     {kondisiFalseSearch && isLoading && value.length ?
-                        <div className={styles.skletoncontainer}>
-                            <SkletonSearch />
-                        </div> : kondisiFalseSearch && value.length ? <Pencariannew
+                        null : kondisiFalseSearch && value.length ? <Pencariannew
                             data={results}
                             notfound={notfound}
                             value={value}

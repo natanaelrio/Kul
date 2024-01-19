@@ -55,41 +55,33 @@ export default function Produk(props) {
     const handleCountKeranjang = (id, value) => {
         if (value > 0) {
             value > jumlahBarang ? null :
-                setdataKeranjangCountZ(
-                    keranjangZ.map((data) => data.id == id ?
-                        {
-                            ...data,
-                            value: value,
-                            harga_total_barang: data.harga_barang * (data.value + 1)
-                        }
-                        : data)
-                )
+                setdataKeranjangCountZ(id, value)
         }
     }
 
     // Data OFF
     const hargatotal = data.harga_barang * ValueKeranjang
-    const harga = (hargatotal).toLocaleString('id-ID', {
+    const hargadiskon = ((((hargatotal * data.diskon_barang) / 100) + hargatotal)) - hargatotal
+    const harga = (hargatotal - hargadiskon).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
-    const diskonharga = ((((hargatotal) * data.diskon_barang) / 100) + (hargatotal)).toLocaleString('id-ID', {
+    const diskonharga = (hargatotal).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
 
     // DATA KERANJANG
-    const hargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
+    const diskonhargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
 
-    const diskonhargaKeranjang = ((((keranjangZ[0]?.harga_total_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_total_barang)).toLocaleString('id-ID', {
+    const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
+    const hargaKeranjang = (keranjangZ[0]?.harga_total_barang - hargadiskonKeranjang).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
-
-    // console.log(window.innerWidth <= '400' ? true : false)
 
     return (
         <div className={styles.container}>

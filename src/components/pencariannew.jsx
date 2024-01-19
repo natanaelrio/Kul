@@ -2,6 +2,7 @@ import styles from "@/components/pencariannew.module.css"
 import Image from "next/image"
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link"
+import SkletonSearch from "@/components/skletonSearch"
 
 export default function Pencariannew({ data, notfound, value }) {
     useLockBodyScroll()
@@ -14,11 +15,11 @@ export default function Pencariannew({ data, notfound, value }) {
 
     return (
         <div className={styles.hasil}>
+            <div className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>
             {data?.map((data, i) => {
                 return (
                     <>
-                        <div className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>
-                        <Link href={`/products/${data.slug_barang}`} key={i} className={styles.list}>
+                        <Link href={`/products/${data.slug_barang}`} key={data.id} className={styles.list}>
                             <div className={styles.gambar}>
                                 <Image
                                     src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
@@ -42,7 +43,7 @@ export default function Pencariannew({ data, notfound, value }) {
                     </>
                 )
             })}
-            {notfound ? null : <div className={styles.notfound}>hasil pencarian <span style={{color: 'var(--color-primary)'}}>{value}</span> tidak ditemukan</div>}
+            {notfound ? null : <SkletonSearch />}
         </div>
     )
 }

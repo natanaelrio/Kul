@@ -34,3 +34,15 @@ model admin {
   view_barang            Int?
   like_barang            Int?
 }
+
+model formPembelian {
+  id                  Int       @id @default(autoincrement())
+  start               DateTime  @default(now())
+  end                 DateTime? @updatedAt
+  nama_lengkap_user   String?
+  alamat_lengkap_user String?
+  kode_pos_user       Int?
+  no_hp_user          Int?
+  catatan_user        String?
+  dataPesanan         Json?
+}

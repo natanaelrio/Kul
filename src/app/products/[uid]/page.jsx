@@ -45,7 +45,7 @@ export default async function Products({ params }) {
 
   return (
     <>
-      <HeaderFooter kondisiFalseSearch={true}>
+      <HeaderFooter kondisiFalseSearch={true} data={data}>
         <Suspense>
           <Produk data={data} />
         </Suspense>

@@ -45,11 +45,11 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                     <div className={styles.gridlist}>
                         {data?.data ? null : <SkletonList />}
                         {data?.data?.map((data, i) => {
-                            const harga = data.harga_barang.toLocaleString('id-ID', {
+                            const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const diskonharga = (((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
+                            const harga = (data.harga_barang - (((((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang)) - data.harga_barang)).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
@@ -78,7 +78,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                                 <div className={styles.iconlogo}
                                                     onClick={() => HandlePushLove(data)}
                                                     aria-label={'logoheart'}
-                                                    >
+                                                >
                                                     <FaRegHeart className={styles.logo} />
                                                     <div className={styles.bgiconpush}></div>
                                                 </div>

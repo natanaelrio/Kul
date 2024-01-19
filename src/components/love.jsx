@@ -29,11 +29,11 @@ export default function Love() {
                     <div className={styles.container}>
 
                         {loveZ.map((data, i) => {
-                            const harga = data.harga_barang.toLocaleString('id-ID', {
+                            const diskonharga = data.harga_total_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const diskonharga = (((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang).toLocaleString('id-ID', {
+                            const harga = (data.harga_total_barang - (((((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_total_barang)) - data.harga_total_barang)).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
