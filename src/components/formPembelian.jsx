@@ -28,7 +28,8 @@ export default function FormPembelian({ dataFormLangsung }) {
         router.push('/')
         setIsLoading(false)
         setOpenFormPembelian()
-        openKeranjang && setOpenKeranjang()
+        // openKeranjang ? setOpenKeranjang() : null
+        // router.refresh()
     }
 
     const formik = useFormik({
