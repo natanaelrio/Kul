@@ -13,9 +13,9 @@ export default function Footer() {
                     © Website by <b>Natanael Rio Wijaya</b>
                 </div>
                 <div className={styles.sosmed}>
-                    <Link href="/"> <FaFacebookSquare className={styles.sosmeddalam} /></Link>
-                    <Link href="/"> <FaInstagramSquare className={styles.sosmeddalam} /></Link>
-                    <Link href="/"><FaTwitterSquare className={styles.sosmeddalam} /></Link>
+                    <Link href="/" aria-label={'logofb'}> <FaFacebookSquare className={styles.sosmeddalam} /></Link>
+                    <Link href="/" aria-label={'logoig'}> <FaInstagramSquare className={styles.sosmeddalam} /></Link>
+                    <Link href="/" aria-label={'logotw'}> <FaTwitterSquare className={styles.sosmeddalam} /></Link>
                 </div>
             </div>
         </footer>

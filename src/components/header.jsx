@@ -100,7 +100,7 @@ export default function Header({ kondisiFalseSearch }) {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <Link prefetch={false} href={'/'} className={styles.logogambar}>
+                <Link prefetch={false} href={'/'} className={styles.logogambar} aria-label={'logo'}>
                     <TbDiamond className={styles.logogambardalam} />
                 </Link>
                 <div className={styles.pencarian} >

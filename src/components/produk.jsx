@@ -119,12 +119,16 @@ export default function Produk(props) {
                                 {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                     <button
                                         className={styles.lovebg}
-                                        onClick={() => setDeleteLoveZ(data.id)}>
+                                        onClick={() => setDeleteLoveZ(data.id)}
+                                        aria-label={'logoheart'}
+                                        >
                                         <FaRegHeart />
                                     </button>
                                     :
                                     <button className={styles.icon}
-                                        onClick={() => setdataLoveZ(data, data.harga_barang, false)}>
+                                        onClick={() => setdataLoveZ(data, data.harga_barang, false)}
+                                        aria-label={'logoheart'}
+                                        >
                                         <FaRegHeart />
                                     </button>
                                 }

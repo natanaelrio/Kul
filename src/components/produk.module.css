@@ -247,7 +247,7 @@
 .gambar .gambardalam .gratisongkir {
     position: absolute;
     background-color: var(--color-third);
-    color: var(--color-white);
+    color: var(--color-sekunder);
     bottom: 30px;
     /* top: 30px; */
     left: 0;

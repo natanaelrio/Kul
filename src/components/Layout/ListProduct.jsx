@@ -59,8 +59,8 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                         <Link href={`/products/${data?.slug_barang}`} >
                                             <Image
                                                 src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
-                                                width={500}
-                                                height={500}
+                                                width={270}
+                                                height={230}
                                                 alt={data?.nama_barang}
                                             />
                                         </Link>
@@ -70,11 +70,15 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                                 <div className={styles.bgicon}
                                                     style={{ background: 'var(--color-high)', borderRadius: '100%' }}
                                                     onClick={() => HandleDeleteLove(data)}
+                                                    aria-label={'logoheart'}
                                                 >
                                                     <FaRegHeart />
                                                 </div>
                                                 :
-                                                <div className={styles.iconlogo} onClick={() => HandlePushLove(data)}>
+                                                <div className={styles.iconlogo}
+                                                    onClick={() => HandlePushLove(data)}
+                                                    aria-label={'logoheart'}
+                                                    >
                                                     <FaRegHeart className={styles.logo} />
                                                     <div className={styles.bgiconpush}></div>
                                                 </div>
