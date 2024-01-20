@@ -9,20 +9,11 @@ import Keranjang from '@/components/keranjang';
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 
-export default function HeaderFooter({ children, kondisiFalseSearch, data }) {
+export default function HeaderFooter({ children, kondisiFalseSearch, data, slug }) {
   const openFormPembelian = useStore((state) => state.openFormPembelian)
   const openLove = useStore((state) => state.openLove)
   const openKeranjang = useStore((state) => state.openKeranjang)
   const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
-  const ValueKeranjang = useKeranjangCount((state) => state.ValueKeranjang)
-  const dataFormLangsung =
-    [{
-      nama_barang: data?.data.nama_barang,
-      harga_barang: data?.data.harga_barang,
-      diskon_barang: data?.data.diskon_barang,
-      kupon_barang: data?.data.kupon_barang,
-      value_barang: ValueKeranjang
-    }]
 
   const dataFormKeranjang = keranjangZ.map((data) => (
     {
@@ -44,9 +35,9 @@ export default function HeaderFooter({ children, kondisiFalseSearch, data }) {
       </div>
       {openKeranjang && <Keranjang />}
       {openLove && <Love />}
-      {openFormPembelian &&
+      {openFormPembelian && openKeranjang &&
         <FormPembelian
-          dataFormLangsung={openKeranjang ? dataFormKeranjang : dataFormLangsung} />}
+          dataFormLangsung={dataFormKeranjang} />}
     </>
   )
 }

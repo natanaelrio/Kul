@@ -45,7 +45,7 @@ export default async function Products({ params }) {
 
   return (
     <>
-      <HeaderFooter kondisiFalseSearch={true} data={data}>
+      <HeaderFooter kondisiFalseSearch={true} data={data} slug={params.uid}>
         <Suspense>
           <Produk data={data} />
         </Suspense>

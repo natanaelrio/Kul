@@ -13,7 +13,7 @@ export default function FormPembelian({ dataFormLangsung }) {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const openKeranjang = useStore((state) => state.openKeranjang)
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
-    const kuponBarang = dataFormLangsung.map((data) => data.kupon_barang)[0].toString()
+    const kuponBarang = dataFormLangsung.map((data) => data.kupon_barang)[0]?.toString()
     const hargaBarangDiskonNormal = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
     const hargaBarangDiskonKupon = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
 

@@ -8,10 +8,12 @@ import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import { useEffect, useState } from 'react';
+import FormPembelian from '@/components/formPembelian';
 
 export default function Produk(props) {
     const data = props.data?.data
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
+    const openFormPembelian = useStore((state) => state.openFormPembelian)
 
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
@@ -83,119 +85,134 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
+
+    //DATA FORM 
+    const dataFormLangsung =
+        [{
+            nama_barang: data?.nama_barang,
+            harga_barang: data?.harga_barang,
+            diskon_barang: data?.diskon_barang,
+            kupon_barang: data?.kupon_barang,
+            value_barang: ValueKeranjang
+        }]
+
+
     return (
-        <div className={styles.container}>
-            <div className={styles.width}>
+        <>
+            <div className={styles.container}>
+                <div className={styles.width}>
 
-                <div className={styles.grid}>
-                    <div className={styles.reviewproduk}>
-                        <div className={styles.containerreview}>
-                            <div className={styles.judul}>{data?.nama_barang}</div>
-                            <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
+                    <div className={styles.grid}>
+                        <div className={styles.reviewproduk}>
+                            <div className={styles.containerreview}>
+                                <div className={styles.judul}>{data?.nama_barang}</div>
+                                <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
 
-                            <div className={styles.section}>
-                                <div className={styles.wkwk}>
-                                    <div className={styles.reviewharga}>
-                                        <div className={styles.harga}>
-                                            {keranjang?.length === 1 ? hargaKeranjang : harga}
-                                        </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
-                                    </div>
-                                    <div className={styles.diskon}>
-                                        <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
-                                        &nbsp;
-                                        <div className={styles.hargadiskon}>
-                                            {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga}
+                                <div className={styles.section}>
+                                    <div className={styles.wkwk}>
+                                        <div className={styles.reviewharga}>
+                                            <div className={styles.harga}>
+                                                {keranjang?.length === 1 ? hargaKeranjang : harga}
+                                            </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
+                                        </div>
+                                        <div className={styles.diskon}>
+                                            <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
+                                            &nbsp;
+                                            <div className={styles.hargadiskon}>
+                                                {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
-                                    <button
-                                        className={styles.lovebg}
-                                        onClick={() => setDeleteLoveZ(data.id)}
-                                        aria-label={'logoheart'}
-                                    >
-                                        <FaRegHeart />
-                                    </button>
+                                    {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
+                                        <button
+                                            className={styles.lovebg}
+                                            onClick={() => setDeleteLoveZ(data.id)}
+                                            aria-label={'logoheart'}
+                                        >
+                                            <FaRegHeart />
+                                        </button>
+                                        :
+                                        <button className={styles.icon}
+                                            onClick={() => setdataLoveZ(data, data.harga_barang, false)}
+                                            aria-label={'logoheart'}
+                                        >
+                                            <FaRegHeart />
+                                        </button>
+                                    }
+
+                                </div>
+                                <div className={styles.deskripsi}>{data?.diskripsi_barang}
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className={styles.jumlahbarang}>stok : {jumlahBarang}</div>
+                                {keranjang?.length === 1 ?
+                                    keranjang?.map((data) => {
+                                        return (
+                                            <div key={data.id} className={styles.jumlah}>
+                                                <div className={styles.kata}>Kuantitas</div>
+                                                <div className={styles.button}>
+                                                    <button onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}
+                                                        style={data.value <= 1 ? { color: '#c2c2c2' } : null}>-</button>
+                                                    <div className={styles.angka}>{data.value}</div>
+                                                    <button
+                                                        style={data.value >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                                        onClick={() => { handleCountKeranjang(data.id, data.value + 1) }}>+</button>
+                                                </div>
+                                            </div>)
+                                    })
                                     :
-                                    <button className={styles.icon}
-                                        onClick={() => setdataLoveZ(data, data.harga_barang, false)}
-                                        aria-label={'logoheart'}
-                                    >
-                                        <FaRegHeart />
-                                    </button>
+                                    <div className={styles.jumlah}>
+                                        <div className={styles.kata}>Kuantitas</div>
+                                        <div className={styles.button}>
+                                            <button onClick={() => handleAngkaKurang()}
+                                                style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
+                                                }>-</button>
+                                            <div className={styles.angka}>{ValueKeranjang}</div>
+                                            <button
+                                                style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                                onClick={() => handleAngkaTambah()}>+</button>
+                                        </div>
+                                    </div>
                                 }
 
-                            </div>
-                            <div className={styles.deskripsi}>{data?.diskripsi_barang}
-                            </div>
-                        </div>
-
-                        <div>
-                            <div className={styles.jumlahbarang}>stok : {jumlahBarang}</div>
-                            {keranjang?.length === 1 ?
-                                keranjang?.map((data) => {
-                                    return (
-                                        <div key={data.id} className={styles.jumlah}>
-                                            <div className={styles.kata}>Kuantitas</div>
-                                            <div className={styles.button}>
-                                                <button onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}
-                                                    style={data.value <= 1 ? { color: '#c2c2c2' } : null}>-</button>
-                                                <div className={styles.angka}>{data.value}</div>
-                                                <button
-                                                    style={data.value >= jumlahBarang ? { color: '#c2c2c2' } : null}
-                                                    onClick={() => { handleCountKeranjang(data.id, data.value + 1) }}>+</button>
-                                            </div>
-                                        </div>)
-                                })
-                                :
-                                <div className={styles.jumlah}>
-                                    <div className={styles.kata}>Kuantitas</div>
-                                    <div className={styles.button}>
-                                        <button onClick={() => handleAngkaKurang()}
-                                            style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
-                                            }>-</button>
-                                        <div className={styles.angka}>{ValueKeranjang}</div>
-                                        <button
-                                            style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
-                                            onClick={() => handleAngkaTambah()}>+</button>
+                                {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
+                                    <div className={styles.keranjang}>
+                                        <button style={{ background: 'var(--color-high' }}
+                                            onClick={() => handleKeranjangdanResetValue(data.id)
+                                            }>Hapus Keranjang</button>
+                                    </div> :
+                                    <div className={styles.keranjang}>
+                                        <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
                                     </div>
-                                </div>
-                            }
+                                }
 
-                            {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
-                                <div className={styles.keranjang}>
-                                    <button style={{ background: 'var(--color-high' }}
-                                        onClick={() => handleKeranjangdanResetValue(data.id)
-                                        }>Hapus Keranjang</button>
-                                </div> :
-                                <div className={styles.keranjang}>
-                                    <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
+                                <div className={styles.belisekarang}>
+                                    <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
                                 </div>
-                            }
-
-                            <div className={styles.belisekarang}>
-                                <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
-                            </div>
-                            <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
-                        </div>
-                    </div>
-                    <div className={styles.gambar}>
-                        <div className={styles.gambardalam}>
-                            <Image
-                                src={data?.gambar_barang ? data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
-                                width={500}
-                                height={500}
-                                alt={data?.nama_barang}
-                            />
-                            <div className={styles.gratisongkir}>
-                                Gratis Ongkir
+                                <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
                             </div>
                         </div>
+                        <div className={styles.gambar}>
+                            <div className={styles.gambardalam}>
+                                <Image
+                                    src={data?.gambar_barang ? data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                    width={500}
+                                    height={500}
+                                    alt={data?.nama_barang}
+                                />
+                                <div className={styles.gratisongkir}>
+                                    Gratis Ongkir
+                                </div>
+                            </div>
 
+                        </div>
                     </div>
-                </div>
+                </div >
             </div >
-        </div >
+            {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}
+        </>
     )
 }
