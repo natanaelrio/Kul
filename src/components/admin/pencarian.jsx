@@ -13,7 +13,6 @@ export default function Pencarian() {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
 
-    console.log(value);
     useEffect(() => {
         const debounce = setTimeout(() => {
             const HandlePencarian = async () => {

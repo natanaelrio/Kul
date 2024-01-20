@@ -45,15 +45,20 @@ export const useStoreListDataProduct = create((set) => ({
     // LIST PESANAN
     datalistpesanan: {},
     fetchdatalistpesanan: async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-pesanan`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
-            },
-            next: { revalidate: 0 }
-        })
-        set({ datalistpesanan: await res.json() })
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-pesanan`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': process.env.NEXT_PUBLIC_SECREET
+                },
+                next: { revalidate: 0 }
+            })
+            set({ datalistpesanan: await res.json() })
+        }
+        catch (e) {
+            console.error(e);
+        }
     },
 }))
 

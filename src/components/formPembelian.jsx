@@ -59,7 +59,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             ({
                 nama_barang_user: data?.nama_barang,
                 jumlah_barang_user: data?.value_barang,
-                harga_barang_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? ((data.harga_barang - ((data.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data.value_barang) : ((data.harga_barang - ((data.harga_barang * data.diskon_barang) / 100)) * data.value_barang),
+                harga_barang_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang) : ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang),
                 kupon_user: kupon,
                 validasi_kupon_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? true : false
             })
