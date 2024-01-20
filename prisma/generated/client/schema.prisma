@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  // binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+  // previewFeatures = ["fullTextSearch", "fullTextIndex"]
+
+  previewFeatures = ["fullTextSearch"]
+  output          = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model admin {
+  id                     Int       @id @default(autoincrement())
+  btoa                   String?   @unique
+  start                  DateTime  @default(now())
+  end                    DateTime? @updatedAt
+  nama_barang            String
+  kategori_barang        String?
+  tag_barang             String?
+  harga_barang           Int?
+  diskon_barang          Int?
+  rating_barang          Int?
+  jumlah_barang          Int?
+  total_penjualan_barang Int?
+  diskripsi_barang       String?
+  gambar_barang          String?
+  slug_barang            String?   @unique
+  kupon_barang           String?
+  view_barang            Int?
+  like_barang            Int?
+}
+
+model formPembelian {
+  id                  Int       @id @default(autoincrement())
+  start               DateTime  @default(now())
+  end                 DateTime? @updatedAt
+  nota_user           String?   @unique
+  nama_lengkap_user   String?
+  alamat_lengkap_user String?
+  kode_pos_user       Int?
+  no_hp_user          Int?
+  catatan_user        String?
+  status_pesanan      Boolean?  @default(false)
+  dataPesanan         Json?
+}
