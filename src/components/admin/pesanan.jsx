@@ -42,14 +42,14 @@ export default function Pesanan() {
                 </div>
                 {datalistpesanan.data ? null : <SkletonPesanan />}
                 {datalistpesanan?.data?.map((data) => {
-                    const totalJumlahBarang = data?.dataPesanan?.map((data) => data.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
-                    const totalHargaBarang = data?.dataPesanan?.map((data) => data.harga_barang_user).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+                    const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
+                    const totalHargaBarang = data?.dataPesanan?.map((data) => data?.harga_barang_user).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
                         style: 'currency',
                         currency: 'IDR'
                     })
                     return (
-                        <div key={data.id} className={styles.content}>
-                            <div className={styles.namalengkapuser}>{data.nama_lengkap_user}</div>
+                        <div key={data?.id} className={styles.content}>
+                            <div className={styles.namalengkapuser}>{data?.nama_lengkap_user}</div>
                             <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
                             <div className={styles.totalbiaya}>{totalHargaBarang}</div>
                             <div className={styles.datapesanan}><button onClick={() => HandlePesanan(data)}>Pesanan</button></div>
