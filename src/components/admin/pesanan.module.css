@@ -11,6 +11,7 @@
     background-color: var(--color-primary);
     color: var(--color-white);
     border-radius: 7px 7px 0 0;
+    flex: 1;
 }
 
 .content {
@@ -63,13 +64,6 @@
     cursor: pointer;
 }
 
-.content .notauser button {
-    padding: 10px;
-    background-color: var(--color-sekunder);
-    color: var(--color-white);
-    border-radius: 7px;
-    cursor: pointer;
-}
 
 
 @media only screen and (max-width: 1250px) {
@@ -82,5 +76,51 @@
 @media only screen and (max-width: 768px) {
     .container {
         width: 95vw;
+    }
+
+    .namalengkapuser {
+        width: 30%;
+    }
+
+    .totaljumlah {
+        width: 25%;
+    }
+
+    .totalbiaya {
+        width: 25%;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 95vw;
+    }
+
+    .namalengkapuser {
+        width: 30%;
+    }
+
+    .totaljumlah {
+        width: 20%;
+    }
+
+    .totalbiaya {
+        width: 25%;
+    }
+
+    .datapesanan {
+        width: 30%;
+    }
+
+
+    .datapesanan {
+        text-align: right;
+    }
+
+
+    .content .datapesanan button {
+        padding: 7px;
+        border-radius: 7px;
     }
 }

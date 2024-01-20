@@ -67,3 +67,22 @@
     display: flex;
     /* justify-content: flex-end; */
 }
+
+@media only screen and (max-width: 480px) { 
+
+    .namapesanan {
+        width: 40%;
+    }
+    
+    .jumlahpesanan {
+        width: 15%;
+    }
+    
+    .hargapesanan {
+        width: 33%;
+    }
+    
+    .kupon {
+        width: 10%;
+    }
+}
