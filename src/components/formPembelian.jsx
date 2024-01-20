@@ -4,16 +4,12 @@ import * as Yup from 'yup';
 import styles from '@/components/formPembelian.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import MoonLoader from "react-spinners/MoonLoader";
-import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 export default function FormPembelian({ dataFormLangsung }) {
-    const router = useRouter()
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
-    const openKeranjang = useStore((state) => state.openKeranjang)
-    const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const kuponBarang = dataFormLangsung.map((data) => data.kupon_barang)[0]?.toString()
     const hargaBarangDiskonNormal = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
     const hargaBarangDiskonKupon = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)

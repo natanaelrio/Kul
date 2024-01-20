@@ -8,7 +8,7 @@ import Love from '@/components/love';
 import Keranjang from '@/components/keranjang';
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 
-export default function HeaderFooter({ children, kondisiFalseSearch, data, slug }) {
+export default function HeaderFooter({ children, kondisiFalseSearch}) {
   const openFormPembelian = useStore((state) => state.openFormPembelian)
   const openLove = useStore((state) => state.openLove)
   const openKeranjang = useStore((state) => state.openKeranjang)

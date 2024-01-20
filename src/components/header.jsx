@@ -111,7 +111,7 @@ export default function Header({ kondisiFalseSearch }) {
                     </div>
                     {kondisiFalseSearch && !results?.length && value.length ? <div className={styles.skletoncontainer}>
                         <SkletonSearch />
-                    </div> : kondisiFalseSearch && <Pencariannew
+                    </div> : kondisiFalseSearch && value.length == 0 ? false : true && <Pencariannew
                         data={results}
                         value={value}
                     />}

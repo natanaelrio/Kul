@@ -1,10 +1,16 @@
 .container {
     font-size: 0.6rem;
     margin: 30px 0;
+    width: 1200px;
 }
 
 .judul {
     display: flex;
+    font-weight: 700;
+    padding: 10px 0;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 7px 7px 0 0;
 }
 
 .content {
@@ -16,38 +22,65 @@
     background-color: var(--color-grey);
 }
 
-.notauser {
-    width: 150px;
+.history {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.history .number {
+    font-weight: 700;
+    font-size: 0.8rem;
 }
 
 .namalengkapuser {
-    width: 150px;
+    width: 30%;
+    padding: 5px;
 }
 
-.alamatlengkapuser {
-    width: 150px;
+.totaljumlah {
+    width: 30%;
+    padding: 5px;
 }
 
-.nomerhp {
-    width: 150px;
-}
-
-.kodepostuser {
-    width: 150px;
-}
-
-.catatan {
-    width: 150px;
+.totalbiaya {
+    width: 30%;
+    padding: 5px;
 }
 
 .datapesanan {
-    width: 100px;
+    width: 10%;
+    padding: 5px;
+    text-align: center;
 }
 
-.content button {
-    padding: 5px;
+
+.content .datapesanan button {
+    padding: 10px;
     background-color: var(--color-high);
     color: var(--color-white);
     border-radius: 7px;
     cursor: pointer;
+}
+
+.content .notauser button {
+    padding: 10px;
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 1250px) {
+    .container {
+        width: 95vw;
+    }
+}
+
+
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 95vw;
+    }
 }
