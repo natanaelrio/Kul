@@ -10,6 +10,7 @@ import { BsTagsFill } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function FormPage({ urlFetch, method, data, change, value }) {
     const router = useRouter()
@@ -78,7 +79,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
             setMatikan(true)
             const DataLain = {
                 end: null,
-                btoa: btoa(values.nama_barang).substring(0, 27).split('=')[0],
+                btoa: uuidv4(),
                 slug_barang: values.nama_barang.split(' ').join('-').toLowerCase()
             }
 

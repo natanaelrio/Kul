@@ -7,6 +7,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation'
 import Pencarian from '@/components/admin/pencarian';
 import { useStore } from '@/lib/zustand'
+import { IoListCircle } from "react-icons/io5";
+import { SiAddthis } from "react-icons/si";
+import { SiGooglemessages } from "react-icons/si";
 
 export default function Header({ children, judul }) {
     const router = useRouter()
@@ -15,7 +18,7 @@ export default function Header({ children, judul }) {
     return (
         <>
             <div className={styles.container}>
-                {Open ? <Pencarian /> : null}
+                {Open ? <Pencarian /> : null}                
                 <div className={styles.bungkusjudul}>
                     <div className={styles.iconjudul}>
                         <Link prefetch={false} href={'/'} className={styles.icon}>
@@ -24,11 +27,20 @@ export default function Header({ children, judul }) {
                         <div className={styles.judul}>{judul}</div>
                     </div>
                     <div className={styles.carikembali}>
+                        <Link href={'/admin/pesanan'}  >
+                            <SiGooglemessages className={styles.icon} />
+                        </Link>
+                        <Link href={'/admin/list'} >
+                            <IoListCircle className={styles.icon} />
+                        </Link>
+                        <Link href={'/admin/post'} >
+                            <SiAddthis className={styles.icon} />
+                        </Link>
                         <div className={styles.icon} onClick={setOpen}>
-                            <IoSearchCircle size={50} />
+                            <IoSearchCircle className={styles.icon} />
                         </div>
-                        <div onClick={() => router.back()} className={styles.icon}>
-                            <FaArrowCircleLeft />
+                        <div onClick={() => router.back()} >
+                            <FaArrowCircleLeft className={styles.icon} />
                         </div>
                     </div>
                 </div>

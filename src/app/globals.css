@@ -103,7 +103,16 @@ button {
   border: 0;
 }
 
+.Toastify__toast-container {
+  width: max-content !important;
+  height: 10px !important;
+  /* position: absolute!important; */
+  top: 20px !important;
+  font-size: 14px !important;
+}
+
 @media only screen and (max-width: 768px) {
+
   html,
   body {
     font-size: 23px;

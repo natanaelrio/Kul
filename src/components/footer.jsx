@@ -10,7 +10,7 @@ export default function Footer() {
         <footer className={styles.bawah}>
             <div className={styles.isi}>
                 <div className={styles.powerby}>
-                    © Website by <b>Natanael Rio Wijaya</b>
+                    © with ❤️ <b>Natanael Rio Wijaya</b>
                 </div>
                 <div className={styles.sosmed}>
                     <Link href="/" aria-label={'logofb'}> <FaFacebookSquare className={styles.sosmeddalam} /></Link>

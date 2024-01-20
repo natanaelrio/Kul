@@ -4,9 +4,10 @@ import * as Yup from 'yup';
 import styles from '@/components/formPembelian.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MoonLoader from "react-spinners/MoonLoader";
 import { useRouter } from 'next/navigation';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function FormPembelian({ dataFormLangsung }) {
     const router = useRouter()
@@ -25,7 +26,7 @@ export default function FormPembelian({ dataFormLangsung }) {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleSuccess = () => {
-        router.push('/')
+        // router.push('/')
         setIsLoading(false)
         setOpenFormPembelian()
         // openKeranjang ? setOpenKeranjang() : null
@@ -70,7 +71,12 @@ export default function FormPembelian({ dataFormLangsung }) {
 
             const dataTambahanNew = { dataPesanan }
             const dataUtama = values
-            const GabungData = { ...dataUtama, ...dataTambahanNew }
+            const uid = {
+                nota_user: uuidv4()
+            }
+            const dataUtamauid = { ...uid, ...dataUtama }
+            const GabungDataDataPesanandanDataUtamaUid = { ...dataUtamauid, ...dataTambahanNew }
+            const GabungData = { ...dataUtama, ...GabungDataDataPesanandanDataUtamaUid }
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/user-front/post-formpembelian', {
                     method: 'POST',
@@ -87,7 +93,8 @@ export default function FormPembelian({ dataFormLangsung }) {
                 console.error(e)
             }
         },
-    });
+    })
+
     return (
         <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
             <div className={styles.containerform}>
@@ -169,7 +176,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                     />
 
 
-                    <label htmlFor="catatan_user">catatan_user</label>
+                    <label htmlFor="catatan_user">Catatan</label>
                     <textarea
                         id="catatan_user"
                         name="catatan_user"

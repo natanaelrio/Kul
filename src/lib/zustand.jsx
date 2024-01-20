@@ -49,6 +49,14 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openDetailDataPesanan: false,
+    setOpenDetailDataPesanan: () => {
+        set((state) => ({
+            openDetailDataPesanan: !state.openDetailDataPesanan
+        })
+        )
+    }
+    ,
     valueDelete: [],
     setValueDelete: (e) => {
         set({ valueDelete: e })

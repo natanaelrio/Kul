@@ -20,9 +20,9 @@
     align-items: center;
 }
 
-.bungkusjudul .icon {
-    font-size: 40px;
-    padding-right: 20px;
+.bungkusjudul .icon:nth-child(1) {
+    font-size: 50px;
+    padding-right: 10px;
     cursor: pointer;
 }
 
@@ -43,8 +43,9 @@
 .carikembali {
     display: flex;
     align-items: center;
+    font-size: 10px;
+    justify-content: center;
 }
-
 
 @media only screen and (max-width: 1200px) {
     .bungkusjudul {
@@ -54,6 +55,11 @@
 
 
 @media only screen and (max-width: 768px) {
+
+    .bungkusjudul {
+        flex-direction: column;
+    }
+
     .judul {
         font-size: 25px;
     }

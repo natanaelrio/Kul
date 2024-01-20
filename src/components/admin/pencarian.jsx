@@ -13,10 +13,11 @@ export default function Pencarian() {
     const [value, setValue] = useState('')
     const [loading, setLoading] = useState(false)
 
+    console.log(value);
     useEffect(() => {
         const debounce = setTimeout(() => {
             const HandlePencarian = async () => {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/search-all?cari=${value}`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${value}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export default function Pencarian() {
         return () => clearTimeout(debounce)
     }, [value])
 
-    
+
     useEffect(() => {
         value ? data.length ? setLoading(false) : setLoading(true) : null
     }, [value, data.length])

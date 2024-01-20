@@ -7,7 +7,6 @@ import FormPembelian from '@/components/formPembelian';
 import Love from '@/components/love';
 import Keranjang from '@/components/keranjang';
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 
 export default function HeaderFooter({ children, kondisiFalseSearch, data, slug }) {
   const openFormPembelian = useStore((state) => state.openFormPembelian)

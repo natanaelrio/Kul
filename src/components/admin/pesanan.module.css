@@ -1,0 +1,53 @@
+.container {
+    font-size: 0.6rem;
+    margin: 30px 0;
+}
+
+.judul {
+    display: flex;
+}
+
+.content {
+    display: flex;
+    padding: 10px 0;
+}
+
+.content:nth-child(even) {
+    background-color: var(--color-grey);
+}
+
+.notauser {
+    width: 150px;
+}
+
+.namalengkapuser {
+    width: 150px;
+}
+
+.alamatlengkapuser {
+    width: 150px;
+}
+
+.nomerhp {
+    width: 150px;
+}
+
+.kodepostuser {
+    width: 150px;
+}
+
+.catatan {
+    width: 150px;
+}
+
+.datapesanan {
+    width: 100px;
+}
+
+.content button {
+    padding: 5px;
+    background-color: var(--color-high);
+    color: var(--color-white);
+    border-radius: 7px;
+    cursor: pointer;
+}

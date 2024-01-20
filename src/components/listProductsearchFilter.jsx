@@ -17,11 +17,11 @@ export default function ListProductsearchFilter() {
 
     const setOpenFilter = useStore((state) => state.setOpenFilter)
     const openFilter = useStore((state) => state.openFilter)
-    const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
+    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
 
     useEffect(() => {
-        fetchdatasearch(query, sort)
-    }, [fetchdatasearch, query, sort])
+        fetchdatasearchfilter(query, sort)
+    }, [fetchdatasearchfilter, query, sort])
 
     return (
         <div className={styles.container}>
@@ -35,7 +35,7 @@ export default function ListProductsearchFilter() {
 
                     <div className={styles.sort}
                         style={sort == 'price_high_to_low' ? { backgroundColor: 'var(--color-primary)', color: 'var(--color-white)' } : {}}
-                        onClick={() => { router.push(`${process.env.NEXT_PUBLIC_URL}/search?query=sam&sortby=price_high_to_low`), setOpenFilter() }}>
+                        onClick={() => { router.push(`${process.env.NEXT_PUBLIC_URL}/search?query=${query}&sortby=price_high_to_low`), setOpenFilter() }}>
                         <div>Highest ➞ Lowest Price</div> <FaSortNumericUp /></div>
 
                     {sort &&

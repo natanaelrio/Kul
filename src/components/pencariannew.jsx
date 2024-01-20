@@ -2,12 +2,11 @@ import styles from "@/components/pencariannew.module.css"
 import Image from "next/image"
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import Link from "next/link"
-import SkletonSearch from "@/components/skletonSearch"
 
-export default function Pencariannew({ data, notfound, value }) {
+export default function Pencariannew({ data, value }) {
     useLockBodyScroll()
 
-    const lengthResult = data.length
+    const lengthResult = data?.length
     const HighlightText = (e) => {
         const cek = new RegExp(value, 'gi')
         return e.replace(cek, match => `<span style='color: var(--color-high)'>${match}</span>`)
@@ -15,10 +14,10 @@ export default function Pencariannew({ data, notfound, value }) {
 
     return (
         <div className={styles.hasil}>
-            <div className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>
             {data?.map((data, i) => {
                 return (
                     <>
+                        <div key={i} className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>
                         <Link href={`/products/${data.slug_barang}`} key={data.id} className={styles.list}>
                             <div className={styles.gambar}>
                                 <Image
@@ -39,11 +38,9 @@ export default function Pencariannew({ data, notfound, value }) {
                                 </div>
                             </div>
                         </Link >
-
                     </>
                 )
             })}
-            {notfound ? null : <SkletonSearch />}
         </div>
     )
 }

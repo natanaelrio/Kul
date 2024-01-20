@@ -1,0 +1,39 @@
+.nama {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 10px 0;
+}
+
+.detail {
+    font-size: 0.6rem;
+    display: flex;
+}
+
+.namapesanan {
+    width: 40%;
+}
+
+.jumlahpesanan {
+    width: 30%;
+}
+
+.hargapesanan {
+    width: 20%;
+}
+
+.kupon {
+    width: 10%;
+}
+
+.content {
+    display: flex;
+}
+
+.content:nth-child(even) {
+    background-color: var(--color-grey);
+}
+
+.content {
+    font-size: 0.6rem;
+    padding: 10px 0;
+}

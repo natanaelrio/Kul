@@ -39,10 +39,12 @@ model formPembelian {
   id                  Int       @id @default(autoincrement())
   start               DateTime  @default(now())
   end                 DateTime? @updatedAt
+  nota_user           String?   @unique
   nama_lengkap_user   String?
   alamat_lengkap_user String?
   kode_pos_user       Int?
   no_hp_user          Int?
   catatan_user        String?
+  status_pesanan      Boolean?  @default(false)
   dataPesanan         Json?
 }

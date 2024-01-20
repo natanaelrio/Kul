@@ -1,34 +1,33 @@
 "use client"
 import { useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
 import ListProduk from '@/components/Layout/ListProduct'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import ListProductsearchFilter from '@/components/listProductsearchFilter'
 import FilterBlur from '@/components/Layout/filterBlur'
 import { useStore } from '@/lib/zustand'
+import { useEffect } from 'react'
 
 export default function ListProductsearch() {
     const searchParams = useSearchParams()
     const query = searchParams.get('query')
-    const sortby = searchParams.get('sortby')
-
-    const datasearch = useStoreListDataProduct((state) => state.datasearch)
-    const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
+    
     const openFilter = useStore((state) => state.openFilter)
 
-    useEffect(() => {
-        fetchdatasearch(query, sortby)
-    }, [fetchdatasearch])
+    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
+    const datasearchfilter = useStoreListDataProduct((state) => state.datasearchfilter)
 
+    useEffect(() => {
+        fetchdatasearchfilter(query)
+    }, [fetchdatasearchfilter])
 
     return (
         <>
             <ListProductsearchFilter />
             <ListProduk
-                data={datasearch}
+                data={datasearchfilter?.data}
                 fetchSearch={true}
                 value={query}
-                judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearch?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${datasearch?.data?.length}`}`}
+                judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearchfilter?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${datasearchfilter?.data?.length}`}`}
             />
             {openFilter && <FilterBlur />}
         </>

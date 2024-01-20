@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { FaSearch } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
@@ -12,7 +12,6 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useRouter } from 'next/navigation';
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useDebounce } from "@uidotdev/usehooks";
-import { useSearchParams } from 'next/navigation'
 
 export default function Header({ kondisiFalseSearch }) {
     const router = useRouter()
@@ -26,6 +25,8 @@ export default function Header({ kondisiFalseSearch }) {
 
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
     const datasearch = useStoreListDataProduct((state) => state.datasearch)
+
+    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
 
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
@@ -48,51 +49,33 @@ export default function Header({ kondisiFalseSearch }) {
     const [klikcari, setKlikcari] = useState(false)
     const [border, setBorder] = useState(false)
     const [searchTerm, setSearchTerm] = useState('');
-    const [results, setResults] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState('')
-    const [notfound, setNotFound] = useState(true)
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
-
-    const searchParams = useSearchParams()
-    const createQueryString = useCallback(
-        (name, value) => {
-            const params = new URLSearchParams(searchParams)
-            params.set(name, value)
-
-            return params.toString()
-        },
-        [searchParams]
-    )
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value)
         setValue(e.target.value)
-        kondisiFalseSearch ? null : router.push(`${process.env.NEXT_PUBLIC_URL}` + '/search?' + createQueryString('query', e.target.value))
     };
 
     useEffect(() => {
+        setIsLoading(true);
         const searchHN = async () => {
-            setIsLoading(true);
             if (debouncedSearchTerm) {
                 fetchdatasearch(debouncedSearchTerm)
-                setResults(datasearch?.data || [])
-                setIsLoading(true);
             }
-            setIsLoading(false);
-        };
+        }
         searchHN()
+        setIsLoading(false);
     }, [debouncedSearchTerm]);
+    const results = datasearch?.data
 
     useEffect(() => {
         // Jika Value Kosong
         !value.length ?
-            kondisiFalseSearch && setKlikcari(false) || setBorder(false)
+            kondisiFalseSearch && setKlikcari(false) || setBorder(false) || fetchdatasearch(searchTerm)
             : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
-
-        // Jika data Tidak Ada
-        !results.length ? kondisiFalseSearch && setNotFound(false) : kondisiFalseSearch && setNotFound(true)
-    }, [value, results])
+    }, [value])
 
     return (
         <>
@@ -106,19 +89,17 @@ export default function Header({ kondisiFalseSearch }) {
                     <div className={styles.dalampencarian}
                         onClick={() => {
                             kondisiFalseSearch ? setKlikcari(true) : setKlikcari(false),
-                                setBorder(border),
-                                setNotFound(true)
+                                setBorder(border)
                         }}
                     >
                         <div className={styles.input}>
-                            <form onSubmit={(e) => { e.preventDefault(), fetchdatasearch(value), router.push(`/search?query=${value}`) }} >
+                            <form onSubmit={(e) => { e.preventDefault(), fetchdatasearchfilter(value), router.push(`/search?query=${value}`) }} >
                                 <input
                                     style={{ borderRadius: border ? '15px 15px 0 0' : '15px' }}
                                     type="search"
                                     placeholder="cari produk..."
                                     className={styles.inputtrue}
                                     onChange={handleChange}
-                                    value={searchParams.get('query') || searchTerm}
                                 />
                             </form>
                         </div>
@@ -128,13 +109,14 @@ export default function Header({ kondisiFalseSearch }) {
                             </div>
                         </div>
                     </div>
+                    {kondisiFalseSearch && !results?.length && value.length ? <div className={styles.skletoncontainer}>
+                        <SkletonSearch />
+                    </div> : kondisiFalseSearch && <Pencariannew
+                        data={results}
+                        value={value}
+                    />}
 
-                    {kondisiFalseSearch && isLoading && value.length ?
-                        null : kondisiFalseSearch && value.length ? <Pencariannew
-                            data={results}
-                            notfound={notfound}
-                            value={value}
-                        /> : null}
+
                 </div>
                 <div className={styles.pilihan}>
                     <div className={kondisiLove ? styles.animasi : null} >
@@ -158,7 +140,6 @@ export default function Header({ kondisiFalseSearch }) {
                 setKlikcari(false),
                     setValue(''),
                     setBorder(false)
-                setNotFound(true)
             }
             }></div>
                 : null}

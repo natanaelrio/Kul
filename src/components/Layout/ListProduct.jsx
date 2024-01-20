@@ -43,8 +43,8 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-                        {data?.data ? null : <SkletonList />}
-                        {data?.data?.map((data, i) => {
+                        {data ? null : <SkletonList />}
+                        {data?.map((data, i) => {
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
