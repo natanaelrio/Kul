@@ -73,7 +73,7 @@ export default function Pesanan() {
                                 </Moment>
 
                             </div>
-                            <div className={styles.totaljumlah}>{totalJumlahBarang} {data?.nama_lengkap_user}</div>
+                            <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
                             <div className={styles.totalbiaya}>{totalHargaBarang}</div>
                             <div className={styles.datapesanan}><button onClick={() => HandlePesanan(data)}>Pesanan</button></div>
                         </div>
