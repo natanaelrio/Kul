@@ -41,7 +41,7 @@ export default function Pesanan() {
         e > 0 ? router.push(`/admin/pesanan?skip=${e}`) : router.push(`/admin/pesanan`)
         fetchdatalistpesanan(take, e > 0 ? e : 0)
     }
-    const kondisilength = datalistpesanan.data.length ? true : false
+    const kondisilength = datalistpesanan?.data?.length ? true : false
 
     return (
         <>
