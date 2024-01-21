@@ -26,10 +26,10 @@ export async function GET(req) {
             take: Number(take) || 10,
             orderBy: { id: 'desc' },
             where: {
-                nota_user: {
+                nota_user: nota ? {
                     contains: nota || '',
                     mode: 'insensitive'
-                },
+                } : { not: null },
             },
         })
 
