@@ -1,7 +1,7 @@
 .container {
     font-size: 0.6rem;
     margin: 30px 0;
-    width: 1200px;
+    width: 1000px;
 }
 
 .judul {
@@ -24,14 +24,25 @@
 }
 
 .history {
-    padding: 20px;
+    padding: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .history .number {
     font-weight: 700;
     font-size: 0.8rem;
+}
+
+.history .jumlah {
+    display: flex;
+}
+
+.history input {
+    width: 300px;
+    padding: 10px;
+    font-size: 0.6rem;
 }
 
 .tanggalinput {
@@ -114,6 +125,12 @@
         width: 25%;
     }
 
+    .history {
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -147,4 +164,11 @@
         padding: 7px;
         border-radius: 7px;
     }
+
+    .history {
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-direction: column;
+    }
+
 }

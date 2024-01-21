@@ -44,9 +44,9 @@ export const useStoreListDataProduct = create((set) => ({
 
     // LIST PESANAN
     datalistpesanan: {},
-    fetchdatalistpesanan: async (take, skip) => {
+    fetchdatalistpesanan: async (take, skip, nota) => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-pesanan?take=${take}&skip=${skip}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-pesanan?nota=${nota ? nota : ''}&take=${take}&skip=${skip}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',

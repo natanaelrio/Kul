@@ -9,6 +9,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Moment from 'react-moment';
+import { useDebounce } from "@uidotdev/usehooks";
 
 export default function Pesanan() {
     const searchParams = useSearchParams()
@@ -25,11 +26,9 @@ export default function Pesanan() {
         fetchdatalistpesanan(take, skip)
     }, [fetchdatalistpesanan])
 
-    const omset = datalistpesanan?.data?.map((data) => data?.dataPesanan?.map((data) => data?.harga_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-    const totalterjual = datalistpesanan?.data?.map((data) => data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0)
+    const omset = datalistpesanan?.total_omset
+    const totalterjual = datalistpesanan?.total_terjual
+    const total_array = datalistpesanan?.total_array
 
     const [dataPesanan, setDataPesanan] = useState([])
     const HandlePesanan = (e) => {
@@ -41,13 +40,46 @@ export default function Pesanan() {
         e > 0 ? router.push(`/admin/pesanan?skip=${e}`) : router.push(`/admin/pesanan`)
         fetchdatalistpesanan(take, e > 0 ? e : 0)
     }
-    const kondisilength = datalistpesanan?.data?.length ? true : false
+
+    const handlePencarian = (e) => {
+        setIsCari(e.target.value)
+
+    }
+
+    const [iscari, setIsCari] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    const debouncedSearchTerm = useDebounce(iscari, 300);
+    useEffect(() => {
+        const searchHN = async () => {
+            setIsLoading(true)
+            if (debouncedSearchTerm) {
+                fetchdatalistpesanan(10, 0, iscari)
+            }
+            setIsLoading(false)
+        }
+        searchHN()
+    }, [debouncedSearchTerm]);
+
+
+    useEffect(() => {
+        iscari.length ? true : fetchdatalistpesanan(take, skip, '')
+    }, [iscari])
 
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.history}>
-                    Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;| &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>
+                    <div className={styles.jumlah}>
+                        Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;| &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>
+                    </div>
+                    <div className={styles.pencarian}>
+                        <input
+                            type="text"
+                            placeholder='cari nota...'
+                            onChange={(e) => handlePencarian(e)}
+                            value={iscari}
+                        />
+                    </div>
                 </div>
                 <div className={styles.judul}>
                     <div className={styles.tanggalinput}>Tanggal </div>
@@ -55,7 +87,8 @@ export default function Pesanan() {
                     <div className={styles.totalbiaya}>Total Biaya</div>
                     <div className={styles.datapesanan}>Pesanan</div>
                 </div>
-                {datalistpesanan.data ? null : <SkletonPesanan />}
+                {datalistpesanan?.data?.length === 0 ? <span>Tidak Ada Data....</span> : null}
+                {datalistpesanan?.data ? null : <SkletonPesanan />}
                 {datalistpesanan?.data?.map((data) => {
                     const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
                     const totalHargaBarang = data?.dataPesanan?.map((data) => data?.harga_barang_user).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
@@ -89,7 +122,7 @@ export default function Pesanan() {
                 </div>
                 <span>{skip}</span>
                 <div onClick={() => { handlePlusNegatif(Number(skip) + 10) }}
-                    style={kondisilength ? { display: 'block' } : { display: 'none' }}
+                    style={total_array > skip ? { display: 'block' } : { display: 'none' }}
                     className={styles.arrow}><FaArrowRight size={20} /></div>
             </div>
             {Open ? <DataPesanan data={dataPesanan} /> : null

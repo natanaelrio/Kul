@@ -45,7 +45,7 @@ export default function DataPesanan({ data }) {
             {data?.dataPesanan?.map((data) => {
                 const datakupon = data?.validasi_kupon_user.toString()
                 return (
-                    <div key={data?.id} className={styles.content} >
+                    <div key={data?.nama_barang_user} className={styles.content} >
                         <div className={styles.namapesanan}>{data?.nama_barang_user}</div>
                         <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
                         <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
