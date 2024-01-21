@@ -37,8 +37,9 @@ export default function Header({ kondisiFalseSearch }) {
         setKeranjang(keranjangZ)
     }, [loveZ, keranjangZ])
 
-    const [change, setChange] = useState(true)
+
     // SCROLL EFFECK
+    const [change, setChange] = useState(true)
     useEffect(() => {
         const windowScroll = () => {
             window.scrollY <= 50 ? setChange(true) : setChange(false)
@@ -77,6 +78,14 @@ export default function Header({ kondisiFalseSearch }) {
             : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
     }, [value])
 
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            setKlikcari(false)
+            setBorder(false)
+        }
+    }
+
     return (
         <>
             <nav className={styles.nav}
@@ -100,6 +109,7 @@ export default function Header({ kondisiFalseSearch }) {
                                     placeholder="cari produk..."
                                     className={styles.inputtrue}
                                     onChange={handleChange}
+                                    onKeyDown={handleKeyDown}
                                 />
                             </form>
                         </div>
@@ -111,7 +121,7 @@ export default function Header({ kondisiFalseSearch }) {
                     </div>
                     {kondisiFalseSearch && !results?.length && value.length ? <div className={styles.skletoncontainer}>
                         <SkletonSearch />
-                    </div> : kondisiFalseSearch && value.length == 0 ? false : true && <Pencariannew
+                    </div> : kondisiFalseSearch && Boolean(value.length) && <Pencariannew
                         data={results}
                         value={value}
                     />}

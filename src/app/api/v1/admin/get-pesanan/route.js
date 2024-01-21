@@ -1,10 +1,14 @@
 import { prisma } from "@/lib/prisma"
 
 export async function GET(req) {
+    const searchParams = req.nextUrl.searchParams;
+    const skip = searchParams.get('skip')
+    const take = searchParams.get('take')
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const users = await prisma.formPembelian.findMany({
-            // take: 10,
+            skip: Number(skip) || 0,
+            take: Number(take) || 10,
             orderBy: { id: 'desc' },
             // { view_barang: 'asc' },
         })

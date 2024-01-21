@@ -34,7 +34,7 @@
     font-size: 0.8rem;
 }
 
-.namalengkapuser {
+.tanggalinput {
     width: 30%;
     padding: 5px;
 }
@@ -64,6 +64,30 @@
     cursor: pointer;
 }
 
+.pagination {
+    margin: 10px 0 20px 0;
+    font-size: 0.9rem;
+    background-color: var(--color-grey);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    padding: 10px 0px;
+}
+
+.pagination .arrow {
+    font-size: 0.9rem;
+    padding: 0 50px;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+.pagination span {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
 
 
 @media only screen and (max-width: 1250px) {
@@ -78,7 +102,7 @@
         width: 95vw;
     }
 
-    .namalengkapuser {
+    .tanggalinput {
         width: 30%;
     }
 
@@ -97,7 +121,7 @@
         width: 95vw;
     }
 
-    .namalengkapuser {
+    .tanggalinput {
         width: 30%;
     }
 
