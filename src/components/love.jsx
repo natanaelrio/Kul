@@ -69,18 +69,16 @@ export default function Love() {
                                                 </div>
                                             }
                                         </div>
-                                        <div className={styles.detail}>
+                                        <Link className={styles.detail} href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
                                             <div>
                                                 <div className={styles.judul}>{data.nama_barang}</div>
                                                 <div className={styles.harga}>
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>
                                                     <div className={styles.hargadiskon}>{diskonharga}</div>
                                                 </div>
-                                                <Link href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
-                                                    Detail Produk...
-                                                </Link>
+                                                Detail Produk...
                                             </div>
-                                        </div>
+                                        </Link>
                                     </div>
                                     <div className={styles.action}>
                                         <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>
