@@ -6,6 +6,7 @@ import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
+import Link from 'next/link';
 
 export default function Love() {
     const setOpenLove = useStore((state) => state.setOpenLove)
@@ -29,6 +30,7 @@ export default function Love() {
                     <div className={styles.container}>
 
                         {loveZ.map((data, i) => {
+                            console.log(data)
                             const diskonharga = data.harga_total_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
@@ -45,6 +47,24 @@ export default function Love() {
                                                 width={150}
                                                 height={100}
                                                 alt={data?.nama_barang} />
+                                            {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
+                                                <div className={styles.keranjanggambar}
+                                                    onClick={() => setDeleteKeranjangZ(data.id)}>
+                                                    <div className={styles.kotak1}></div>
+                                                    <div className={styles.logo}
+                                                        style={{ background: 'var(--color-high' }}
+                                                    >
+                                                        <LuShoppingCart size={20} />-
+                                                    </div>
+                                                </div>
+                                                :
+                                                <div className={styles.keranjanggambar} onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
+                                                    <div className={styles.kotak1}></div>
+                                                    <div className={styles.logo}>
+                                                        <LuShoppingCart size={20}/>+
+                                                    </div>
+                                                </div>
+                                            }
                                         </div>
                                         <div className={styles.detail}>
                                             <div>
@@ -53,24 +73,17 @@ export default function Love() {
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>
                                                     <div className={styles.hargadiskon}>{diskonharga}</div>
                                                 </div>
-                                            </div>
-                                            <div>
-                                                {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
-                                                    <div className={styles.tambahkeranjang}
-                                                        style={{ background: 'var(--color-high' }}
-                                                        onClick={() => setDeleteKeranjangZ(data.id)}>
-                                                        <LuShoppingCart />&nbsp;Keranjang -
-                                                    </div>
-                                                    :
-                                                    <div className={styles.tambahkeranjang} onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
-                                                        <LuShoppingCart />&nbsp;Keranjang +
-                                                    </div>
-                                                }
+                                                <Link href={`/products/${data.slug_barang}`}>
+                                                    Detail Produk...
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
+                                    <div className={styles.action}>
+                                        <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>
 
-                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>
+
+                                    </div>
                                 </div>
                             )
                         })}
