@@ -5,7 +5,6 @@ import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { FaRegHeart } from "react-icons/fa";
-import { LuShoppingCart } from "react-icons/lu";
 import Link from 'next/link';
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { TbShoppingBagX } from "react-icons/tb";
@@ -65,7 +64,7 @@ export default function Love() {
                                                     <div className={styles.kotak1}></div>
                                                     <div className={styles.kotak2}>
                                                         <div className={styles.bgkotak2}></div>
-                                                        <TbShoppingBagPlus  size={20} className={styles.logo} />
+                                                        <TbShoppingBagPlus size={20} className={styles.logo} />
                                                     </div>
                                                 </div>
                                             }
@@ -77,7 +76,7 @@ export default function Love() {
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>
                                                     <div className={styles.hargadiskon}>{diskonharga}</div>
                                                 </div>
-                                                <Link href={`/products/${data.slug_barang}`}>
+                                                <Link href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
                                                     Detail Produk...
                                                 </Link>
                                             </div>
@@ -85,8 +84,6 @@ export default function Love() {
                                     </div>
                                     <div className={styles.action}>
                                         <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>
-
-
                                     </div>
                                 </div>
                             )
