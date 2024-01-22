@@ -7,6 +7,8 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import Link from 'next/link';
+import { TbShoppingBagPlus } from "react-icons/tb";
+import { TbShoppingBagX } from "react-icons/tb";
 
 export default function Love() {
     const setOpenLove = useStore((state) => state.setOpenLove)
@@ -51,17 +53,19 @@ export default function Love() {
                                                 <div className={styles.keranjanggambar}
                                                     onClick={() => setDeleteKeranjangZ(data.id)}>
                                                     <div className={styles.kotak1}></div>
-                                                    <div className={styles.logo}
-                                                        style={{ background: 'var(--color-high' }}
-                                                    >
-                                                        <LuShoppingCart size={20} />-
+                                                    <div className={styles.kotak2}>
+                                                        <div className={styles.bgkotak2}
+                                                            style={{ background: 'var(--color-high' }}></div>
+                                                        <TbShoppingBagX size={20} className={styles.logo} />
                                                     </div>
                                                 </div>
                                                 :
-                                                <div className={styles.keranjanggambar} onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
+                                                <div className={styles.keranjanggambar}
+                                                    onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
                                                     <div className={styles.kotak1}></div>
-                                                    <div className={styles.logo}>
-                                                        <LuShoppingCart size={20}/>+
+                                                    <div className={styles.kotak2}>
+                                                        <div className={styles.bgkotak2}></div>
+                                                        <TbShoppingBagPlus  size={20} className={styles.logo} />
                                                     </div>
                                                 </div>
                                             }

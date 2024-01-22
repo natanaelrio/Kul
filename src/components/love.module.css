@@ -61,33 +61,42 @@
     position: relative;
 }
 
-.list .keranjanggambar .logo {
+.list .keranjanggambar .kotak2 {
     position: absolute;
     bottom: 0;
     left: 0;
     z-index: 10;
-    background-color: var(--color-primary);
-    color: var(--color-white);
     padding: 2px;
     border-radius: 3px;
     display: flex;
     align-items: center;
-    width: 100px;
 }
 
-.list .keranjanggambar:hover .logo {
-    height: 90px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s;
-    cursor: pointer;
+.list .keranjanggambar .kotak2 .bgkotak2 {
+    position: relative;
+    background-color: var(--color-sekunder);
+    opacity: 0.5;
+    height: 30px;
+    width: 30px;
+    border-radius: 3px;
 }
 
+.list .keranjanggambar .kotak2 .logo {
+    padding: 1px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    color: var(--color-white);
+}
+
+
+/* Detail PRODUK */
 .list .detail {
     padding: 0 10px 10px 10px;
     display: flex;
-    /* justify-content: space-between; */
     flex-direction: column;
 }
 
