@@ -9,7 +9,7 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    padding: 15px;
+    padding: 0 15px 15px 15px;
     font-size: 0.7rem;
 }
 
@@ -36,7 +36,7 @@
 
 .total .totalpembayaran {
     padding: 15px;
-    font-size: 25px;
+    font-size: 0.9rem;
 }
 
 .list {
@@ -104,7 +104,6 @@
 
 .list .detail .hargadalam {
     font-weight: 700;
-    font-size: 0.7rem;
 }
 
 .list .detail .hargadiskon {
@@ -195,24 +194,12 @@
 
     .container {
         padding: 15px 5px;
-        max-height: 50vh;
+        max-height: 60vh;
     }
 
 
     .list .detail {
         padding: 0 10px 10px 10px;
-    }
-
-
-    .list .gambar {
-        width: 100px;
-        height: 80px;
-
-    }
-
-    .list .gambar img {
-        width: 100px;
-        height: 80px;
     }
 
 
