@@ -27,7 +27,7 @@
 
 
 .produk {
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     font-size: 0.6rem;
@@ -43,23 +43,23 @@
 
 .produk .gambar {
     max-height: 180px;
-    border-radius: 10px 10px 0 0;
+    border-radius: 12px 12px 0 0;
     overflow: hidden;
     position: relative;
 }
 
 .produk .diskon {
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 7px;
+    left: 7px;
     font-weight: 500;
     background-color: var(--color-high);
     display: flex;
     align-items: center;
     color: var(--color-white);
     padding: 3px;
-    border-radius: 7px;
-    font-size: 0.4rem;
+    border-radius: 5px;
+    font-size: 0.6rem;
 }
 
 
@@ -115,7 +115,7 @@
 }
 
 .produk .gambar img {
-    border-radius: 10px 10px 0 0;
+    border-radius: 12px 12px 0 0;
     max-height: 180px;
     max-width: 100%;
     background-position: center;
@@ -176,24 +176,6 @@
 .ratingterjual .garis {
     opacity: 0.5;
     padding: 0 5px;
-}
-
-
-
-.produk .beli {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    text-align: center;
-    font-weight: bold;
-    padding: 10px 0px;
-    border-radius: 15px;
-    position: relative;
-    margin-top: 10px;
-    display: none;
 }
 
 

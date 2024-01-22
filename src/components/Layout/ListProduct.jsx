@@ -64,7 +64,8 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                                 alt={data?.nama_barang}
                                             />
                                         </Link>
-                                        <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                        {data?.diskon_barang == 0 || null ? null : <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>}
+
                                         <div className={styles.love}>
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                 <div className={styles.bgicon}
