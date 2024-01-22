@@ -84,12 +84,14 @@ export default function Keranjang() {
                                                         style={data.value >= data.jumlah_barang ? { color: '#c2c2c2' } : null}
                                                         onClick={() => { handleCountKeranjang(data, true) }}>+</button>
                                                 </div>
-                                                <div className={styles.stokbarang}>{data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => handleKeranjangdanResetValue(data.id)} /></div>
+                                    <div className={styles.delete} >
+                                        <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleKeranjangdanResetValue(data.id)} />
+                                    </div>
+                                    <div className={styles.stokbarang}>{ data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
                                 </div>
                             )
                         })}

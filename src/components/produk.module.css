@@ -1,7 +1,7 @@
 .container {
     display: flex;
     justify-content: center;
-   position: relative;
+    position: relative;
 }
 
 .width {
@@ -93,14 +93,14 @@
 }
 
 .reviewproduk .icon:hover {
-   background-color: var(--color-grey);
-   border-radius: 50%;
+    background-color: var(--color-grey);
+    border-radius: 50%;
 }
 
 /* LOVE */
 
 .lovebg {
-    font-size: 0.9rem!important;
+    font-size: 0.9rem !important;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -145,17 +145,14 @@
 .reviewproduk .button {
     display: flex;
     align-items: center;
-    background-color: var(--color-grey);
-    color: var(--color-sekunder);
-    border-radius: 12px;
-    padding: 7px 5px;
+    border: 3px solid var(--color-grey);
     font-weight: 700;
 }
 
 .reviewproduk .button button {
-    background-color: var(--color-grey);
+    background-color: var(--color-white);
     color: var(--color-sekunder);
-    padding: 0px 15px;
+    padding: 10px 20px;
     cursor: pointer;
     outline: none;
     border: 0;
@@ -163,6 +160,7 @@
 
 .reviewproduk .button .angka {
     margin: 0 15px;
+    font-size: 0.8rem;
 }
 
 
@@ -183,7 +181,7 @@
     color: var(--color-white);
     border: 0;
     outline: 0;
-    padding: 12px;
+    padding: 15px;
     border-radius: 12px;
     cursor: pointer;
     letter-spacing: 1.05px;
@@ -205,7 +203,7 @@
     color: var(--color-white);
     border: 0;
     outline: 0;
-    padding: 12px;
+    padding: 15px;
     border-radius: 12px;
     cursor: pointer;
     letter-spacing: 1.05px;
@@ -225,10 +223,9 @@
 /* GAMBAR */
 
 .gambar {
-    height: 500px;
+    min-height: max-content;
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     padding: 30px;
 }
 
@@ -240,15 +237,17 @@
 }
 
 .gambar .gambardalam {
-    position: relative;
-
+    /* position: relative; */
+    position: sticky;
+    top: 100px;
+    height: fit-content;
 }
 
 .gambar .gambardalam .gratisongkir {
     position: absolute;
     background-color: var(--color-third);
     color: var(--color-sekunder);
-    bottom: 30px;
+    bottom: 10px;
     /* top: 30px; */
     left: 0;
     padding: 10px 20px;
@@ -317,7 +316,7 @@
 
     .gambar img {
         height: 400px;
-        width: 95vw;
+        width: 400px;
         border-radius: 12px;
     }
 
@@ -331,6 +330,9 @@
         border-radius: 0 10px 10px 0;
     }
 
+    .gambar .gambardalam {
+        top: 0
+    }
 }
 
 
@@ -388,5 +390,9 @@
         left: 0;
         padding: 10px 20px;
         border-radius: 0 10px 10px 0;
+    }
+    
+    .gambar .gambardalam {
+        top: 0
     }
 }

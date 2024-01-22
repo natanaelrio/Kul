@@ -43,6 +43,15 @@
     display: flex;
     margin-bottom: 10px;
     justify-content: space-between;
+    position: relative;
+}
+
+.list .stokbarang {
+    position: absolute;
+    right: 0;
+    font-size: 0.6rem;
+    bottom: 20px;
+    color: var(--color-high);
 }
 
 .detailluar {
@@ -136,13 +145,14 @@
 
 }
 
-.list .jumlahbarang .stokbarang {
-    font-size: 14px;
-}
+
 
 .delete {
     color: var(--color-diskon);
     font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
 
