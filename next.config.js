@@ -6,7 +6,8 @@ const nextConfig = {
       'localhost',
       'd3544la1u8djza.cloudfront.net',
       'ik.imagekit.io',
-      'kul.vercel.app'
+      'kul.vercel.app',
+      'shop.forem.com'
     ],
   }
 }

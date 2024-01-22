@@ -69,8 +69,9 @@ export default function DetailList(props) {
                             <div className={styles.judul}>
                                 Deskripsi
                             </div>
-                            <div className={styles.detail}>
-                                {props.data?.diskripsi_barang}
+                            <div className={styles.detail}
+                            dangerouslySetInnerHTML={{ __html: props.data?.diskripsi_barang }}
+                            >
                             </div>
                         </div>
 

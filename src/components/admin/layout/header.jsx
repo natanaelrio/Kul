@@ -27,13 +27,13 @@ export default function Header({ children, judul }) {
                         <div className={styles.judul}>{judul}</div>
                     </div>
                     <div className={styles.carikembali}>
-                        <Link href={'/admin/pesanan'}  >
+                        <Link href={'/admin/pesanan'} target='_blank' >
                             <SiGooglemessages className={styles.icon} />
                         </Link>
-                        <Link href={'/admin/list'} >
+                        <Link href={'/admin/list'} target='_blank'>
                             <IoListCircle className={styles.icon} />
                         </Link>
-                        <Link href={'/admin/post'} >
+                        <Link href={'/admin/post'} target='_blank' >
                             <SiAddthis className={styles.icon} />
                         </Link>
                         <div className={styles.icon} onClick={setOpen}>

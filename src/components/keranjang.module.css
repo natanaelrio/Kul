@@ -51,13 +51,13 @@
 }
 
 .list .gambar {
-    width: 150px;
+    width: 120px;
     height: 100px;
     border-radius: 7px;
 }
 
 .list .gambar img {
-    width: 150px;
+    width: 120px;
     height: 100px;
     border-radius: 7px;
 }
@@ -69,6 +69,8 @@
     flex-direction: column;
     width: 100%;
     font-size: 0.6rem;
+    color: var(--color-sekunder);
+    font-weight: 500;
 }
 
 .list .detail .judul {
@@ -80,7 +82,6 @@
     text-overflow: ellipsis;
     white-space: normal;
     text-align: left;
-    font-weight: 700;
     margin-bottom: 5px;
 }
 
@@ -93,38 +94,12 @@
 }
 
 .list .detail .hargadalam {
-    font-weight: 500;
+    font-weight: 700;
     font-size: 0.7rem;
 }
 
 .list .detail .hargadiskon {
-    font-weight: 500;
     text-decoration: line-through;
-}
-
-
-.list .tambahkurang {
-    display: flex;
-    align-items: center;
-}
-
-.list .tambahkeranjang {
-    background-color: var(--color-primary);
-    padding: 5px;
-    color: var(--color-white);
-    text-align: center;
-    border-radius: 7px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-
-}
-
-.list .tambahkeranjang:hover {
-    background-color: var(--hover-color-primary);
-    transition: 0.2s ease all;
 }
 
 .list .tambahkurang {

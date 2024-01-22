@@ -39,21 +39,21 @@
 }
 
 .list .gambar {
-    width: 150px;
-    height: 100px;
+    width: 100px;
+    height: 80px;
     border-radius: 7px;
 }
 
 .list .gambar img {
-    width: 150px;
-    height: 100px;
+    width: 100px;
+    height: 80px;
     border-radius: 7px;
 }
 
 .list .detail {
-    padding: 10px;
+    padding: 0 10px 10px 10px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-direction: column;
     font-size: 0.6rem;
 }
@@ -99,7 +99,7 @@
     padding: 5px;
     color: var(--color-white);
     text-align: center;
-    border-radius: 7px;
+    border-radius: 5px;
     cursor: pointer;
     display: flex;
     justify-content: center;

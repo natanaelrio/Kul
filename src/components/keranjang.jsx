@@ -20,7 +20,6 @@ export default function Keranjang() {
         currency: 'IDR'
     });
 
-
     const handleCountKeranjang = (data, kondisi) => {
         const id = data.id
         const value = kondisi ? data.value + 1 : data.value - 1
@@ -85,7 +84,7 @@ export default function Keranjang() {
                                                         style={data.value >= data.jumlah_barang ? { color: '#c2c2c2' } : null}
                                                         onClick={() => { handleCountKeranjang(data, true) }}>+</button>
                                                 </div>
-                                                <div className={styles.stokbarang}>Stok :{data.jumlah_barang}</div>
+                                                <div className={styles.stokbarang}>{data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
                                             </div>
                                         </div>
                                     </div>

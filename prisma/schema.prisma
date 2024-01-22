@@ -20,7 +20,7 @@ model admin {
   btoa                   String?   @unique
   start                  DateTime  @default(now())
   end                    DateTime? @updatedAt
-  nama_barang            String
+  nama_barang            String?
   kategori_barang        String?
   tag_barang             String?
   harga_barang           Int?
@@ -46,6 +46,6 @@ model formPembelian {
   kode_pos_user       Int?
   no_hp_user          Int?
   catatan_user        String?
-  status_pesanan      Boolean?  @default(false)
+  status_pesanan      String?
   dataPesanan         Json?
 }

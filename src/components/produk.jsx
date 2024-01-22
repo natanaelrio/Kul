@@ -142,7 +142,7 @@ export default function Produk(props) {
                                     }
 
                                 </div>
-                                <div className={styles.deskripsi}>{data?.diskripsi_barang}
+                                <div className={styles.deskripsi} dangerouslySetInnerHTML={{ __html: data?.diskripsi_barang }}>
                                 </div>
                             </div>
 
