@@ -67,10 +67,11 @@ export default function FormPembelian({ dataFormLangsung }) {
 
             const dataTambahanNew = { dataPesanan }
             const dataUtama = values
-            const uid = {
-                nota_user: uuidv4()
+            const datalain = {
+                nota_user: uuidv4(),
+                status_pesanan: 'belum_diproses'
             }
-            const dataUtamauid = { ...uid, ...dataUtama }
+            const dataUtamauid = { ...datalain, ...dataUtama }
             const GabungDataDataPesanandanDataUtamaUid = { ...dataUtamauid, ...dataTambahanNew }
             const GabungData = { ...dataUtama, ...GabungDataDataPesanandanDataUtamaUid }
             try {

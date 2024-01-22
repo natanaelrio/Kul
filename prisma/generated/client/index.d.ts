@@ -1214,7 +1214,7 @@ export namespace Prisma {
     btoa: string | null
     start: Date
     end: Date | null
-    nama_barang: string
+    nama_barang: string | null
     kategori_barang: string | null
     tag_barang: string | null
     harga_barang: number | null
@@ -1300,7 +1300,7 @@ export namespace Prisma {
       btoa: string | null
       start: Date
       end: Date | null
-      nama_barang: string
+      nama_barang: string | null
       kategori_barang: string | null
       tag_barang: string | null
       harga_barang: number | null
@@ -1902,7 +1902,7 @@ export namespace Prisma {
     /**
      * The data needed to create a admin.
      */
-    data: XOR<adminCreateInput, adminUncheckedCreateInput>
+    data?: XOR<adminCreateInput, adminUncheckedCreateInput>
   }
 
 
@@ -2047,7 +2047,7 @@ export namespace Prisma {
     kode_pos_user: number | null
     no_hp_user: number | null
     catatan_user: string | null
-    status_pesanan: boolean | null
+    status_pesanan: string | null
   }
 
   export type FormPembelianMaxAggregateOutputType = {
@@ -2060,7 +2060,7 @@ export namespace Prisma {
     kode_pos_user: number | null
     no_hp_user: number | null
     catatan_user: string | null
-    status_pesanan: boolean | null
+    status_pesanan: string | null
   }
 
   export type FormPembelianCountAggregateOutputType = {
@@ -2228,7 +2228,7 @@ export namespace Prisma {
     kode_pos_user: number | null
     no_hp_user: number | null
     catatan_user: string | null
-    status_pesanan: boolean | null
+    status_pesanan: string | null
     dataPesanan: JsonValue | null
     _count: FormPembelianCountAggregateOutputType | null
     _avg: FormPembelianAvgAggregateOutputType | null
@@ -2293,7 +2293,7 @@ export namespace Prisma {
       kode_pos_user: number | null
       no_hp_user: number | null
       catatan_user: string | null
-      status_pesanan: boolean | null
+      status_pesanan: string | null
       dataPesanan: Prisma.JsonValue | null
     }, ExtArgs["result"]["formPembelian"]>
     composites: {}
@@ -2698,7 +2698,7 @@ export namespace Prisma {
     readonly kode_pos_user: FieldRef<"formPembelian", 'Int'>
     readonly no_hp_user: FieldRef<"formPembelian", 'Int'>
     readonly catatan_user: FieldRef<"formPembelian", 'String'>
-    readonly status_pesanan: FieldRef<"formPembelian", 'Boolean'>
+    readonly status_pesanan: FieldRef<"formPembelian", 'String'>
     readonly dataPesanan: FieldRef<"formPembelian", 'Json'>
   }
     
@@ -3101,7 +3101,8 @@ export namespace Prisma {
     nota_user: 'nota_user',
     nama_lengkap_user: 'nama_lengkap_user',
     alamat_lengkap_user: 'alamat_lengkap_user',
-    catatan_user: 'catatan_user'
+    catatan_user: 'catatan_user',
+    status_pesanan: 'status_pesanan'
   };
 
   export type formPembelianOrderByRelevanceFieldEnum = (typeof formPembelianOrderByRelevanceFieldEnum)[keyof typeof formPembelianOrderByRelevanceFieldEnum]
@@ -3155,13 +3156,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -3193,7 +3187,7 @@ export namespace Prisma {
     btoa?: StringNullableFilter<"admin"> | string | null
     start?: DateTimeFilter<"admin"> | Date | string
     end?: DateTimeNullableFilter<"admin"> | Date | string | null
-    nama_barang?: StringFilter<"admin"> | string
+    nama_barang?: StringNullableFilter<"admin"> | string | null
     kategori_barang?: StringNullableFilter<"admin"> | string | null
     tag_barang?: StringNullableFilter<"admin"> | string | null
     harga_barang?: IntNullableFilter<"admin"> | number | null
@@ -3214,7 +3208,7 @@ export namespace Prisma {
     btoa?: SortOrderInput | SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
-    nama_barang?: SortOrder
+    nama_barang?: SortOrderInput | SortOrder
     kategori_barang?: SortOrderInput | SortOrder
     tag_barang?: SortOrderInput | SortOrder
     harga_barang?: SortOrderInput | SortOrder
@@ -3240,7 +3234,7 @@ export namespace Prisma {
     NOT?: adminWhereInput | adminWhereInput[]
     start?: DateTimeFilter<"admin"> | Date | string
     end?: DateTimeNullableFilter<"admin"> | Date | string | null
-    nama_barang?: StringFilter<"admin"> | string
+    nama_barang?: StringNullableFilter<"admin"> | string | null
     kategori_barang?: StringNullableFilter<"admin"> | string | null
     tag_barang?: StringNullableFilter<"admin"> | string | null
     harga_barang?: IntNullableFilter<"admin"> | number | null
@@ -3260,7 +3254,7 @@ export namespace Prisma {
     btoa?: SortOrderInput | SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
-    nama_barang?: SortOrder
+    nama_barang?: SortOrderInput | SortOrder
     kategori_barang?: SortOrderInput | SortOrder
     tag_barang?: SortOrderInput | SortOrder
     harga_barang?: SortOrderInput | SortOrder
@@ -3289,7 +3283,7 @@ export namespace Prisma {
     btoa?: StringNullableWithAggregatesFilter<"admin"> | string | null
     start?: DateTimeWithAggregatesFilter<"admin"> | Date | string
     end?: DateTimeNullableWithAggregatesFilter<"admin"> | Date | string | null
-    nama_barang?: StringWithAggregatesFilter<"admin"> | string
+    nama_barang?: StringNullableWithAggregatesFilter<"admin"> | string | null
     kategori_barang?: StringNullableWithAggregatesFilter<"admin"> | string | null
     tag_barang?: StringNullableWithAggregatesFilter<"admin"> | string | null
     harga_barang?: IntNullableWithAggregatesFilter<"admin"> | number | null
@@ -3318,7 +3312,7 @@ export namespace Prisma {
     kode_pos_user?: IntNullableFilter<"formPembelian"> | number | null
     no_hp_user?: IntNullableFilter<"formPembelian"> | number | null
     catatan_user?: StringNullableFilter<"formPembelian"> | string | null
-    status_pesanan?: BoolNullableFilter<"formPembelian"> | boolean | null
+    status_pesanan?: StringNullableFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableFilter<"formPembelian">
   }
 
@@ -3350,7 +3344,7 @@ export namespace Prisma {
     kode_pos_user?: IntNullableFilter<"formPembelian"> | number | null
     no_hp_user?: IntNullableFilter<"formPembelian"> | number | null
     catatan_user?: StringNullableFilter<"formPembelian"> | string | null
-    status_pesanan?: BoolNullableFilter<"formPembelian"> | boolean | null
+    status_pesanan?: StringNullableFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableFilter<"formPembelian">
   }, "id" | "nota_user">
 
@@ -3386,7 +3380,7 @@ export namespace Prisma {
     kode_pos_user?: IntNullableWithAggregatesFilter<"formPembelian"> | number | null
     no_hp_user?: IntNullableWithAggregatesFilter<"formPembelian"> | number | null
     catatan_user?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
-    status_pesanan?: BoolNullableWithAggregatesFilter<"formPembelian"> | boolean | null
+    status_pesanan?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableWithAggregatesFilter<"formPembelian">
   }
 
@@ -3394,7 +3388,7 @@ export namespace Prisma {
     btoa?: string | null
     start?: Date | string
     end?: Date | string | null
-    nama_barang: string
+    nama_barang?: string | null
     kategori_barang?: string | null
     tag_barang?: string | null
     harga_barang?: number | null
@@ -3415,7 +3409,7 @@ export namespace Prisma {
     btoa?: string | null
     start?: Date | string
     end?: Date | string | null
-    nama_barang: string
+    nama_barang?: string | null
     kategori_barang?: string | null
     tag_barang?: string | null
     harga_barang?: number | null
@@ -3435,7 +3429,7 @@ export namespace Prisma {
     btoa?: NullableStringFieldUpdateOperationsInput | string | null
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nama_barang?: StringFieldUpdateOperationsInput | string
+    nama_barang?: NullableStringFieldUpdateOperationsInput | string | null
     kategori_barang?: NullableStringFieldUpdateOperationsInput | string | null
     tag_barang?: NullableStringFieldUpdateOperationsInput | string | null
     harga_barang?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3456,7 +3450,7 @@ export namespace Prisma {
     btoa?: NullableStringFieldUpdateOperationsInput | string | null
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nama_barang?: StringFieldUpdateOperationsInput | string
+    nama_barang?: NullableStringFieldUpdateOperationsInput | string | null
     kategori_barang?: NullableStringFieldUpdateOperationsInput | string | null
     tag_barang?: NullableStringFieldUpdateOperationsInput | string | null
     harga_barang?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3477,7 +3471,7 @@ export namespace Prisma {
     btoa?: string | null
     start?: Date | string
     end?: Date | string | null
-    nama_barang: string
+    nama_barang?: string | null
     kategori_barang?: string | null
     tag_barang?: string | null
     harga_barang?: number | null
@@ -3497,7 +3491,7 @@ export namespace Prisma {
     btoa?: NullableStringFieldUpdateOperationsInput | string | null
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nama_barang?: StringFieldUpdateOperationsInput | string
+    nama_barang?: NullableStringFieldUpdateOperationsInput | string | null
     kategori_barang?: NullableStringFieldUpdateOperationsInput | string | null
     tag_barang?: NullableStringFieldUpdateOperationsInput | string | null
     harga_barang?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3518,7 +3512,7 @@ export namespace Prisma {
     btoa?: NullableStringFieldUpdateOperationsInput | string | null
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    nama_barang?: StringFieldUpdateOperationsInput | string
+    nama_barang?: NullableStringFieldUpdateOperationsInput | string | null
     kategori_barang?: NullableStringFieldUpdateOperationsInput | string | null
     tag_barang?: NullableStringFieldUpdateOperationsInput | string | null
     harga_barang?: NullableIntFieldUpdateOperationsInput | number | null
@@ -3543,7 +3537,7 @@ export namespace Prisma {
     kode_pos_user?: number | null
     no_hp_user?: number | null
     catatan_user?: string | null
-    status_pesanan?: boolean | null
+    status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3557,7 +3551,7 @@ export namespace Prisma {
     kode_pos_user?: number | null
     no_hp_user?: number | null
     catatan_user?: string | null
-    status_pesanan?: boolean | null
+    status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3570,7 +3564,7 @@ export namespace Prisma {
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
     no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
-    status_pesanan?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3584,7 +3578,7 @@ export namespace Prisma {
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
     no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
-    status_pesanan?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3598,7 +3592,7 @@ export namespace Prisma {
     kode_pos_user?: number | null
     no_hp_user?: number | null
     catatan_user?: string | null
-    status_pesanan?: boolean | null
+    status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3611,7 +3605,7 @@ export namespace Prisma {
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
     no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
-    status_pesanan?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3625,7 +3619,7 @@ export namespace Prisma {
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
     no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
-    status_pesanan?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
   }
 
@@ -3676,22 +3670,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -3864,25 +3842,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -3897,11 +3856,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type BoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
   export type JsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<
@@ -3983,14 +3937,6 @@ export namespace Prisma {
     kode_pos_user?: SortOrder
     no_hp_user?: SortOrder
   }
-
-  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -4029,10 +3975,6 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
-
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -4047,10 +3989,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type NullableBoolFieldUpdateOperationsInput = {
-    set?: boolean | null
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4099,21 +4037,6 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
@@ -4200,24 +4123,6 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -4243,19 +4148,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<

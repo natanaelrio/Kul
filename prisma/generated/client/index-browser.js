@@ -183,7 +183,8 @@ exports.Prisma.formPembelianOrderByRelevanceFieldEnum = {
   nota_user: 'nota_user',
   nama_lengkap_user: 'nama_lengkap_user',
   alamat_lengkap_user: 'alamat_lengkap_user',
-  catatan_user: 'catatan_user'
+  catatan_user: 'catatan_user',
+  status_pesanan: 'status_pesanan'
 };
 
 

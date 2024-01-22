@@ -65,6 +65,7 @@ export default function Pesanan() {
         iscari.length ? true : fetchdatalistpesanan(take, skip, '')
     }, [iscari])
 
+
     return (
         <>
             <div className={styles.container}>
@@ -96,20 +97,22 @@ export default function Pesanan() {
                         currency: 'IDR'
                     })
                     return (
-                        <div key={data?.id} className={styles.content}>
-                            <div className={styles.tanggalinput}>
-                                <Moment format="YYYY/MM/DD ">
-                                    {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
-                                </Moment>&nbsp;| &nbsp;
-                                <Moment format="HH:mm" >
-                                    {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
-                                </Moment>
+                        <>
+                            <div key={data?.id} className={styles.content}>
+                                <div className={styles.tanggalinput}>
+                                    <Moment format="YYYY/MM/DD ">
+                                        {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
+                                    </Moment>&nbsp;| &nbsp;
+                                    <Moment format="HH:mm" >
+                                        {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
+                                    </Moment>
 
+                                </div>
+                                <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
+                                <div className={styles.totalbiaya}>{totalHargaBarang}</div>
+                                <div className={styles.datapesanan}><button onClick={() => HandlePesanan(data)}>Pesanan</button></div>
                             </div>
-                            <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
-                            <div className={styles.totalbiaya}>{totalHargaBarang}</div>
-                            <div className={styles.datapesanan}><button onClick={() => HandlePesanan(data)}>Pesanan</button></div>
-                        </div>
+                        </>
                     )
                 }
                 )}
