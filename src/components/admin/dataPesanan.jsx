@@ -2,14 +2,49 @@ import BackLayang from '@/components/admin/layout/backLayang'
 import { useStore } from '@/lib/zustand'
 import styles from '@/components/admin/dataPesanan.module.css'
 import Link from 'next/link';
+import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+
 
 export default function DataPesanan({ data }) {
+    const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
+    const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
     const totalHargaBarang = data?.dataPesanan?.map((data) => data?.harga_barang_user).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
+
     const setOpen = useStore((state) => state.setOpenDetailDataPesanan)
+
+    const HandleStatus = async (id, e) => {
+        fetchdatalistpesanan(), setOpen()
+        const sudahdiproses = {
+            nota_user: id,
+            status_pesanan: 'sudah-diproses'
+        }
+        const sudahberhasil = {
+            nota_user: id,
+            status_pesanan: 'sudah-berhasil'
+        }
+
+        const datanya = e == 'sudah-diproses' && sudahdiproses || e == 'sudah-berhasil' && sudahberhasil
+        try {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/admin/update-status-pesanan', {
+                method: 'PUT',
+                body: JSON.stringify(datanya),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': process.env.NEXT_PUBLIC_SECREET
+                }
+            })
+            const data = await res.json()
+            setValueStatusPesanan(data)
+        }
+        catch (e) {
+            console.error(e)
+        }
+    }
+
     return (
         <BackLayang setOpen={setOpen} judul={'Data Pesanan'}>
             <div className={styles.informasi}>
@@ -65,8 +100,16 @@ export default function DataPesanan({ data }) {
 
             <div className={styles.dalampilihan}>
                 <Link href={`/nota/${data?.nota_user}`} className={styles.nota}><button>Download Nota</button></Link>
-                <div className={styles.nota}><button>Sudah Di Proses</button></div>
-                <div className={styles.nota}><button>Berhasil di Proses</button></div>
+                {data.status_pesanan == 'belum-diproses' && <div className={styles.nota}
+                    onClick={() => HandleStatus(data?.nota_user, 'sudah-diproses')}>
+                    <button>Sudah Di Proses</button>
+                </div>}
+
+                {data.status_pesanan == 'sudah-diproses' &&
+                    <div className={styles.nota}
+                        onClick={() => HandleStatus(data?.nota_user, 'sudah-berhasil')}>
+                        <button>Berhasil di Proses</button>
+                    </div>}
             </div>
         </BackLayang>
     )

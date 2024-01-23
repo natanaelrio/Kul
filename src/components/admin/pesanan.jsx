@@ -10,17 +10,24 @@ import { FaArrowLeft } from "react-icons/fa";
 import { useRouter, useSearchParams } from 'next/navigation';
 import Moment from 'react-moment';
 import { useDebounce } from "@uidotdev/usehooks";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { IoFilterSharp } from "react-icons/io5";
+import { GrPowerReset } from "react-icons/gr";
 
 export default function Pesanan() {
     const searchParams = useSearchParams()
     const take = searchParams.get('take')
     const skip = searchParams.get('skip')
+    const status = searchParams.get('status')
     const router = useRouter()
 
     const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const datalistpesanan = useStoreListDataProduct((state) => state.datalistpesanan)
     const Open = useStore((state) => state.openDetailDataPesanan)
     const setOpen = useStore((state) => state.setOpenDetailDataPesanan)
+    const valueStatusPesanan = useStore((state) => state.valueStatusPesanan)
+    const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
 
     useEffect(() => {
         fetchdatalistpesanan(take, skip)
@@ -36,14 +43,22 @@ export default function Pesanan() {
         setOpen()
     }
 
+    // FILTER PESANAN
+    const [statusFilter, setStatusFilter] = useState(false)
+    const HandleFilterPesanan = (e) => {
+        setStatusFilter(false)
+        e == 'reset' ? router.push('/admin/pesanan') : router.push(`?status=${e}`)
+        fetchdatalistpesanan(take, skip, iscari, e)
+    }
+
+    // PAGINATION
     const handlePlusNegatif = (e) => {
         e > 0 ? router.push(`/admin/pesanan?skip=${e}`) : router.push(`/admin/pesanan`)
-        fetchdatalistpesanan(take, e > 0 ? e : 0)
+        fetchdatalistpesanan(take, e > 0 ? e : 0, iscari, status)
     }
 
     const handlePencarian = (e) => {
         setIsCari(e.target.value)
-
     }
 
     const [iscari, setIsCari] = useState('')
@@ -66,6 +81,23 @@ export default function Pesanan() {
     }, [iscari])
 
 
+    // VALIDASI ERROR DAN BERHASIL
+    const Berhasil = () => {
+        toast.success("status berhasil dirubah", {
+            draggablePercent: 60
+        }),
+            setValueStatusPesanan([])
+    }
+
+    const Gagal = () => {
+        toast.error("status gagal dirubah", {
+            draggablePercent: 60,
+        }),
+            setValueStatusPesanan([])
+    }
+
+    valueStatusPesanan.status === undefined ? null : valueStatusPesanan.status == 200 ? Berhasil() : Gagal()
+
     return (
         <>
             <div className={styles.container}>
@@ -80,15 +112,23 @@ export default function Pesanan() {
                             onChange={(e) => handlePencarian(e)}
                             value={iscari}
                         />
+                        <IoFilterSharp size={30} onClick={() => setStatusFilter(!statusFilter)} />
                     </div>
+
                 </div>
+                {statusFilter && <div className={styles.filter} >
+                    <div className={styles.datafilter} onClick={() => HandleFilterPesanan('sudah-diproses')}>Pesanan proses</div>
+                    <div className={styles.datafilter} onClick={() => HandleFilterPesanan('sudah-berhasil')}>Pesanan berhasil</div>
+                    <div className={styles.datafilter} onClick={() => HandleFilterPesanan('belum-diproses')}>Pesanan blm di proses</div>
+                    <div className={styles.datafilter} onClick={() => HandleFilterPesanan('reset')}><GrPowerReset /></div>
+                </div>}
                 <div className={styles.judul}>
                     <div className={styles.tanggalinput}>Tanggal </div>
                     <div className={styles.totaljumlah}>Total Jumlah</div>
                     <div className={styles.totalbiaya}>Total Biaya</div>
                     <div className={styles.datapesanan}>Pesanan</div>
                 </div>
-                {datalistpesanan?.data?.length === 0 ? <span>Tidak Ada Data....</span> : null}
+                {datalistpesanan?.data?.length === 0 ? <span>Tidak Ada data?....</span> : null}
                 {datalistpesanan?.data ? null : <SkletonPesanan />}
                 {datalistpesanan?.data?.map((data) => {
                     const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
@@ -96,6 +136,7 @@ export default function Pesanan() {
                         style: 'currency',
                         currency: 'IDR'
                     })
+                    const status = data?.status_pesanan == "belum-diproses" && { backgroundColor: 'red' } || data?.status_pesanan == "sudah-diproses" && { backgroundColor: 'blue' } || data?.status_pesanan == "sudah-berhasil" && { backgroundColor: 'green' }
                     return (
                         <>
                             <div key={data?.id} className={styles.content}>
@@ -110,7 +151,13 @@ export default function Pesanan() {
                                 </div>
                                 <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
                                 <div className={styles.totalbiaya}>{totalHargaBarang}</div>
-                                <div className={styles.datapesanan}><button onClick={() => HandlePesanan(data)}>Pesanan</button></div>
+                                <div className={styles.datapesanan} >
+                                    <button
+                                        style={status || {}}
+                                        onClick={() => HandlePesanan(data)}>
+                                        Pesanan
+                                    </button>
+                                </div>
                             </div>
                         </>
                     )
@@ -128,8 +175,8 @@ export default function Pesanan() {
                     style={total_array > skip ? { display: 'block' } : { display: 'none' }}
                     className={styles.arrow}><FaArrowRight size={20} /></div>
             </div>
-            {Open ? <DataPesanan data={dataPesanan} /> : null
-            }
+            {Open && <DataPesanan data={dataPesanan} />}
+            <ToastContainer limit={3} autoClose={3000} />
         </>
     )
 }

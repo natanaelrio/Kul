@@ -60,5 +60,9 @@ export const useStore = create((set) => ({
     valueDelete: [],
     setValueDelete: (e) => {
         set({ valueDelete: e })
+    },
+    valueStatusPesanan: [],
+    setValueStatusPesanan: (e) => {
+        set({ valueStatusPesanan: e })
     }
 }))

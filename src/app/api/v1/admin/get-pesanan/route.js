@@ -5,6 +5,7 @@ export async function GET(req) {
     const skip = searchParams.get('skip')
     const take = searchParams.get('take')
     const nota = searchParams.get('nota')
+    const status = searchParams.get('status')
 
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
@@ -25,7 +26,13 @@ export async function GET(req) {
             skip: Number(skip) || 0,
             take: Number(take) || 10,
             orderBy: { id: 'desc' },
-            where: {
+            where: status == 'belum-diproses' && {
+                status_pesanan: { contains: 'belum-diproses' }
+            } || status == 'sudah-diproses' && {
+                status_pesanan: { contains: 'sudah-diproses' }
+            } || status == 'sudah-berhasil' && {
+                status_pesanan: { contains: 'sudah-berhasil' }
+            } || {
                 nota_user: nota ? {
                     contains: nota || '',
                     mode: 'insensitive'

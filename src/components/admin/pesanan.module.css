@@ -43,6 +43,7 @@
     width: 300px;
     padding: 10px;
     font-size: 0.6rem;
+    margin-right: 5px;
 }
 
 .tanggalinput {
@@ -82,7 +83,7 @@
     border-radius: 10px;
     display: flex;
     justify-content: center;
-    align-items: center ;
+    align-items: center;
     padding: 10px 0px;
 }
 
@@ -99,6 +100,50 @@
     font-weight: 700;
 }
 
+
+.pencarian {
+    display: flex;
+    align-items: center;
+}
+
+.filter {
+    display: flex;
+    margin: 5px 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.filter .datafilter {
+    margin-right: 5px;
+    cursor: pointer;
+    color: var(--color-white);
+    font-weight: 700;
+    padding: 5px;
+}
+
+.filter .datafilter:nth-child(1) {
+    background-color: blue;
+}
+
+.filter .datafilter:nth-child(2) {
+    background-color: green;
+}
+
+.filter .datafilter:nth-child(3) {
+    background-color: red;
+}
+
+.filter .datafilter:nth-child(4) {
+    background-color: var(--color-sekunder);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter .datafilter:hover {
+    text-decoration: underline;
+}
 
 
 @media only screen and (max-width: 1250px) {
@@ -169,6 +214,18 @@
         align-items: flex-start;
         justify-content: flex-start;
         flex-direction: column;
+    }
+
+    .pencarian {
+        width: 100%;
+    }
+
+    .history input {
+        width: 100%;
+    }
+
+    .filter {
+        justify-content: center
     }
 
 }
