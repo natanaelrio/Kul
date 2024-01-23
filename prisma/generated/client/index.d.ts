@@ -222,8 +222,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.7.1
-   * Query Engine version: 0ca5ccbcfa6bdc81c003cf549abe4269f59c41e5
+   * Prisma Client JS version: 5.8.1
+   * Query Engine version: 78caf6feeaed953168c64e15a249c3e9a033ebe2
    */
   export type PrismaVersion = {
     client: string
@@ -1322,7 +1322,7 @@ export namespace Prisma {
   type adminGetPayload<S extends boolean | null | undefined | adminDefaultArgs> = $Result.GetResult<Prisma.$adminPayload, S>
 
   type adminCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<adminFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<adminFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: AdminCountAggregateInputType | true
     }
 
@@ -2303,7 +2303,7 @@ export namespace Prisma {
   type formPembelianGetPayload<S extends boolean | null | undefined | formPembelianDefaultArgs> = $Result.GetResult<Prisma.$formPembelianPayload, S>
 
   type formPembelianCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<formPembelianFindManyArgs, 'select' | 'include' | 'distinct' > & {
+    Omit<formPembelianFindManyArgs, 'select' | 'include' | 'distinct'> & {
       select?: FormPembelianCountAggregateInputType | true
     }
 

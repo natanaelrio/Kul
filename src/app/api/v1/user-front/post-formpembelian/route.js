@@ -2,12 +2,21 @@ import { prisma } from "@/lib/prisma"
 
 export async function POST(req) {
     const authorization = req.headers.get("authorization")
-    const { status_pesanan, nota_user, nama_lengkap_user, alamat_lengkap_user, kode_pos_user, no_hp_user, catatan_user, dataPesanan } = await req.json()
-    const data = { status_pesanan, nota_user, nama_lengkap_user, alamat_lengkap_user, kode_pos_user, no_hp_user, catatan_user, dataPesanan }
+    const { nota_user, status_pesanan, nama_lengkap_user, alamat_lengkap_user, kode_pos_user, no_hp_user, catatan_user, dataPesanan } = await req.json()
+    const data = {
+        nota_user,
+        status_pesanan,
+        nama_lengkap_user,
+        alamat_lengkap_user,
+        kode_pos_user,
+        no_hp_user,
+        catatan_user,
+        dataPesanan
+    }
 
     console.log(data);
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        const createCollection = await prisma.formPembelian.createMany({ data })
+        const createCollection = await prisma.formPembelian.create({ data })
         if (createCollection) {
             return Response.json({ status: 200, isCreate: true, })
         } else return Response.json({ status: 500, isCreate: false })

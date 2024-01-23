@@ -69,11 +69,12 @@ export default function FormPembelian({ dataFormLangsung }) {
             const dataUtama = values
             const datalain = {
                 nota_user: uuidv4(),
-                status_pesanan: 'belum_diproses'
+                // status_pesanan_user: 'belum_diproses'
             }
             const dataUtamauid = { ...datalain, ...dataUtama }
             const GabungDataDataPesanandanDataUtamaUid = { ...dataUtamauid, ...dataTambahanNew }
             const GabungData = { ...dataUtama, ...GabungDataDataPesanandanDataUtamaUid }
+            console.log(GabungData);
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/user-front/post-formpembelian', {
                     method: 'POST',
