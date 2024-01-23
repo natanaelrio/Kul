@@ -69,7 +69,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             const dataUtama = values
             const datalain = {
                 nota_user: uuidv4(),
-                // status_pesanan_user: 'belum_diproses'
+                status_pesanan: 'belum-diproses'
             }
             const dataUtamauid = { ...datalain, ...dataUtama }
             const GabungDataDataPesanandanDataUtamaUid = { ...dataUtamauid, ...dataTambahanNew }
