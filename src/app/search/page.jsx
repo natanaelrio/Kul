@@ -1,22 +1,20 @@
 import ListProductsearch from "@/components/listProductsearch"
 import HeaderFooter from '@/components/Layout/headerFooter'
-import { GetListSearchFilter } from '@/utils/user-front/getListSearchFilter'
+import { Suspense } from 'react'
 
-export async function generateMetadata({ searchParams }) {
+export async function generateMetadata({ searchParams  }) {
     return {
         title: `Halaman Pencarian ${searchParams.query}`,
         description: `Halaman Pencarian ${searchParams.query}`,
     }
 }
 
-export default async function Search({ searchParams }) {
-    const data = await GetListSearchFilter(searchParams.query, searchParams.sortby)
+export default function Search() {
     return (
         <HeaderFooter kondisiFalseSearch={false}>
-            <ListProductsearch
-                data={data}
-                query={searchParams.query}
-                sortby={searchParams.sortby} />
+            <Suspense>
+                <ListProductsearch />
+            </Suspense>
         </HeaderFooter>
     )
 }

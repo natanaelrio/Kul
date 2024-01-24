@@ -6,10 +6,11 @@ import Link from 'next/link'
 import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
+import SkletonList from '@/components/skletonList'
 import { FaRegHeart } from "react-icons/fa";
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 
-export default async function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
+export default function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
 
@@ -23,7 +24,7 @@ export default async function ListProduk({ data, judul, fetchMain, fetchSearch, 
 
     const HandleDeleteLove = (e) => {
         setTimeout(() => {
-            setDeleteLoveZ(e.id)
+            setDeleteLoveZ(e.id), fetchMain && fetchdatalist() || fetchSearch && fetchdatasearch(value)
         }, 500);
     }
 
@@ -34,6 +35,7 @@ export default async function ListProduk({ data, judul, fetchMain, fetchSearch, 
 
     return (
         <>
+            {data ? null : <SkletonList />}
             <div className={styles.countainer}>
                 <div className={styles.judulatas} dangerouslySetInnerHTML={{ __html: judul }}>
                 </div>
@@ -42,7 +44,7 @@ export default async function ListProduk({ data, judul, fetchMain, fetchSearch, 
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-                        {/* {data ? null : <SkletonList />} */}
+
                         {data?.map((data, i) => {
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
@@ -63,8 +65,7 @@ export default async function ListProduk({ data, judul, fetchMain, fetchSearch, 
                                                 alt={data?.nama_barang}
                                             />
                                         </Link>
-                                        {data?.diskon_barang == 0 || null ? null : <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>}
-
+                                        <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
                                         <div className={styles.love}>
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                 <div className={styles.bgicon}
