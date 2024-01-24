@@ -6,6 +6,9 @@ import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { LuShoppingCart } from "react-icons/lu";
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
+import KeranjangTotal from '@/components/keranjangtotal';
+import { Suspense } from 'react';
+import Skeleton from 'react-loading-skeleton'
 
 export default function Keranjang() {
     const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
@@ -91,7 +94,7 @@ export default function Keranjang() {
                                     <div className={styles.delete} >
                                         <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleKeranjangdanResetValue(data.id)} />
                                     </div>
-                                    <div className={styles.stokbarang}>{ data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
+                                    <div className={styles.stokbarang}>{data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
                                 </div>
                             )
                         })}
@@ -100,7 +103,13 @@ export default function Keranjang() {
                     <div style={{ padding: '5px' }}></div>
                     <div className={styles.total}>
                         <div className={styles.harga}>
-                            Total :<div className={styles.totalpembayaran}>{totalBarang}</div>
+                            Total :<div className={styles.totalpembayaran}>
+                                <Suspense fallback={<Skeleton width={150} height={30} />} >
+                                    <KeranjangTotal
+                                        totalBarang={totalBarang}
+                                    />
+                                </Suspense>
+                            </div>
                         </div>
                         <div>
                             <div className={styles.bayarlangsung} onClick={setOpenFormPembelian}>Bayar Langsung</div>

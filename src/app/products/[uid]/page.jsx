@@ -1,22 +1,25 @@
-import ListProduk from '@/components/listProductMain'
+import ListProductMain from '@/components/listProductMain'
 import HeaderFooter from '@/components/Layout/headerFooter'
 import Produk from '@/components/produk'
-import { GetProducts } from '@/utils/user-front/getproducts'
+import { GetListProductID } from '@/utils/user-front/getListProductID'
 import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
+import { GetListProduct } from '@/utils/user-front/getListProduct'
+import SkletonList from '@/components/skletonList'
+import SkletonProdukID from '@/components/skletonProdukID'
 
 export async function generateMetadata({ params }) {
 
-  const data = await GetProducts(params.uid)
+  const dataID = await GetListProductID(params.uid)
   return {
-    title: `${data?.data?.nama_barang}`,
-    description: `${data?.data?.diskripsi_barang}`,
-    category: `${data?.data?.kategori_barang}`,
-    keywords: [data?.data?.tag_barang],
+    title: `${dataID?.data?.nama_barang}`,
+    description: `${dataID?.data?.diskripsi_barang}`,
+    category: `${dataID?.data?.kategori_barang}`,
+    keywords: [dataID?.data?.tag_barang],
     authors: [{ name: 'Rio' }],
     creator: 'Rio',
     publisher: 'Rio',
-    metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}/products/${data?.data?.slug_barang}`),
+    metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}/products/${dataID?.data?.slug_barang}`),
     alternates: {
       canonical: '/'
     },
@@ -40,18 +43,19 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Products({ params }) {
-  const data = await GetProducts(params.uid)
-  data.status == 404 ? notFound() : null
+  const dataID = await GetListProductID(params.uid)
+  const dataList = await GetListProduct()
+  dataID.status == 404 ? notFound() : null
 
   return (
-    <>
-      <HeaderFooter kondisiFalseSearch={true} data={data} slug={params.uid}>
-        <Suspense>
-          <Produk data={data} />
-        </Suspense>
-        <ListProduk />
-      </HeaderFooter>
-    </>
+    <HeaderFooter kondisiFalseSearch={true} data={dataID} slug={params.uid}>
+      <Suspense fallback={<SkletonProdukID />}>
+        <Produk data={dataID} />
+      </Suspense>
+      <Suspense fallback={<SkletonList />}>
+        <ListProductMain data={dataList} />
+      </Suspense>
+    </HeaderFooter>
   )
 }
 

@@ -1,18 +1,29 @@
 import Skeleton from 'react-loading-skeleton'
-import styles from '@/components/skletonList.module.css'
+import styles from '@/components/Layout/ListProduct.module.css'
 export default function SkletonList() {
     return (
         <>
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
-            <Skeleton className={styles.skleton} />
+            <div className={styles.countainer}>
+                <div className={styles.judulatas}>
+                    <Skeleton style={{ width: '150px' }} />
+                </div>
+            </div>
+            <div className={styles.countainer}>
+                <div className={styles.listproduk}>
+                    <div className={styles.gridlist}>
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                        <Skeleton style={{ height: '250px' }} />
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

@@ -1,34 +1,24 @@
 "use client"
-import { useSearchParams } from 'next/navigation'
 import ListProduk from '@/components/Layout/ListProduct'
-import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import ListProductsearchFilter from '@/components/listProductsearchFilter'
 import FilterBlur from '@/components/Layout/filterBlur'
 import { useStore } from '@/lib/zustand'
-import { useEffect } from 'react'
+import SkletonList from '@/components/skletonList'
+import { Suspense } from 'react'
 
-export default function ListProductsearch() {
-    const searchParams = useSearchParams()
-    const query = searchParams.get('query')
-    
+export default function ListProductsearch({ data, query, sortby }) {
     const openFilter = useStore((state) => state.openFilter)
-
-    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
-    const datasearchfilter = useStoreListDataProduct((state) => state.datasearchfilter)
-
-    useEffect(() => {
-        fetchdatasearchfilter(query)
-    }, [fetchdatasearchfilter])
-
     return (
         <>
-            <ListProductsearchFilter />
-            <ListProduk
-                data={datasearchfilter?.data}
-                fetchSearch={true}
-                value={query}
-                judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearchfilter?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${datasearchfilter?.data?.length}`}`}
-            />
+            <ListProductsearchFilter sortby={sortby} query={query} />
+            <Suspense fallback={<SkletonList />}>
+                <ListProduk
+                    data={data?.data}
+                    fetchSearch={true}
+                    value={query}
+                    judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${data?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${data?.data?.length}`}`}
+                />
+            </Suspense>
             {openFilter && <FilterBlur />}
         </>
     )

@@ -6,11 +6,10 @@ import Link from 'next/link'
 import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import SkletonList from '@/components/skletonList'
 import { FaRegHeart } from "react-icons/fa";
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 
-export default function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
+export default async function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
 
@@ -24,7 +23,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
 
     const HandleDeleteLove = (e) => {
         setTimeout(() => {
-            setDeleteLoveZ(e.id), fetchMain && fetchdatalist() || fetchSearch && fetchdatasearch(value)
+            setDeleteLoveZ(e.id)
         }, 500);
     }
 
@@ -43,7 +42,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-                        {data ? null : <SkletonList />}
+                        {/* {data ? null : <SkletonList />} */}
                         {data?.map((data, i) => {
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',

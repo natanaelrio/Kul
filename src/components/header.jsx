@@ -26,7 +26,6 @@ export default function Header({ kondisiFalseSearch }) {
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
     const datasearch = useStoreListDataProduct((state) => state.datasearch)
 
-    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
 
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
@@ -102,7 +101,7 @@ export default function Header({ kondisiFalseSearch }) {
                         }}
                     >
                         <div className={styles.input}>
-                            <form onSubmit={(e) => { e.preventDefault(), fetchdatasearchfilter(value), router.push(`/search?query=${value}`) }} >
+                            <form onSubmit={(e) => { e.preventDefault(), router.push(`/search?query=${value}`) }} >
                                 <input
                                     style={{ borderRadius: border ? '15px 15px 0 0' : '15px' }}
                                     type="search"

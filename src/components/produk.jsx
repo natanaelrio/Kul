@@ -9,6 +9,9 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import { useEffect, useState } from 'react';
 import FormPembelian from '@/components/formPembelian';
+import ProdukHarga from '@/components/produkHarga';
+import { Suspense } from 'react'
+import Skeleton from 'react-loading-skeleton'
 
 export default function Produk(props) {
     const data = props.data?.data
@@ -112,7 +115,13 @@ export default function Produk(props) {
                                     <div className={styles.wkwk}>
                                         <div className={styles.reviewharga}>
                                             <div className={styles.harga}>
-                                                {keranjang?.length === 1 ? hargaKeranjang : harga}
+                                                <Suspense fallback={<Skeleton width={200} />}>
+                                                    <ProdukHarga
+                                                        keranjang={keranjang}
+                                                        hargaKeranjang={hargaKeranjang}
+                                                        harga={harga}
+                                                    />
+                                                </Suspense>
                                             </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                         </div>
                                         <div className={styles.diskon}>
@@ -142,7 +151,7 @@ export default function Produk(props) {
                                     }
 
                                 </div>
-                                <div className={styles.deskripsi} dangerouslySetInnerHTML={{__html: data?.diskripsi_barang}}>
+                                <div className={styles.deskripsi} dangerouslySetInnerHTML={{ __html: data?.diskripsi_barang }}>
                                 </div>
                             </div>
 
