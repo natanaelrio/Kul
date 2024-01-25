@@ -38,12 +38,12 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    padding: 0 15px 15px 30px;
+    padding: 1dvh 15px 15px 1dvh;
     font-size: 0.7rem;
     position: sticky;
     top: 92dvh;
     background-color: var(--color-white);
-    z-index: 10;
+    z-index: 10
 }
 
 .total .harga {
