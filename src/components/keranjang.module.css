@@ -41,7 +41,7 @@
     padding: 0 15px 15px 15px;
     font-size: 0.7rem;
     position: sticky;
-    top: 90vh;
+    top: 90dvh;
     background-color: var(--color-white);
     z-index: 10;
 }
