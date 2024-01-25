@@ -65,7 +65,7 @@ export default function Keranjang() {
                         : <>
                             <div className={styles.total}>
                                 <div className={styles.harga}>
-                                    Total :<div className={styles.totalpembayaran}>
+                                    <div className={styles.totalpembayaran}>
                                         <Suspense fallback={<Skeleton width={150} height={30} />} >
                                             <KeranjangTotal
                                                 totalBarang={totalBarang}
@@ -139,8 +139,8 @@ export default function Keranjang() {
                         </>}
                 </div>
             </div>
-            {openFormPembelian && 
-            <FormPembelian dataFormLangsung={dataFormKeranjang} />            }
+            {openFormPembelian &&
+                <FormPembelian dataFormLangsung={dataFormKeranjang} />}
         </>
     )
 }
