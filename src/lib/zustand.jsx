@@ -18,14 +18,6 @@ export const useStore = create((set) => ({
         )
     },
 
-    openKeranjang: false,
-    setOpenKeranjang: () => {
-        set((state) => ({
-            openKeranjang: !state.openKeranjang
-        })
-        )
-    },
-
     openFilter: false,
     setOpenFilter: () => {
         set((state) => ({

@@ -3,10 +3,29 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
+    min-height: 100dvh;
 }
 
 
 /* MAIN */
 .main {
-    min-height: 100vh;
+    flex: auto;
+    background-color: var(--color-white);
+}
+
+.total {
+    position: sticky;
+    top: 90dvh;
+    z-index: 10;
+}
+
+.posrelatif {
+    display: flex;
+    justify-content: center;
+}
+
+.angka {
+    width: 700px;
+    padding: 15px;
+    background-color: red;
 }

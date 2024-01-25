@@ -6,22 +6,9 @@ import { useStore } from '@/lib/zustand'
 import FormPembelian from '@/components/formPembelian';
 import Love from '@/components/love';
 import Keranjang from '@/components/keranjang';
-import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 
-export default function HeaderFooter({ children, kondisiFalseSearch}) {
-  const openFormPembelian = useStore((state) => state.openFormPembelian)
+export default function HeaderFooter({ children, kondisiFalseSearch }) {
   const openLove = useStore((state) => state.openLove)
-  const openKeranjang = useStore((state) => state.openKeranjang)
-  const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
-
-  const dataFormKeranjang = keranjangZ.map((data) => (
-    {
-      nama_barang: data.nama_barang,
-      harga_barang: data.harga_barang,
-      diskon_barang: data.diskon_barang,
-      kupon_barang: data.kupon_barang,
-      value_barang: data.value,
-    }))
 
   return (
     <>
@@ -32,10 +19,7 @@ export default function HeaderFooter({ children, kondisiFalseSearch}) {
         </main>
         <Footer />
       </div>
-      {openKeranjang && <Keranjang />}
       {openLove && <Love />}
-      {openFormPembelian && openKeranjang && <FormPembelian
-          dataFormLangsung={dataFormKeranjang} />}
     </>
   )
 }

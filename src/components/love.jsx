@@ -69,8 +69,8 @@ export default function Love() {
                                                 </div>
                                             }
                                         </div>
-                                        <CustomLink className={styles.detail} href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
-                                            <div>
+                                        <CustomLink href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
+                                            <div className={styles.detail} >
                                                 <div className={styles.judul}>{data.nama_barang}</div>
                                                 <div className={styles.harga}>
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>

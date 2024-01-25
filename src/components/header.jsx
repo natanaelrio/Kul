@@ -135,11 +135,14 @@ export default function Header({ kondisiFalseSearch }) {
                         </div>
                     </div>
                     <div className={kondisiKeranjang ? styles.animasi : null}>
-                        <div className={styles.icon} onClick={setOpenKeranjang}>
-                            {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
-                            <LuShoppingCart />
-                        </div>
+                        <CustomLink href={'/cart'}>
+                            <div className={styles.icon}>
+                                {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
+                                <LuShoppingCart />
+                            </div>
+                        </CustomLink>
                     </div>
+
                     <CustomLink href={'/admin'}>
                         <div className={styles.login}>
                             Log in

@@ -1,7 +1,36 @@
+.containeratasatas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.containeratas {
+    width: 700px;
+    margin: 20px 0;
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
+    position: relative;
+}
+
 .container {
     padding: 15px;
-    height: 400px;
-    overflow-y: scroll;
+    /* height: 60dvh;
+    overflow-y: scroll; */
+    margin-bottom: 10dvh;
+}
+
+.judulatas {
+    padding: 15px;
+    font-weight: 700;
+    margin-top: -10dvh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.judulatas .backnya {
+    cursor: pointer;
 }
 
 .total {
@@ -11,6 +40,10 @@
     align-items: center;
     padding: 0 15px 15px 15px;
     font-size: 0.7rem;
+    position: sticky;
+    top: 90vh;
+    background-color: var(--color-white);
+    z-index: 10;
 }
 
 .total .harga {
@@ -189,12 +222,28 @@
 }
 
 
+@media only screen and (max-width: 768px) {
+    .containeratas {
+        width: 100vw;
+        border-radius: 0;
+        margin: 0;
+    }
+
+    .list .detail {
+        padding: 0 10px 10px 10px;
+    }
+
+}
+
+
 
 @media only screen and (max-width: 480px) {
 
-    .container {
-        padding: 15px 5px;
-        max-height: 60vh;
+
+    .containeratas {
+        width: 100vw;
+        border-radius: 0;
+        margin: 0;
     }
 
 
@@ -203,12 +252,4 @@
     }
 
 
-    .total {
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    .total .totalpembayaran {
-        padding: 5px;
-    }
 }

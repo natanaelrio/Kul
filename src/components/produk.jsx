@@ -197,8 +197,7 @@ export default function Produk(props) {
                                         <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
                                     </div>
                                 }
-
-                                <div className={styles.belisekarang}>
+                                 <div className={styles.belisekarang}>
                                     <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
                                 </div>
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
