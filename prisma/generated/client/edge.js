@@ -183,7 +183,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\VICTUS\\Desktop\\KULIAH 2\\prisma\\generated\\client",
+      "value": "C:\\Users\\VICTUS\\Desktop\\KULIAH\\default\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -212,7 +212,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {

@@ -3,7 +3,7 @@ import styles from '@/components/admin/layout/header.module.css'
 import { IoHome } from "react-icons/io5";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { IoSearchCircle } from "react-icons/io5";
-import Link from 'next/link';
+import CustomLink from '@/lib/customLink'
 import { useRouter } from 'next/navigation'
 import Pencarian from '@/components/admin/pencarian';
 import { useStore } from '@/lib/zustand'
@@ -18,24 +18,24 @@ export default function Header({ children, judul }) {
     return (
         <>
             <div className={styles.container}>
-                {Open ? <Pencarian /> : null}                
+                {Open ? <Pencarian /> : null}
                 <div className={styles.bungkusjudul}>
                     <div className={styles.iconjudul}>
-                        <Link prefetch={false} href={'/'} className={styles.icon}>
+                        <CustomLink href={'/'} className={styles.icon}>
                             <IoHome />
-                        </Link>
+                        </CustomLink>
                         <div className={styles.judul}>{judul}</div>
                     </div>
                     <div className={styles.carikembali}>
-                        <Link href={'/admin/pesanan'} target='_blank' >
+                        <CustomLink href={'/admin/pesanan'} >
                             <SiGooglemessages className={styles.icon} />
-                        </Link>
-                        <Link href={'/admin/list'} target='_blank'>
+                        </CustomLink>
+                        <CustomLink href={'/admin/list'}>
                             <IoListCircle className={styles.icon} />
-                        </Link>
-                        <Link href={'/admin/post'} target='_blank' >
+                        </CustomLink>
+                        <CustomLink href={'/admin/post'} >
                             <SiAddthis className={styles.icon} />
-                        </Link>
+                        </CustomLink>
                         <div className={styles.icon} onClick={setOpen}>
                             <IoSearchCircle className={styles.icon} />
                         </div>

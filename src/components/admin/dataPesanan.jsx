@@ -1,7 +1,7 @@
 import BackLayang from '@/components/admin/layout/backLayang'
 import { useStore } from '@/lib/zustand'
 import styles from '@/components/admin/dataPesanan.module.css'
-import Link from 'next/link';
+import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 
 
@@ -99,7 +99,7 @@ export default function DataPesanan({ data }) {
             </div>
 
             <div className={styles.dalampilihan}>
-                <Link href={`/nota/${data?.nota_user}`} className={styles.nota}><button>Download Nota</button></Link>
+                <CustomLink href={`/nota/${data?.nota_user}`} className={styles.nota}><button>Download Nota</button></CustomLink>
                 {data.status_pesanan == 'belum-diproses' && <div className={styles.nota}
                     onClick={() => HandleStatus(data?.nota_user, 'sudah-diproses')}>
                     <button>Sudah Di Proses</button>

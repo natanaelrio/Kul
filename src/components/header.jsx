@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import styles from '@/components/header.module.css'
-import Link from 'next/link';
+import CustomLink from '@/lib/customLink'
 import Pencariannew from '@/components/pencariannew';
 import SkletonSearch from "@/components/skletonSearch"
 import { useStore } from '@/lib/zustand'
@@ -90,9 +90,9 @@ export default function Header({ kondisiFalseSearch }) {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <Link prefetch={false} href={'/'} className={styles.logogambar} aria-label={'logo'}>
+                <CustomLink href={'/'} className={styles.logogambar} aria-label={'logo'}>
                     <TbDiamond className={styles.logogambardalam} />
-                </Link>
+                </CustomLink>
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
                         onClick={() => {
@@ -140,9 +140,9 @@ export default function Header({ kondisiFalseSearch }) {
                             <LuShoppingCart />
                         </div>
                     </div>
-                    <Link href={'/admin'} className={styles.login}>
+                    <CustomLink href={'/admin'} className={styles.login}>
                         Log in
-                    </Link>
+                    </CustomLink>
                 </div>
             </nav >
             {klikcari ? <div className={styles.hilangkan} onClick={() => {

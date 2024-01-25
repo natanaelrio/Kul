@@ -5,7 +5,7 @@ import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { FaRegHeart } from "react-icons/fa";
-import Link from 'next/link';
+import CustomLink from '@/lib/customLink'
 import { TbShoppingBagPlus } from "react-icons/tb";
 import { TbShoppingBagX } from "react-icons/tb";
 
@@ -69,7 +69,7 @@ export default function Love() {
                                                 </div>
                                             }
                                         </div>
-                                        <Link className={styles.detail} href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
+                                        <CustomLink className={styles.detail} href={`/products/${data.slug_barang}`} onClick={setOpenLove}>
                                             <div>
                                                 <div className={styles.judul}>{data.nama_barang}</div>
                                                 <div className={styles.harga}>
@@ -78,7 +78,7 @@ export default function Love() {
                                                 </div>
                                                 Detail Produk...
                                             </div>
-                                        </Link>
+                                        </CustomLink>
                                     </div>
                                     <div className={styles.action}>
                                         <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>

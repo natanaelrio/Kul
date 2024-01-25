@@ -2,7 +2,7 @@
 import styles from '@/components/admin/list.module.css'
 import { GoEye } from "react-icons/go";
 import { MdOutlinePostAdd } from "react-icons/md";
-import Link from 'next/link';
+import CustomLink from '@/lib/customLink'
 import SkeletonPage from '@/components/admin/skeleton';
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import DetailList from '@/components/admin/detailList';
@@ -37,7 +37,7 @@ export default function List(props) {
             setValueDelete([]))
     }
     valueDelete.status === undefined ? null : valueDelete.status == 200 ? Berhasil() : Gagal()
-    
+
     return (
         <>
             <div className={styles.container}>
@@ -80,9 +80,9 @@ export default function List(props) {
                     </div>
                     ))}
                 </div>
-                <Link target='_blank' href={'/admin/post'} className={styles.post}>
+                <CustomLink href={'/admin/post'} className={styles.post}>
                     <MdOutlinePostAdd />
-                </Link>
+                </CustomLink>
             </div >
             <ToastContainer limit={1} autoClose={3000} />
             {Open ? <DetailList data={data} /> : null}

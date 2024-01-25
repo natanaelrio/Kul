@@ -2,13 +2,13 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import styles from '@/components/Layout/ListProduct.module.css'
 import Image from 'next/image'
-import Link from 'next/link'
 import { FaStar } from "react-icons/fa6";
 import { MdDiscount } from "react-icons/md";
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import SkletonList from '@/components/skletonList'
 import { FaRegHeart } from "react-icons/fa";
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+import CustomLink from '@/lib/customLink'
 
 export default function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
@@ -57,14 +57,14 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                             return (
                                 <div key={i} className={styles.produk}>
                                     <div className={styles.gambar}>
-                                        <Link href={`/products/${data?.slug_barang}`} >
+                                        <CustomLink href={`/products/${data?.slug_barang}`} >
                                             <Image
                                                 src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
                                                 width={200}
                                                 height={200}
                                                 alt={data?.nama_barang}
                                             />
-                                        </Link>
+                                        </CustomLink>
                                         <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
                                         <div className={styles.love}>
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
@@ -86,7 +86,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                             }
                                         </div>
                                     </div>
-                                    <Link href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
+                                    <CustomLink href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
                                         <div className={styles.tengah}>
                                             <div className={styles.judul}
                                                 dangerouslySetInnerHTML={{ __html: HighlightText(data?.nama_barang) }}
@@ -109,7 +109,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
                                                 <div className="terjual">{data?.total_penjualan_barang} terjual</div>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </CustomLink>
                                 </div>
                             )
                         })}
