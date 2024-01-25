@@ -1,8 +1,8 @@
 "use client"
 import styles from '@/components/admin/login.module.css'
+import CustomLink from '@/lib/customLink';
 import { useRouter } from 'next/navigation'
 import { FaArrowLeft } from "react-icons/fa";
-
 export default function Login() {
 
     const router = useRouter()
@@ -18,9 +18,11 @@ export default function Login() {
                     <label>Password</label>
                     <input type="password" placeholder='password' />
                 </div>
-                <div className={styles.submit}>
-                    <button onClick={() => router.push('/admin/list')}>Login</button>
-                </div>
+                <CustomLink href={'/admin/list'}>
+                    <div className={styles.submit}>
+                        <button>Login</button>
+                    </div>
+                </CustomLink>
             </div>
             <div className={styles.back}>
                 <FaArrowLeft onClick={() => router.back()} />

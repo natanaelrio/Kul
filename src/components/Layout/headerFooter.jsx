@@ -34,8 +34,7 @@ export default function HeaderFooter({ children, kondisiFalseSearch}) {
       </div>
       {openKeranjang && <Keranjang />}
       {openLove && <Love />}
-      {openFormPembelian && openKeranjang &&
-        <FormPembelian
+      {openFormPembelian && openKeranjang && <FormPembelian
           dataFormLangsung={dataFormKeranjang} />}
     </>
   )

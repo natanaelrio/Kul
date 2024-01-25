@@ -140,8 +140,10 @@ export default function Header({ kondisiFalseSearch }) {
                             <LuShoppingCart />
                         </div>
                     </div>
-                    <CustomLink href={'/admin'} className={styles.login}>
-                        Log in
+                    <CustomLink href={'/admin'}>
+                        <div className={styles.login}>
+                            Log in
+                        </div>
                     </CustomLink>
                 </div>
             </nav >

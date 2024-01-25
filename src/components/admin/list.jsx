@@ -80,8 +80,10 @@ export default function List(props) {
                     </div>
                     ))}
                 </div>
-                <CustomLink href={'/admin/post'} className={styles.post}>
-                    <MdOutlinePostAdd />
+                <CustomLink href={'/admin/post'} >
+                    <div className={styles.post}>
+                        <MdOutlinePostAdd />
+                    </div>
                 </CustomLink>
             </div >
             <ToastContainer limit={1} autoClose={3000} />
