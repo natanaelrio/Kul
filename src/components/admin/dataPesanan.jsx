@@ -111,7 +111,7 @@ export default function DataPesanan({ data }) {
                                 style: 'currency',
                                 currency: 'IDR'
                             })}</div>
-                            <div className={styles.link} >{linkData?.data?.link_barang}</div>
+                            <div className={styles.link} >{linkData?.data?.link_barang ? linkData?.data?.link_barang : 'no data' }</div>
                             <div className={styles.status}>
                                 <input type="checkbox" />
                                 <input type="checkbox" />
