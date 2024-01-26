@@ -11,7 +11,8 @@ export async function GET(req) {
                 id: Number(id)
             },
             select: {
-                link_barang: true
+                link_barang: true,
+                id: true
             }
         })
         if (users) {

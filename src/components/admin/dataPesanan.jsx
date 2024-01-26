@@ -3,7 +3,8 @@ import { useStore } from '@/lib/zustand'
 import styles from '@/components/admin/dataPesanan.module.css'
 import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
+import { IoEyeOutline } from "react-icons/io5";
 
 export default function DataPesanan({ data }) {
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
@@ -46,6 +47,19 @@ export default function DataPesanan({ data }) {
         }
     }
 
+    const [linkData, setLinkData] = useState([])
+    const handleLink = async (e) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${e}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': process.env.NEXT_PUBLIC_SECREET
+            },
+            next: { revalidate: 0 }
+        })
+        const data = await res.json()
+        setLinkData(data)
+    }
 
     return (
         <BackLayang setOpen={setOpen} judul={'Data Pesanan'}>
@@ -82,36 +96,15 @@ export default function DataPesanan({ data }) {
             </div>
             <div className={styles.listdata}>
                 {data?.dataPesanan?.map((data) => {
-                    // console.log(data);
-                    const idLink = data.id_user
-                    const [linkData, setLinkData] = useState([])
-                    useEffect(() => {
-                        try {
-                            async function fetchData() {
-                                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${idLink}`, {
-                                    method: 'GET',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'Authorization': process.env.NEXT_PUBLIC_SECREET
-                                    },
-                                    next: { revalidate: 0 }
-                                })
-                                const data = await res.json()
-                                setLinkData(data)
-                            }
-                            fetchData();
-                        } catch (e) { console.log(e) }
-                    }, [])
-
                     return (
-                        <div key={data?.nama_barang_user} className={styles.content} >
+                        <div key={data?.id_user} className={styles.content} >
                             <div className={styles.namapesanan}>{data?.nama_barang_user}</div>
                             <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
                             <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })}</div>
-                            <div className={styles.link} >{linkData?.data?.link_barang ? linkData?.data?.link_barang : 'no data' }</div>
+                            <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline /></div> }</div>
                             <div className={styles.status}>
                                 <input type="checkbox" />
                                 <input type="checkbox" />

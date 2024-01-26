@@ -41,7 +41,7 @@
 .status {
     width: 10%;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
 }
 
 .status input {
@@ -84,6 +84,15 @@
 .listdata {
     max-height: 250px;
     overflow-y: scroll;
+}
+
+.eye::after {
+    position: absolute;
+    content: 'Lihat';
+}
+
+.eye:hover {
+    color: red;
 }
 
 @media only screen and (max-width: 480px) {
