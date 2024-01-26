@@ -2,7 +2,7 @@ import ListProductMain from '@/components/listProductMain'
 import HeaderFooter from '@/components/Layout/headerFooter'
 import { Suspense } from 'react'
 import Introduction from '@/components/introduction'
-import Todo from '@/components/todo'
+// import Todo from '@/components/todo'
 // import RouteLoader from '@/components/cek';
 // import Loading from '@/components/Loading';
 // export const dynamic = 'force-dynamic'
@@ -25,7 +25,7 @@ export default function Home() {
     <>
       <HeaderFooter kondisiFalseSearch={true}>
         <Introduction />
-        <Todo />
+        {/* <Todo /> */}
         <Suspense>
           <ListProductMain />
         </Suspense>
