@@ -31,7 +31,6 @@ export default function Love() {
                     <div className={styles.container}>
 
                         {loveZ.map((data, i) => {
-                            console.log(data)
                             const diskonharga = data.harga_total_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'

@@ -41,7 +41,8 @@
     padding: 1dvh 15px 15px 1dvh;
     font-size: 0.7rem;
     position: sticky;
-    top: 92dvh;
+    top: 90dvh;
+    bottom: 0;
     background-color: var(--color-white);
     z-index: 10
 }
@@ -251,5 +252,7 @@
         padding: 0 10px 10px 10px;
     }
 
-
+    .total {
+        top: 92dvh;
+    }
 }

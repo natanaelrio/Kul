@@ -40,14 +40,17 @@ export default function Keranjang() {
         setDeleteKeranjangZ(e), resetValueKeranjang()
     }
 
+
     const dataFormKeranjang = keranjangZ.map((data) => (
         {
+            id: data.id,
             nama_barang: data.nama_barang,
             harga_barang: data.harga_barang,
             diskon_barang: data.diskon_barang,
             kupon_barang: data.kupon_barang,
             value_barang: data.value,
         }))
+
 
     return (
         <>

@@ -3,7 +3,7 @@ import { useStore } from '@/lib/zustand'
 import styles from '@/components/admin/dataPesanan.module.css'
 import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-
+import { useEffect, useState } from 'react'
 
 export default function DataPesanan({ data }) {
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
@@ -14,6 +14,7 @@ export default function DataPesanan({ data }) {
         currency: 'IDR'
     })
 
+    // console.log(data);
     const setOpen = useStore((state) => state.setOpenDetailDataPesanan)
 
     const HandleStatus = async (id, e) => {
@@ -45,6 +46,7 @@ export default function DataPesanan({ data }) {
         }
     }
 
+
     return (
         <BackLayang setOpen={setOpen} judul={'Data Pesanan'}>
             <div className={styles.informasi}>
@@ -75,27 +77,51 @@ export default function DataPesanan({ data }) {
                 <div className={styles.namapesanan}>Pesan</div>
                 <div className={styles.jumlahpesanan}>Jumlah</div>
                 <div className={styles.hargapesanan}>Harga</div>
-                <div className={styles.kupon}> Kupon</div>
+                <div className={styles.link}>Link</div>
+                <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
             </div>
-            {data?.dataPesanan?.map((data) => {
-                const datakupon = data?.validasi_kupon_user.toString()
-                return (
-                    <div key={data?.nama_barang_user} className={styles.content} >
-                        <div className={styles.namapesanan}>{data?.nama_barang_user}</div>
-                        <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
-                        <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        })}</div>
-                        <div className={styles.kupon}>{datakupon} </div>
-                    </div>
-                )
-            })}
+            <div className={styles.listdata}>
+                {data?.dataPesanan?.map((data) => {
+                    const idLink = data.id_user
+                    const [linkData, setLinkData] = useState([])
+                    useEffect(() => {
+                        async function fetchData() {
+                            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${idLink}`, {
+                                method: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'Authorization': process.env.NEXT_PUBLIC_SECREET
+                                },
+                                next: { revalidate: 0 }
+                            })
+                            const data = await res.json()
+                            setLinkData(data)
+                        }
+                        fetchData();
+                    }, [])
+
+                    return (
+                        <div key={data?.nama_barang_user} className={styles.content} >
+                            <div className={styles.namapesanan}>{data?.nama_barang_user}</div>
+                            <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
+                            <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            })}</div>
+                            <div className={styles.link} >{linkData?.data?.link_barang}</div>
+                            <div className={styles.status}>
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
             <div className={styles.content} style={{ fontWeight: '700' }}>
                 <div className={styles.namapesanan}>Total</div>
                 <div className={styles.jumlahpesanan}>{totalJumlahBarang}</div>
                 <div className={styles.hargapesanan}>{totalHargaBarang}</div>
-                <div className={styles.kupon}></div>
+                <div className={styles.link}></div>
             </div>
 
             <div className={styles.dalampilihan}>

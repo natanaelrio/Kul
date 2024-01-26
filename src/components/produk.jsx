@@ -92,6 +92,7 @@ export default function Produk(props) {
     //DATA FORM 
     const dataFormLangsung =
         [{
+            id: data?.id,
             nama_barang: data?.nama_barang,
             harga_barang: data?.harga_barang,
             diskon_barang: data?.diskon_barang,
@@ -197,7 +198,7 @@ export default function Produk(props) {
                                         <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
                                     </div>
                                 }
-                                 <div className={styles.belisekarang}>
+                                <div className={styles.belisekarang}>
                                     <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
                                 </div>
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>

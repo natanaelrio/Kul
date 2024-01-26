@@ -28,6 +28,7 @@ model admin {
   kupon_barang           String?
   view_barang            Int?
   like_barang            Int?
+  link_barang            String?
 }
 
 model formPembelian {

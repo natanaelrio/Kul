@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
+import { FaLink } from "react-icons/fa";
 
 export default function FormPage({ urlFetch, method, data, change, value }) {
     const router = useRouter()
@@ -42,6 +43,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
             kupon_barang: data ? data?.kupon_barang : '',
             tag_barang: data ? data?.tag_barang : '',
             jumlah_barang: data ? data?.jumlah_barang : '',
+            link_barang: data ? data?.link_barang : '',
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
@@ -73,6 +75,9 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                 .required('require'),
             jumlah_barang: Yup.number()
                 .max(2000000000, 'harus 2000000000 karakter')
+                .required('require'),
+            link_barang: Yup.string()
+                .max(20000, 'harus 200 karakter')
                 .required('require'),
         }),
         onSubmit: async values => {
@@ -109,9 +114,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
         },
 
     });
-
-
-    // console.log(loading);
+    
     return (
         <>
             <div className={styles.containerform}>
@@ -247,6 +250,23 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                                 style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
                             />
                         </div>
+                        <label htmlFor="link_barang">Koneksi
+                            {formik.touched.link_barang && formik.errors.link_barang ? (
+                                <div style={{ color: 'red' }}>&nbsp;*</div>
+                            ) : null}
+                        </label>
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><FaLink /></div>
+                            <textarea
+                                id="link_barang"
+                                name="link_barang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.link_barang}
+                                placeholder='ex: terserah'
+                                style={formik.touched.link_barang && formik.errors.link_barang ? { border: '1px solid red' } : null}
+                            />
+                        </div>
                         <label htmlFor="kupon_barang">Kupon
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -322,7 +342,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                                             size={100}
                                             height={5}
                                             width={181}
-                                          
+
                                         />
                                     </div> : null
                                 }
