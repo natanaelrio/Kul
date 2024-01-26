@@ -82,22 +82,25 @@ export default function DataPesanan({ data }) {
             </div>
             <div className={styles.listdata}>
                 {data?.dataPesanan?.map((data) => {
+                    // console.log(data);
                     const idLink = data.id_user
                     const [linkData, setLinkData] = useState([])
                     useEffect(() => {
-                        async function fetchData() {
-                            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${idLink}`, {
-                                method: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'Authorization': process.env.NEXT_PUBLIC_SECREET
-                                },
-                                next: { revalidate: 0 }
-                            })
-                            const data = await res.json()
-                            setLinkData(data)
-                        }
-                        fetchData();
+                        try {
+                            async function fetchData() {
+                                const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${idLink}`, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                                    },
+                                    next: { revalidate: 0 }
+                                })
+                                const data = await res.json()
+                                setLinkData(data)
+                            }
+                            fetchData();
+                        } catch (e) { console.log(e) }
                     }, [])
 
                     return (
