@@ -86,13 +86,15 @@
     overflow-y: scroll;
 }
 
-.eye::after {
-    position: absolute;
-    content: 'Lihat';
+.eye {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .eye:hover {
     color: red;
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 480px) {

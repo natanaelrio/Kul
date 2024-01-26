@@ -3,7 +3,7 @@ import { useStore } from '@/lib/zustand'
 import styles from '@/components/admin/dataPesanan.module.css'
 import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-import {  useState } from 'react'
+import { useState } from 'react'
 import { IoEyeOutline } from "react-icons/io5";
 
 export default function DataPesanan({ data }) {
@@ -15,21 +15,59 @@ export default function DataPesanan({ data }) {
         currency: 'IDR'
     })
 
-    // console.log(data);
     const setOpen = useStore((state) => state.setOpenDetailDataPesanan)
 
-    const HandleStatus = async (id, e) => {
-        fetchdatalistpesanan(), setOpen()
-        const sudahdiproses = {
-            nota_user: id,
-            status_pesanan: 'sudah-diproses'
-        }
-        const sudahberhasil = {
-            nota_user: id,
-            status_pesanan: 'sudah-berhasil'
-        }
+    // VIEW LINK
+    const [linkData, setLinkData] = useState([])
+    const handleLink = async (e) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${e}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': process.env.NEXT_PUBLIC_SECREET
+            },
+            next: { revalidate: 0 }
+        })
+        const data = await res.json()
+        setLinkData(data)
+    }
 
-        const datanya = e == 'sudah-diproses' && sudahdiproses || e == 'sudah-berhasil' && sudahberhasil
+
+    // CEK VALUE
+    const [todos, setTodos] = useState(data?.dataPesanan);
+    const handleCekKirim = (e) => {
+        setTodos(todos.map((data) => data.id_user == e.id_user ?
+            {
+                ...data,
+                statusKirim: !data.statusKirim
+            }
+            : data))
+    }
+
+    const handleCekSelesai = (e) => {
+        setTodos(todos.map((data) => data.id_user == e.id_user ?
+            {
+                ...data,
+                statusSelesai: !data.statusSelesai
+            }
+            : data))
+    }
+
+
+    const statuskirim = todos.map((data) => data.statusKirim).filter((value) => value == false);
+    const statusselesai = todos.map((data) => data.statusSelesai).filter((value) => value == false);
+
+    // PUT DATA
+    const HandleStatus = async (id) => {
+        fetchdatalistpesanan(), setOpen()
+        const datanya = {
+            nota_user: id,
+            status_pesanan: statuskirim.length == [] && 'sudah-diproses' ||
+                statusselesai.length == [] && 'sudah-berhasil' ||
+                statuskirim.length == [] && statusselesai.length == [] && 'sudah-berhasil' ||
+                'belum-diproses',
+            dataPesanan: todos,
+        }
         try {
             const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/admin/update-status-pesanan', {
                 method: 'PUT',
@@ -45,20 +83,6 @@ export default function DataPesanan({ data }) {
         catch (e) {
             console.error(e)
         }
-    }
-
-    const [linkData, setLinkData] = useState([])
-    const handleLink = async (e) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get-link-pesanan?id=${e}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': process.env.NEXT_PUBLIC_SECREET
-            },
-            next: { revalidate: 0 }
-        })
-        const data = await res.json()
-        setLinkData(data)
     }
 
     return (
@@ -104,10 +128,18 @@ export default function DataPesanan({ data }) {
                                 style: 'currency',
                                 currency: 'IDR'
                             })}</div>
-                            <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline /></div> }</div>
+                            <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
                             <div className={styles.status}>
-                                <input type="checkbox" />
-                                <input type="checkbox" />
+                                <input
+                                    type="checkbox"
+                                    onClick={() => { handleCekKirim(data) }}
+                                    // checked={data.statusKirim}
+                                />
+                                <input
+                                    type="checkbox"
+                                    onClick={() => { handleCekSelesai(data) }}
+                                // checked={data.statusSelesai}
+                                />
                             </div>
                         </div>
                     )
@@ -122,16 +154,10 @@ export default function DataPesanan({ data }) {
 
             <div className={styles.dalampilihan}>
                 <CustomLink href={`/nota/${data?.nota_user}`} className={styles.nota}><button>Download Nota</button></CustomLink>
-                {data.status_pesanan == 'belum-diproses' && <div className={styles.nota}
-                    onClick={() => HandleStatus(data?.nota_user, 'sudah-diproses')}>
-                    <button>Sudah Di Proses</button>
-                </div>}
-
-                {data.status_pesanan == 'sudah-diproses' &&
-                    <div className={styles.nota}
-                        onClick={() => HandleStatus(data?.nota_user, 'sudah-berhasil')}>
-                        <button>Berhasil di Proses</button>
-                    </div>}
+                <div className={styles.nota}
+                    onClick={() => HandleStatus(data?.nota_user)}>
+                    <button>Berhasil di Proses</button>
+                </div>
             </div>
         </BackLayang>
     )

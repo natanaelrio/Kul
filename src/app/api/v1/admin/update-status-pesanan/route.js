@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma"
 
 export async function PUT(req) {
-    const { status_pesanan, nota_user } = await req.json()
-    const data = { status_pesanan, nota_user }
+    const { dataPesanan, status_pesanan, nota_user } = await req.json()
+    const data = { dataPesanan, status_pesanan, nota_user }
 
     console.log(data);
     const authorization = req.headers.get('authorization')
