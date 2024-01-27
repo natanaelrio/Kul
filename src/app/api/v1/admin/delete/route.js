@@ -1,22 +1,20 @@
+import { ResponseData } from '@/lib/ResponseData'
 import { prisma } from "@/lib/prisma"
+
+export async function AmbilDataUsers(databody) {
+    const data = await prisma.admin.delete({
+        where: {
+            btoa: databody.id
+        },
+    })
+    return data
+}
 
 export async function DELETE(req) {
     const { id } = await req.json()
-    const data = { id }
-    // console.log(data);
-
+    const databody = { id }
     const authorization = req.headers.get('authorization')
-    if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        // All posts that contain the word 'cat'.
-        const deleteUser = await prisma.admin.delete({
-            where: {
-                btoa: data.id
-            },
-        })
-        if (deleteUser) {
-            return Response.json({ status: 200, isDelete: true, data: deleteUser })
-        } else Response.json({ status: 500, isDelete: false })
-    }
-    else
-        return Response.json({ status: 500, isDelete: false, contact: 'natanael rio wijaya 08971041460' })
-}           
+    const data = await AmbilDataUsers(databody)
+    const res = await ResponseData(data, authorization)
+    return res
+}

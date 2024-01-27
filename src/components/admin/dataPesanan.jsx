@@ -32,14 +32,14 @@ export default function DataPesanan({ data }) {
         setLinkData(data)
     }
 
-
     // CEK VALUE
     const [todos, setTodos] = useState(data?.dataPesanan);
     const handleCekKirim = (e) => {
         setTodos(todos.map((data) => data.id_user == e.id_user ?
             {
                 ...data,
-                statusKirim: !data.statusKirim
+                statusKirim: !data.statusKirim,
+                statusSelesai: !data.statusKirim == false && !data.statusKirim,
             }
             : data))
     }
@@ -48,24 +48,23 @@ export default function DataPesanan({ data }) {
         setTodos(todos.map((data) => data.id_user == e.id_user ?
             {
                 ...data,
+                statusKirim: !data.statusKirim == false ? true : true,
                 statusSelesai: !data.statusSelesai
             }
             : data))
     }
-
 
     const statuskirim = todos.map((data) => data.statusKirim).filter((value) => value == false);
     const statusselesai = todos.map((data) => data.statusSelesai).filter((value) => value == false);
 
     // PUT DATA
     const HandleStatus = async (id) => {
-        fetchdatalistpesanan(), setOpen()
+        fetchdatalistpesanan()
         const datanya = {
             nota_user: id,
-            status_pesanan: statuskirim.length == [] && 'sudah-diproses' ||
-                statusselesai.length == [] && 'sudah-berhasil' ||
-                statuskirim.length == [] && statusselesai.length == [] && 'sudah-berhasil' ||
-                'belum-diproses',
+            status_pesanan: data.status_pesanan == 'belum-diproses' && statuskirim.length == [] && 'sudah-diproses' ||
+                data.status_pesanan == 'sudah-diproses' && statusselesai.length == [] && 'sudah-berhasil'
+                || 'belum-diproses',
             dataPesanan: todos,
         }
         try {
@@ -86,79 +85,118 @@ export default function DataPesanan({ data }) {
     }
 
     return (
-        <BackLayang setOpen={setOpen} judul={'Data Pesanan'}>
-            <div className={styles.informasi}>
-                <div className={styles.containerinformasi}>
-                    <div className={styles.tablesatu}>Pemesan: </div>
-                    <div className={styles.tabledua}>{data?.nama_lengkap_user} </div>
+        <>
+            <BackLayang
+                setOpen={setOpen}
+                judul={'Data Pesanan'}
+                handleStatusFetch={HandleStatus}
+                handleNota={data?.nota_user}
+                kondisiFetchStatus={true}
+            >
+                <div className={styles.informasi}>
+                    <div className={styles.containerinformasi}>
+                        <div className={styles.tablesatu}>Pemesan: </div>
+                        <div className={styles.tabledua}>{data?.nama_lengkap_user} </div>
+                    </div>
+                    <div className={styles.containerinformasi}>
+                        <div className={styles.tablesatu}>Alamat:  </div>
+                        <div className={styles.tabledua}> {data?.alamat_lengkap_user}  </div>
+                    </div>
+                    <div className={styles.containerinformasi}>
+                        <div className={styles.tablesatu}>Kode POS:</div>
+                        <div className={styles.tabledua}>{data?.kode_pos_user}</div>
+                    </div>
+                    <div className={styles.containerinformasi}>
+                        <div className={styles.tablesatu}>Nomer HP:</div>
+                        <div className={styles.tabledua}>{data?.no_hp_user} </div>
+                    </div>
+                    <div className={styles.containerinformasi}>
+                        <div className={styles.tablesatu}>Catatan: </div>
+                        <div className={styles.tabledua}>{data?.catatan_user} </div>
+                    </div>
                 </div>
-                <div className={styles.containerinformasi}>
-                    <div className={styles.tablesatu}>Alamat:  </div>
-                    <div className={styles.tabledua}> {data?.alamat_lengkap_user}  </div>
-                </div>
-                <div className={styles.containerinformasi}>
-                    <div className={styles.tablesatu}>Kode POS:</div>
-                    <div className={styles.tabledua}>{data?.kode_pos_user}</div>
-                </div>
-                <div className={styles.containerinformasi}>
-                    <div className={styles.tablesatu}>Nomer HP:</div>
-                    <div className={styles.tabledua}>{data?.no_hp_user} </div>
-                </div>
-                <div className={styles.containerinformasi}>
-                    <div className={styles.tablesatu}>Catatan: </div>
-                    <div className={styles.tabledua}>{data?.catatan_user} </div>
-                </div>
-            </div>
 
-
-            <div className={styles.content} style={{ fontWeight: '700' }} >
-                <div className={styles.namapesanan}>Pesan</div>
-                <div className={styles.jumlahpesanan}>Jumlah</div>
-                <div className={styles.hargapesanan}>Harga</div>
-                <div className={styles.link}>Link</div>
-                <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
-            </div>
-            <div className={styles.listdata}>
-                {data?.dataPesanan?.map((data) => {
-                    return (
-                        <div key={data?.id_user} className={styles.content} >
-                            <div className={styles.namapesanan}>{data?.nama_barang_user}</div>
-                            <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
-                            <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
-                                style: 'currency',
-                                currency: 'IDR'
-                            })}</div>
-                            <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
-                            <div className={styles.status}>
-                                <input
-                                    type="checkbox"
-                                    onClick={() => { handleCekKirim(data) }}
-                                    // checked={data.statusKirim}
-                                />
-                                <input
-                                    type="checkbox"
-                                    onClick={() => { handleCekSelesai(data) }}
-                                // checked={data.statusSelesai}
-                                />
+                <div className='deskop'>
+                    <div className={styles.content} style={{ fontWeight: '700' }} >
+                        <div className={styles.namapesanan}>Pesan</div>
+                        <div className={styles.jumlahpesanan}>Jumlah</div>
+                        <div className={styles.hargapesanan}>Harga</div>
+                        <div className={styles.link}>Link</div>
+                        <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
+                    </div>
+                </div>
+                <div className={styles.listdata}>
+                    <div className={styles.overflow}>
+                        <div className='mobile'>
+                            <div className={styles.content} style={{ fontWeight: '700' }} >
+                                <div className={styles.namapesanan}>Pesan</div>
+                                <div className={styles.jumlahpesanan}>Jumlah</div>
+                                <div className={styles.hargapesanan}>Harga</div>
+                                <div className={styles.link}>Link</div>
+                                <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
                             </div>
                         </div>
-                    )
-                })}
-            </div>
-            <div className={styles.content} style={{ fontWeight: '700' }}>
-                <div className={styles.namapesanan}>Total</div>
-                <div className={styles.jumlahpesanan}>{totalJumlahBarang}</div>
-                <div className={styles.hargapesanan}>{totalHargaBarang}</div>
-                <div className={styles.link}></div>
-            </div>
-
-            <div className={styles.dalampilihan}>
-                <CustomLink href={`/nota/${data?.nota_user}`} className={styles.nota}><button>Download Nota</button></CustomLink>
-                <div className={styles.nota}
-                    onClick={() => HandleStatus(data?.nota_user)}>
-                    <button>Berhasil di Proses</button>
+                        {todos?.map((data) => {
+                            return (
+                                <div key={data?.id_user} className={styles.content} >
+                                    <div className={styles.namapesanan} style={{ fontWeight: '500' }}>{data?.nama_barang_user}</div>
+                                    <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
+                                    <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
+                                        style: 'currency',
+                                        currency: 'IDR'
+                                    })}</div>
+                                    <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
+                                    <div className={styles.status}>
+                                        <div className={styles.inputan} onClick={() => { handleCekKirim(data) }}>
+                                            <input
+                                                type="checkbox"
+                                                checked={data.statusKirim}
+                                            />
+                                            <span style={{ textDecoration: data.statusKirim ? 'none' : 'line-through' }}>proses</span>
+                                        </div>
+                                        <div className={styles.inputan} onClick={() => { handleCekSelesai(data) }}>
+                                            <input
+                                                type="checkbox"
+                                                checked={data.statusSelesai}
+                                            />
+                                            <span style={{ textDecoration: data.statusSelesai ? 'none' : 'line-through' }}>selesai</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                        <div className='mobile'>
+                            <div className={styles.content} style={{ fontWeight: '700' }}>
+                                <div className={styles.namapesanan}>Total</div>
+                                <div className={styles.jumlahpesanan}>{totalJumlahBarang}</div>
+                                <div className={styles.hargapesanan}>{totalHargaBarang}</div>
+                                <div className={styles.link}></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </BackLayang>
+                <div className='deskop'>
+                    <div className={styles.content} style={{ fontWeight: '700' }}>
+                        <div className={styles.namapesanan}>Total</div>
+                        <div className={styles.jumlahpesanan}>{totalJumlahBarang}</div>
+                        <div className={styles.hargapesanan}>{totalHargaBarang}</div>
+                        <div className={styles.link}></div>
+                    </div>
+                </div>
+
+                <div className={styles.dalampilihan}>
+                    <CustomLink href={`/nota/${data?.nota_user}`} >
+                        <div className={styles.nota}>
+                            <button>Download Nota</button>
+                        </div>
+                    </CustomLink>
+                    <div className={styles.nota}
+                        onClick={() => { HandleStatus(data?.nota_user), setOpen() }}>
+                        <button>Update Status</button>
+                    </div>
+                </div>
+            </BackLayang>
+            <span>kwkwkw</span>
+        </>
     )
 }

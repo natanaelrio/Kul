@@ -1,25 +1,36 @@
+import { ResponseData } from '@/lib/ResponseData'
 import { prisma } from "@/lib/prisma"
+
+export async function AmbilDataUsers(id, databody) {
+    const data = await prisma.admin.update({
+        where: {
+            id: Number(id),
+        },
+        data: databody
+    })
+    return data
+}
+
 
 export async function PUT(req) {
     const searchParams = req.nextUrl.searchParams;
     const id = searchParams.get('id');
-    const { jumlah_barang, tag_barang, end, nama_barang, kategori_barang, harga_barang, diskon_barang, rating_barang, total_penjualan_barang, diskripsi_barang, gambar_barang, slug_barang, kupon_barang, view_barang } = await req.json()
-    const data = { jumlah_barang, tag_barang, end, nama_barang, kategori_barang, harga_barang, diskon_barang, rating_barang, total_penjualan_barang, diskripsi_barang, gambar_barang, slug_barang, kupon_barang, view_barang }
+    const { link_barang, jumlah_barang, tag_barang, btoa,
+        end, nama_barang, kategori_barang, harga_barang,
+        diskon_barang, rating_barang, total_penjualan_barang,
+        diskripsi_barang, gambar_barang, slug_barang,
+        kupon_barang, view_barang } = await req.json()
 
+    const databody = {
+        link_barang, jumlah_barang, tag_barang, btoa,
+        end, nama_barang, kategori_barang, harga_barang,
+        diskon_barang, rating_barang, total_penjualan_barang,
+        diskripsi_barang, gambar_barang, slug_barang,
+        kupon_barang, view_barang
+    }
 
     const authorization = req.headers.get('authorization')
-    if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        const users = await prisma.admin.update({
-            where: {
-                id: Number(id),
-            },
-            data
-        })
-        if (users) {
-            return Response.json({ status: 200, isUpdate: true, })
-        } else return Response.json({ status: 500, isUpdate: false })
-    }
-    else
-        return Response.json({ status: 500, isUpdate: false, contact: 'natanael rio wijaya 08971041460' })
-
-}   
+    const data = await AmbilDataUsers(id, databody)
+    const res = await ResponseData(data, authorization)
+    return res
+}

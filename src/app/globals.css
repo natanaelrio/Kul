@@ -55,6 +55,7 @@ img {
 
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
   background-color: #F5F5F5;
 }
 
@@ -123,11 +124,27 @@ button {
 }
 
 
+.deskop {
+  display: block;
+}
+
+.mobile {
+  display: none;
+}
+
 @media only screen and (max-width: 768px) {
 
   html,
   body {
     font-size: 23px;
+  }
+
+  .deskop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
   }
 }
 
@@ -152,5 +169,13 @@ button {
   .skletonprodukid {
     height: 300px;
     width: 100vw;
+  }
+
+  .deskop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
   }
 }

@@ -82,6 +82,7 @@ export default function Header({ kondisiFalseSearch }) {
         if (event.key === 'Enter') {
             setKlikcari(false)
             setBorder(false)
+            setSearchTerm('')
         }
     }
 

@@ -100,7 +100,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                     }
                 })
                 const data = await res.json()
-                data.status == 200 ? Berhasil() : Gagal()
+                data.status == 200 && Berhasil() || data.status == 500 && Gagal()
             }
             catch (e) {
                 console.error(e)
@@ -114,7 +114,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
         },
 
     });
-    
+
     return (
         <>
             <div className={styles.containerform}>

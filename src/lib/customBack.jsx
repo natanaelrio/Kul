@@ -9,12 +9,12 @@ export default function CustomBack({ children }) {
 
     useEffect(() => {
         return () => {
-            NProgress.done().configure({ showSpinner: false, trickle: false })
+            NProgress.done().configure({ showSpinner: false, minimum: 0.7, easing: 'ease', speed: 1000 })
         }
     }, [])
     return (
         <>
-            <div onClick={() => { NProgress.configure({ showSpinner: false, trickle: false }).start(), router.back() }}>
+            <div onClick={() => { NProgress.configure({ showSpinner: false }).start(), router.back() }}>
                 {children}
             </div>
         </>

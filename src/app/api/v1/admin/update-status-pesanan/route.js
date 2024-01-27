@@ -1,23 +1,22 @@
+import { ResponseData } from '@/lib/ResponseData'
 import { prisma } from "@/lib/prisma"
+
+export async function AmbilDataUsers(databody) {
+    const data = await prisma.formPembelian.update({
+        where: {
+            nota_user: databody.nota_user,
+        },
+        data: databody
+    })
+    return data
+}
+
 
 export async function PUT(req) {
     const { dataPesanan, status_pesanan, nota_user } = await req.json()
-    const data = { dataPesanan, status_pesanan, nota_user }
-
-    console.log(data);
+    const databody = { dataPesanan, status_pesanan, nota_user }
     const authorization = req.headers.get('authorization')
-    if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        const users = await prisma.formPembelian.update({
-            where: {
-                nota_user: nota_user,
-            },
-            data
-        })
-        if (users) {
-            return Response.json({ status: 200, isUpdate: true, })
-        } else return Response.json({ status: 500, isUpdate: false })
-    }
-    else
-        return Response.json({ status: 500, isUpdate: false, contact: 'natanael rio wijaya 08971041460' })
-
-}   
+    const data = await AmbilDataUsers(databody)
+    const res = await ResponseData(data, authorization)
+    return res
+}

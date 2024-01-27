@@ -23,7 +23,7 @@
 }
 
 .namapesanan {
-    width: 40%;
+    width: 35%;
 }
 
 .jumlahpesanan {
@@ -31,11 +31,11 @@
 }
 
 .hargapesanan {
-    width: 25%;
+    width: 15%;
 }
 
 .link {
-    width: 15%;
+    width: 25%;
 }
 
 .status {
@@ -76,6 +76,10 @@
     margin-right: 10px;
 }
 
+.nota button:hover {
+    background-color: var(--hover-color-sekunder);
+}
+
 .dalampilihan {
     display: flex;
     /* justify-content: flex-end; */
@@ -84,6 +88,10 @@
 .listdata {
     max-height: 250px;
     overflow-y: scroll;
+}
+
+.overflow {
+    width: auto;
 }
 
 .eye {
@@ -97,26 +105,31 @@
     cursor: pointer;
 }
 
+.inputan {
+    display: flex;
+    cursor: pointer;
+    margin: 0 3px;
+    height: fit-content;
+}
+
+.inputan:hover {
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
+}
+
 @media only screen and (max-width: 480px) {
 
-    .namapesanan {
-        width: 40%;
-    }
 
-    .jumlahpesanan {
-        width: 15%;
-    }
-
-    .hargapesanan {
-        width: 33%;
-    }
-
-    .link {
-        width: 10%;
+    .listdata {
+        max-height: 70dvh;
     }
 
     .listdata {
-        max-height: 50dvh;
+        overflow-x: scroll;
+    }
+
+    .overflow {
+        width: 700px;
     }
 
 }

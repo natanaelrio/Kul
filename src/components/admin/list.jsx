@@ -36,7 +36,7 @@ export default function List(props) {
         },
             setValueDelete([]))
     }
-    valueDelete.status === undefined ? null : valueDelete.status == 200 ? Berhasil() : Gagal()
+    valueDelete.status === undefined ||  valueDelete.status == 200 && Berhasil() || valueDelete.status == 500 && Gagal()
 
     return (
         <>
