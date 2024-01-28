@@ -77,10 +77,10 @@ export default function DataPesanan({ data }) {
                 }
             })
             const data = await res.json()
-            setValueStatusPesanan(data)
+            data.status == 200 && setValueStatusPesanan({ status: 200 }) ||  data.status == 500 && setValueStatusPesanan({ status: 500 })
         }
         catch (e) {
-            console.error(e)
+            setValueStatusPesanan({ status: 500 })
         }
     }
 

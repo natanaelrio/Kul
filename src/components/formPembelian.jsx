@@ -22,11 +22,8 @@ export default function FormPembelian({ dataFormLangsung }) {
     const [isLoading, setIsLoading] = useState(false)
 
     const handleSuccess = () => {
-        // router.push('/')
         setIsLoading(false)
         setOpenFormPembelian()
-        // openKeranjang ? setOpenKeranjang() : null
-        // router.refresh()
     }
 
     const formik = useFormik({

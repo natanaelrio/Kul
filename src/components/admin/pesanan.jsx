@@ -95,7 +95,7 @@ export default function Pesanan() {
         }),
             setValueStatusPesanan([])
     }
-    valueStatusPesanan.status === undefined ||  valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
+    valueStatusPesanan == [] ||  valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
 
     return (
         <>

@@ -103,9 +103,8 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                 data.status == 200 && Berhasil() || data.status == 500 && Gagal()
             }
             catch (e) {
-                console.error(e)
+                Gagal()
             }
-
 
             setTimeout(() => {
                 setMatikan(false)
