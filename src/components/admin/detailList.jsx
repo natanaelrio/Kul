@@ -10,12 +10,10 @@ import MoonLoader from "react-spinners/MoonLoader";
 
 export default function DetailList(props) {
     const setOpen = useStore((state) => state.setOpenDetailProdukAdmin)
-    const valueDelete = useStore((state) => state.valueDelete)
     const setValueDelete = useStore((state) => state.setValueDelete)
     const [isLoading, setIsLoading] = useState(false)
     const [isGagalLoading, setIsGagalLoading] = useState(false)
     const router = useRouter()
-
 
     const Berhasil = () => {
         setValueDelete({ status: 200 }), setOpen(), setIsLoading(false)
@@ -203,7 +201,7 @@ export default function DetailList(props) {
                             <MoonLoader
                                 color={'var(--color-white)'}
                             />
-                            Gagal
+                           Gagal...
                         </div>
                     </>}
 

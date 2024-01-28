@@ -3,17 +3,22 @@
     justify-content: center;
     flex-direction: column;
     font-size: 0.7rem;
-    position: relative;
 }
 
 .loading {
     position: absolute;
     top: 0;
-    background-color: black;
-    opacity: 0.7;
     width: 700px;
     height: 100%;
+}
+
+.loading .hitam {
+    background-color: black;
+    width: 700px;
+    height: 100%;
+    opacity: 0.8;
     border-radius: 0 0 10px 10px;
+    position: relative;
 }
 
 .logoloading {
@@ -29,15 +34,30 @@
     flex-direction: column;
 }
 
+.tombolkembaligagal {
+    background-color: var(--color-high);
+    padding: 20px 30px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
 .kuponharga {
     color: var(--color-high);
 }
 
 /* FORM */
+
 .form {
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* padding: 10px; */
+    position: relative;
+}
+.form .padding {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
 }
 
@@ -109,11 +129,14 @@
 
     .loading{
         width: 100vw;
-        border-radius: 0;
     }
 
     .form input:nth-child(10) {
         width: 50%;
+    }
+
+    .loading .hitam {
+        border-radius: 0;
     }
 }
 
@@ -126,10 +149,13 @@
 
     .loading {
         width: 100vw;
-        border-radius: 0;
     }
 
     .form input:nth-child(10) {
         width: 50%;
+    }
+
+    .loading .hitam {
+        border-radius: 0;
     }
 }
