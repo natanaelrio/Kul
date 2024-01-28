@@ -1,9 +1,19 @@
-.container {
+.luarcontainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 50px;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.container {
+    display: flex;
+    width: fit-content;
+    color: var(--color-white);
+    background-color: var(--color-high);
+    padding: 10px;
 }
 
 .typingeffect {
@@ -19,7 +29,7 @@
     }
 
     to {
-        width: 22ch;
+        width: 15ch;
     }
 }
 
