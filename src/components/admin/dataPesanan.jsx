@@ -5,6 +5,7 @@ import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useState } from 'react'
 import { IoEyeOutline } from "react-icons/io5";
+import MoonLoader from "react-spinners/MoonLoader";
 
 export default function DataPesanan({ data }) {
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
@@ -14,8 +15,22 @@ export default function DataPesanan({ data }) {
         style: 'currency',
         currency: 'IDR'
     })
-
+    // VALIDASI GAGAL DAN SUKSES
     const setOpen = useStore((state) => state.setOpenDetailDataPesanan)
+    const [isLoading, setIsLoading] = useState(false)
+    const [isLoadingGagal, setIsLoadingGagal] = useState(false)
+
+    const handleSukses = () => {
+        fetchdatalistpesanan()
+        setValueStatusPesanan({ status: 200 })
+        setIsLoading(false)
+        setOpen()
+    }
+    const handleGagal = () => {
+        setValueStatusPesanan({ status: 500 })
+        setIsLoading(false)
+        setIsLoadingGagal(true)
+    }
 
     // VIEW LINK
     const [linkData, setLinkData] = useState([])
@@ -59,7 +74,9 @@ export default function DataPesanan({ data }) {
 
     // PUT DATA
     const HandleStatus = async (id) => {
-        fetchdatalistpesanan()
+
+        setIsLoading(true)
+        setIsLoadingGagal(false)
         const datanya = {
             nota_user: id,
             status_pesanan: data.status_pesanan == 'belum-diproses' && statuskirim.length == [] && 'sudah-diproses' ||
@@ -77,10 +94,10 @@ export default function DataPesanan({ data }) {
                 }
             })
             const data = await res.json()
-            data.status == 200 && setValueStatusPesanan({ status: 200 }) ||  data.status == 500 && setValueStatusPesanan({ status: 500 })
+            data.status == 200 && handleSukses() || data.status == 500 && handleGagal()
         }
         catch (e) {
-            setValueStatusPesanan({ status: 500 })
+            handleGagal()
         }
     }
 
@@ -89,9 +106,6 @@ export default function DataPesanan({ data }) {
             <BackLayang
                 setOpen={setOpen}
                 judul={'Data Pesanan'}
-                handleStatusFetch={HandleStatus}
-                handleNota={data?.nota_user}
-                kondisiFetchStatus={true}
             >
                 <div className={styles.informasi}>
                     <div className={styles.containerinformasi}>
@@ -125,7 +139,7 @@ export default function DataPesanan({ data }) {
                         <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
                     </div>
                 </div>
-                <div className={styles.listdata}>
+                <div className={styles.listdata} style={{ overflow: isLoading && 'inherit' }} >
                     <div className={styles.overflow}>
                         <div className='mobile'>
                             <div className={styles.content} style={{ fontWeight: '700' }} >
@@ -136,33 +150,36 @@ export default function DataPesanan({ data }) {
                                 <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
                             </div>
                         </div>
+
                         {todos?.map((data) => {
                             return (
-                                <div key={data?.id_user} className={styles.content} >
-                                    <div className={styles.namapesanan} style={{ fontWeight: '500' }}>{data?.nama_barang_user}</div>
-                                    <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
-                                    <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
-                                        style: 'currency',
-                                        currency: 'IDR'
-                                    })}</div>
-                                    <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
-                                    <div className={styles.status}>
-                                        <div className={styles.inputan} onClick={() => { handleCekKirim(data) }}>
-                                            <input
-                                                type="checkbox"
-                                                checked={data.statusKirim}
-                                            />
-                                            <span style={{ textDecoration: data.statusKirim ? 'none' : 'line-through' }}>proses</span>
-                                        </div>
-                                        <div className={styles.inputan} onClick={() => { handleCekSelesai(data) }}>
-                                            <input
-                                                type="checkbox"
-                                                checked={data.statusSelesai}
-                                            />
-                                            <span style={{ textDecoration: data.statusSelesai ? 'none' : 'line-through' }}>selesai</span>
+                                <>
+                                    <div key={data?.id_user} className={styles.content} >
+                                        <div className={styles.namapesanan} style={{ fontWeight: '500' }}>{data?.nama_barang_user}</div>
+                                        <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
+                                        <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
+                                            style: 'currency',
+                                            currency: 'IDR'
+                                        })}</div>
+                                        <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
+                                        <div className={styles.status}>
+                                            <div className={styles.inputan} onClick={() => { handleCekKirim(data) }}>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={data.statusKirim}
+                                                />
+                                                <span style={{ textDecoration: data.statusKirim ? 'none' : 'line-through' }}>proses</span>
+                                            </div>
+                                            <div className={styles.inputan} onClick={() => { handleCekSelesai(data) }}>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={data.statusSelesai}
+                                                />
+                                                <span style={{ textDecoration: data.statusSelesai ? 'none' : 'line-through' }}>selesai</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </>
                             )
                         })}
                         <div className='mobile'>
@@ -190,9 +207,11 @@ export default function DataPesanan({ data }) {
                             <button>Download Nota</button>
                         </div>
                     </CustomLink>
-                    <div className={styles.nota}
-                        onClick={() => { HandleStatus(data?.nota_user), setOpen() }}>
-                        <button>Update Status</button>
+                    <div className={styles.nota}>
+                        <button disabled={isLoading} onClick={() => { HandleStatus(data?.nota_user) }}>
+                            {isLoading ? 'Loading...' : !isLoadingGagal && 'Update Status'}
+                            {isLoadingGagal && 'gagal! ( Update Ulang)'}
+                        </button>
                     </div>
                 </div>
             </BackLayang>

@@ -213,7 +213,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                             placeholder='opsional'
                         />
 
-                        <button type="submit" disabled={isLoading} >Bayar Sekarang &nbsp;
+                        <button type="submit" disabled={isLoading && !isLoadingGagal} >Bayar Sekarang &nbsp;
                             {kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? (
                                 hargaBarangDiskonKupon.toLocaleString('id-ID', {
                                     style: 'currency',

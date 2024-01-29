@@ -64,14 +64,19 @@
     padding: 10px 0;
 }
 
+.nota {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .nota button {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     background-color: var(--color-sekunder);
-    padding: 5px 20px;
+    color: var(--color-white);
+    padding: 10px 20px;
     border-radius: 7px;
     font-size: 0.7rem;
-    color: var(--color-white);
     cursor: pointer;
     margin-right: 10px;
 }
@@ -82,7 +87,8 @@
 
 .dalampilihan {
     display: flex;
-    /* justify-content: flex-end; */
+    margin-top: 20px;
+    justify-content: flex-end;
 }
 
 .listdata {
@@ -92,6 +98,7 @@
 
 .overflow {
     width: auto;
+    position: relative;
 }
 
 .eye {
@@ -130,6 +137,11 @@
 
     .overflow {
         width: 700px;
+    }
+
+    .loading {
+        height: 70dvh;
+        ;
     }
 
 }

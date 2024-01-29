@@ -175,7 +175,7 @@ export default function Pesanan() {
                     className={styles.arrow}><FaArrowRight size={20} /></div>
             </div>
             {Open && <DataPesanan data={dataPesanan} />}
-            <ToastContainer limit={3} autoClose={3000} />
+            <ToastContainer  autoClose={2000} />
         </>
     )
 }

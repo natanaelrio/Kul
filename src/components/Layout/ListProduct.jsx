@@ -35,16 +35,14 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
 
     return (
         <>
-            {data ? null : <SkletonList />}
-            <div className={styles.countainer}>
+            {data && <div className={styles.countainer}>
                 <div className={styles.judulatas} dangerouslySetInnerHTML={{ __html: judul }}>
                 </div>
-            </div>
-
+            </div>}
+            {data ? null : <SkletonList />}
             <div className={styles.countainer}>
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
-
                         {data?.map((data, i) => {
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
