@@ -1,16 +1,18 @@
 "use client"
-import 'react-loading-skeleton/dist/skeleton.css'
-import styles from '@/components/Layout/ListProduct.module.css'
 import Image from 'next/image'
+import { useEffect, useState } from 'react';
+import styles from '@/components/Layout/ListProduct.module.css'
+import 'react-loading-skeleton/dist/skeleton.css'
 import { FaStar } from "react-icons/fa6";
-import { MdDiscount } from "react-icons/md";
-import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import SkletonList from '@/components/skletonList'
-import { FaRegHeart } from "react-icons/fa";
-import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-import CustomLink from '@/lib/customLink'
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import { MdDiscount } from "react-icons/md";
+import { FaRegHeart } from "react-icons/fa";
+import SkletonList from '@/components/skletonList'
+import CustomLink from '@/lib/customLink'
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
+import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+
 
 export default function ListProduk({ data, judul, fetchMain, fetchSearch, value, lengthdata }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
@@ -39,6 +41,16 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value,
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     }
+
+    const [isLoading, setIsLoading] = useState(false)
+    const handleFetchPagination = () => {
+        data?.length != data?.length + 1 && setIsLoading(true)
+        fetchdatalist(data?.length + 1)
+    }
+
+    useEffect(() => {
+        data?.length == data?.length + 1 == setIsLoading(false)
+    }, [data?.length])
 
 
     return (
@@ -127,8 +139,9 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value,
             <div className={styles.countainer} style={{ marginTop: '-20px' }}>
                 <div className={styles.luarpagination}>
                     <div className={styles.garispagination}></div>
-                    <div className={styles.pagination} onClick={() => lengthdata <= data?.length ? handleOnTop() : fetchdatalist(data?.length + 5)}>
-                        {lengthdata <= data?.length ? 'Data Habis' : ` Load More `} &nbsp;  {lengthdata <= data?.length ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                    <div className={styles.pagination} onClick={() => lengthdata <= data?.length ? handleOnTop() : handleFetchPagination()}>
+                        {lengthdata <= data?.length ? !isLoading && 'Data Habis' : !isLoading && ` Load More `} &nbsp;  {lengthdata <= data?.length ? <IoIosArrowUp /> : !isLoading && <IoIosArrowDown />}
+                        {isLoading && <div className="loading">Loading...😁</div>}
                     </div>
                 </div>
             </div>

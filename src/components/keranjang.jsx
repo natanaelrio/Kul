@@ -1,17 +1,17 @@
 'use client'
 import styles from '@/components/keranjang.module.css'
+import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
+import { Suspense } from 'react';
 import { MdDelete } from "react-icons/md";
+import { LuShoppingCart } from "react-icons/lu";
+import { IoMdArrowRoundBack } from "react-icons/io";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import { LuShoppingCart } from "react-icons/lu";
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import KeranjangTotal from '@/components/keranjangtotal';
-import { Suspense } from 'react';
-import Skeleton from 'react-loading-skeleton'
-import { IoMdArrowRoundBack } from "react-icons/io";
-import CustomBack from '@/lib/customBack';
 import FormPembelian from '@/components/formPembelian';
+import CustomBack from '@/lib/customBack';
 
 export default function Keranjang() {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)

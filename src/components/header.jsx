@@ -17,7 +17,6 @@ export default function Header({ kondisiFalseSearch }) {
     const router = useRouter()
 
     const setOpenLove = useStore((state) => state.setOpenLove)
-    const setOpenKeranjang = useStore((state) => state.setOpenKeranjang)
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const kondisiLove = useStoreDataFront((state) => state.kondisiLove)

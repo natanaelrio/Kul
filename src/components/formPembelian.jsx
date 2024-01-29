@@ -1,15 +1,29 @@
 'use client';
+import MoonLoader from "react-spinners/MoonLoader";
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/components/formPembelian.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
-import { useState } from 'react';
-import MoonLoader from "react-spinners/MoonLoader";
+import { useStoreFormUsers } from '@/utils/user-front/formZ'
 import { uidRio } from '@/lib/uidRio';
+import { FaUser } from "react-icons/fa";
+import { BiSolidContact } from "react-icons/bi";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaSignsPost } from "react-icons/fa6";
 
 export default function FormPembelian({ dataFormLangsung }) {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
+    const setnamaLengkap = useStoreFormUsers((state) => state.setnamaLengkap)
+    const namaLengkap = useStoreFormUsers((state) => state.namaLengkap)
+    const setNoHP = useStoreFormUsers((state) => state.setNoHP)
+    const noHP = useStoreFormUsers((state) => state.noHP)
+    const setAlamat = useStoreFormUsers((state) => state.setAlamat)
+    const alamat = useStoreFormUsers((state) => state.alamat)
+    const setKodePost = useStoreFormUsers((state) => state.setKodePost)
+    const kodePost = useStoreFormUsers((state) => state.kodePost)
+
     const kuponBarang = dataFormLangsung.map((data) => data.kupon_barang)[0]?.toString()
     const hargaBarangDiskonNormal = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
     const hargaBarangDiskonKupon = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
@@ -18,7 +32,20 @@ export default function FormPembelian({ dataFormLangsung }) {
     const HandleKupon = (e) => {
         setKupon(e.target.value)
     }
+    const handleNamaLengkap = (e) => {
+        setnamaLengkap(e.target.value)
+    }
+    const handleNoHp = (e) => {
+        setNoHP(e.target.value)
+    }
+    const handleAlamat = (e) => {
+        setAlamat(e.target.value)
+    }
+    const handleKodePost = (e) => {
+        setKodePost(e.target.value)
+    }
 
+    // NOTIFIKASI
     const [isLoading, setIsLoading] = useState(false)
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
 
@@ -36,12 +63,13 @@ export default function FormPembelian({ dataFormLangsung }) {
     }
 
 
+
     const formik = useFormik({
         initialValues: {
-            nama_lengkap_user: '',
-            no_hp_user: '',
-            alamat_lengkap_user: '',
-            kode_pos_user: '',
+            nama_lengkap_user: namaLengkap ? namaLengkap : '',
+            no_hp_user: noHP ? noHP : '',
+            alamat_lengkap_user: alamat ? alamat : '',
+            kode_pos_user: kodePost ? kodePost : '',
             catatan_user: ''
         },
         validationSchema: Yup.object({
@@ -102,7 +130,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             }
         },
     })
-    
+
     return (
         <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
             <div className={styles.containerform} >
@@ -134,15 +162,18 @@ export default function FormPembelian({ dataFormLangsung }) {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="nama_lengkap_user"
-                            name="nama_lengkap_user"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.nama_lengkap_user}
-                            placeholder='ex: natanael rio wijaya'
-                            style={formik.touched.nama_lengkap_user && formik.errors.nama_lengkap_user ? { border: '1px solid red' } : null}
-                        />
+                        <div className={styles.logoluar} style={formik.touched.nama_lengkap_user && formik.errors.nama_lengkap_user ? { border: '1px solid red' } : null}>
+                            <div className={styles.logo}><FaUser size={20} /></div>
+                            <input
+                                id="nama_lengkap_user"
+                                name="nama_lengkap_user"
+                                type="text"
+                                onChange={(e) => { formik.handleChange(e); handleNamaLengkap(e) }}
+                                value={formik.values.nama_lengkap_user}
+                                placeholder='ex: natanael rio wijaya'
+
+                            />
+                        </div>
 
 
                         <label htmlFor="no_hp_user">NO HP
@@ -150,16 +181,17 @@ export default function FormPembelian({ dataFormLangsung }) {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="no_hp_user"
-                            name="no_hp_user"
-                            type="number"
-                            onChange={formik.handleChange}
-                            value={formik.values.no_hp_user}
-                            placeholder='ex: 0812488124004'
-                            style={formik.touched.no_hp_user && formik.errors.no_hp_user ? { border: '1px solid red' } : null}
-                        />
-
+                        <div className={styles.logoluar} style={formik.touched.no_hp_user && formik.errors.no_hp_user ? { border: '1px solid red' } : null}>
+                            <div className={styles.logo}><BiSolidContact size={20} /> </div>
+                            <input
+                                id="no_hp_user"
+                                name="no_hp_user"
+                                type="number"
+                                onChange={(e) => { formik.handleChange(e); handleNoHp(e) }}
+                                value={formik.values.no_hp_user}
+                                placeholder='ex: 0812488124004'
+                            />
+                        </div>
 
 
                         <label htmlFor="alamat_lengkap_user">Alamat Lengkap
@@ -167,30 +199,34 @@ export default function FormPembelian({ dataFormLangsung }) {
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="alamat_lengkap_user"
-                            name="alamat_lengkap_user"
-                            type="text"
-                            onChange={formik.handleChange}
-                            value={formik.values.alamat_lengkap_user}
-                            placeholder='ex: jl merdeka, rt 01/03. keboyan'
-                            style={formik.touched.alamat_lengkap_user && formik.errors.alamat_lengkap_user ? { border: '1px solid red' } : null}
-                        />
+                        <div className={styles.logoluar} style={formik.touched.alamat_lengkap_user && formik.errors.alamat_lengkap_user ? { border: '1px solid red' } : null}>
+                            <div className={styles.logo}><FaLocationDot size={20} />  </div>
+                            <input
+                                id="alamat_lengkap_user"
+                                name="alamat_lengkap_user"
+                                type="text"
+                                onChange={(e) => { formik.handleChange(e); handleAlamat(e) }}
+                                value={formik.values.alamat_lengkap_user}
+                                placeholder='ex: jl merdeka, rt 01/03. keboyan'
+                            />
+                        </div>
 
                         <label htmlFor="kode_pos_user">Kode POS
                             {formik.touched.kode_pos_user && formik.errors.kode_pos_user ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
                         </label>
-                        <input
-                            id="kode_pos_user"
-                            name="kode_pos_user"
-                            type="number"
-                            onChange={formik.handleChange}
-                            value={formik.values.kode_pos_user}
-                            placeholder='ex: 53235'
-                            style={formik.touched.kode_pos_user && formik.errors.kode_pos_user ? { border: '1px solid red' } : null}
-                        />
+                        <div className={styles.logoluar} style={formik.touched.kode_pos_user && formik.errors.kode_pos_user ? { border: '1px solid red' } : null}>
+                            <div className={styles.logo}><FaSignsPost size={20} /> </div>
+                            <input
+                                id="kode_pos_user"
+                                name="kode_pos_user"
+                                type="number"
+                                onChange={(e) => { formik.handleChange(e); handleKodePost(e) }}
+                                value={formik.values.kode_pos_user}
+                                placeholder='ex: 53235'
+                            />
+                        </div>
 
 
                         <label htmlFor="catatan_user">Catatan</label>
@@ -204,14 +240,16 @@ export default function FormPembelian({ dataFormLangsung }) {
                         />
 
                         <label htmlFor="kupon">Kupon &nbsp;<div className={styles.kuponharga}>({kuponBarang + process.env.NEXT_PUBLIC_DISKON})</div></label>
-                        <input
-                            id="kupon"
-                            name="kupon"
-                            type="text"
-                            onChange={HandleKupon}
-                            value={kupon}
-                            placeholder='opsional'
-                        />
+                        <div className={styles.kupon}>
+                            <input
+                                id="kupon"
+                                name="kupon"
+                                type="text"
+                                onChange={HandleKupon}
+                                value={kupon}
+                                placeholder='opsional'
+                            />
+                        </div>
 
                         <button type="submit" disabled={isLoading && !isLoadingGagal} >Bayar Sekarang &nbsp;
                             {kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? (

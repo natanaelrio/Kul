@@ -1,4 +1,5 @@
 import styles from '@/components/introduction.module.css'
+
 export default function Introduction() {
     return (
         <div className={styles.luarcontainer}>

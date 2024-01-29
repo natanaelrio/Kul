@@ -1,16 +1,16 @@
 "use client"
 import { useSearchParams } from 'next/navigation'
-import ListProduk from '@/components/Layout/ListProduct'
+import { useEffect } from 'react'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+import { useStore } from '@/lib/zustand'
+import ListProduk from '@/components/Layout/ListProduct'
 import ListProductsearchFilter from '@/components/listProductsearchFilter'
 import FilterBlur from '@/components/Layout/filterBlur'
-import { useStore } from '@/lib/zustand'
-import { useEffect } from 'react'
 
 export default function ListProductsearch() {
     const searchParams = useSearchParams()
     const query = searchParams.get('query')
-    
+
     const openFilter = useStore((state) => state.openFilter)
 
     const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)

@@ -1,17 +1,17 @@
 "use client"
 import styles from '@/components/produk.module.css'
+import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
+import { useEffect, useState } from 'react';
+import { Suspense } from 'react'
 import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
-import { useEffect, useState } from 'react';
 import FormPembelian from '@/components/formPembelian';
 import ProdukHarga from '@/components/produkHarga';
-import { Suspense } from 'react'
-import Skeleton from 'react-loading-skeleton'
 
 export default function Produk(props) {
     const data = props.data?.data

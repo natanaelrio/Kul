@@ -27,7 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    top:-40px;
+    top: -40px;
     width: 700px;
     height: 100%;
     font-size: 0.7rem;
@@ -53,13 +53,14 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* padding: 10px; */
     position: relative;
+    font-size: 0.6rem;
 }
+
 .form .padding {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 10px 20px 20px 20px;
 }
 
 .form label {
@@ -69,10 +70,11 @@
 }
 
 .form input {
-    margin-bottom: 10px;
     padding: 10px;
-    border-radius: 7px;
-    border: 1px solid var(--color-primary);
+    border-radius: 0 7px 7px 0;
+    /* border: 1px solid var(--color-primary); */
+    border: 0;
+    font-size: 0.7rem;
 }
 
 .form textarea {
@@ -82,11 +84,12 @@
     border: 1px solid var(--color-primary);
     height: 70px;
     outline: none;
+    font-size: 0.7rem;
 }
 
 .form textarea:focus {
     color: var(--color-primary);
-    outline: 2px solid var(--color-primary);
+    font-size: 0.7rem;
 }
 
 .form input:nth-child(12) {
@@ -94,12 +97,11 @@
     padding: 10px;
     border-radius: 7px;
     border: 1px solid var(--color-primary);
-    width: 200px;
 }
 
 .form input:focus {
     color: var(--color-primary);
-    outline: 2px solid var(--color-primary);
+    outline: none;
 }
 
 
@@ -120,6 +122,36 @@
     transition: all 0.2s ease;
 }
 
+.form .logoluar {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-primary);
+    width: 100%;
+    border-radius: 7px;
+}
+
+
+.form .logo {
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    height: fit-content;
+    background-color: var(--color-grey);
+    border-radius: 7px 0 0 7px;
+}
+
+
+.kupon {
+    width: 200px;
+}
+
+.kupon input {
+    margin-bottom: 10px;
+    border-radius: 7px;
+    border: 1px solid var(--color-primary);
+}
+
 
 @media only screen and (max-width: 768px) {
 
@@ -128,7 +160,7 @@
         border-radius: 0;
     }
 
-    .loading{
+    .loading {
         width: 100vw;
     }
 
@@ -158,5 +190,8 @@
 
     .loading .hitam {
         border-radius: 0;
+    }
+    .form .padding {
+        padding: 10px;
     }
 }
