@@ -39,12 +39,29 @@
 }
 
 .status {
-    width: 10%;
     display: flex;
     justify-content: space-around;
+    flex-direction: column;
 }
 
-.status input {
+.dalamstatus {
+    width: 10%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.status .resi {
+    display: flex;
+    align-items: flex-end;
+}
+
+.status .resi input {
+    margin-top: 5px;
+    width: 120px;
+    padding: 3px;
+}
+
+.status .dalamstatus input {
     height: 20px;
     width: 20px;
     background-color: red;

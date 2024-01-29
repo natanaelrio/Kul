@@ -67,9 +67,9 @@ export default function FormPembelian({ dataFormLangsung }) {
     const formik = useFormik({
         initialValues: {
             nama_lengkap_user: namaLengkap ? namaLengkap : '',
-            no_hp_user: noHP ? noHP : '',
+            no_hp_user: noHP ? Number(noHP) : '',
             alamat_lengkap_user: alamat ? alamat : '',
-            kode_pos_user: kodePost ? kodePost : '',
+            kode_pos_user: kodePost ? Number(kodePost) : '',
             catatan_user: ''
         },
         validationSchema: Yup.object({
@@ -95,6 +95,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             ({
                 statusKirim: false,
                 statusSelesai: false,
+                resi_user: '',
                 id_user: data?.id,
                 nama_barang_user: data?.nama_barang,
                 jumlah_barang_user: data?.value_barang,
@@ -108,7 +109,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             const dataUtama = values
             const datalain = {
                 nota_user: uidRio(),
-                status_pesanan: 'belum-diproses'
+                status_pesanan: 'belum-diproses',
             }
             const dataUtamauid = { ...datalain, ...dataUtama }
             const GabungDataDataPesanandanDataUtamaUid = { ...dataUtamauid, ...dataTambahanNew }

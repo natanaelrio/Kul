@@ -101,7 +101,6 @@ export default function Pesanan() {
         <>
             <div className={styles.container}>
                 <div className={styles.history}>
-
                     <div className={styles.jumlah}>
                         Data :&nbsp;  <div className={styles.number}>{total_array} </div>&nbsp;|
                         Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;|
@@ -116,7 +115,6 @@ export default function Pesanan() {
                         />
                         <IoFilterSharp size={30} onClick={() => setStatusFilter(!statusFilter)} />
                     </div>
-
                 </div>
                 {statusFilter && <div className={styles.filter} >
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('sudah-diproses')}>Pesanan proses</div>
@@ -140,28 +138,26 @@ export default function Pesanan() {
                     })
                     const status = data?.status_pesanan == "belum-diproses" && { backgroundColor: 'red' } || data?.status_pesanan == "sudah-diproses" && { backgroundColor: 'blue' } || data?.status_pesanan == "sudah-berhasil" && { backgroundColor: 'green' }
                     return (
-                        <>
-                            <div key={data?.id} className={styles.content}>
-                                <div className={styles.tanggalinput}>
-                                    <Moment format="YYYY/MM/DD ">
-                                        {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
-                                    </Moment>&nbsp;| &nbsp;
-                                    <Moment format="HH:mm" >
-                                        {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
-                                    </Moment>
+                        <div key={data?.id} className={styles.content}>
+                            <div className={styles.tanggalinput}>
+                                <Moment format="YYYY/MM/DD ">
+                                    {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
+                                </Moment>&nbsp;| &nbsp;
+                                <Moment format="HH:mm" >
+                                    {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
+                                </Moment>
 
-                                </div>
-                                <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
-                                <div className={styles.totalbiaya}>{totalHargaBarang}</div>
-                                <div className={styles.datapesanan} >
-                                    <button
-                                        style={status || {}}
-                                        onClick={() => HandlePesanan(data)}>
-                                        Pesanan
-                                    </button>
-                                </div>
                             </div>
-                        </>
+                            <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
+                            <div className={styles.totalbiaya}>{totalHargaBarang}</div>
+                            <div className={styles.datapesanan} >
+                                <button
+                                    style={status || {}}
+                                    onClick={() => HandlePesanan(data)}>
+                                    Pesanan
+                                </button>
+                            </div>
+                        </div>
                     )
                 }
                 )}
@@ -177,7 +173,7 @@ export default function Pesanan() {
                     style={total_array >= Number(skip) + Number(10) ? { display: 'block' } : { display: 'none' }}
                     className={styles.arrow}><FaArrowRight size={20} /></div>
             </div>
-            {Open && <DataPesanan data={dataPesanan} />}
+            {Open && <DataPesanan data={dataPesanan} take={take} skip={skip} />}
             <ToastContainer autoClose={2000} />
         </>
     )

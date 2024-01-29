@@ -5,9 +5,8 @@ import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useState } from 'react'
 import { IoEyeOutline } from "react-icons/io5";
-import MoonLoader from "react-spinners/MoonLoader";
 
-export default function DataPesanan({ data }) {
+export default function DataPesanan({ data, take, skip }) {
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
     const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
@@ -21,7 +20,7 @@ export default function DataPesanan({ data }) {
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
 
     const handleSukses = () => {
-        fetchdatalistpesanan()
+        fetchdatalistpesanan(take, skip)
         setValueStatusPesanan({ status: 200 })
         setIsLoading(false)
         setOpen()
@@ -65,6 +64,15 @@ export default function DataPesanan({ data }) {
                 ...data,
                 statusKirim: !data.statusKirim == false ? true : true,
                 statusSelesai: !data.statusSelesai
+            }
+            : data))
+    }
+
+    const handleResi = (e, value) => {
+        setTodos(todos.map((data) => data.id_user == e.id_user ?
+            {
+                ...data,
+                resi_user: value
             }
             : data))
     }
@@ -136,7 +144,7 @@ export default function DataPesanan({ data }) {
                         <div className={styles.jumlahpesanan}>Jumlah</div>
                         <div className={styles.hargapesanan}>Harga</div>
                         <div className={styles.link}>Link</div>
-                        <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
+                        <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status/Resi</div>
                     </div>
                 </div>
                 <div className={styles.listdata} style={{ overflow: isLoading && 'inherit' }} >
@@ -153,16 +161,16 @@ export default function DataPesanan({ data }) {
 
                         {todos?.map((data) => {
                             return (
-                                <>
-                                    <div key={data?.id_user} className={styles.content} >
-                                        <div className={styles.namapesanan} style={{ fontWeight: '500' }}>{data?.nama_barang_user}</div>
-                                        <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
-                                        <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
-                                            style: 'currency',
-                                            currency: 'IDR'
-                                        })}</div>
-                                        <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
-                                        <div className={styles.status}>
+                                <div key={data?.id_user} className={styles.content} >
+                                    <div className={styles.namapesanan} style={{ fontWeight: '500' }}>{data?.nama_barang_user}</div>
+                                    <div className={styles.jumlahpesanan}>{data?.jumlah_barang_user}</div>
+                                    <div className={styles.hargapesanan}>{data?.harga_barang_user.toLocaleString('id-ID', {
+                                        style: 'currency',
+                                        currency: 'IDR'
+                                    })}</div>
+                                    <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
+                                    <div className={styles.status}>
+                                        <div className={styles.dalamstatus}>
                                             <div className={styles.inputan} onClick={() => { handleCekKirim(data) }}>
                                                 <input
                                                     type="checkbox"
@@ -178,8 +186,11 @@ export default function DataPesanan({ data }) {
                                                 <span style={{ textDecoration: data.statusSelesai ? 'none' : 'line-through' }}>selesai</span>
                                             </div>
                                         </div>
+                                        {data.statusKirim && <div className={styles.resi}>
+                                            <input type="text" placeholder='resi' onChange={(e) => handleResi(data, e.target.value)} value={data.resi_user} />
+                                        </div>}
                                     </div>
-                                </>
+                                </div>
                             )
                         })}
                         <div className='mobile'>
