@@ -6,7 +6,7 @@ import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useState } from 'react';
 import MoonLoader from "react-spinners/MoonLoader";
-import { v4 as uuidv4 } from 'uuid';
+import { uidRio } from '@/lib/uidRio';
 
 export default function FormPembelian({ dataFormLangsung }) {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
@@ -79,7 +79,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             const dataTambahanNew = { dataPesanan }
             const dataUtama = values
             const datalain = {
-                nota_user: uuidv4(),
+                nota_user: uidRio(),
                 status_pesanan: 'belum-diproses'
             }
             const dataUtamauid = { ...datalain, ...dataUtama }
@@ -102,10 +102,10 @@ export default function FormPembelian({ dataFormLangsung }) {
             }
         },
     })
-
+    
     return (
         <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
-            <div className={styles.containerform}>
+            <div className={styles.containerform} >
 
                 <form onSubmit={formik.handleSubmit} className={styles.form}>
                     {isLoading && <div className={styles.loading}>

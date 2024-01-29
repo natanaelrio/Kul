@@ -1,8 +1,9 @@
 import { ResponseData } from '@/lib/ResponseData'
 import { prisma } from "@/lib/prisma"
 
-export async function AmbilDataUsers() {
+export async function AmbilDataUsers(take) {
     const data = await prisma.admin.findMany({
+        take: take ? Number(take) : 5,
         select: {
             id: true,
             nama_barang: true,
@@ -26,8 +27,17 @@ export async function AmbilDataUsers() {
 
 
 export async function GET(req) {
+    const searchParams = req.nextUrl.searchParams;
+    const take = searchParams.get('take');
     const authorization = req.headers.get('authorization')
-    const data = await AmbilDataUsers()
-    const res = await ResponseData(data, authorization)
+
+    const informasi = await prisma.admin.findMany()
+    const total_length = informasi.length
+    const tambahan = {
+        total_array: total_length,
+    }
+
+    const data = await AmbilDataUsers(take)
+    const res = await ResponseData(data, authorization, tambahan)
     return res
 }

@@ -12,6 +12,6 @@ export default function ListProductMain() {
     }, [fetchdatalist])
 
     return (
-        <ListProduk data={datalist?.data} fetchMain={true} judul={`Produk Terbaru`} />
+        <ListProduk data={datalist?.data} lengthdata={datalist?.total_array} fetchMain={true} judul={`Produk Terbaru`} />
     )
 }

@@ -4,8 +4,8 @@ export const useStoreListDataProduct = create((set) => ({
 
     // List UMUM
     datalist: {},
-    fetchdatalist: async () => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-listdata`, {
+    fetchdatalist: async (e) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-listdata?take=${e ? e : 5}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

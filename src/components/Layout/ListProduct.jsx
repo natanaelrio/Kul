@@ -9,8 +9,10 @@ import SkletonList from '@/components/skletonList'
 import { FaRegHeart } from "react-icons/fa";
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import CustomLink from '@/lib/customLink'
+import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
-export default function ListProduk({ data, judul, fetchMain, fetchSearch, value }) {
+export default function ListProduk({ data, judul, fetchMain, fetchSearch, value, lengthdata }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
     const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
 
@@ -32,6 +34,12 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
         const cek = new RegExp(value, 'gi')
         return e.replace(cek, match => `<span style='font-weight:700'>${match}</span>`)
     }
+
+    const handleOnTop = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
 
     return (
         <>
@@ -117,8 +125,11 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value 
 
 
             <div className={styles.countainer} style={{ marginTop: '-20px' }}>
-                <div className={styles.pagination}>
-                    Load More
+                <div className={styles.luarpagination}>
+                    <div className={styles.garispagination}></div>
+                    <div className={styles.pagination} onClick={() => lengthdata <= data?.length ? handleOnTop() : fetchdatalist(data?.length + 5)}>
+                        {lengthdata <= data?.length ? 'Data Habis' : ` Load More `} &nbsp;  {lengthdata <= data?.length ? <IoIosArrowUp /> : <IoIosArrowDown />}
+                    </div>
                 </div>
             </div>
         </>

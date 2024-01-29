@@ -89,15 +89,16 @@
 
 .pagination .arrow {
     font-size: 0.9rem;
-    padding: 0 50px;
+    padding: 0 20px;
     cursor: pointer;
     border-radius: 10px;
     background-color: transparent;
 }
 
-.pagination span {
+.pagination .angka {
     font-size: 1rem;
     font-weight: 700;
+    padding: 0 20px;
 }
 
 

@@ -95,14 +95,17 @@ export default function Pesanan() {
         }),
             setValueStatusPesanan([])
     }
-    valueStatusPesanan == [] ||  valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
+    valueStatusPesanan == [] || valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
 
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.history}>
+
                     <div className={styles.jumlah}>
-                        Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;| &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>
+                        Data :&nbsp;  <div className={styles.number}>{total_array} </div>&nbsp;|
+                        Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;|
+                        &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>
                     </div>
                     <div className={styles.pencarian}>
                         <input
@@ -169,13 +172,13 @@ export default function Pesanan() {
                     style={skip ? { display: 'block' } : { display: 'none' }}>
                     <FaArrowLeft size={20} />
                 </div>
-                <span>{skip}</span>
+                {skip && <div className={styles.angka} >{skip?.split(0).join('')}</div>}
                 <div onClick={() => { handlePlusNegatif(Number(skip) + 10) }}
-                    style={total_array > skip ? { display: 'block' } : { display: 'none' }}
+                    style={total_array >= Number(skip) + Number(10) ? { display: 'block' } : { display: 'none' }}
                     className={styles.arrow}><FaArrowRight size={20} /></div>
             </div>
             {Open && <DataPesanan data={dataPesanan} />}
-            <ToastContainer  autoClose={2000} />
+            <ToastContainer autoClose={2000} />
         </>
     )
 }

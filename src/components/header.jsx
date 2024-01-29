@@ -88,7 +88,7 @@ export default function Header({ kondisiFalseSearch }) {
 
     return (
         <>
-            <nav className={styles.nav}
+            <nav  className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
                 <CustomLink href={'/'} className={styles.logogambar} aria-label={'logo'}>

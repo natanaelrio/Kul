@@ -180,24 +180,52 @@
 
 
 /* PAGINATION */
+
+.countainer .luarpagination {
+    width: 1100px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.countainer .garispagination {
+    position: absolute;
+    width: 1100px;
+    height: 1px;
+    background-color: var(--color-sekunder);
+    top: 50%;
+    bottom: 50%;
+}
+
 .countainer .pagination {
     font-weight: bold;
-    padding: 10px 15px;
-    background-color: var(--color-grey);
+    padding: 10px 100px;
+    background-color: var(--color-white);
     color: var(--color-sekunder);
     cursor: pointer;
-    border-radius: 12px;
-    font-size: 0.7rem;
+    border-radius: 18px;
+    font-size: 0.6rem;
+    width: fit-content;
+    z-index: 1;
+    font-weight: 500;
+    border: 1px solid var(--color-sekunder);
+    display: flex;
+    align-items: center;
 }
 
 .countainer .pagination:hover {
     transition: 0.2s ease all;
-    background-color: var(--hover-color-grey);
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
 }
 
 
 @media only screen and (max-width: 1100px) {
     .judulatas {
+        width: 95vw;
+    }
+
+    .countainer .garispagination {
         width: 95vw;
     }
 
@@ -212,6 +240,10 @@
     /* JUDUL ATAS */
     .judulatas {
         width: 90vw;
+    }
+
+    .countainer .garispagination {
+        width: 100vw;
     }
 
     /* LIST PRODUK */
@@ -247,6 +279,10 @@
     /* JUDUL ATAS */
     .judulatas {
         width: 90vw;
+    }
+
+    .countainer .garispagination {
+        width: 100vw;
     }
 
     /* LIST PRODUK */
