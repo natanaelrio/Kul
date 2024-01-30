@@ -58,7 +58,8 @@ export default function FormPembelian({ dataFormLangsung }) {
         setIsLoadingGagal(true)
     }
 
-    const handleKirimUlang = () => {
+    const handleKirimUlang = (e) => {
+        formik.handleSubmit()
         setIsLoadingGagal(false)
     }
 
@@ -136,7 +137,7 @@ export default function FormPembelian({ dataFormLangsung }) {
         <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
             <div className={styles.containerform} >
 
-                <form onSubmit={formik.handleSubmit} className={styles.form}>
+                <form onSubmit={() => handleKirimUlang()} className={styles.form}>
                     {isLoading && <div className={styles.loading}>
                         <div className={styles.hitam}></div>
 
@@ -150,10 +151,10 @@ export default function FormPembelian({ dataFormLangsung }) {
                     {isLoadingGagal &&
                         <div className={styles.loading} >
                             <div className={styles.hitam} ></div>
-
                             <div className={styles.logoloading}>
-                                <div className={styles.tombolkembaligagal} onClick={() => handleKirimUlang()}>
-                                    Error, silakan kirim ulang!!!!
+                                Error, silakan kirim ulang!!!!
+                                <div className={styles.tombolkembaligagal} onSubmit={() => handleKirimUlang()}>
+                                    OK
                                 </div>
                             </div>
                         </div>}

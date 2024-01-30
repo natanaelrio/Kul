@@ -103,7 +103,7 @@
 
 .pilihan .icon {
     margin-right: 10px;
-    padding: 10px;
+    padding: 7px;
     color: var(--color-sekunder);
     font-size: 1.2rem;
     display: flex;
@@ -115,6 +115,7 @@
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
+    position: relative;
 }
 
 .pilihan .animasi {
@@ -150,8 +151,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-diskon);
+    color: var(--color-white);
     font-weight: 500;
+    position: absolute;
+    font-size: 14px;
+    border-radius: 18px;
+    padding: 1px 3px;
+    top: 0;
+    right: 0;
+    background-color: var(--color-high);
 }
 
 .pilihan .icon:hover {
