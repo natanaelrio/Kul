@@ -12,8 +12,10 @@ import { FaUser } from "react-icons/fa";
 import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSignsPost } from "react-icons/fa6";
+// import { useSnap } from '../lib/useSnap'
 
 export default function FormPembelian({ dataFormLangsung }) {
+    // const { snapEmbed } = useSnap()
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setnamaLengkap = useStoreFormUsers((state) => state.setnamaLengkap)
     const namaLengkap = useStoreFormUsers((state) => state.namaLengkap)
@@ -48,20 +50,41 @@ export default function FormPembelian({ dataFormLangsung }) {
     // NOTIFIKASI
     const [isLoading, setIsLoading] = useState(false)
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
+    const [payment, setPayment] = useState(false)
 
-    const handleSuccess = () => {
+    const handleSuccess = (e) => {
+        setPayment(true)
         setIsLoading(false)
-        setOpenFormPembelian()
+        window.snap.embed(e, {
+            embedId: 'snap-container'
+        })
+        // setOpenFormPembelian()
     }
     const handleGagal = () => {
         setIsLoading(false)
         setIsLoadingGagal(true)
     }
 
-    const handleKirimUlang = (e) => {
-        formik.handleSubmit()
+    const handleKirimUlang = () => {
         setIsLoadingGagal(false)
     }
+
+    //DATA PAYMENT 
+    useEffect(() => {
+        const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js"
+        const clientKey = process.env.NEXT_PUBLIC_SECREET_MIDSTRANS
+        const script = document.createElement('script')
+
+        script.src = snapScript
+        script.setAttribute('data-client-key', clientKey)
+        script.async = true
+
+        document.body.appendChild(script)
+
+        return () => {
+            document.body.removeChild(script)
+        }
+    }, [])
 
 
 
@@ -92,6 +115,23 @@ export default function FormPembelian({ dataFormLangsung }) {
         onSubmit: async values => {
             setIsLoading(true)
             setIsLoadingGagal(false)
+
+            //DATA POST PAYMENT
+            const transaction_details = {
+                order_id: uidRio(),
+                gross_amount: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? hargaBarangDiskonKupon : hargaBarangDiskonNormal
+            }
+            const item_details = dataFormLangsung.map((data) =>
+            ({
+                id: data?.id,
+                price: data?.harga_barang,
+                quantity: data?.value_barang,
+                name: data?.nama_barang,
+            }))
+            const item_detailsPayment = { item_details }
+            const GabungDataPayment = { ...transaction_details, ...item_detailsPayment }
+
+            //DATA POST ADMIN
             const dataPesanan = dataFormLangsung.map((data) =>
             ({
                 statusKirim: false,
@@ -108,14 +148,19 @@ export default function FormPembelian({ dataFormLangsung }) {
 
             const dataTambahanNew = { dataPesanan }
             const dataUtama = values
+            const GabungdataUtamadataTambahanUtama = { ...dataUtama, ...dataUtama }
             const datalain = {
                 nota_user: uidRio(),
                 status_pesanan: 'belum-diproses',
             }
-            const dataUtamauid = { ...datalain, ...dataUtama }
+            const dataUtamauid = { ...datalain, ...GabungdataUtamadataTambahanUtama }
             const GabungDataDataPesanandanDataUtamaUid = { ...dataUtamauid, ...dataTambahanNew }
             const GabungData = { ...dataUtama, ...GabungDataDataPesanandanDataUtamaUid }
+
+
+            //   FETCH DATA
             try {
+                // DATA ADMIN
                 const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/user-front/post-formpembelian', {
                     method: 'POST',
                     body: JSON.stringify(GabungData),
@@ -125,7 +170,22 @@ export default function FormPembelian({ dataFormLangsung }) {
                     }
                 })
                 const data = await res.json()
-                data.status == 200 && handleSuccess() || data.status == 500 && handleGagal()
+
+                // DATA PAYMENT
+                const resPayment = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/user-front/get-token-payment', {
+                    method: 'POST',
+                    body: JSON.stringify(GabungDataPayment),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                    }
+                })
+                const dataPayment = await resPayment.json()
+                // snapEmbed(dataPayment.data, 'snap-container')
+                // console.log(dataPayment.data)
+                // window.snap.pay(dataPayment.data)
+
+                data.status == 200 && dataPayment.status == 200 && handleSuccess(dataPayment.data) || data.status == 500 && dataPayment.status == 500 && handleGagal()
             }
             catch (e) {
                 handleGagal()
@@ -134,10 +194,11 @@ export default function FormPembelian({ dataFormLangsung }) {
     })
 
     return (
-        <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
-            <div className={styles.containerform} >
+        <FloatingBlur setOpen={setOpenFormPembelian} judul={payment ?'PEMBAYARAN':'FORMULIR PENGIRIMAN'} >
+            <div id="snap-container" style={{ display: payment ? 'block' : 'none' }}></div>
+            <div className={styles.containerform} style={{ display: payment ? 'none' : 'block' }} >
 
-                <form onSubmit={() => handleKirimUlang()} className={styles.form}>
+                <form onSubmit={(e) => { formik.handleSubmit(e) }} className={styles.form}>
                     {isLoading && <div className={styles.loading}>
                         <div className={styles.hitam}></div>
 
@@ -151,9 +212,10 @@ export default function FormPembelian({ dataFormLangsung }) {
                     {isLoadingGagal &&
                         <div className={styles.loading} >
                             <div className={styles.hitam} ></div>
+
                             <div className={styles.logoloading}>
                                 Error, silakan kirim ulang!!!!
-                                <div className={styles.tombolkembaligagal} onSubmit={() => handleKirimUlang()}>
+                                <div className={styles.tombolkembaligagal} onClick={() => handleKirimUlang()}>
                                     OK
                                 </div>
                             </div>

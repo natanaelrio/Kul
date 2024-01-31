@@ -2,7 +2,7 @@
 import styles from '@/components/keranjang.module.css'
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { MdDelete } from "react-icons/md";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -50,7 +50,6 @@ export default function Keranjang() {
             kupon_barang: data.kupon_barang,
             value_barang: data.value,
         }))
-
 
     return (
         <>

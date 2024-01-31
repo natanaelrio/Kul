@@ -102,7 +102,7 @@
 }
 
 .pilihan .icon {
-    margin-right: 10px;
+    margin-right: 25px;
     padding: 7px;
     color: var(--color-sekunder);
     font-size: 1.2rem;
@@ -155,8 +155,8 @@
     font-weight: 500;
     position: absolute;
     font-size: 14px;
-    border-radius: 18px;
-    padding: 1px 3px;
+    border-radius: 50%;
+    padding: 1px 5px;
     top: 0;
     right: 0;
     background-color: var(--color-high);

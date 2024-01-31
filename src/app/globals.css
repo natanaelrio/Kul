@@ -132,6 +132,10 @@ button {
   display: none;
 }
 
+#snap-container iframe {
+  width: 700px !important;
+}
+
 @media only screen and (max-width: 768px) {
 
   html,
@@ -145,6 +149,10 @@ button {
 
   .mobile {
     display: none;
+  }
+
+  #snap-container iframe {
+    width: 100vw !important;
   }
 }
 
@@ -177,5 +185,9 @@ button {
 
   .mobile {
     display: block;
+  }
+
+  #snap-container iframe {
+    width: 100vw !important;
   }
 }
