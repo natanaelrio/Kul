@@ -153,6 +153,7 @@ button {
 
   #snap-container iframe {
     width: 100vw !important;
+    min-height: 90dvh!important;
   }
 }
 
@@ -189,5 +190,6 @@ button {
 
   #snap-container iframe {
     width: 100vw !important;
+    min-height: 90dvh!important;
   }
 }
