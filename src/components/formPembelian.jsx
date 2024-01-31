@@ -1,6 +1,6 @@
 'use client';
 import MoonLoader from "react-spinners/MoonLoader";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/components/formPembelian.module.css'
@@ -12,10 +12,10 @@ import { FaUser } from "react-icons/fa";
 import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSignsPost } from "react-icons/fa6";
-// import { useSnap } from '../lib/useSnap'
+import useSnap from '../lib/useSnap'
 
 export default function FormPembelian({ dataFormLangsung }) {
-    // const { snapEmbed } = useSnap()
+    const { snapEmbed } = useSnap()
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setnamaLengkap = useStoreFormUsers((state) => state.setnamaLengkap)
     const namaLengkap = useStoreFormUsers((state) => state.namaLengkap)
@@ -52,12 +52,10 @@ export default function FormPembelian({ dataFormLangsung }) {
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
     const [payment, setPayment] = useState(false)
 
-    const handleSuccess = (e) => {
+    const handleSuccess = (token) => {
         setPayment(true)
         setIsLoading(false)
-        window.snap.embed(e, {
-            embedId: 'snap-container'
-        })
+        snapEmbed(token, 'snap-container')
         // setOpenFormPembelian()
     }
     const handleGagal = () => {
@@ -68,25 +66,6 @@ export default function FormPembelian({ dataFormLangsung }) {
     const handleKirimUlang = () => {
         setIsLoadingGagal(false)
     }
-
-    //DATA PAYMENT 
-    useEffect(() => {
-        const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js"
-        const clientKey = process.env.NEXT_PUBLIC_SECREET_MIDSTRANS
-        const script = document.createElement('script')
-
-        script.src = snapScript
-        script.setAttribute('data-client-key', clientKey)
-        script.async = true
-
-        document.body.appendChild(script)
-
-        return () => {
-            document.body.removeChild(script)
-        }
-    }, [])
-
-
 
     const formik = useFormik({
         initialValues: {
@@ -181,9 +160,6 @@ export default function FormPembelian({ dataFormLangsung }) {
                     }
                 })
                 const dataPayment = await resPayment.json()
-                // snapEmbed(dataPayment.data, 'snap-container')
-                // console.log(dataPayment.data)
-                // window.snap.pay(dataPayment.data)
 
                 data.status == 200 && dataPayment.status == 200 && handleSuccess(dataPayment.data) || data.status == 500 && dataPayment.status == 500 && handleGagal()
             }
@@ -194,7 +170,7 @@ export default function FormPembelian({ dataFormLangsung }) {
     })
 
     return (
-        <FloatingBlur setOpen={setOpenFormPembelian} judul={payment ?'PEMBAYARAN':'FORMULIR PENGIRIMAN'} >
+        <FloatingBlur setOpen={setOpenFormPembelian} judul={payment ? 'PEMBAYARAN' : 'FORMULIR PENGIRIMAN'} >
             <div id="snap-container" style={{ display: payment ? 'block' : 'none' }}></div>
             <div className={styles.containerform} style={{ display: payment ? 'none' : 'block' }} >
 

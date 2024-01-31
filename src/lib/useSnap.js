@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export default function useSnap() {
+const useSnap = () => {
     const [snap, setSnap] = useState(null)
     useEffect(() => {
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js"
@@ -28,3 +28,5 @@ export default function useSnap() {
     }
     return { snapEmbed }
 }
+
+export default useSnap;
