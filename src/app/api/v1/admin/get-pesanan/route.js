@@ -32,7 +32,11 @@ export async function GET(req) {
     const authorization = req.headers.get('authorization')
 
 
-    const informasi = await prisma.formPembelian.findMany()
+    const informasi = await prisma.formPembelian.findMany({
+        select: {
+            dataPesanan: true,
+        }
+    })
     // INFORMASI HARGA
     const total_omset = informasi.map((data) => data.dataPesanan.map((data) => data.harga_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',

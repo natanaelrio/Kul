@@ -16,13 +16,11 @@ import { FaLink } from "react-icons/fa";
 export default function FormPage({ urlFetch, method, data, change, value }) {
     const router = useRouter()
     const [matikan, setMatikan] = useState(false)
-    const [gagal, setGagal] = useState(false)
     // VALIDASI ERROR DAN BERHASIL
     const Berhasil = () => {
         toast.success("Produk Berhasil " + `${change}`, {
             draggablePercent: 60
         })
-        setGagal(true)
     }
 
     const Gagal = () => {
@@ -112,7 +110,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                 setMatikan(false)
             }, 3000)
 
-            value ? gagal && formik.resetForm() : router.push('/admin/list')
+            value ? formik.resetForm() : router.push('/admin/list')
         },
 
     });

@@ -46,9 +46,10 @@
 
 /* LIST */
 .list {
-    width: 1000px;
+    width: 100%;
+    /* width: 1000px; */
     /* padding: 10px; */
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-bottom: 200px;
     font-size: 20px;
     display: flex;
@@ -84,6 +85,8 @@
     border-left: 1px solid var(--color-primary);
     background-color: var(--color-hover-admin);
     padding: 0 10px;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .bungkusproduk:last-child {
@@ -135,6 +138,28 @@
     display: block;
 }
 
+.pencarian {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pencarian .total {
+    font-size: 0.7rem;
+}
+
+.pencarian .total .nomer {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.pencarian input {
+    width: 300px;
+    padding: 10px 5px;
+}
+
 @keyframes geser {
     from {
         right: 20px;
@@ -180,6 +205,14 @@
         width: 95vw;
         /* padding: 10px; */
     }
+
+    .pencarian {
+        flex-direction: column;
+    }
+
+    .pencarian input {
+        width: 100%;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -190,6 +223,7 @@
 
     .pencarian {
         padding: 20px 10px 20px 5px;
+        flex-direction: column;
     }
 
     .head .iconhead {

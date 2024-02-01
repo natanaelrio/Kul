@@ -27,13 +27,6 @@ export const useStore = create((set) => ({
     },
 
     //ADMIN
-    openPencarianAdmin: false,
-    setOpenPencarianAdmin: () => {
-        set((state) => ({
-            openPencarianAdmin: !state.openPencarianAdmin
-        })
-        )
-    },
     openDetailProdukAdmin: false,
     setOpenDetailProdukAdmin: () => {
         set((state) => ({

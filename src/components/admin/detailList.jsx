@@ -2,6 +2,7 @@
 import styles from "@/components/admin/detailList.module.css"
 import BackLayang from '@/components/admin/layout/backLayang';
 import { useStore } from '@/lib/zustand'
+import { useStoreCRUDadmin } from '@/utils/admin/admin/crudDataAdmin'
 import Image from 'next/image'
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -13,10 +14,11 @@ export default function DetailList(props) {
     const setValueDelete = useStore((state) => state.setValueDelete)
     const [isLoading, setIsLoading] = useState(false)
     const [isGagalLoading, setIsGagalLoading] = useState(false)
+    const fetchDataAdminProduk = useStoreCRUDadmin((state) => state.fetchDataAdminProduk)
     const router = useRouter()
 
     const Berhasil = () => {
-        setValueDelete({ status: 200 }), setOpen(), setIsLoading(false)
+        setValueDelete({ status: 200 }), setOpen(), setIsLoading(false), fetchDataAdminProduk()
     }
     const Gagal = () => {
         setValueDelete({ status: 500 }), setIsLoading(false), setIsGagalLoading(true)
@@ -44,7 +46,7 @@ export default function DetailList(props) {
         router.refresh()
     }
 
- 
+
     const harga = props.data?.harga_barang.toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -61,7 +63,7 @@ export default function DetailList(props) {
                                 <div className={styles.gambardalam}>
 
                                     <Image
-                                        src={props.data.gambar_barang ? props.data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                        src={props.data?.gambar_barang ? props.data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
                                         width={200}
                                         height={200}
                                         alt={props.data?.nama_barang}
@@ -201,7 +203,7 @@ export default function DetailList(props) {
                             <MoonLoader
                                 color={'var(--color-white)'}
                             />
-                           Gagal...
+                            Gagal...
                         </div>
                     </>}
 

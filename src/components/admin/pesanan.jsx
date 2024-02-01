@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoFilterSharp } from "react-icons/io5";
 import { GrPowerReset } from "react-icons/gr";
+import { useStoreCRUDadmin } from '@/utils/admin/admin/crudDataAdmin'
 
 export default function Pesanan() {
     const searchParams = useSearchParams()
@@ -24,10 +25,13 @@ export default function Pesanan() {
 
     const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const datalistpesanan = useStoreListDataProduct((state) => state.datalistpesanan)
-    const Open = useStore((state) => state.openDetailDataPesanan)
-    const setOpen = useStore((state) => state.setOpenDetailDataPesanan)
+    const setOpenDetailDataPesanan = useStore((state) => state.setOpenDetailDataPesanan)
     const valueStatusPesanan = useStore((state) => state.valueStatusPesanan)
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
+
+    const setDataPesanan = useStoreCRUDadmin((state) => state.setDataPesanan)
+    const setTakePesanan = useStoreCRUDadmin((state) => state.setTakePesanan)
+    const setSkipPesanan = useStoreCRUDadmin((state) => state.setSkipPesanan)
 
     useEffect(() => {
         fetchdatalistpesanan(take, skip)
@@ -37,10 +41,11 @@ export default function Pesanan() {
     const totalterjual = datalistpesanan?.total_terjual
     const total_array = datalistpesanan?.total_array
 
-    const [dataPesanan, setDataPesanan] = useState([])
     const HandlePesanan = (e) => {
         setDataPesanan(e)
-        setOpen()
+        setTakePesanan(take)
+        setSkipPesanan(skip)
+        setOpenDetailDataPesanan()
     }
 
     // FILTER PESANAN
@@ -173,7 +178,6 @@ export default function Pesanan() {
                     style={total_array >= Number(skip) + Number(10) ? { display: 'block' } : { display: 'none' }}
                     className={styles.arrow}><FaArrowRight size={20} /></div>
             </div>
-            {Open && <DataPesanan data={dataPesanan} take={take} skip={skip} />}
             <ToastContainer autoClose={2000} />
         </>
     )

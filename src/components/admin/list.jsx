@@ -5,21 +5,29 @@ import { MdOutlinePostAdd } from "react-icons/md";
 import CustomLink from '@/lib/customLink'
 import SkeletonPage from '@/components/admin/skeleton';
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import DetailList from '@/components/admin/detailList';
 import { useStore } from '@/lib/zustand'
-import { useState } from 'react';
+import { useStoreCRUDadmin } from '@/utils/admin/admin/crudDataAdmin'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect, useState } from 'react';
+import { useDebounce } from "@uidotdev/usehooks";
 
-export default function List(props) {
-    const [data, setData] = useState()
-    const Open = useStore((state) => state.openDetailProdukAdmin)
+export default function List() {
     const setOpen = useStore((state) => state.setOpenDetailProdukAdmin)
     const valueDelete = useStore((state) => state.valueDelete)
     const setValueDelete = useStore((state) => state.setValueDelete)
 
+    const setDataListProduct = useStoreCRUDadmin((state) => state.setDataListProduct)
+    const fetchDataAdminProduk = useStoreCRUDadmin((state) => state.fetchDataAdminProduk)
+    const dataAdminProduk = useStoreCRUDadmin((state) => state.dataAdminProduk)
+
+    useEffect(() => {
+        fetchDataAdminProduk()
+    }, [fetchDataAdminProduk])
+
     const HandleDetail = (e) => {
-        setData(e)
+        setDataListProduct(e)
+        setOpen()
     }
 
     // VALIDASI ERROR DAN BERHASIL
@@ -36,14 +44,47 @@ export default function List(props) {
         },
             setValueDelete([]))
     }
-    valueDelete.status === undefined ||  valueDelete.status == 200 && Berhasil() || valueDelete.status == 500 && Gagal()
+    valueDelete.status === undefined || valueDelete.status == 200 && Berhasil() || valueDelete.status == 500 && Gagal()
 
+
+    // PENCARIAN
+    const [valueCari, setValueCari] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
+    const handlePencarian = (e) => {
+        setValueCari(e.target.value)
+    }
+    const debouncedSearchTerm = useDebounce(valueCari, 300);
+    useEffect(() => {
+        const searchHN = async () => {
+            setIsLoading(true)
+            if (debouncedSearchTerm) {
+                fetchDataAdminProduk(valueCari)
+            }
+            setIsLoading(false)
+        }
+        valueCari == '' && fetchDataAdminProduk()
+        searchHN()
+    }, [debouncedSearchTerm]);
+
+
+    console.log(dataAdminProduk)
     return (
         <>
+            <div className={styles.pencarian}>
+                <div className={styles.total}>
+                    Data : <span className={styles.nomer}>{dataAdminProduk.total_length}</span> &nbsp;|&nbsp;Terjual:<span className={styles.nomer}>{dataAdminProduk.total_terjual}</span> &nbsp;|&nbsp; View :<span className={styles.nomer}>{dataAdminProduk.total_view}</span>
+                </div>
+                <input
+                    type="text"
+                    placeholder='cari product...'
+                    onChange={(e) => handlePencarian(e)}
+                    value={valueCari}
+                />
+            </div>
             <div className={styles.container}>
                 <div className={styles.list}>
                     <div className={styles.bungkusproduk}>
-                        <div className={styles.produk} style={{ fontWeight: '700' }}>
+                        <div className={styles.produk} style={{ fontWeight: '700', color: 'var(--color-white)' }}>
                             <div className={styles.namaproduk}>
                                 NAMA
                             </div>
@@ -56,11 +97,11 @@ export default function List(props) {
                         </div>
                     </div>
 
-                    {props.data?.data ? null : <SkeletonPage />}
-
-                    {props.data?.data?.map((data, i) =>
+                    {dataAdminProduk?.data ? null : <SkeletonPage />}
+                    {isLoading && <SkeletonPage />}
+                    {dataAdminProduk?.data?.length == 0 && <span> Tidak Ada Data.... !!</span>}
+                    {dataAdminProduk?.data?.map((data, i) =>
                     (<div key={i} className={styles.bungkusproduk} onClick={() => {
-                        setOpen()
                         HandleDetail(data)
                     }}>
                         <div className={styles.produk}>
@@ -87,7 +128,6 @@ export default function List(props) {
                 </CustomLink>
             </div >
             <ToastContainer limit={1} autoClose={3000} />
-            {Open ? <DetailList data={data} /> : null}
         </>
     )
 }

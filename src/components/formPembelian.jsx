@@ -12,6 +12,7 @@ import { FaUser } from "react-icons/fa";
 import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSignsPost } from "react-icons/fa6";
+import { IoShieldOutline } from "react-icons/io5";
 import useSnap from '../lib/useSnap'
 
 export default function FormPembelian({ dataFormLangsung }) {
@@ -67,6 +68,7 @@ export default function FormPembelian({ dataFormLangsung }) {
         setIsLoadingGagal(false)
     }
 
+
     const formik = useFormik({
         initialValues: {
             nama_lengkap_user: namaLengkap ? namaLengkap : '',
@@ -91,6 +93,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             catatan_user: Yup.string()
                 .max(20000)
         }),
+
         onSubmit: async values => {
             setIsLoading(true)
             setIsLoadingGagal(false)
@@ -98,18 +101,18 @@ export default function FormPembelian({ dataFormLangsung }) {
             //DATA POST PAYMENT
             const transaction_details = {
                 order_id: uidRio(),
-                gross_amount: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? hargaBarangDiskonKupon : hargaBarangDiskonNormal
             }
             const item_details = dataFormLangsung.map((data) =>
             ({
                 id: data?.id,
-                price: data?.harga_barang,
+                price: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100) : data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100),
                 quantity: data?.value_barang,
                 name: data?.nama_barang,
             }))
             const item_detailsPayment = { item_details }
             const GabungDataPayment = { ...transaction_details, ...item_detailsPayment }
 
+            console.log(GabungDataPayment)
             //DATA POST ADMIN
             const dataPesanan = dataFormLangsung.map((data) =>
             ({
@@ -290,20 +293,28 @@ export default function FormPembelian({ dataFormLangsung }) {
                                 placeholder='opsional'
                             />
                         </div>
-
-                        <button type="submit" disabled={isLoading && !isLoadingGagal} >Bayar Sekarang &nbsp;
-                            {kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? (
-                                hargaBarangDiskonKupon.toLocaleString('id-ID', {
-                                    style: 'currency',
-                                    currency: 'IDR'
-                                })
-                            ) : (
-                                hargaBarangDiskonNormal.toLocaleString('id-ID', {
-                                    style: 'currency',
-                                    currency: 'IDR'
-                                })
-                            )}
-                        </button>
+                        <div className={styles.bawah}>
+                            <div className={styles.hargabawah}>
+                                <div className={styles.hargadiskon}>
+                                    Total
+                                    <div style={kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? { textDecoration: 'line-through' } : { fontWeight: '700', fontSize: '0.7rem' }}>  {hargaBarangDiskonNormal.toLocaleString('id-ID', {
+                                        style: 'currency',
+                                        currency: 'IDR'
+                                    })}
+                                    </div>
+                                </div>
+                                <div className={styles.hargaasli}>
+                                    {kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON && (
+                                        hargaBarangDiskonKupon.toLocaleString('id-ID', {
+                                            style: 'currency',
+                                            currency: 'IDR'
+                                        })
+                                    )}
+                                </div>
+                            </div>
+                            <button type="submit" disabled={isLoading && !isLoadingGagal} ><IoShieldOutline /> &nbsp;Bayar
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
