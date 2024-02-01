@@ -66,8 +66,6 @@ export default function List() {
         searchHN()
     }, [debouncedSearchTerm]);
 
-
-    console.log(dataAdminProduk)
     return (
         <>
             <div className={styles.pencarian}>
