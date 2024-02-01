@@ -112,7 +112,6 @@ export default function FormPembelian({ dataFormLangsung }) {
             const item_detailsPayment = { item_details }
             const GabungDataPayment = { ...transaction_details, ...item_detailsPayment }
 
-            console.log(GabungDataPayment)
             //DATA POST ADMIN
             const dataPesanan = dataFormLangsung.map((data) =>
             ({
@@ -171,6 +170,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             }
         },
     })
+
 
     return (
         <FloatingBlur setOpen={setOpenFormPembelian} judul={payment ? 'PEMBAYARAN' : 'FORMULIR PENGIRIMAN'} >
@@ -312,7 +312,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     )}
                                 </div>
                             </div>
-                            <button type="submit" disabled={isLoading && !isLoadingGagal} ><IoShieldOutline /> &nbsp;Bayar
+                            <button type="submit" disabled={isLoading && !isLoadingGagal} ><IoShieldOutline /> &nbsp;&nbsp;Bayar
                             </button>
                         </div>
                     </div>

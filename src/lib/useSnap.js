@@ -10,7 +10,9 @@ const useSnap = () => {
         script.src = snapScript
         script.setAttribute('data-client-key', clientKey)
         script.async = true
-        setSnap(window.snap)
+        script.onload = () => {
+            setSnap(window.snap)
+        }
 
         document.body.appendChild(script)
 
