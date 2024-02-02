@@ -17,6 +17,7 @@ import useSnap from '../lib/useSnap'
 
 export default function FormPembelian({ dataFormLangsung }) {
     const { snapEmbed } = useSnap()
+    const id = uidRio()
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setnamaLengkap = useStoreFormUsers((state) => state.setnamaLengkap)
     const namaLengkap = useStoreFormUsers((state) => state.namaLengkap)
@@ -100,7 +101,7 @@ export default function FormPembelian({ dataFormLangsung }) {
 
             //DATA POST PAYMENT
             const transaction_details = {
-                order_id: uidRio(),
+                order_id: id,
             }
             const item_details = dataFormLangsung.map((data) =>
             ({
@@ -131,7 +132,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             const dataUtama = values
             const GabungdataUtamadataTambahanUtama = { ...dataUtama, ...dataUtama }
             const datalain = {
-                nota_user: uidRio(),
+                nota_user: id,
                 status_pesanan: 'belum-diproses',
             }
             const dataUtamauid = { ...datalain, ...GabungdataUtamadataTambahanUtama }

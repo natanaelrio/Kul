@@ -1,10 +1,10 @@
 import BackLayang from '@/components/admin/layout/backLayang'
 import { useStore } from '@/lib/zustand'
 import styles from '@/components/admin/dataPesanan.module.css'
-import CustomLink from '@/lib/customLink'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useState } from 'react'
 import { IoEyeOutline } from "react-icons/io5";
+import Link from 'next/link'
 
 export default function DataPesanan({ data, take, skip }) {
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
@@ -213,11 +213,11 @@ export default function DataPesanan({ data, take, skip }) {
                 </div>
 
                 <div className={styles.dalampilihan}>
-                    <CustomLink href={`/nota/${data?.nota_user}`} >
+                    <Link target='_blank' href={`/nota/${data?.nota_user}`} >
                         <div className={styles.nota}>
                             <button>Download Nota</button>
                         </div>
-                    </CustomLink>
+                    </Link>
                     <div className={styles.nota}>
                         <button disabled={isLoading} onClick={() => { HandleStatus(data?.nota_user) }}>
                             {isLoading ? 'Loading...' : !isLoadingGagal && 'Update Status'}

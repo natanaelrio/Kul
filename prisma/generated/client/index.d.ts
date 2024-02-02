@@ -2059,6 +2059,7 @@ export namespace Prisma {
     no_hp_user: number | null
     catatan_user: string | null
     status_pesanan: string | null
+    payment: boolean | null
   }
 
   export type FormPembelianMaxAggregateOutputType = {
@@ -2072,6 +2073,7 @@ export namespace Prisma {
     no_hp_user: number | null
     catatan_user: string | null
     status_pesanan: string | null
+    payment: boolean | null
   }
 
   export type FormPembelianCountAggregateOutputType = {
@@ -2086,6 +2088,7 @@ export namespace Prisma {
     catatan_user: number
     status_pesanan: number
     dataPesanan: number
+    payment: number
     _all: number
   }
 
@@ -2113,6 +2116,7 @@ export namespace Prisma {
     no_hp_user?: true
     catatan_user?: true
     status_pesanan?: true
+    payment?: true
   }
 
   export type FormPembelianMaxAggregateInputType = {
@@ -2126,6 +2130,7 @@ export namespace Prisma {
     no_hp_user?: true
     catatan_user?: true
     status_pesanan?: true
+    payment?: true
   }
 
   export type FormPembelianCountAggregateInputType = {
@@ -2140,6 +2145,7 @@ export namespace Prisma {
     catatan_user?: true
     status_pesanan?: true
     dataPesanan?: true
+    payment?: true
     _all?: true
   }
 
@@ -2241,6 +2247,7 @@ export namespace Prisma {
     catatan_user: string | null
     status_pesanan: string | null
     dataPesanan: JsonValue | null
+    payment: boolean
     _count: FormPembelianCountAggregateOutputType | null
     _avg: FormPembelianAvgAggregateOutputType | null
     _sum: FormPembelianSumAggregateOutputType | null
@@ -2274,6 +2281,7 @@ export namespace Prisma {
     catatan_user?: boolean
     status_pesanan?: boolean
     dataPesanan?: boolean
+    payment?: boolean
   }, ExtArgs["result"]["formPembelian"]>
 
   export type formPembelianSelectScalar = {
@@ -2288,6 +2296,7 @@ export namespace Prisma {
     catatan_user?: boolean
     status_pesanan?: boolean
     dataPesanan?: boolean
+    payment?: boolean
   }
 
 
@@ -2306,6 +2315,7 @@ export namespace Prisma {
       catatan_user: string | null
       status_pesanan: string | null
       dataPesanan: Prisma.JsonValue | null
+      payment: boolean
     }, ExtArgs["result"]["formPembelian"]>
     composites: {}
   }
@@ -2711,6 +2721,7 @@ export namespace Prisma {
     readonly catatan_user: FieldRef<"formPembelian", 'String'>
     readonly status_pesanan: FieldRef<"formPembelian", 'String'>
     readonly dataPesanan: FieldRef<"formPembelian", 'Json'>
+    readonly payment: FieldRef<"formPembelian", 'Boolean'>
   }
     
 
@@ -3048,7 +3059,8 @@ export namespace Prisma {
     no_hp_user: 'no_hp_user',
     catatan_user: 'catatan_user',
     status_pesanan: 'status_pesanan',
-    dataPesanan: 'dataPesanan'
+    dataPesanan: 'dataPesanan',
+    payment: 'payment'
   };
 
   export type FormPembelianScalarFieldEnum = (typeof FormPembelianScalarFieldEnum)[keyof typeof FormPembelianScalarFieldEnum]
@@ -3172,6 +3184,13 @@ export namespace Prisma {
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -3332,6 +3351,7 @@ export namespace Prisma {
     catatan_user?: StringNullableFilter<"formPembelian"> | string | null
     status_pesanan?: StringNullableFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableFilter<"formPembelian">
+    payment?: BoolFilter<"formPembelian"> | boolean
   }
 
   export type formPembelianOrderByWithRelationAndSearchRelevanceInput = {
@@ -3346,6 +3366,7 @@ export namespace Prisma {
     catatan_user?: SortOrderInput | SortOrder
     status_pesanan?: SortOrderInput | SortOrder
     dataPesanan?: SortOrderInput | SortOrder
+    payment?: SortOrder
     _relevance?: formPembelianOrderByRelevanceInput
   }
 
@@ -3364,6 +3385,7 @@ export namespace Prisma {
     catatan_user?: StringNullableFilter<"formPembelian"> | string | null
     status_pesanan?: StringNullableFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableFilter<"formPembelian">
+    payment?: BoolFilter<"formPembelian"> | boolean
   }, "id" | "nota_user">
 
   export type formPembelianOrderByWithAggregationInput = {
@@ -3378,6 +3400,7 @@ export namespace Prisma {
     catatan_user?: SortOrderInput | SortOrder
     status_pesanan?: SortOrderInput | SortOrder
     dataPesanan?: SortOrderInput | SortOrder
+    payment?: SortOrder
     _count?: formPembelianCountOrderByAggregateInput
     _avg?: formPembelianAvgOrderByAggregateInput
     _max?: formPembelianMaxOrderByAggregateInput
@@ -3400,6 +3423,7 @@ export namespace Prisma {
     catatan_user?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     status_pesanan?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableWithAggregatesFilter<"formPembelian">
+    payment?: BoolWithAggregatesFilter<"formPembelian"> | boolean
   }
 
   export type adminCreateInput = {
@@ -3564,6 +3588,7 @@ export namespace Prisma {
     catatan_user?: string | null
     status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: boolean
   }
 
   export type formPembelianUncheckedCreateInput = {
@@ -3578,6 +3603,7 @@ export namespace Prisma {
     catatan_user?: string | null
     status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: boolean
   }
 
   export type formPembelianUpdateInput = {
@@ -3591,6 +3617,7 @@ export namespace Prisma {
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type formPembelianUncheckedUpdateInput = {
@@ -3605,6 +3632,7 @@ export namespace Prisma {
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type formPembelianCreateManyInput = {
@@ -3619,6 +3647,7 @@ export namespace Prisma {
     catatan_user?: string | null
     status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: boolean
   }
 
   export type formPembelianUpdateManyMutationInput = {
@@ -3632,6 +3661,7 @@ export namespace Prisma {
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type formPembelianUncheckedUpdateManyInput = {
@@ -3646,6 +3676,7 @@ export namespace Prisma {
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
+    payment?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -3908,6 +3939,11 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type formPembelianOrderByRelevanceInput = {
     fields: formPembelianOrderByRelevanceFieldEnum | formPembelianOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -3926,6 +3962,7 @@ export namespace Prisma {
     catatan_user?: SortOrder
     status_pesanan?: SortOrder
     dataPesanan?: SortOrder
+    payment?: SortOrder
   }
 
   export type formPembelianAvgOrderByAggregateInput = {
@@ -3945,6 +3982,7 @@ export namespace Prisma {
     no_hp_user?: SortOrder
     catatan_user?: SortOrder
     status_pesanan?: SortOrder
+    payment?: SortOrder
   }
 
   export type formPembelianMinOrderByAggregateInput = {
@@ -3958,6 +3996,7 @@ export namespace Prisma {
     no_hp_user?: SortOrder
     catatan_user?: SortOrder
     status_pesanan?: SortOrder
+    payment?: SortOrder
   }
 
   export type formPembelianSumOrderByAggregateInput = {
@@ -3991,6 +4030,14 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
@@ -4017,6 +4064,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -4177,6 +4228,11 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
   export type NestedJsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -4198,6 +4254,14 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
 

@@ -45,7 +45,7 @@ export async function generateMetadata({ params }) {
 export default async function Products({ params }) {
   const dataID = await GetListProductID(params.uid)
   const dataList = await GetListProduct()
-  dataID.status == 404 ? notFound() : null
+  dataID.status == 500 ? notFound() : null
 
   return (
     <HeaderFooter kondisiFalseSearch={true} data={dataID} slug={params.uid}>

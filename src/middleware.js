@@ -1,43 +1,76 @@
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server"
 
 // This function can be marked `async` if using `await` inside
 export async function middleware(request) {
-  const slug = request.nextUrl.pathname.split('/').slice(-1).toString()
-  // GET
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-viewproduct?id=${slug}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': process.env.NEXT_PUBLIC_SECREET
-      },
-      next: { revalidate: 0 }
-    })
 
-    const data = await res.json()
-    data?.data?.map(async (data) => {
-      // UPDATE
-      await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-view-products?id=${slug}`, {
+  if (request.nextUrl.pathname.startsWith('/product')) {
+
+    const slug = request.nextUrl.pathname.split('/').slice(-1).toString()
+    // GET
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-viewproduct?id=${slug}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': process.env.NEXT_PUBLIC_SECREET
+        },
+        next: { revalidate: 0 }
+      })
+
+      const data = await res.json()
+      data?.data?.map(async (data) => {
+        // UPDATE
+        await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-view-products?id=${slug}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': process.env.NEXT_PUBLIC_SECREET
+          },
+          body: JSON.stringify({
+            view_barang: data.view_barang ? data.view_barang + 1 : 1
+          }),
+          next: { revalidate: 0 }
+        })
+      })
+
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  if (request.nextUrl.pathname.startsWith('/s')) {
+    const slug = request.nextUrl.searchParams.get('order_id')
+
+    // GET
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-payment`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': process.env.NEXT_PUBLIC_SECREET
         },
         body: JSON.stringify({
-          view_barang: data.view_barang ? data.view_barang + 1 : 1
+          nota_user: slug
         }),
         next: { revalidate: 0 }
       })
-    })
+      const data = await res.json()
+      return data.status == 200 && NextResponse.redirect(new URL(`/nota/${slug}`, request.url))
+    }
+    catch (e) {
+      console.log(e);
+    }
+  }
 
-  }
-  catch (e) {
-    console.log(e);
-  }
 }
 
 
-// See "Matching Paths" below to learn more
-export const config = {
-  matcher: '/products/:path*',
-}
+
+
+
+// // See "Matching Paths" below to learn more
+// export const config = {
+//   matcher: '/products/:path*',
+// }

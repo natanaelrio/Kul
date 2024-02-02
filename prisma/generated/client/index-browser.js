@@ -140,7 +140,8 @@ exports.Prisma.FormPembelianScalarFieldEnum = {
   no_hp_user: 'no_hp_user',
   catatan_user: 'catatan_user',
   status_pesanan: 'status_pesanan',
-  dataPesanan: 'dataPesanan'
+  dataPesanan: 'dataPesanan',
+  payment: 'payment'
 };
 
 exports.Prisma.SortOrder = {
