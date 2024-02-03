@@ -1,7 +1,9 @@
+import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const useSnap = () => {
     const [snap, setSnap] = useState(null)
+    const router = useRouter()
     useEffect(() => {
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js"
         const clientKey = process.env.NEXT_PUBLIC_SECREET_MIDSTRANS
@@ -27,6 +29,7 @@ const useSnap = () => {
                 embedId,
             })
         }
+        if (!snap_token) router.push('/')
     }
     return { snapEmbed }
 }

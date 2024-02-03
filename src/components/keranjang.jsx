@@ -2,7 +2,7 @@
 import styles from '@/components/keranjang.module.css'
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
-import { Suspense, useEffect } from 'react';
+import { Suspense, useState } from 'react';
 import { MdDelete } from "react-icons/md";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -36,8 +36,17 @@ export default function Keranjang() {
         }
     }
 
-    const handleKeranjangdanResetValue = (e) => {
-        setDeleteKeranjangZ(e), resetValueKeranjang()
+
+    const [isValidasiDelete, setIsValidasiDelete] = useState(false)
+    const handleDeleteLove = (id) => {
+        setDeleteKeranjangZ(id), resetValueKeranjang()
+    }
+
+
+    const [uidDelete, setUidDelete] = useState(0)
+    const handleValidasiDelete = (e) => {
+        setIsValidasiDelete(true)
+        setUidDelete(e)
     }
 
 
@@ -130,8 +139,16 @@ export default function Keranjang() {
                                                 </div>
                                             </div>
 
-                                            <div className={styles.delete} >
-                                                <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleKeranjangdanResetValue(data.id)} />
+                                            <div className={styles.action}>
+                                                <div className={styles.delete} >
+                                                    <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleValidasiDelete(data.id)} />
+                                                    {data.id == uidDelete && isValidasiDelete && <div className={styles.validasi}>
+                                                        <div className={styles.yes} onClick={() => handleDeleteLove(data.id)}>YES</div>
+                                                        <div className={styles.no} onClick={() => handleValidasiDelete()}>NO</div>
+                                                    </div>
+                                                    }
+
+                                                </div>
                                             </div>
                                             <div className={styles.stokbarang}>{data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
                                         </div>

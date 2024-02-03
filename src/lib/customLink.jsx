@@ -13,9 +13,9 @@ export default function CustomLink({ href, children }) {
     }, [])
     return (
         <>
-            <Link href={href} onClick={() => NProgress.configure({ showSpinner: false }).start()}>
+            <a href={href} onClick={() => NProgress.configure({ showSpinner: false }).start()}>
                 {children}
-            </Link>
+            </a>
         </>
     )
 }

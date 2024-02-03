@@ -8,6 +8,7 @@ import FloatingBlur from '@/components/Layout/floatingBlur';
 import CustomLink from '@/lib/customLink'
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
+import { useState } from 'react';
 
 export default function Love() {
     const setOpenLove = useStore((state) => state.setOpenLove)
@@ -18,6 +19,17 @@ export default function Love() {
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
+
+    const [isValidasiDelete, setIsValidasiDelete] = useState(false)
+    const handleDeleteLove = (id) => {
+        setDeleteLoveZ(id)
+    }
+
+    const [uidDelete, setUidDelete] = useState(0)
+    const handleValidasiDelete = (e) => {
+        setIsValidasiDelete(true)
+        setUidDelete(e)
+    }
 
     return (
         <FloatingBlur setOpen={setOpenLove} judul={`List Favorit`} >
@@ -80,7 +92,15 @@ export default function Love() {
                                         </CustomLink>
                                     </div>
                                     <div className={styles.action}>
-                                        <div className={styles.delete} ><MdDelete style={{ cursor: 'pointer' }} onClick={() => setDeleteLoveZ(data.id)} /></div>
+                                        <div className={styles.delete} >
+                                            <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleValidasiDelete(data.id)} />
+                                            {data.id == uidDelete && isValidasiDelete && <div className={styles.validasi}>
+                                                <div className={styles.yes} onClick={() => handleDeleteLove(data.id)}>YES</div>
+                                                <div className={styles.no} onClick={() => handleValidasiDelete()}>NO</div>
+                                            </div>
+                                            }
+
+                                        </div>
                                     </div>
                                 </div>
                             )

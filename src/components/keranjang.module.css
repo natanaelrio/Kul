@@ -179,13 +179,50 @@
 }
 
 
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
 
-.delete {
+.action .delete {
     color: var(--color-diskon);
     font-size: 0.9rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    position: relative;
+}
+
+.action .delete .validasi {
+    font-size: 0.6rem;
+    background-color: var(--color-sekunder);
+    display: flex;
+    font-weight: 700;
+    position: absolute;
+    top: 0;
+    right: 25px;
+}
+
+.action .delete .validasi .yes {
+    color: #adff2f;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.action .delete .validasi .no {
+    color: #FF69B4;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.action .delete .validasi .yes:hover {
+    color: #9cdb3f;
+}
+
+.action .delete .validasi .no:hover {
+    color: #d55d99;
 }
 
 

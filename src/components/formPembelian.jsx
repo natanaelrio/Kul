@@ -13,11 +13,11 @@ import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSignsPost } from "react-icons/fa6";
 import { IoShieldOutline } from "react-icons/io5";
-import useSnap from '../lib/useSnap'
+import { useRouter } from "next/navigation";
 
 export default function FormPembelian({ dataFormLangsung }) {
-    const { snapEmbed } = useSnap()
     const id = uidRio()
+    const router = useRouter()
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setnamaLengkap = useStoreFormUsers((state) => state.setnamaLengkap)
     const namaLengkap = useStoreFormUsers((state) => state.namaLengkap)
@@ -52,13 +52,12 @@ export default function FormPembelian({ dataFormLangsung }) {
     // NOTIFIKASI
     const [isLoading, setIsLoading] = useState(false)
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
-    const [payment, setPayment] = useState(false)
 
     const handleSuccess = (token) => {
-        setPayment(true)
         setIsLoading(false)
-        snapEmbed(token, 'snap-container')
-        // setOpenFormPembelian()
+        setOpenFormPembelian()
+        localStorage.setItem("tokenpayment", token)
+        router.push('/payment')
     }
     const handleGagal = () => {
         setIsLoading(false)
@@ -163,7 +162,6 @@ export default function FormPembelian({ dataFormLangsung }) {
                     }
                 })
                 const dataPayment = await resPayment.json()
-
                 data.status == 200 && dataPayment.status == 200 && handleSuccess(dataPayment.data) || data.status == 500 && dataPayment.status == 500 && handleGagal()
             }
             catch (e) {
@@ -174,9 +172,9 @@ export default function FormPembelian({ dataFormLangsung }) {
 
 
     return (
-        <FloatingBlur setOpen={setOpenFormPembelian} judul={payment ? 'PEMBAYARAN' : 'FORMULIR PENGIRIMAN'} >
-            <div id="snap-container" style={{ display: payment ? 'block' : 'none' }}></div>
-            <div className={styles.containerform} style={{ display: payment ? 'none' : 'block' }} >
+        <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
+            {/* <div id="snap-container" style={{ display: payment ? 'block' : 'none' }}></div> */}
+            <div className={styles.containerform}  >
 
                 <form onSubmit={(e) => { formik.handleSubmit(e) }} className={styles.form}>
                     {isLoading && <div className={styles.loading}>
