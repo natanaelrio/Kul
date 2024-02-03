@@ -38,32 +38,6 @@ export async function middleware(request) {
       console.log(e);
     }
   }
-
-
-  if (request.nextUrl.pathname.startsWith('/s')) {
-    const slug = request.nextUrl.searchParams.get('order_id')
-
-    // GET
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/update-payment`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': process.env.NEXT_PUBLIC_SECREET
-        },
-        body: JSON.stringify({
-          nota_user: slug
-        }),
-        next: { revalidate: 0 }
-      })
-      const data = await res.json()
-      return data.status == 200 && NextResponse.redirect(new URL(`/nota/${slug}`, request.url))
-    }
-    catch (e) {
-      console.log(e);
-    }
-  }
-
 }
 
 

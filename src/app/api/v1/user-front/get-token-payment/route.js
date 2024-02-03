@@ -22,7 +22,7 @@ export async function POST(req) {
             "gross_amount": item_details.map((data) => data.price * data.quantity).reduce((acc, curr) => acc + curr, 0)
         },
         "callbacks": {
-            "finish": `${process.env.NEXT_PUBLIC_URL}/s/` + `${order_id}`
+            "finish": `${process.env.NEXT_PUBLIC_URL}/nota/` + `${order_id}`
         }
     }
 
