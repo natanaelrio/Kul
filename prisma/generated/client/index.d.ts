@@ -2045,7 +2045,7 @@ export namespace Prisma {
   export type FormPembelianSumAggregateOutputType = {
     id: number | null
     kode_pos_user: number | null
-    no_hp_user: number | null
+    no_hp_user: bigint | null
   }
 
   export type FormPembelianMinAggregateOutputType = {
@@ -2056,7 +2056,7 @@ export namespace Prisma {
     nama_lengkap_user: string | null
     alamat_lengkap_user: string | null
     kode_pos_user: number | null
-    no_hp_user: number | null
+    no_hp_user: bigint | null
     catatan_user: string | null
     status_pesanan: string | null
     payment: boolean | null
@@ -2070,7 +2070,7 @@ export namespace Prisma {
     nama_lengkap_user: string | null
     alamat_lengkap_user: string | null
     kode_pos_user: number | null
-    no_hp_user: number | null
+    no_hp_user: bigint | null
     catatan_user: string | null
     status_pesanan: string | null
     payment: boolean | null
@@ -2243,7 +2243,7 @@ export namespace Prisma {
     nama_lengkap_user: string | null
     alamat_lengkap_user: string | null
     kode_pos_user: number | null
-    no_hp_user: number | null
+    no_hp_user: bigint | null
     catatan_user: string | null
     status_pesanan: string | null
     dataPesanan: JsonValue | null
@@ -2311,7 +2311,7 @@ export namespace Prisma {
       nama_lengkap_user: string | null
       alamat_lengkap_user: string | null
       kode_pos_user: number | null
-      no_hp_user: number | null
+      no_hp_user: bigint | null
       catatan_user: string | null
       status_pesanan: string | null
       dataPesanan: Prisma.JsonValue | null
@@ -2717,7 +2717,7 @@ export namespace Prisma {
     readonly nama_lengkap_user: FieldRef<"formPembelian", 'String'>
     readonly alamat_lengkap_user: FieldRef<"formPembelian", 'String'>
     readonly kode_pos_user: FieldRef<"formPembelian", 'Int'>
-    readonly no_hp_user: FieldRef<"formPembelian", 'Int'>
+    readonly no_hp_user: FieldRef<"formPembelian", 'BigInt'>
     readonly catatan_user: FieldRef<"formPembelian", 'String'>
     readonly status_pesanan: FieldRef<"formPembelian", 'String'>
     readonly dataPesanan: FieldRef<"formPembelian", 'Json'>
@@ -3181,6 +3181,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'BigInt'
+   */
+  export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
+    
+
+
+  /**
+   * Reference to a field of type 'BigInt[]'
+   */
+  export type ListBigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
@@ -3347,7 +3361,7 @@ export namespace Prisma {
     nama_lengkap_user?: StringNullableFilter<"formPembelian"> | string | null
     alamat_lengkap_user?: StringNullableFilter<"formPembelian"> | string | null
     kode_pos_user?: IntNullableFilter<"formPembelian"> | number | null
-    no_hp_user?: IntNullableFilter<"formPembelian"> | number | null
+    no_hp_user?: BigIntNullableFilter<"formPembelian"> | bigint | number | null
     catatan_user?: StringNullableFilter<"formPembelian"> | string | null
     status_pesanan?: StringNullableFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableFilter<"formPembelian">
@@ -3381,7 +3395,7 @@ export namespace Prisma {
     nama_lengkap_user?: StringNullableFilter<"formPembelian"> | string | null
     alamat_lengkap_user?: StringNullableFilter<"formPembelian"> | string | null
     kode_pos_user?: IntNullableFilter<"formPembelian"> | number | null
-    no_hp_user?: IntNullableFilter<"formPembelian"> | number | null
+    no_hp_user?: BigIntNullableFilter<"formPembelian"> | bigint | number | null
     catatan_user?: StringNullableFilter<"formPembelian"> | string | null
     status_pesanan?: StringNullableFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableFilter<"formPembelian">
@@ -3419,7 +3433,7 @@ export namespace Prisma {
     nama_lengkap_user?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     alamat_lengkap_user?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     kode_pos_user?: IntNullableWithAggregatesFilter<"formPembelian"> | number | null
-    no_hp_user?: IntNullableWithAggregatesFilter<"formPembelian"> | number | null
+    no_hp_user?: BigIntNullableWithAggregatesFilter<"formPembelian"> | bigint | number | null
     catatan_user?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     status_pesanan?: StringNullableWithAggregatesFilter<"formPembelian"> | string | null
     dataPesanan?: JsonNullableWithAggregatesFilter<"formPembelian">
@@ -3584,7 +3598,7 @@ export namespace Prisma {
     nama_lengkap_user?: string | null
     alamat_lengkap_user?: string | null
     kode_pos_user?: number | null
-    no_hp_user?: number | null
+    no_hp_user?: bigint | number | null
     catatan_user?: string | null
     status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3599,7 +3613,7 @@ export namespace Prisma {
     nama_lengkap_user?: string | null
     alamat_lengkap_user?: string | null
     kode_pos_user?: number | null
-    no_hp_user?: number | null
+    no_hp_user?: bigint | number | null
     catatan_user?: string | null
     status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3613,7 +3627,7 @@ export namespace Prisma {
     nama_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     alamat_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
-    no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
+    no_hp_user?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3628,7 +3642,7 @@ export namespace Prisma {
     nama_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     alamat_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
-    no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
+    no_hp_user?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3643,7 +3657,7 @@ export namespace Prisma {
     nama_lengkap_user?: string | null
     alamat_lengkap_user?: string | null
     kode_pos_user?: number | null
-    no_hp_user?: number | null
+    no_hp_user?: bigint | number | null
     catatan_user?: string | null
     status_pesanan?: string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3657,7 +3671,7 @@ export namespace Prisma {
     nama_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     alamat_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
-    no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
+    no_hp_user?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3672,7 +3686,7 @@ export namespace Prisma {
     nama_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     alamat_lengkap_user?: NullableStringFieldUpdateOperationsInput | string | null
     kode_pos_user?: NullableIntFieldUpdateOperationsInput | number | null
-    no_hp_user?: NullableIntFieldUpdateOperationsInput | number | null
+    no_hp_user?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     catatan_user?: NullableStringFieldUpdateOperationsInput | string | null
     status_pesanan?: NullableStringFieldUpdateOperationsInput | string | null
     dataPesanan?: NullableJsonNullValueInput | InputJsonValue
@@ -3916,6 +3930,17 @@ export namespace Prisma {
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
+
+  export type BigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
   export type JsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -4004,6 +4029,22 @@ export namespace Prisma {
     kode_pos_user?: SortOrder
     no_hp_user?: SortOrder
   }
+
+  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
+  }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
     | PatchUndefined<
         Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -4064,6 +4105,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableBigIntFieldUpdateOperationsInput = {
+    set?: bigint | number | null
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
   }
 
   export type BoolFieldUpdateOperationsInput = {
@@ -4229,9 +4278,36 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> = 
     | PatchUndefined<

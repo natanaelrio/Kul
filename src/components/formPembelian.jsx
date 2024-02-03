@@ -79,7 +79,7 @@ export default function FormPembelian({ dataFormLangsung }) {
         },
         validationSchema: Yup.object({
             nama_lengkap_user: Yup.string()
-                .max(1000)
+                .max(10000)
                 .required('require'),
             no_hp_user: Yup.number()
                 .max(999999999999999)

@@ -39,7 +39,7 @@ model formPembelian {
   nama_lengkap_user   String?
   alamat_lengkap_user String?
   kode_pos_user       Int?
-  no_hp_user          Int?
+  no_hp_user          BigInt?
   catatan_user        String?
   status_pesanan      String?
   dataPesanan         Json?

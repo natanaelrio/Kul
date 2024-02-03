@@ -2,8 +2,7 @@
 import { useState } from 'react'
 import useSnap from '../lib/useSnap'
 import styles from '@/components/payment.module.css'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import Image from 'next/image'
 
 export default function Payment() {
     const { snapEmbed } = useSnap()
@@ -19,22 +18,20 @@ export default function Payment() {
     }
 
 
-
-
     return (
         <>
-
-            <div className={styles.container}>
-                {isLoading ?
-                    <>
-                        <div className={styles.skleton}> <Skeleton count={1} style={{ height: '50px' }} /></div>
-                        <div className={styles.skleton}> <Skeleton count={3} style={{ height: '70px' }} /></div>
-                        <div className={styles.skleton}> <Skeleton count={2} style={{ height: '40px' }} /></div>
-                    </>
-                    :
+            {isLoading ?
+                <div className={styles.loading}>
+                    <div className={styles.gambar}>
+                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} width={150} height={150}></Image>
+                    </div>
+                    <div className={styles.text}>Generate Payment</div>
+                </div>
+                :
+                <div className={styles.container}>
                     <div id="snap-container" />
-                }
-            </div>
+                </div>
+            }
         </>
     )
 }
