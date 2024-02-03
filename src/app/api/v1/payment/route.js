@@ -15,9 +15,10 @@ export async function AmbilDataUsers(nota_user) {
 
 
 export async function POST(req) {
-    const { transaction_id } = await req.json()
+    const { order_id } = await req.json()
+    console.log(order_id)
     // const authorization = req.headers.get('authorization')
-    const data = await AmbilDataUsers(transaction_id)
+    const data = await AmbilDataUsers(order_id)
     // const res = await ResponseData(data, authorization)
     return data
 }
