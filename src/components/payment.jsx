@@ -7,14 +7,18 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function Payment() {
     const { snapEmbed } = useSnap()
-    const token = localStorage.getItem("tokenpayment") || ''
     const [isLoading, seIsLoading] = useState(true)
 
-    setTimeout(() => {
-        seIsLoading(false)
-        snapEmbed(token, 'snap-container')
-        localStorage.removeItem("tokenpayment")
-    }, 2000)
+    if (typeof window !== 'undefined') {
+        const token = localStorage.getItem("tokenpayment")
+        setTimeout(() => {
+            seIsLoading(false)
+            snapEmbed(token, 'snap-container')
+            localStorage.removeItem("tokenpayment")
+        }, 2000)
+    }
+
+
 
 
     return (

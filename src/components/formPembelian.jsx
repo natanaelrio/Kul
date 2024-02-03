@@ -54,8 +54,8 @@ export default function FormPembelian({ dataFormLangsung }) {
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
 
     const handleSuccess = (token) => {
-        setIsLoading(false)
-        setOpenFormPembelian()
+        // setIsLoading(false)
+        // setOpenFormPembelian()
         localStorage.setItem("tokenpayment", token)
         router.push('/payment')
     }
