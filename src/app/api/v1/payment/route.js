@@ -1,4 +1,3 @@
-import { ResponseData } from '@/lib/ResponseData'
 import { prisma } from "@/lib/prisma"
 
 export async function AmbilDataUsers(nota_user) {
@@ -15,10 +14,9 @@ export async function AmbilDataUsers(nota_user) {
 
 
 export async function POST(req) {
-    const { order_id } = await req.json()
-    console.log(order_id)
-    // const authorization = req.headers.get('authorization')
-    const data = await AmbilDataUsers(order_id)
-    // const res = await ResponseData(data, authorization)
-    return data
+    const { order_id, signature_key } = await req.json()
+    if (signature_key && signature_key) {
+        const data = await AmbilDataUsers(order_id)
+        return data
+    }
 }

@@ -136,6 +136,10 @@ export default function DataPesanan({ data, take, skip }) {
                         <div className={styles.tablesatu}>Catatan: </div>
                         <div className={styles.tabledua}>{data?.catatan_user} </div>
                     </div>
+                    <div className={styles.containerinformasi}>
+                        <div className={styles.tablesatu}>Payment: </div>
+                        <div className={styles.tabledua}>{data?.payment.toString()} </div>
+                    </div>
                 </div>
 
                 <div className='deskop'>
