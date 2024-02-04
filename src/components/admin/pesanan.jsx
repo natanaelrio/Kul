@@ -40,6 +40,8 @@ export default function Pesanan() {
     const omset = datalistpesanan?.total_omset
     const totalterjual = datalistpesanan?.total_terjual
     const total_array = datalistpesanan?.total_array
+    const dataTruePayment = datalistpesanan?.dataTruePayment
+    const dataFalsePayment = datalistpesanan?.dataFalsePayment
 
     const HandlePesanan = (e) => {
         setDataPesanan(e)
@@ -109,7 +111,9 @@ export default function Pesanan() {
                     <div className={styles.jumlah}>
                         Data :&nbsp;  <div className={styles.number}>{total_array} </div>&nbsp;|
                         Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;|
-                        &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>
+                        &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>&nbsp; |
+                        &nbsp;Sudah Bayar :&nbsp;<div className={styles.number}>{dataTruePayment}</div>
+                        &nbsp; | &nbsp;Belum Bayar :&nbsp;<div className={styles.number}>{dataFalsePayment}</div>
                     </div>
                     <div className={styles.pencarian}>
                         <input
@@ -122,6 +126,8 @@ export default function Pesanan() {
                     </div>
                 </div>
                 {statusFilter && <div className={styles.filter} >
+                    <div className={styles.datafilter} onClick={() => HandleFilterPesanan('true')}>Sudah Bayar</div>
+                    <div className={styles.datafilter} onClick={() => HandleFilterPesanan('false')}>Belum Bayar</div>
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('sudah-diproses')}>Pesanan proses</div>
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('sudah-berhasil')}>Pesanan berhasil</div>
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('belum-diproses')}>Pesanan blm di proses</div>

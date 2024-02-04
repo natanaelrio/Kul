@@ -12,16 +12,21 @@ export async function AmbilDataUsers(skip, take, nota, status) {
             status_pesanan: { contains: 'sudah-diproses' }
         } || status == 'sudah-berhasil' && {
             status_pesanan: { contains: 'sudah-berhasil' }
-        } || {
+        } || status == 'false' && {
+            payment: false
+        } || status == 'true' && {
+            payment: true
+        }
+            || {
             nota_user: nota ? {
                 contains: nota || '',
                 mode: 'insensitive'
             } : { not: null },
         },
     })
-    BigInt.prototype.toJSON = function() {
+    BigInt.prototype.toJSON = function () {
         return this.toString()
-    } 
+    }
 
     return data
 }
@@ -39,6 +44,7 @@ export async function GET(req) {
     const informasi = await prisma.formPembelian.findMany({
         select: {
             dataPesanan: true,
+            payment: true
         }
     })
     // INFORMASI HARGA
@@ -52,10 +58,16 @@ export async function GET(req) {
     // INFORMASI PANJANG ARRAY
     const total_length = informasi.length
 
+    //INFORMASI LENGTH PAYMENT
+    const dataFalsePayment = informasi.filter((data) => data.payment == false).length
+    const dataTruePayment = informasi.filter((data) => data.payment == true).length
+
     const tambahan = {
         total_omset: total_omset,
         total_terjual: total_barang,
         total_array: total_length,
+        dataFalsePayment: dataFalsePayment,
+        dataTruePayment: dataTruePayment,
         take_array: Number(take) || 10,
         skip_array: Number(skip) || 0,
     }
