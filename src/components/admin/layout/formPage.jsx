@@ -81,7 +81,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
         }),
         onSubmit: async values => {
             setMatikan(true)
-            setGagal(false)
+            // setGagal(false)
             const DataLain = {
                 end: null,
                 btoa: uuidv4(),
@@ -90,6 +90,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
 
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
+
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + urlFetch, {
                     method: method,

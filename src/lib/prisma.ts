@@ -1,3 +1,4 @@
+// import { PrismaClient } from '../../prisma/generated/client';
 import { PrismaClient } from '../../prisma/generated/client';
 
 declare const global: Global & { prisma?: PrismaClient };

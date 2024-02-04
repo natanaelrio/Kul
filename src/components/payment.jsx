@@ -17,7 +17,6 @@ export default function Payment() {
         }, 2000)
     }
 
-
     return (
         <>
             {isLoading ?

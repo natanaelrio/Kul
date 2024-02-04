@@ -8,7 +8,7 @@ export async function ResponseData(data, authorization, tambahan) {
             } else return Response.json({ status: 500, isCreated: false })
         }
         catch (e) {
-            return Response.json({ status: 500, isCreated: 'internet ga adaaaa........' })
+            return Response.json({ status: 500, isCreated: 'internet ga adaaaa........', })
         }
 
     }

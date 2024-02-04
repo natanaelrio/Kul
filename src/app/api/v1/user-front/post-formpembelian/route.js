@@ -9,6 +9,7 @@ export async function AmbilDataUsers(databody) {
 
 export async function POST(req) {
     const { nota_user, status_pesanan, nama_lengkap_user, alamat_lengkap_user, kode_pos_user, no_hp_user, catatan_user, dataPesanan } = await req.json()
+
     const databody = {
         nota_user,
         status_pesanan,
@@ -20,8 +21,13 @@ export async function POST(req) {
         dataPesanan
     }
 
+    BigInt.prototype.toJSON = function () {
+        return this.toString();
+    };
+
     const authorization = req.headers.get('authorization')
     const data = await AmbilDataUsers(databody)
+
     const res = await ResponseData(data, authorization)
     return res
 }

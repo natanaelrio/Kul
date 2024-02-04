@@ -19,6 +19,10 @@ export async function AmbilDataUsers(skip, take, nota, status) {
             } : { not: null },
         },
     })
+    BigInt.prototype.toJSON = function() {
+        return this.toString()
+    } 
+
     return data
 }
 

@@ -19,6 +19,7 @@ export async function AmbilDataUsers() {
 export async function GET(req) {
     const authorization = req.headers.get('authorization')
     const data = await AmbilDataUsers()
+
     const res = await ResponseData(data, authorization)
-    return res
+    return Response.json({ ok: 'ok' })
 }

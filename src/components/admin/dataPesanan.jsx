@@ -130,7 +130,7 @@ export default function DataPesanan({ data, take, skip }) {
                     </div>
                     <div className={styles.containerinformasi}>
                         <div className={styles.tablesatu}>Nomer HP:</div>
-                        <div className={styles.tabledua}>{data?.no_hp_user} </div>
+                        <div className={styles.tabledua}>{data?.no_hp_user.toString()} </div>
                     </div>
                     <div className={styles.containerinformasi}>
                         <div className={styles.tablesatu}>Catatan: </div>
@@ -230,7 +230,6 @@ export default function DataPesanan({ data, take, skip }) {
                     </div>
                 </div>
             </BackLayang>
-            <span>kwkwkw</span>
         </>
     )
 }

@@ -6,7 +6,6 @@ export async function AmbilDataUsers(databody) {
     return data
 }
 
-
 export async function POST(req) {
     const { link_barang, jumlah_barang, tag_barang, btoa,
         end, nama_barang, kategori_barang, harga_barang,

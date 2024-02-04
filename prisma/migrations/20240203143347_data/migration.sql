@@ -18,6 +18,7 @@ CREATE TABLE "admin" (
     "kupon_barang" TEXT,
     "view_barang" INTEGER,
     "like_barang" INTEGER,
+    "link_barang" TEXT,
 
     CONSTRAINT "admin_pkey" PRIMARY KEY ("id")
 );
@@ -35,6 +36,7 @@ CREATE TABLE "formPembelian" (
     "catatan_user" TEXT,
     "status_pesanan" TEXT,
     "dataPesanan" JSONB,
+    "payment" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "formPembelian_pkey" PRIMARY KEY ("id")
 );

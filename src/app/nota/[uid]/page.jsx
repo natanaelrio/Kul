@@ -1,6 +1,11 @@
 import { getListNotaID } from '@/utils/user-front/getListNotaID'
 import { notFound } from 'next/navigation'
 
+export const metadata = {
+    title: 'Nota',
+    description: 'Nota',
+}
+
 export default async function Nota({ params }) {
     const dataID = await getListNotaID(params.uid)
     dataID.status == 500 && notFound()
