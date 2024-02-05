@@ -127,22 +127,23 @@
 }
 
 .filter .datafilter:nth-child(1) {
-    background-color: blue;
-}
-
-.filter .datafilter:nth-child(2) {
-    background-color: green;
-}
-
-.filter .datafilter:nth-child(3) {
-    background-color: red;
-}
-.filter .datafilter:nth-child(4) {
     background-color: rgb(255, 0, 132);
 }
 
+.filter .datafilter:nth-child(2) {
+    background-color: coral;
+}
+
+.filter .datafilter:nth-child(3) {
+    background-color: blue;
+}
+
+.filter .datafilter:nth-child(4) {
+    background-color: green;
+}
+
 .filter .datafilter:nth-child(5) {
-    background-color:coral;
+    background-color: red;
 }
 
 .filter .datafilter:nth-child(6) {

@@ -2,19 +2,18 @@
 import styles from '@/components/admin/pesanan.module.css'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useEffect, useState } from 'react'
-import DataPesanan from '@/components/admin/dataPesanan';
 import { useStore } from '@/lib/zustand'
 import SkletonPesanan from '@/components/admin/skletonPesanan';
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { useRouter, useSearchParams } from 'next/navigation';
-import Moment from 'react-moment';
 import { useDebounce } from "@uidotdev/usehooks";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoFilterSharp } from "react-icons/io5";
 import { GrPowerReset } from "react-icons/gr";
 import { useStoreCRUDadmin } from '@/utils/admin/admin/crudDataAdmin'
+import moment from 'moment';
 
 export default function Pesanan() {
     const searchParams = useSearchParams()
@@ -151,13 +150,8 @@ export default function Pesanan() {
                     return (
                         <div key={data?.id} className={styles.content}>
                             <div className={styles.tanggalinput}>
-                                <Moment format="YYYY/MM/DD ">
-                                    {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
-                                </Moment>&nbsp;| &nbsp;
-                                <Moment format="HH:mm" >
-                                    {(data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}
-                                </Moment>
-
+                                {moment((data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).format('ll')}&nbsp;| &nbsp;
+                                {moment((data?.start).toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })).format('LT')}
                             </div>
                             <div className={styles.totaljumlah}>{totalJumlahBarang}</div>
                             <div className={styles.totalbiaya}>{totalHargaBarang}</div>

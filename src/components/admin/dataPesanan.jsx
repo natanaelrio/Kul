@@ -81,18 +81,22 @@ export default function DataPesanan({ data, take, skip }) {
     const statusselesai = todos.map((data) => data.statusSelesai).filter((value) => value == false);
 
     // PUT DATA
-    const HandleStatus = async (id) => {
+    const HandleStatus = async (id, datapesanan) => {
 
         setIsLoading(true)
         setIsLoadingGagal(false)
         const datanya = {
             nota_user: id,
-            status_pesanan: data.status_pesanan == 'belum-diproses' && statuskirim.length == [] && 'sudah-diproses' ||
-                data.status_pesanan == 'sudah-diproses' && statusselesai.length == [] && 'sudah-berhasil'
+            status_pesanan:
+                data.status_pesanan == 'belum-diproses' && statuskirim.length == [] && 'sudah-diproses' ||
+                data.status_pesanan == 'sudah-diproses' && statusselesai.length == [] && 'sudah-berhasil' ||
+                statuskirim.length == [] && 'sudah-diproses' ||
+                statusselesai.length == [] && 'sudah-berhasil'
                 || 'belum-diproses',
             dataPesanan: todos,
         }
         try {
+            //UPDATE DATAPESANAN 
             const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/admin/update-status-pesanan', {
                 method: 'PUT',
                 body: JSON.stringify(datanya),
@@ -102,6 +106,19 @@ export default function DataPesanan({ data, take, skip }) {
                 }
             })
             const data = await res.json()
+
+            // Tambah Total Penjualan
+            statusselesai.length == [] && [...Array(datapesanan?.dataPesanan.length).keys()].map(async (i) =>
+                await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/admin/update-jumlah-pesanan', {
+                    method: 'PUT',
+                    body: JSON.stringify(datapesanan?.dataPesanan[i]),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': process.env.NEXT_PUBLIC_SECREET
+                    }
+                })
+            )
+
             data.status == 200 && handleSukses() || data.status == 500 && handleGagal()
         }
         catch (e) {
@@ -223,7 +240,7 @@ export default function DataPesanan({ data, take, skip }) {
                         </div>
                     </Link>
                     <div className={styles.nota}>
-                        <button disabled={isLoading} onClick={() => { HandleStatus(data?.nota_user) }}>
+                        <button disabled={isLoading} onClick={() => { HandleStatus(data?.nota_user, data) }}>
                             {isLoading ? 'Loading...' : !isLoadingGagal && 'Update Status'}
                             {isLoadingGagal && 'gagal! ( Update Ulang)'}
                         </button>

@@ -14,7 +14,7 @@ export default function Payment() {
             seIsLoading(false)
             snapEmbed(token, 'snap-container')
             localStorage.removeItem("tokenpayment")
-        }, 2000)
+        }, 3000)
     }
 
     return (

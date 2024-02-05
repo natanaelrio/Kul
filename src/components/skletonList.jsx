@@ -4,8 +4,12 @@ export default function SkletonList() {
     return (
         <>
             <div className={styles.countainer}>
-                <div className={styles.judulatas}>
-                    <Skeleton style={{ width: '150px' }} />
+                <div className={styles.countaineratas}>
+                    <div className={styles.judulatas}>
+                        <Skeleton style={{ width: '150px' }} />
+                    </div>
+                    <div>
+                    </div>
                 </div>
             </div>
             <div className={styles.countainer}>
