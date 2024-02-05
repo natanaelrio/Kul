@@ -5,12 +5,22 @@
 }
 
 /* JUDUL ATAS */
-.judulatas {
+
+.countaineratas {
     width: 1100px;
-    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-bottom: -20px;
+    border-bottom: 1px solid var(--color-hr);
+    white-space: nowrap;
+}
+
+.judulatas {
     color: var(--color-sekunder);
     font-size: 0.9rem;
-    margin-bottom: -30px;
+    font-weight: 700;
 }
 
 /* LIST PRODUK */
@@ -192,7 +202,7 @@
     position: absolute;
     width: 1100px;
     height: 1px;
-    background-color: var(--color-sekunder);
+    background-color: var(--color-hr);
     top: 50%;
     bottom: 50%;
 }
@@ -203,12 +213,12 @@
     background-color: var(--color-white);
     color: var(--color-sekunder);
     cursor: pointer;
-    border-radius: 18px;
+    border-radius: 12px;
     font-size: 0.6rem;
     width: fit-content;
     z-index: 1;
     font-weight: 500;
-    border: 1px solid var(--color-sekunder);
+    border: 1px solid var(--color-hr);
     display: flex;
     align-items: center;
 }
@@ -221,7 +231,9 @@
 
 
 @media only screen and (max-width: 1100px) {
-    .judulatas {
+
+
+    .countaineratas {
         width: 95vw;
     }
 
@@ -238,8 +250,8 @@
 @media only screen and (max-width: 768px) {
 
     /* JUDUL ATAS */
-    .judulatas {
-        width: 90vw;
+    .countaineratas {
+        width: 95vw;
     }
 
     .countainer .garispagination {
@@ -277,7 +289,7 @@
 @media only screen and (max-width: 480px) {
 
     /* JUDUL ATAS */
-    .judulatas {
+    .countaineratas {
         width: 90vw;
     }
 

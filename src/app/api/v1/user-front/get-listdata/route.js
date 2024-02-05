@@ -31,7 +31,11 @@ export async function GET(req) {
     const take = searchParams.get('take');
     const authorization = req.headers.get('authorization')
 
-    const informasi = await prisma.admin.findMany()
+    const informasi = await prisma.admin.findMany({
+        select: {
+            id: true
+        }
+    })
     const total_length = informasi.length
     const tambahan = {
         total_array: total_length,

@@ -2,12 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50px;
+    /* height: 50px; */
 }
 
 .fill {
     position: relative;
-    width: 1100px;
+    /* width: 1100px; */
 }
 
 
@@ -16,8 +16,8 @@
     align-items: center;
     justify-content: space-between;
     font-size: 0.6em;
-    font-weight: 700;
-    padding: 10px 15px;
+    /* font-weight: 700; */
+    padding: 7px 15px;
     background-color: var(--color-white);
     width: fit-content;
     color: var(--color-secondary);
@@ -29,7 +29,7 @@
 .fill .content {
     position: absolute;
     top: 50px;
-    right: auto;
+    right: 0;
     left: auto;
     margin: auto;
     width: 300px;
@@ -58,19 +58,19 @@
 
 
 @media only screen and (max-width: 768px) {
-    .fill {
+    /* .fill {
         width: 95vw
-    }
+    } */
 }
 
 @media only screen and (max-width: 480px) {
-    .fill {
+    /* .fill {
         width: 90vw
-    }
+    } */
 
-    .fill .content {
+    /* .fill .content {
         width: 90vw;
-    }
+    } */
 
     .tulisan {
         width: fit-content;

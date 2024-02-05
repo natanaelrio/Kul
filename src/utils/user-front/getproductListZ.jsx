@@ -17,8 +17,8 @@ export const useStoreListDataProduct = create((set) => ({
     },
 
     datasearch: {},
-    fetchdatasearch: async (e, sortby) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${e}&sortby=${sortby == null ? '' : sortby}`, {
+    fetchdatasearch: async (search) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${search}&take=5`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -30,8 +30,8 @@ export const useStoreListDataProduct = create((set) => ({
     },
 
     datasearchfilter: {},
-    fetchdatasearchfilter: async (e, sortby) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${e}&sortby=${sortby == null ? '' : sortby}`, {
+    fetchdatasearchfilter: async (search, sortby, take) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${search}&sortby=${sortby == null ? '' : sortby}&take=${take ? take : 5}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

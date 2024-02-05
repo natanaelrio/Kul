@@ -12,11 +12,11 @@ import SkletonList from '@/components/skletonList'
 import CustomLink from '@/lib/customLink'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
+import ListProductsearchFilter from '@/components/listProductsearchFilter'
 
-
-export default function ListProduk({ data, judul, fetchMain, fetchSearch, value, lengthdata }) {
+export default function ListProduk({ data, judul, fetchMain, fetchSearch, query, sortby, lengthdata }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
-    const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
+    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
 
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
     const loveZ = useStoreDataFront((state) => state.loveZ)
@@ -28,12 +28,12 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value,
 
     const HandleDeleteLove = (e) => {
         setTimeout(() => {
-            setDeleteLoveZ(e.id), fetchMain && fetchdatalist() || fetchSearch && fetchdatasearch(value)
+            setDeleteLoveZ(e.id), fetchMain && fetchdatalist() || fetchSearch && fetchdatasearchfilter(query)
         }, 500);
     }
 
     const HighlightText = (e) => {
-        const cek = new RegExp(value, 'gi')
+        const cek = new RegExp(query, 'gi')
         return e.replace(cek, match => `<span style='font-weight:700'>${match}</span>`)
     }
 
@@ -45,18 +45,25 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, value,
     const [isLoading, setIsLoading] = useState(false)
     const handleFetchPagination = () => {
         data?.length != data?.length + 1 && setIsLoading(true)
-        fetchdatalist(data?.length + 1)
+        fetchSearch && fetchdatasearchfilter(query, sortby, data?.length + 1) || fetchdatalist(data?.length + 1)
     }
 
     useEffect(() => {
         data?.length == data?.length + 1 == setIsLoading(false)
     }, [data?.length])
 
-
     return (
         <>
             {data && <div className={styles.countainer}>
-                <div className={styles.judulatas} dangerouslySetInnerHTML={{ __html: judul }}>
+                <div className={styles.countaineratas}>
+                    <div className={styles.judulatas} style={fetchSearch ? { fontSize: '0.7rem', fontWeight: '500' } : {}} dangerouslySetInnerHTML={{ __html: judul }}>
+                    </div>
+                    <div>
+                        {fetchSearch && <ListProductsearchFilter
+                            query={query}
+                            sortby={sortby}
+                        />}
+                    </div>
                 </div>
             </div>}
             {data ? null : <SkletonList />}
