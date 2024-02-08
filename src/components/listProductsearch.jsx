@@ -16,7 +16,7 @@ export default function ListProductsearch() {
     const datasearchfilter = useStoreListDataProduct((state) => state.datasearchfilter)
 
     useEffect(() => {
-        return () => fetchdatasearchfilter(query, sortby)
+       fetchdatasearchfilter(query, sortby)
     }, [query, sortby])
 
     return (

@@ -22,7 +22,7 @@ export default function List() {
     const dataAdminProduk = useStoreCRUDadmin((state) => state.dataAdminProduk)
 
     useEffect(() => {
-        return () => fetchDataAdminProduk()
+       fetchDataAdminProduk()
     }, [fetchDataAdminProduk])
 
     const HandleDetail = (e) => {

@@ -33,7 +33,7 @@ export default function Pesanan() {
     const setSkipPesanan = useStoreCRUDadmin((state) => state.setSkipPesanan)
 
     useEffect(() => {
-        return () => fetchdatalistpesanan(take, skip)
+       fetchdatalistpesanan(take, skip)
     }, [fetchdatalistpesanan])
 
     const omset = datalistpesanan?.total_omset

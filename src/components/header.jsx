@@ -70,7 +70,7 @@ export default function Header({ kondisiFalseSearch }) {
 
     useEffect(() => {
         // Jika Value Kosong
-        return () => !value.length ?
+       !value.length ?
             kondisiFalseSearch && setKlikcari(false) || setBorder(false)
             //  || fetchdatasearch(searchTerm)
             : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
