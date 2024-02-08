@@ -184,10 +184,12 @@ export default function FormPembelian({ dataFormLangsung }) {
         <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
             {isLoadingPayment &&
                 <div className={styles.loadingpayment}>
+                    <div className={styles.textalertatas}>Jika Error, silahkan ulang!!</div>
                     <div className={styles.gambar}>
-                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} alt={'loadinggeneratepayment'}width={150} height={150}></Image>
+                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} alt={'loadinggeneratepayment'} width={150} height={150}></Image>
                     </div>
                     <div className={styles.text}>Generate Payment</div>
+                    <div className={styles.textalertbawah}>Jika Error, silahkan ulang!!</div>
                 </div>
             }
 

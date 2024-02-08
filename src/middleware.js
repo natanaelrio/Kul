@@ -1,11 +1,19 @@
 import { NextResponse } from "next/server"
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request) {
 
-  if (request.nextUrl.pathname.startsWith('/product')) {
+  if (request.nextUrl.pathname.startsWith('/')) {
+    const transaction_status = request.nextUrl.searchParams.get('transaction_status')
+    const status_code = request.nextUrl.searchParams.get('status_code')
+    const order_id = request.nextUrl.searchParams.get('order_id')
+    if (transaction_status == 'settlement' && status_code == 200) {
+      return NextResponse.redirect(new URL(`/nota/${order_id}`, request.url))
+    }
+  }
 
+  if (request.nextUrl.pathname.startsWith('/product')) {
     const slug = request.nextUrl.pathname.split('/').slice(-1).toString()
+
     // GET
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-viewproduct?id=${slug}`, {

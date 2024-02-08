@@ -21,9 +21,9 @@ export async function POST(req) {
             "order_id": order_id,
             "gross_amount": item_details.map((data) => data.price * data.quantity).reduce((acc, curr) => acc + curr, 0)
         },
-        "callbacks": {
-            "finish": `${process.env.NEXT_PUBLIC_URL}/nota/` + `${order_id}`
-        }
+        // "callbacks": {
+        //     "finish": `${process.env.NEXT_PUBLIC_URL}/nota/` + `${order_id}`
+        // }
     }
 
     const token = await snap.createTransactionToken(parameter)

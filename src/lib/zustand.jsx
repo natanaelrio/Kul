@@ -9,6 +9,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openFormPending: false,
+    setOpenFormPending: () => {
+        set((state) => ({
+            openFormPending: !state.openFormPending
+        })
+        )
+    },
 
     openLove: false,
     setOpenLove: () => {

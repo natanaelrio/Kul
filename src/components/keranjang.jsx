@@ -3,6 +3,7 @@ import styles from '@/components/keranjang.module.css'
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
 import { Suspense, useState } from 'react';
+import { useSearchParams } from 'next/navigation'
 import { MdDelete } from "react-icons/md";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -12,14 +13,20 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import KeranjangTotal from '@/components/keranjangtotal';
 import FormPembelian from '@/components/formPembelian';
 import CustomBack from '@/lib/customBack';
+import PaymentErrorPending from '@/components/paymenterrorpending';
 
 export default function Keranjang() {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
+    const openFormPending = useStore((state) => state.openFormPending)
+
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const setDeleteKeranjangZ = useStoreDataFront((state) => state.setDeleteKeranjangZ)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
+
+    const searchParams = useSearchParams()
+    const transaction_status = searchParams.get('transaction_status')
 
     const totalBarang = keranjangZ.map((data) => (data.harga_total_barang - ((data.harga_total_barang * data.diskon_barang) / 100))).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
@@ -158,6 +165,7 @@ export default function Keranjang() {
                         </>}
                 </div>
             </div>
+            {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />}
             {openFormPembelian &&
                 <FormPembelian dataFormLangsung={dataFormKeranjang} />}
         </>

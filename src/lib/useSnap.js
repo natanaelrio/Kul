@@ -23,11 +23,11 @@ const useSnap = () => {
         }
     }, [])
 
-    const snapEmbed = (snap_token, embedId, action) => {
+    const snapEmbed = (snap_token, embedId, order_id, action) => {
         if (snap) {
             snap.embed(snap_token, {
                 embedId,
-                // onSuccess: function (result) { console.log('success'); console.log(result); },
+                // onSuccess: function (result) { router.push(`${process.env.NEXT_PUBLIC_URL}/nota/` + `${order_id}`) },
                 // onPending: function (result) { router.push('/errorpayment') },
                 // onError: function (result) { console.log('error'); console.log(result); },
                 // onClose: function () { console.log('customer closed the popup without finishing the payment'); }

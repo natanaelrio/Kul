@@ -3,6 +3,7 @@ import styles from '@/components/produk.module.css'
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
@@ -12,11 +13,17 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import FormPembelian from '@/components/formPembelian';
 import ProdukHarga from '@/components/produkHarga';
+import PaymentErrorPending from '@/components/paymenterrorpending';
 
 export default function Produk(props) {
     const data = props.data?.data
+
+    const searchParams = useSearchParams()
+    const transaction_status = searchParams.get('transaction_status')
+
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
+    const openFormPending = useStore((state) => state.openFormPending)
 
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
@@ -221,6 +228,7 @@ export default function Produk(props) {
                     </div>
                 </div >
             </div >
+            {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />}
             {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}
         </>
     )
