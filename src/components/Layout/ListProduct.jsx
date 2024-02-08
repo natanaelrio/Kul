@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import styles from '@/components/Layout/ListProduct.module.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { FaStar } from "react-icons/fa6";
@@ -59,10 +59,14 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                     <div className={styles.judulatas} style={fetchSearch ? { fontSize: '0.7rem', fontWeight: '500' } : {}} dangerouslySetInnerHTML={{ __html: judul }}>
                     </div>
                     <div>
-                        {fetchSearch && <ListProductsearchFilter
-                            query={query}
-                            sortby={sortby}
-                        />}
+                        {fetchSearch &&
+                            <Suspense fallback={<span style={{ fontSize: '0.6rem' }}>Loading....</span>}>
+                                <ListProductsearchFilter
+                                    query={query}
+                                    sortby={sortby}
+                                />
+                            </Suspense>
+                        }
                     </div>
                 </div>
             </div>}

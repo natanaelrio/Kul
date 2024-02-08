@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma"
 export async function AmbilDataUsers(cari, sortby, take) {
     const kondisiSortBy = sortby == 'price_high_to_low' || sortby == 'price_low_to_high'
     const data = await prisma.admin.findMany({
-        take: take ? Number(take) : 5,
+        take: take ? Number(take) : 0,
         select: {
             id: true,
             nama_barang: true,

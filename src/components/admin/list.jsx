@@ -22,7 +22,7 @@ export default function List() {
     const dataAdminProduk = useStoreCRUDadmin((state) => state.dataAdminProduk)
 
     useEffect(() => {
-        fetchDataAdminProduk()
+        return () => fetchDataAdminProduk()
     }, [fetchDataAdminProduk])
 
     const HandleDetail = (e) => {
@@ -62,9 +62,9 @@ export default function List() {
             }
             setIsLoading(false)
         }
-        valueCari == '' && fetchDataAdminProduk()
         searchHN()
-    }, [debouncedSearchTerm]);
+        // valueCari == '' && fetchDataAdminProduk()
+    }, [debouncedSearchTerm, valueCari]);
 
     return (
         <>

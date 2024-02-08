@@ -10,15 +10,14 @@ export default function ListProductsearch() {
     const searchParams = useSearchParams()
     const query = searchParams.get('query')
     const sortby = searchParams.get('sortby')
-
     const openFilter = useStore((state) => state.openFilter)
 
     const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
     const datasearchfilter = useStoreListDataProduct((state) => state.datasearchfilter)
 
     useEffect(() => {
-        fetchdatasearchfilter(query, sortby)
-    }, [fetchdatasearchfilter])
+        return () => fetchdatasearchfilter(query, sortby)
+    }, [query, sortby])
 
     return (
         <>

@@ -1,24 +1,17 @@
 import styles from '@/components/listProductsearchFilter.module.css'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useStore } from '@/lib/zustand'
 import { FaSortNumericDownAlt } from "react-icons/fa";
 import { FaSortNumericUp } from "react-icons/fa";
 import { FaSort } from "react-icons/fa";
 import { HiRefresh } from "react-icons/hi";
 
-export default function ListProductsearchFilter({ query, sortby }) {
+export default async function ListProductsearchFilter({ query, sortby }) {
     const router = useRouter()
 
     const setOpenFilter = useStore((state) => state.setOpenFilter)
     const openFilter = useStore((state) => state.openFilter)
-    const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
-
-    useEffect(() => {
-        fetchdatasearchfilter(query, sortby)
-    }, [fetchdatasearchfilter, query, sortby])
-
+ 
     return (
         <div className={styles.container}>
             <div className={styles.fill}>

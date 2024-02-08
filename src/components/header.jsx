@@ -60,7 +60,7 @@ export default function Header({ kondisiFalseSearch }) {
         setIsLoading(true);
         const searchHN = async () => {
             if (debouncedSearchTerm) {
-                fetchdatasearch(debouncedSearchTerm)
+                fetchdatasearch(debouncedSearchTerm, 5)
             }
         }
         searchHN()
@@ -70,16 +70,17 @@ export default function Header({ kondisiFalseSearch }) {
 
     useEffect(() => {
         // Jika Value Kosong
-        !value.length ?
-            kondisiFalseSearch && setKlikcari(false) || setBorder(false) || fetchdatasearch(searchTerm)
+        return () => !value.length ?
+            kondisiFalseSearch && setKlikcari(false) || setBorder(false)
+            //  || fetchdatasearch(searchTerm)
             : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
-    }, [value])
+    }, [searchTerm, kondisiFalseSearch])
 
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
-            setKlikcari(false)
-            setBorder(false)
+            // setKlikcari(false)
+            // setBorder(false)
             setSearchTerm('')
         }
     }
@@ -89,9 +90,9 @@ export default function Header({ kondisiFalseSearch }) {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <CustomLink href={'/'} className={styles.logogambar} aria-label={'logo'}>
+                <a href={'/'} className={styles.logogambar} aria-label={'logo'}>
                     <TbDiamond className={styles.logogambardalam} />
-                </CustomLink>
+                </a>
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
                         onClick={() => {

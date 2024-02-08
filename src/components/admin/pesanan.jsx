@@ -33,7 +33,7 @@ export default function Pesanan() {
     const setSkipPesanan = useStoreCRUDadmin((state) => state.setSkipPesanan)
 
     useEffect(() => {
-        fetchdatalistpesanan(take, skip)
+        return () => fetchdatalistpesanan(take, skip)
     }, [fetchdatalistpesanan])
 
     const omset = datalistpesanan?.total_omset
@@ -82,9 +82,9 @@ export default function Pesanan() {
     }, [debouncedSearchTerm]);
 
 
-    useEffect(() => {
-        iscari.length ? true : fetchdatalistpesanan(take, skip, '')
-    }, [iscari])
+    // useEffect(() => {
+    //     iscari.length ? true : fetchdatalistpesanan(take, skip, '')
+    // }, [iscari])
 
 
     // VALIDASI ERROR DAN BERHASIL
