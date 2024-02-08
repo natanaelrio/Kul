@@ -8,7 +8,7 @@ export default function ListProductMain() {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
 
     useEffect(() => {
-        return () => fetchdatalist()
+       fetchdatalist()
     }, [fetchdatalist])
 
     return (
