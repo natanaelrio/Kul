@@ -27,6 +27,10 @@ const useSnap = () => {
         if (snap) {
             snap.embed(snap_token, {
                 embedId,
+                // onSuccess: function (result) { console.log('success'); console.log(result); },
+                // onPending: function (result) { router.push('/errorpayment') },
+                // onError: function (result) { console.log('error'); console.log(result); },
+                // onClose: function () { console.log('customer closed the popup without finishing the payment'); }
             })
         }
         if (!snap_token) router.push('/')
