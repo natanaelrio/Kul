@@ -17,7 +17,7 @@ export async function AmbilDataUsers(nota_user) {
 export async function POST(req) {
     const { order_id, status_code, gross_amount, signature_key } = await req.json()
     const sh512 = sha512(order_id + status_code + gross_amount + process.env.SERVER_MIDSTRANS)
-    if (sh512 && signature_key) {
+    if (sh512 && signature_key && status_code == 200) {
         const data = await AmbilDataUsers(order_id)
         return data
     }
