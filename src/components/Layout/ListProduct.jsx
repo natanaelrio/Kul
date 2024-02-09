@@ -85,16 +85,19 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                             })
                             return (
                                 <div key={i} className={styles.produk}>
-                                    <div className={styles.gambar}>
-                                        <CustomLink href={`/products/${data?.slug_barang}`} >
-                                            <Image
-                                                src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
-                                                width={200}
-                                                height={200}
-                                                alt={data?.nama_barang}
-                                            />
-                                        </CustomLink>
-                                        <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                    <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                    <div className={styles.gambarluar}>
+                                        <div className={styles.gambar}>
+                                            <CustomLink href={`/products/${data?.slug_barang}`} >
+                                                <Image
+                                                    src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
+                                                    width={200}
+                                                    height={200}
+                                                    alt={data?.nama_barang}
+                                                />
+                                            </CustomLink>
+
+                                        </div>
                                         <div className={styles.love}>
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                 <div className={styles.bgicon}

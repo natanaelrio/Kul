@@ -70,7 +70,7 @@ export default function Header({ kondisiFalseSearch }) {
 
     useEffect(() => {
         // Jika Value Kosong
-       !value.length ?
+        !value.length ?
             kondisiFalseSearch && setKlikcari(false) || setBorder(false)
             //  || fetchdatasearch(searchTerm)
             : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
@@ -135,7 +135,7 @@ export default function Header({ kondisiFalseSearch }) {
                         </div>
                     </div>
                     <div className={kondisiKeranjang ? styles.animasi : null}>
-                        <CustomLink href={'/cart'}>
+                        <CustomLink href={'/cart'} arialabel={'cart'}>
                             <div className={styles.icon}>
                                 {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
                                 <LuShoppingCart />
