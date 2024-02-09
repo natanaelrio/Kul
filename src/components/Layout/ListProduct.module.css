@@ -41,7 +41,6 @@
     display: flex;
     flex-direction: column;
     font-size: 0.6rem;
-    position: relative;
 }
 
 .produk {
@@ -52,17 +51,11 @@
     box-shadow: 0 1px 20px #0000001a, 0 1px 20px #0000000f;
 }
 
-.produk .gambarluar {
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-
 .produk .gambar {
     max-height: 180px;
     border-radius: 12px 12px 0 0;
     overflow: hidden;
-    width: 212px;
+    position: relative;
 }
 
 .produk .diskon {
@@ -77,7 +70,6 @@
     padding: 3px;
     border-radius: 5px;
     font-size: 0.6rem;
-    z-index: 1;
 }
 
 
@@ -135,7 +127,7 @@
 .produk .gambar img {
     border-radius: 12px 12px 0 0;
     max-height: 180px;
-    /* max-width: 100%; */
+    max-width: 100%;
     background-position: center;
     object-position: center;
 }
@@ -146,7 +138,6 @@
 }
 
 .produk .tengah {
-    /* width: max-content; */
     padding: 7px;
     color: var(--color-sekunder-listproduk);
 }
@@ -324,8 +315,7 @@
     }
 
     .produk .gambar {
-        /* max-width: 100%; */
-        width: 191px;
+        max-width: 100%;
     }
 
     .produk .love .bgicon {
@@ -335,5 +325,4 @@
     .produk .love .logo {
         font-size: 1.2rem;
     }
-
 }
