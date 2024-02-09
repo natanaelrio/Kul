@@ -8,6 +8,15 @@ import { GetListProduct } from '@/utils/user-front/getListProduct'
 import SkletonList from '@/components/skletonList'
 import SkletonProdukID from '@/components/skletonProdukID'
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
+
 export async function generateMetadata({ params }) {
 
   const dataID = await GetListProductID(params.uid)

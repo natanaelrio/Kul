@@ -2,6 +2,15 @@ import { getListNotaID } from '@/utils/user-front/getListNotaID'
 import { notFound } from 'next/navigation'
 import Nota from '@/components/nota'
 
+export const viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    // Also supported by less commonly used
+    // interactiveWidget: 'resizes-visual',
+  }
+
 export const metadata = {
     title: 'Nota',
     description: 'Nota',

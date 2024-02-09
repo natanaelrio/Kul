@@ -72,7 +72,7 @@
 .nav .pencarian .input input:focus {
     background-color: var(--color-white);
     color: var(--color-sekunder);
-    outline: none; 
+    outline: none;
     border: 3px solid var(--color-grey);
 }
 
@@ -120,7 +120,7 @@
 
 .pilihan .animasi {
     animation: Shake 0.5s;
-   
+
 }
 
 
@@ -155,8 +155,8 @@
     font-weight: 500;
     position: absolute;
     font-size: 14px;
-    border-radius: 50%;
-    padding: 1px 5px;
+    border-radius: 18px;
+    padding: 1px 7px;
     top: 0;
     right: 0;
     background-color: var(--color-high);

@@ -9,7 +9,7 @@ let snap = new midtransClient.Snap({
 
 export async function POST(req) {
     const authorization = req.headers.get('authorization')
-    const { order_id, item_details } = await req.json()
+    const { order_id, first_name, phone, item_details } = await req.json()
     let parameter = {
         "item_details": item_details.map((data) => ({
             "id": data.id,
@@ -21,6 +21,10 @@ export async function POST(req) {
             "order_id": order_id,
             "gross_amount": item_details.map((data) => data.price * data.quantity).reduce((acc, curr) => acc + curr, 0)
         },
+        "customer_details": {
+            "first_name": first_name,
+            "phone": phone
+        }
         // "callbacks": {
         //     "finish": `${process.env.NEXT_PUBLIC_URL}/nota/` + `${order_id}`
         // }

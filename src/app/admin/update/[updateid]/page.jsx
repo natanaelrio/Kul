@@ -2,6 +2,15 @@ import Header from '@/components/admin/layout/header';
 import { GetListDataID } from "@/utils/admin/getListDataID";
 import FormPage from '@/components/admin/layout/formPage';
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported by less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
+
 export function generateMetadata({ params }) {
   // read route params
   const id = params.updateid

@@ -110,6 +110,8 @@ export default function FormPembelian({ dataFormLangsung }) {
             //DATA POST PAYMENT
             const transaction_details = {
                 order_id: id,
+                first_name: values.nama_lengkap_user,
+                phone: values.no_hp_user,
             }
             const item_details = dataFormLangsung.map((data) =>
             ({
