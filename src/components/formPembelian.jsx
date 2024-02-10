@@ -8,7 +8,7 @@ import styles from '@/components/formPembelian.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import { useStoreFormUsers } from '@/utils/user-front/formZ'
-import { uidRio } from '@/lib/uidRio';
+import uidRio from '@/lib/uidRio';
 import { FaUser } from "react-icons/fa";
 import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";

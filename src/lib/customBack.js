@@ -1,10 +1,12 @@
 'use client'
-import Link from 'next/link'
 import { useEffect } from 'react'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
+import { useRouter } from 'next/navigation'
 
-export default function CustomLink({ href, arialabel, children }) {
+const CustomBack = ({ children }) => {
+    const router = useRouter()
+
     useEffect(() => {
         return () => {
             NProgress.done().configure({ showSpinner: false, minimum: 0.7, easing: 'ease', speed: 1000 })
@@ -12,9 +14,11 @@ export default function CustomLink({ href, arialabel, children }) {
     }, [])
     return (
         <>
-            <Link href={href} aria-label={arialabel ? arialabel : 'no-label'} onClick={() => NProgress.configure({ showSpinner: false }).start()}>
+            <div onClick={() => { NProgress.configure({ showSpinner: false }).start(), router.back() }}>
                 {children}
-            </Link>
+            </div>
         </>
     )
 }
+
+export default CustomBack;

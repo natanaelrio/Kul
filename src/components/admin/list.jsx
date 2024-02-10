@@ -46,7 +46,6 @@ export default function List() {
     }
     valueDelete.status === undefined || valueDelete.status == 200 && Berhasil() || valueDelete.status == 500 && Gagal()
 
-
     // PENCARIAN
     const [valueCari, setValueCari] = useState('')
     const [isLoading, setIsLoading] = useState(false)

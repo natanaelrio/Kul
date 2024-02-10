@@ -9,7 +9,7 @@
 }
 
 .judul {
-    font-size: 30px;
+    font-size: 1.2rem;
     font-weight: 700;
     text-align: center;
 }
@@ -36,12 +36,15 @@
 
 .login input {
     color: var(--color-primary);
-    ;
 }
 
 
 .login .username {
     margin: 10px 0
+}
+
+.login label {
+    font-size: 0.7rem;
 }
 
 .login .username label {
@@ -50,11 +53,10 @@
 
 .login .username input {
     width: 100%;
-    margin-top: 10px;
 }
 
 .login .password {
-    margin: 10px 0
+    margin: 10px 0 20px 0
 }
 
 .login .password label {
@@ -63,7 +65,6 @@
 
 .login .password input {
     width: 100%;
-    margin-top: 10px;
 }
 
 
@@ -86,6 +87,7 @@
     cursor: pointer;
     border-radius: 7px;
     font-weight: 700;
+    font-size: 0.8rem;
 }
 
 
@@ -99,7 +101,29 @@
     top: 20px;
     left: 20px;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 1.2rem;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    width: 100vw;
+}
+
+.dalamloading {
+    background-color: var(--color-primary);
+    padding: 10px 20px;
+    color: var(--color-white);
+    width: fit-content;
+    height: fit-content;
+}
+
+.salah {
+    font-size: 3rem;
+    color: var(--color-high);
+    text-align: center;
 }
 
 

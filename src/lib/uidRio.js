@@ -1,6 +1,6 @@
 import { uid } from 'uid';
 
-export function uidRio() {
+const uidRio = () => {
     const text = uid(22)
     const dataid = text.split('')
     dataid.splice(5, 1, '-')
@@ -10,3 +10,5 @@ export function uidRio() {
     const data = dataid.toString().split(',').join('')
     return data
 }
+
+export default uidRio;

@@ -64,7 +64,35 @@
 }
 
 .icon:hover {
-    color:var(--color-primary);
+    color: var(--color-primary);
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    width: 100vw;
+}
+
+.dalamloading {
+    background-color: var(--color-primary);
+    padding: 10px 20px;
+    color: var(--color-white);
+    width: fit-content;
+    height: fit-content;
+}
+
+.logout {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    cursor: pointer;
+}
+
+.logout:hover {
+    font-weight: 700;
+    color: var(--hover-color-primary);
 }
 
 @media only screen and (max-width: 1200px) {

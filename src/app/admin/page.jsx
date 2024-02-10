@@ -1,4 +1,5 @@
 import Login from '@/components/admin/login'
+import Auth from '@/lib/Auth'
 
 export const viewport = {
   width: 'device-width',
@@ -15,10 +16,9 @@ export const metadata = {
 }
 
 export default function LoginPage() {
-
   return (
-    <>
+    <Auth>
       <Login />
-    </>
+    </Auth>
   )
 }

@@ -6,6 +6,7 @@ const useSnap = () => {
     const router = useRouter()
     useEffect(() => {
         const snapScript = "https://app.sandbox.midtrans.com/snap/snap.js"
+        // Production https://app.midtrans.com/snap/snap.js
         const clientKey = process.env.NEXT_PUBLIC_SECREET_MIDSTRANS
         const script = document.createElement('script')
 

@@ -1,5 +1,6 @@
 import FormPage from '@/components/admin/layout/formPage';
 import Header from '@/components/admin/layout/header';
+import Auth from '@/lib/Auth'
 
 export const viewport = {
   width: 'device-width',
@@ -17,13 +18,15 @@ export const metadata = {
 
 export default function Post() {
   return (
-    <Header judul={'POST ADMIN'}>
-      <FormPage
-        urlFetch={'/api/v1/admin/post'}
-        method={'POST'}
-        change={' di Posting 😁'}
-        value={true}
-      />
-    </Header>
+    <Auth>
+      <Header judul={'POST ADMIN'}>
+        <FormPage
+          urlFetch={'/api/v1/admin/post'}
+          method={'POST'}
+          change={' di Posting 😁'}
+          value={true}
+        />
+      </Header>
+    </Auth>
   )
 }

@@ -1,7 +1,6 @@
 import ListProductMain from '@/components/listProductMain'
 import HeaderFooter from '@/components/Layout/headerFooter'
 import { Suspense } from 'react'
-import Introduction from '@/components/introduction'
 
 // import Todo from '@/components/todo'
 // import RouteLoader from '@/components/cek';
@@ -34,7 +33,6 @@ export default function Home() {
   return (
     <>
       <HeaderFooter kondisiFalseSearch={true}>
-        <Introduction />
         {/* <Todo /> */}
         <Suspense>
           <ListProductMain />

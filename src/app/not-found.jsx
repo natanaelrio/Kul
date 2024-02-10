@@ -8,7 +8,7 @@ export default function NotFound() {
     <HeaderFooter>
       <div className={styles.notfound}>
         <h2>Not Found Page</h2>
-        <CustomLink href="/">Return Home</CustomLink>
+        <CustomLink href={'/'}>Return Home</CustomLink>
       </div>
     </HeaderFooter>
   )

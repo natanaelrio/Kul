@@ -1,5 +1,6 @@
 import List from "@/components/admin/list"
 import Header from '@/components/admin/layout/header';
+import Auth from '@/lib/Auth'
 
 export const viewport = {
     width: 'device-width',
@@ -17,10 +18,10 @@ export const metadata = {
 
 export default async function Admin() {
     return (
-        <>
+        <Auth>
             <Header judul={'LIST PRODUK'}>
                 <List />
             </Header>
-        </>
+        </Auth>
     )
 }

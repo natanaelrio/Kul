@@ -12,6 +12,7 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useRouter } from 'next/navigation';
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useDebounce } from "@uidotdev/usehooks";
+import Introduction from '@/components/introduction'
 
 export default function Header({ kondisiFalseSearch }) {
     const router = useRouter()
@@ -87,6 +88,7 @@ export default function Header({ kondisiFalseSearch }) {
 
     return (
         <>
+            {kondisiFalseSearch && <Introduction />}
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
