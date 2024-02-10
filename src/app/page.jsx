@@ -32,7 +32,7 @@ export const metadata = {
 export default function Home() {
   return (
     <>
-      <HeaderFooter kondisiFalseSearch={true}>
+      <HeaderFooter kondisiFalseSearch={true} kondisiatas={true}>
         {/* <Todo /> */}
         <Suspense>
           <ListProductMain />

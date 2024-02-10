@@ -14,9 +14,8 @@ import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useDebounce } from "@uidotdev/usehooks";
 import Introduction from '@/components/introduction'
 
-export default function Header({ kondisiFalseSearch }) {
+export default function Header({ kondisiFalseSearch, kondisiatas }) {
     const router = useRouter()
-
     const setOpenLove = useStore((state) => state.setOpenLove)
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
@@ -88,7 +87,7 @@ export default function Header({ kondisiFalseSearch }) {
 
     return (
         <>
-            {kondisiFalseSearch && <Introduction />}
+            {kondisiatas && <Introduction />}
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >

@@ -56,12 +56,13 @@ export default function DetailList(props) {
         <>
             <BackLayang setOpen={setOpen} judul={'Detail Produk'} >
                 <div className={styles.relatif}>
-                    <div className={styles.slug}>{props.data?.slug_barang}</div>
+                    <Link target="_blank" href={`/products/${props.data?.slug_barang}`}>
+                        <div className={styles.slug}>{props.data?.slug_barang}</div>
+                    </Link>
                     <div className={styles.container} >
                         <div className={styles.kotak1}>
                             <div className={styles.gambar}>
                                 <div className={styles.gambardalam}>
-
                                     <Image
                                         src={props.data?.gambar_barang ? props.data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
                                         width={200}
@@ -77,9 +78,11 @@ export default function DetailList(props) {
                                 <div className={styles.judul}>
                                     Nama
                                 </div>
-                                <div className={styles.detail}>
-                                    {props.data?.nama_barang}
-                                </div>
+                                <Link target="_blank" href={`/products/${props.data?.slug_barang}`}>
+                                    <div className={styles.detail}>
+                                        {props.data?.nama_barang}
+                                    </div>
+                                </Link>
                             </div>
 
                             <div className={styles.containerdata}>
@@ -140,6 +143,14 @@ export default function DetailList(props) {
                             <br />
 
                             <div className={styles.dataperforma}>
+                                <div className={styles.containerdata}>
+                                    <div className={styles.judul}>
+                                        Link
+                                    </div>
+                                    <div className={styles.detail}>
+                                        {props.data?.link_barang}
+                                    </div>
+                                </div>
                                 <div className={styles.containerdata}>
                                     <div className={styles.judul}>
                                         Rating
