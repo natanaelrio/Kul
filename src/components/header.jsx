@@ -91,9 +91,9 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <CustomLink href={'/'} className={styles.logogambar} aria-label={'logo'}>
+                <a href={'/'} className={styles.logogambar} aria-label={'logo'}>
                     <TbDiamond className={styles.logogambardalam} />
-                </CustomLink>
+                </a>
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
                         onClick={() => {
@@ -136,12 +136,12 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                         </div>
                     </div>
                     <div className={kondisiKeranjang ? styles.animasi : null}>
-                        <CustomLink href={'/cart'} arialabel={'cart'}>
+                        <a href={'/cart'} aria-label={'cart'}>
                             <div className={styles.icon}>
                                 {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
                                 <LuShoppingCart />
                             </div>
-                        </CustomLink>
+                        </a>
                     </div>
 
                     <CustomLink href={'/admin'}>

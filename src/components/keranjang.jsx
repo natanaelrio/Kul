@@ -41,8 +41,6 @@ export default function Keranjang() {
             value > jumlahBarang ? null :
                 setdataKeranjangCountZ(id, value)
         }
-
-        console.log(data.value + 1)
     }
 
 
