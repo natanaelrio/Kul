@@ -91,9 +91,9 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <a href={'/'} className={styles.logogambar} aria-label={'logo'}>
+                <CustomLink href={'/'} className={styles.logogambar} aria-label={'logo'}>
                     <TbDiamond className={styles.logogambardalam} />
-                </a>
+                </CustomLink>
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
                         onClick={() => {

@@ -41,10 +41,13 @@
     padding: 1dvh 15px 15px 1dvh;
     font-size: 0.7rem;
     position: sticky;
-    top: 90dvh;
+    top: 89dvh;
     bottom: 0;
     background-color: var(--color-white);
-    z-index: 1
+    z-index: 1;
+    border-radius: 12px;
+    /* margin: 10px; */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
 }
 
 .total .harga {
@@ -289,7 +292,7 @@
         padding: 0 10px 10px 10px;
     }
 
-    .total {
+    /* .total {
         top: 92dvh;
-    }
+    } */
 }
