@@ -13,7 +13,14 @@ const CustomLink = ({ href, arialabel, children }) => {
         }
     }, [])
 
-    if (pathname == pathname)
+    if (pathname == '/cart')
+        return (
+            <a href={href} aria-label={arialabel ? arialabel : 'no-label'} onClick={() => NProgress.configure({ showSpinner: false }).start()}>
+                {children}
+            </a>
+        )
+
+    if (pathname == '/')
         return (
             <a href={href} aria-label={arialabel ? arialabel : 'no-label'} onClick={() => NProgress.configure({ showSpinner: false }).start()}>
                 {children}
