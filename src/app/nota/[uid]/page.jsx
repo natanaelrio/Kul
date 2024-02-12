@@ -1,4 +1,5 @@
-import { getListNotaID } from '@/utils/user-front/getListNotaID'
+import { getListNotaIDValidasi } from '@/utils/user-front/getListNotaIDValidasi'
+import { getNota } from '@/utils/user-front/getNota'
 import { notFound } from 'next/navigation'
 import Nota from '@/components/nota'
 
@@ -9,7 +10,7 @@ export const viewport = {
     // userScalable: false,
     // Also supported by less commonly used
     // interactiveWidget: 'resizes-visual',
-  }
+}
 
 export const metadata = {
     title: 'Nota',
@@ -17,13 +18,14 @@ export const metadata = {
 }
 
 export default async function PageNota({ params }) {
-    const dataID = await getListNotaID(params.uid)
+    const dataID = await getListNotaIDValidasi(params.uid)
+    const dataNota = await getNota(params.uid)
     dataID.status == 500 && notFound()
     dataID.data.payment == false && notFound()
 
     return (
         <div>
-            <Nota id={params.uid} />
+            <Nota dataNota={dataNota} />
         </div>
     )
 }

@@ -47,8 +47,8 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
     const [klikcari, setKlikcari] = useState(false)
     const [border, setBorder] = useState(false)
     const [searchTerm, setSearchTerm] = useState('');
+    const [value, setValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [value, setValue] = useState('')
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
 
     const handleChange = (e) => {
@@ -60,17 +60,18 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
         setIsLoading(true);
         const searchHN = async () => {
             if (debouncedSearchTerm) {
-                fetchdatasearch(debouncedSearchTerm, 5)
+                fetchdatasearch(debouncedSearchTerm, searchTerm?.length ? 3 : 0)
+                setIsLoading(false);
             }
         }
         searchHN()
-        setIsLoading(false);
-    }, [debouncedSearchTerm]);
+    }, [debouncedSearchTerm, searchTerm])
+
     const results = datasearch?.data
 
     useEffect(() => {
         // Jika Value Kosong
-        !value.length ?
+        !searchTerm.length ?
             kondisiFalseSearch && setKlikcari(false) || setBorder(false)
             //  || fetchdatasearch(searchTerm)
             : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
@@ -119,11 +120,12 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                             </div>
                         </div>
                     </div>
-                    {kondisiFalseSearch && !results?.length && value.length ? <div className={styles.skletoncontainer}>
+                    {kondisiFalseSearch && searchTerm.length && isLoading ? <div className={styles.skletoncontainer}>
                         <SkletonSearch />
-                    </div> : kondisiFalseSearch && Boolean(value.length) && <Pencariannew
+                    </div> : kondisiFalseSearch && Boolean(searchTerm.length) && <Pencariannew
                         data={results}
-                        value={value}
+                        value={searchTerm}
+                        totalarray={datasearch.total_array}
                     />}
 
 
@@ -153,7 +155,7 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
             </nav >
             {klikcari ? <div className={styles.hilangkan} onClick={() => {
                 setKlikcari(false),
-                    setValue(''),
+                    setSearchTerm(''),
                     setBorder(false)
             }
             }></div>

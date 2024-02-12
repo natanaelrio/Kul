@@ -1,0 +1,190 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+.isi {
+    width: 700px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 0.5rem;
+    color: var(--color-sekunder);
+    position: relative;
+}
+
+
+.tulisanlunas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    opacity: 0.2;
+    color: var(--color-white);
+}
+
+.textlunas {
+    width: fit-content;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 10px 50px;
+    font-size: 3rem;
+    font-weight: 700;
+    rotate: -30deg;
+    border-radius: 12px;
+}
+
+
+.isi hr {
+    margin: 10px 0;
+}
+
+.title {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.notaid {
+    text-align: right;
+}
+
+.atas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.6rem;
+}
+
+.penjual {
+    width: 40%;
+}
+
+.infopembeli {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.pembeli {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.detailluar {
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.detailluar .title2 {
+    font-weight: 300 !important;
+    width: 40%;
+    white-space: nowrap;
+}
+
+.detailluar .detail {
+    width: 60%;
+}
+
+/* INFO PRODUK */
+.infoproduk {
+    display: flex;
+    width: 100%;
+    font-weight: 700;
+}
+
+
+.infoproduk .barang {
+    width: 40%;
+    padding: 10px 0;
+}
+
+.infoproduk .jumlah {
+    padding: 10px 0;
+    width: 20%;
+    font-weight: 400;
+    text-align: center;
+}
+
+.infoproduk .hargasatuan {
+    padding: 10px 0;
+    width: 20%;
+    font-weight: 400;
+    text-align: center;
+}
+
+.infoproduk .totalharga {
+    padding: 10px 0;
+    width: 20%;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* alert */
+.alert {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 300;
+}
+
+.alert .date {
+    font-style: italic;
+}
+
+/* DOWNLOAD */
+.download {
+    color: var(--color-sekunder);
+    cursor: pointer;
+    padding: 10px 20px;
+    font-weight: 700;
+}
+
+.download:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+@media only screen and (max-width: 610px) {
+    .isi {
+        width: 100vw;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+
+    .isi {
+        width: 100vw;
+    }
+
+    .infoproduk .barang {
+        width: 30%;
+    }
+
+    .infoproduk .jumlah {
+        width: 10%;
+    }
+
+    .infoproduk .hargasatuan {
+        width: 30%;
+    }
+
+    .infoproduk .totalharga {
+        width: 30%;
+    }
+
+    .isi {
+        font-size: 0.4rem;
+    }
+
+}

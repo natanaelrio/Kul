@@ -14,6 +14,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { GrPowerReset } from "react-icons/gr";
 import { useStoreCRUDadmin } from '@/utils/admin/admin/crudDataAdmin'
 import moment from 'moment';
+import 'moment/locale/id'
 
 export default function Pesanan() {
     const searchParams = useSearchParams()
@@ -33,7 +34,7 @@ export default function Pesanan() {
     const setSkipPesanan = useStoreCRUDadmin((state) => state.setSkipPesanan)
 
     useEffect(() => {
-       fetchdatalistpesanan(take, skip)
+        fetchdatalistpesanan(take, skip)
     }, [fetchdatalistpesanan])
 
     const omset = datalistpesanan?.total_omset

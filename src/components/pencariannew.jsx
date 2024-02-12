@@ -2,10 +2,12 @@ import styles from "@/components/pencariannew.module.css"
 import Image from "next/image"
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import CustomLink from "@/lib/customLink";
+import { FaSearch } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
-export default function Pencariannew({ data, value }) {
+export default function Pencariannew({ data, value, totalarray }) {
     useLockBodyScroll()
-
+    const router = useRouter()
     const lengthResult = data?.length
     const HighlightText = (e) => {
         const cek = new RegExp(value, 'gi')
@@ -14,10 +16,11 @@ export default function Pencariannew({ data, value }) {
 
     return (
         <div className={styles.hasil}>
-            {data?.map((data, i) => {
+            {data?.length ? <div className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult}, dari {totalarray} data</div>
+                : <div className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>}
+            {data?.map((data) => {
                 return (
                     <>
-                        <div key={i} className={styles.result}>hasil pencarian <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>
                         <CustomLink href={`/products/${data.slug_barang}`} key={data.id}>
                             <div className={styles.list}>
                                 <div className={styles.gambar}>
@@ -43,6 +46,8 @@ export default function Pencariannew({ data, value }) {
                     </>
                 )
             })}
+            {Boolean(data?.length) &&
+                <div className={styles.carilebih} onClick={() => router.push(`/search?query=${value}`)}> <FaSearch size={17} />&nbsp;cari&nbsp;{totalarray} data, pencarian&nbsp; <span>{value}</span> </div>}
         </div>
     )
 }

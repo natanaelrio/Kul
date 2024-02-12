@@ -81,6 +81,25 @@
     color: var(--color-sekunder);
 }
 
+.carilebih {
+    text-align: center;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.carilebih:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transition: all ease 0.2s;
+    border-radius: 0 0 12px 12px;
+}
+
 @media only screen and (max-width: 768px) {
     .hasil {
         width: 100%;

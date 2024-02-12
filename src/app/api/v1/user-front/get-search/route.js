@@ -41,13 +41,19 @@ export async function GET(req) {
     const informasi = await prisma.admin.findMany({
         select: {
             id: true
+        },
+        where: {
+            nama_barang: {
+                contains: cari,
+                mode: 'insensitive'
+            },
         }
     })
     const total_length = informasi.length
     const tambahan = {
         total_array: total_length,
     }
-    
+
     const data = await AmbilDataUsers(cari, sortby, take)
     const res = await ResponseData(data, authorization, tambahan)
     return res
