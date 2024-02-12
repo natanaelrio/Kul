@@ -82,9 +82,9 @@ export default function Nota({ dataNota }) {
                         <div className={styles.totalharga} style={{ fontWeight: '700' }}>TOTALHARGA</div>
                     </div>
                     <hr></hr>
-                    {data?.dataPesanan.map((data) => {
+                    {data?.dataPesanan.map((data, i) => {
                         return (
-                            <div className={styles.infoproduk}>
+                            <div key={i} className={styles.infoproduk}>
                                 <div className={styles.barang}>{data?.nama_barang_user}</div>
                                 <div className={styles.jumlah}>{data?.jumlah_barang_user}</div>
                                 <div className={styles.hargasatuan}>{(data?.harga_barang_satuan).toLocaleString('id-ID', {
