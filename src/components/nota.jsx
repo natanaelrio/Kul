@@ -4,7 +4,7 @@ import moment from 'moment';
 import 'moment/locale/id'
 import jsPDF from 'jspdf';
 
-export default async function Nota({ dataNota }) {
+export default function Nota({ dataNota }) {
     const data = dataNota?.data
 
     const print = async (e) => {
