@@ -156,12 +156,13 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
             <div className={styles.containerform}>
                 {/* <div>{draftToHtml(convertToRaw(editorState.getCurrentContent()))}</div> */}
                 {/* {<div style={{ height: "80px", overflow: "auto" }}>{text}</div>} */}
-                <div style={{ margin: '10px 0' }}>Diskripsi</div>
+                {/* <div style={{ margin: '10px 0', fontSize: '0.7rem' }}>Diskripsi</div> */}
                 <Editor
                     editorState={editorState}
                     toolbarClassName="toolbarClassName"
                     wrapperClassName="wrapperClassName"
                     editorClassName="editorClassName"
+                    placeholder="Tulis Diskripsi..."
                     onEditorStateChange={onEditorStateChange}
                     mention={{
                         separator: " ",
