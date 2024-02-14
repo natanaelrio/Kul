@@ -24,16 +24,16 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
     const [matikan, setMatikan] = useState(false)
 
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    const [text, setText] = useState();
-    const onEditorStateChange = function (editorState) {
-        setEditorState(editorState);
-        const { blocks } = convertToRaw(editorState.getCurrentContent());
-        /*let text = blocks.reduce((acc, item) => {
-          acc = acc + item.text;
-          return acc;
-        }, "");*/
-        let text = editorState.getCurrentContent().getPlainText("\u0001");
-        setText(text);
+    // const [text, setText] = useState();
+    const onEditorStateChange = (editorState) => {
+        setEditorState(editorState)
+        // const { blocks } = convertToRaw(editorState.getCurrentContent());
+        // let text = blocks.reduce((acc, item) => {
+        //   acc = acc + item.text;
+        //   return acc;
+        // }, "");
+        // let text = editorState.getCurrentContent().getPlainText("\u0001");
+        // setText(text);
     };
 
     // VALIDASI ERROR DAN BERHASIL
