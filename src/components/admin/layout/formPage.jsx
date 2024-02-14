@@ -2,7 +2,7 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/components/admin/layout/formPage.module.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BarLoader from "react-spinners/BarLoader";
 import { BiSolidCategory } from "react-icons/bi";
 import { MdDriveFileRenameOutline } from "react-icons/md";
@@ -13,9 +13,29 @@ import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 import { FaLink } from "react-icons/fa";
 
-export default function FormPage({ urlFetch, method, data, change, value }) {
+import { ContentState, convertFromHTML, convertToRaw, EditorState } from "draft-js";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "draft-js/dist/Draft.css";
+import draftToHtml from "draftjs-to-html";
+
+export default function FormPage({ urlFetch, method, data, change, value, kondisi }) {
     const router = useRouter()
     const [matikan, setMatikan] = useState(false)
+
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [text, setText] = useState();
+    const onEditorStateChange = function (editorState) {
+        setEditorState(editorState);
+        const { blocks } = convertToRaw(editorState.getCurrentContent());
+        /*let text = blocks.reduce((acc, item) => {
+          acc = acc + item.text;
+          return acc;
+        }, "");*/
+        let text = editorState.getCurrentContent().getPlainText("\u0001");
+        setText(text);
+    };
+
     // VALIDASI ERROR DAN BERHASIL
     const Berhasil = () => {
         toast.success("Produk Berhasil " + `${change}`, {
@@ -29,6 +49,18 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
         })
     }
 
+
+    const edit = () => {
+        const blocksFromHTML = convertFromHTML(data?.diskripsi_barang)
+        const state = ContentState.createFromBlockArray(
+            blocksFromHTML.contentBlocks,
+            blocksFromHTML.entityMap,
+        )
+        setEditorState(EditorState.createWithContent(state))
+    }
+
+    useEffect(() => { kondisi && edit() }, [kondisi])
+
     const formik = useFormik({
         initialValues: {
             nama_barang: data ? data?.nama_barang : '',
@@ -37,7 +69,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
             diskon_barang: data ? data?.diskon_barang : '',
             rating_barang: data ? data?.rating_barang : '',
             total_penjualan_barang: data ? data?.total_penjualan_barang : '',
-            diskripsi_barang: data ? data?.diskripsi_barang : '',
+            // diskripsi_barang: data ? data?.diskripsi_barang : '',
             gambar_barang: data ? data?.gambar_barang : '',
             kupon_barang: data ? data?.kupon_barang : '',
             tag_barang: data ? data?.tag_barang : '',
@@ -66,9 +98,9 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
             total_penjualan_barang: Yup.number()
                 .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
-            diskripsi_barang: Yup.string()
-                .max(2000, 'harus 2000 karakter')
-                .required('require'),
+            // diskripsi_barang: Yup.string()
+            //     .max(2000, 'harus 2000 karakter')
+            //     .required('require'),
             kupon_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
@@ -79,13 +111,15 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                 .max(20000, 'harus 200 karakter')
                 .required('require'),
         }),
+
         onSubmit: async values => {
             setMatikan(true)
             // setGagal(false)
             const DataLain = {
                 end: null,
                 btoa: uuidv4(),
-                slug_barang: values.nama_barang.split(' ').join('-').toLowerCase()
+                slug_barang: values.nama_barang.split(' ').join('-').toLowerCase(),
+                diskripsi_barang: draftToHtml(convertToRaw(editorState.getCurrentContent()))
             }
 
             const DataUtama = values
@@ -116,9 +150,35 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
 
     });
 
+
     return (
         <>
             <div className={styles.containerform}>
+                {/* <div>{draftToHtml(convertToRaw(editorState.getCurrentContent()))}</div> */}
+                {/* {<div style={{ height: "80px", overflow: "auto" }}>{text}</div>} */}
+                <div style={{ margin: '10px 0' }}>Diskripsi</div>
+                <Editor
+                    editorState={editorState}
+                    toolbarClassName="toolbarClassName"
+                    wrapperClassName="wrapperClassName"
+                    editorClassName="editorClassName"
+                    onEditorStateChange={onEditorStateChange}
+                    mention={{
+                        separator: " ",
+                        trigger: "@",
+                        suggestions: [
+                            { text: "APPLE", value: "apple" },
+                            { text: "BANANA", value: "banana", url: "banana" },
+                            { text: "CHERRY", value: "cherry", url: "cherry" },
+                            { text: "DURIAN", value: "durian", url: "durian" },
+                            { text: "EGGFRUIT", value: "eggfruit", url: "eggfruit" },
+                            { text: "FIG", value: "fig", url: "fig" },
+                            { text: "GRAPEFRUIT", value: "grapefruit", url: "grapefruit" },
+                            { text: "HONEYDEW", value: "honeydew", url: "honeydew" }
+                        ]
+                    }} />
+
+
                 <form onSubmit={formik.handleSubmit} className={styles.form}>
                     <div className={styles.kotak1}>
                         <label htmlFor="nama_barang">Nama
@@ -234,7 +294,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                     </div>
 
                     <div className={styles.kotak2}>
-                        <label htmlFor="diskripsi_barang">Diskripsi
+                        {/* <label htmlFor="diskripsi_barang">Diskripsi
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
@@ -250,7 +310,7 @@ export default function FormPage({ urlFetch, method, data, change, value }) {
                                 placeholder='ex: terserah'
                                 style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
                             />
-                        </div>
+                        </div> */}
                         <label htmlFor="link_barang">Koneksi
                             {formik.touched.link_barang && formik.errors.link_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>

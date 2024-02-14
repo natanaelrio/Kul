@@ -32,6 +32,7 @@ export default async function Page({ params }) {
           data={getListDataID.data}
           change={' di Rubuah 😁'}
           value={false}
+          kondisi={true}
         />
       </Header>
     </Auth>
