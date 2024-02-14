@@ -15,16 +15,16 @@
 }
 
 .container {
-    padding: 15px;
+    padding: 15px 20px;
     /* height: 60dvh;
     overflow-y: scroll; */
     margin-bottom: 10dvh;
 }
 
 .judulatas {
-    padding: 15px;
+    padding: 15px 20px;
     font-weight: 700;
-    margin-top: -10dvh;
+    margin-top: -80px;
     display: flex;
     justify-content: space-between;
 }
@@ -38,7 +38,7 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    padding: 1dvh 15px 15px 1dvh;
+    padding: 1dvh 30px 30px 30px;
     font-size: 0.7rem;
     position: sticky;
     top: 89dvh;
@@ -290,6 +290,10 @@
 
     .list .detail {
         padding: 0 10px 10px 10px;
+    }
+
+    .container {
+        padding: 0 20px 20px 20px;
     }
 
     /* .total {

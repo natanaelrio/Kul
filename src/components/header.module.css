@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 10px 30px;
     background-color: var(--color-white);
     display: grid;
     grid-template-columns: 0.3fr 1fr 0.3fr;
@@ -21,6 +21,10 @@
     top: 0;
     z-index: 10;
 }
+
+/* .nav form {
+    width: 100%;
+} */
 
 .nav .logogambardalam {
     font-size: 2rem;
@@ -202,8 +206,8 @@
 
     /* NAVIGASI */
     .nav {
-        padding: 10px 20px;
-        gap: 5px;
+        padding: 10px 30px;
+        gap: 15px;
     }
 
     .nav .logogambar {
@@ -242,7 +246,7 @@
     /* NAVIGASI */
     .nav {
         grid-template-columns: 60px 1fr 1fr;
-        padding: 15px 5px 5px 5px;
+        padding: 20px 20px 0 20px;
         gap: 15px;
     }
 
@@ -257,7 +261,7 @@
 
 
     .nav .pencarian .dalampencarian {
-        width: 95%
+        width: 100%
     }
 
     .nav .pencarian .input {

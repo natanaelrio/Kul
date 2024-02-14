@@ -261,7 +261,7 @@
     /* LIST PRODUK */
     .listproduk {
         width: 100vw;
-        padding: 10px;
+        padding: 10px 30px;
     }
 
     .gridlist {
@@ -306,7 +306,7 @@
 
     .listproduk {
         width: 100vw;
-        padding: 10px;
+        padding: 10px 20px;
     }
 
     .produk {
