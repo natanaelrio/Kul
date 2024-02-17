@@ -22,7 +22,7 @@ const {
   defineDmmfProperty,
   Public,
   detectRuntime,
-} = require('./runtime/library')
+} = require('./runtime/library.js')
 
 
 const Prisma = {}
@@ -31,12 +31,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.8.1
- * Query Engine version: 78caf6feeaed953168c64e15a249c3e9a033ebe2
+ * Prisma Client JS version: 5.9.1
+ * Query Engine version: 23fdc5965b1e05fc54e5f26ed3de66776b93de64
  */
 Prisma.prismaVersion = {
-  client: "5.8.1",
-  engine: "78caf6feeaed953168c64e15a249c3e9a033ebe2"
+  client: "5.9.1",
+  engine: "23fdc5965b1e05fc54e5f26ed3de66776b93de64"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -206,16 +206,17 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.8.1",
-  "engineVersion": "78caf6feeaed953168c64e15a249c3e9a033ebe2",
+  "clientVersion": "5.9.1",
+  "engineVersion": "23fdc5965b1e05fc54e5f26ed3de66776b93de64",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -225,7 +226,8 @@ const config = {
     }
   },
   "inlineSchema": "Z2VuZXJhdG9yIGNsaWVudCB7CiAgcHJvdmlkZXIgICAgICAgID0gInByaXNtYS1jbGllbnQtanMiCiAgb3V0cHV0ICAgICAgICAgID0gIi4vZ2VuZXJhdGVkL2NsaWVudCIKICBwcmV2aWV3RmVhdHVyZXMgPSBbImZ1bGxUZXh0U2VhcmNoIl0KfQoKZGF0YXNvdXJjZSBkYiB7CiAgcHJvdmlkZXIgPSAicG9zdGdyZXNxbCIKICB1cmwgICAgICA9IGVudigiREFUQUJBU0VfVVJMIikKfQoKbW9kZWwgYWRtaW4gewogIGlkICAgICAgICAgICAgICAgICAgICAgSW50ICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgYnRvYSAgICAgICAgICAgICAgICAgICBTdHJpbmc/ICAgQHVuaXF1ZQogIHN0YXJ0ICAgICAgICAgICAgICAgICAgRGF0ZVRpbWUgIEBkZWZhdWx0KG5vdygpKQogIGVuZCAgICAgICAgICAgICAgICAgICAgRGF0ZVRpbWU/IEB1cGRhdGVkQXQKICBuYW1hX2JhcmFuZyAgICAgICAgICAgIFN0cmluZz8KICBrYXRlZ29yaV9iYXJhbmcgICAgICAgIFN0cmluZz8KICB0YWdfYmFyYW5nICAgICAgICAgICAgIFN0cmluZz8KICBoYXJnYV9iYXJhbmcgICAgICAgICAgIEludD8KICBkaXNrb25fYmFyYW5nICAgICAgICAgIEludD8KICByYXRpbmdfYmFyYW5nICAgICAgICAgIEludD8KICBqdW1sYWhfYmFyYW5nICAgICAgICAgIEludD8KICB0b3RhbF9wZW5qdWFsYW5fYmFyYW5nIEludD8KICBkaXNrcmlwc2lfYmFyYW5nICAgICAgIFN0cmluZz8KICBnYW1iYXJfYmFyYW5nICAgICAgICAgIFN0cmluZz8KICBzbHVnX2JhcmFuZyAgICAgICAgICAgIFN0cmluZz8gICBAdW5pcXVlCiAga3Vwb25fYmFyYW5nICAgICAgICAgICBTdHJpbmc/CiAgdmlld19iYXJhbmcgICAgICAgICAgICBJbnQ/CiAgbGlrZV9iYXJhbmcgICAgICAgICAgICBJbnQ/CiAgbGlua19iYXJhbmcgICAgICAgICAgICBTdHJpbmc/Cn0KCm1vZGVsIGZvcm1QZW1iZWxpYW4gewogIGlkICAgICAgICAgICAgICAgICAgSW50ICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpCiAgc3RhcnQgICAgICAgICAgICAgICBEYXRlVGltZSAgQGRlZmF1bHQobm93KCkpCiAgZW5kICAgICAgICAgICAgICAgICBEYXRlVGltZT8gQHVwZGF0ZWRBdAogIG5vdGFfdXNlciAgICAgICAgICAgU3RyaW5nPyAgIEB1bmlxdWUKICBuYW1hX2xlbmdrYXBfdXNlciAgIFN0cmluZz8KICBhbGFtYXRfbGVuZ2thcF91c2VyIFN0cmluZz8KICBrb2RlX3Bvc191c2VyICAgICAgIEludD8KICBub19ocF91c2VyICAgICAgICAgIEJpZ0ludD8KICBjYXRhdGFuX3VzZXIgICAgICAgIFN0cmluZz8KICBzdGF0dXNfcGVzYW5hbiAgICAgIFN0cmluZz8KICBkYXRhUGVzYW5hbiAgICAgICAgIEpzb24/CiAgcGF5bWVudCAgICAgICAgICAgICBCb29sZWFuICAgQGRlZmF1bHQoZmFsc2UpIAp9Cg==",
-  "inlineSchemaHash": "fe5ca6f523f17d2d0b6893f9480ab4407b00a3a1784d646514c9de6f8337d4bb"
+  "inlineSchemaHash": "fe5ca6f523f17d2d0b6893f9480ab4407b00a3a1784d646514c9de6f8337d4bb",
+  "noEngine": false
 }
 
 const fs = require('fs')
@@ -250,7 +252,7 @@ defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 config.getQueryEngineWasmModule = undefined
 
 
-const { warnEnvConflicts } = require('./runtime/library')
+const { warnEnvConflicts } = require('./runtime/library.js')
 
 warnEnvConflicts({
     rootEnvPath: config.relativeEnvPaths.rootEnvPath && path.resolve(config.dirname, config.relativeEnvPaths.rootEnvPath),

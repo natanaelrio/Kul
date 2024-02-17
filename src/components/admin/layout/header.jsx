@@ -103,5 +103,11 @@ export default function Header({ children, judul }) {
             </div>
         </div>
 
+    return <div className={styles.loading}>
+        <div className={styles.dalamloading}>
+            Loading....
+        </div>
+    </div>
+
     // return <p>Access Denied</p>
 }

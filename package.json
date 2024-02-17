@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build && prisma generate",
     "buildnet": "next build",
@@ -34,7 +35,6 @@
     "server-only": "^0.0.1",
     "uid": "^2.0.2",
     "uuid": "^9.0.1",
-    "yarn": "^1.22.21",
     "yup": "^1.3.2",
     "zustand": "^4.4.7"
   },

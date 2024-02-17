@@ -67,5 +67,11 @@ export default function Login() {
             </div>
         </div>
 
+    return <div className={styles.loading}>
+        <div className={styles.dalamloading}>
+            Loading....
+        </div>
+    </div>
+
     // return <p>Access Denied</p>
 }

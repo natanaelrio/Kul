@@ -13,6 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useDebounce } from "@uidotdev/usehooks";
 import Introduction from '@/components/introduction'
+import CustomLinkA from '@/lib/customLinkA';
 
 export default function Header({ kondisiFalseSearch, kondisiatas }) {
     const router = useRouter()
@@ -92,9 +93,9 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
-                <a href={'/'} className={styles.logogambar} aria-label={'logo'}>
+                <CustomLinkA href={'/'} className={styles.logogambar} aria-label={'logo'}>
                     <TbDiamond className={styles.logogambardalam} />
-                </a>
+                </CustomLinkA>
                 <div className={styles.pencarian} >
                     <div className={styles.dalampencarian}
                         onClick={() => {
@@ -138,12 +139,12 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                         </div>
                     </div>
                     <div className={kondisiKeranjang ? styles.animasi : null}>
-                        <a href={'/cart'} aria-label={'cart'}>
+                        <CustomLinkA href={'/cart'} aria-label={'cart'}>
                             <div className={styles.icon}>
                                 {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
                                 <LuShoppingCart />
                             </div>
-                        </a>
+                        </CustomLinkA>
                     </div>
 
                     <CustomLink href={'/admin'}>
