@@ -167,7 +167,7 @@
 
 @media only screen and (max-width: 768px) {
     .container {
-        width: 95vw;
+        width: 100%;
     }
 
     .tanggalinput {
@@ -204,7 +204,7 @@
 
 @media only screen and (max-width: 480px) {
     .container {
-        width: 95vw;
+        width: 100%;
     }
 
     .tanggalinput {
