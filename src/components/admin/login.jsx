@@ -23,9 +23,14 @@ export default function Login() {
         if (status == 'unauthenticated') setValidasi(true)
     }
     useEffect(() => {
-        if (status == 'authenticated') router.push('/admin/pesanan')
-    }, [status])
+        if (status == 'authenticated' && session?.user.role === "admin") router.push('/admin/pesanan')
 
+
+    }, [status, session])
+
+    if (session?.user.role === "user") {
+        return <p>You are an User, welcome!</p>
+    }
 
     if (status == 'unauthenticated')
         return (

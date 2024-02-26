@@ -108,7 +108,7 @@ export default function DataPesanan({ data, take, skip }) {
             const data = await res.json()
 
             // Tambah Total Penjualan
-            statusselesai.length == [] && [...Array(datapesanan?.dataPesanan.length).keys()].map(async (i) =>
+            statuskirim.length == [] && statusselesai.length == [] && [...Array(datapesanan?.dataPesanan.length).keys()].map(async (i) =>
                 await fetch(`${process.env.NEXT_PUBLIC_URL}` + '/api/v1/admin/update-jumlah-pesanan', {
                     method: 'PUT',
                     body: JSON.stringify(datapesanan?.dataPesanan[i]),
