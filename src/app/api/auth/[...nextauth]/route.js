@@ -31,7 +31,7 @@ const authOptions = {
                         role: 'admin'
                     }
                     , {
-                        email: 'user',
+                        email: 'user@user',
                         password: 'user',
                         role: 'user'
                     }]
