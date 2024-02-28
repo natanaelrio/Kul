@@ -40,34 +40,52 @@ export async function GET(req) {
     const status = searchParams.get('status')
     const authorization = req.headers.get('authorization')
 
-
     const informasi = await prisma.formPembelian.findMany({
         select: {
             dataPesanan: true,
             payment: true
         }
     })
-    // INFORMASI HARGA
-    const total_omset = informasi.map((data) => data.dataPesanan.map((data) => data.harga_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-    // INFORMASI TOTALBARANG
-    const total_barang = informasi.map((data) => data.dataPesanan.map((data) => data.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0)
 
     // INFORMASI PANJANG ARRAY
     const total_length = informasi.length
 
+    // DATA PENDDING
+    // INFORMASI HARGA
+    const total_omsetP = informasi.filter((data) => data.payment == false).map((data) => data.dataPesanan.map((data) => data.harga_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+    // INFORMASI TOTALBARANG
+    const total_barangP = informasi.filter((data) => data.payment == false).map((data) => data.dataPesanan.map((data) => data.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0)
+
     //INFORMASI LENGTH PAYMENT
-    const dataFalsePayment = informasi.filter((data) => data.payment == false).length
-    const dataTruePayment = informasi.filter((data) => data.payment == true).length
+    const dataFalsePaymentP = informasi.filter((data) => data.payment == false).length
+
+
+    // DATA SUKSES
+    // INFORMASI HARGA
+    const total_omsetS = informasi.filter((data) => data.payment == true).map((data) => data.dataPesanan.map((data) => data.harga_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+    // INFORMASI TOTALBARANG
+    const total_barangS = informasi.filter((data) => data.payment == true).map((data) => data.dataPesanan.map((data) => data.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)).reduce((acc, curr) => acc + curr, 0)
+
+    const dataTruePaymentS = informasi.filter((data) => data.payment == true).length
+
 
     const tambahan = {
-        total_omset: total_omset,
-        total_terjual: total_barang,
         total_array: total_length,
-        dataFalsePayment: dataFalsePayment,
-        dataTruePayment: dataTruePayment,
+
+        total_omsetP: total_omsetP,
+        total_barangP: total_barangP,
+        dataFalsePaymentP: dataFalsePaymentP,
+        
+        total_omsetS: total_omsetS,
+        total_barangS: total_barangS,
+        dataTruePaymentS: dataTruePaymentS,
+
         take_array: Number(take) || 10,
         skip_array: Number(skip) || 0,
     }

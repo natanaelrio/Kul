@@ -24,6 +24,7 @@ export default function Header({ children, judul }) {
     const dataPesanan = useStoreCRUDadmin((state) => state.dataPesanan)
     const take = useStoreCRUDadmin((state) => state.take)
     const skip = useStoreCRUDadmin((state) => state.skip)
+    const cariPesanan = useStoreCRUDadmin((state) => state.cariPesanan)
     const dataListProduct = useStoreCRUDadmin((state) => state.dataListProduct)
     const openDetailProdukAdmin = useStore((state) => state.openDetailProdukAdmin)
 
@@ -36,7 +37,11 @@ export default function Header({ children, judul }) {
         return (
             <>
                 <div className={styles.luarkontainer}>
-                    {openDetailDataPesanan && <DataPesanan data={dataPesanan} take={take} skip={skip} />}
+                    {openDetailDataPesanan && <DataPesanan 
+                    data={dataPesanan} 
+                    take={take} 
+                    skip={skip}
+                    cariPesanan={cariPesanan} />}
                     {openDetailProdukAdmin && <DetailList data={dataListProduct} />}
 
                     <div className={styles.container}>

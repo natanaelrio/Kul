@@ -4,7 +4,7 @@ export const useStoreCRUDadmin = create((set) => ({
     dataAdminProduk: [],
     fetchDataAdminProduk: async (e) => {
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get?cari=${e ? e :' '}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/admin/get?cari=${e ? e : ' '}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,6 +37,7 @@ export const useStoreCRUDadmin = create((set) => ({
     dataPesanan: [],
     take: '',
     skip: '',
+    cariPesanan: '',
     setDataPesanan: (e) => {
         set({ dataPesanan: e })
     },
@@ -45,6 +46,9 @@ export const useStoreCRUDadmin = create((set) => ({
     },
     setSkipPesanan: (e) => {
         set({ skip: e })
+    },
+    setCariPesanan: (e) => {
+        set({ cariPesanan: e })
     },
 
     dataListProduct: [],

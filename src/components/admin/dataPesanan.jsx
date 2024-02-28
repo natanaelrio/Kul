@@ -5,8 +5,12 @@ import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import { useState } from 'react'
 import { IoEyeOutline } from "react-icons/io5";
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
-export default function DataPesanan({ data, take, skip }) {
+export default function DataPesanan({ data, take, skip, cariPesanan }) {
+    const searchParams = useSearchParams()
+    const status = searchParams.get('status')
+    
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
     const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
@@ -20,7 +24,7 @@ export default function DataPesanan({ data, take, skip }) {
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
 
     const handleSukses = () => {
-        fetchdatalistpesanan(take, skip)
+        fetchdatalistpesanan(take, skip, cariPesanan, status)
         setValueStatusPesanan({ status: 200 })
         setIsLoading(false)
         setOpen()

@@ -133,14 +133,14 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                 </div>
                 <div className={styles.pilihan}>
                     <div className={kondisiLove ? styles.animasi : null} >
-                        <div className={styles.icon} onClick={setOpenLove}>
+                        <div className={styles.iconlove} onClick={setOpenLove}>
                             {love?.length ? <div className={styles.number}>{love?.length}</div> : <div> </div>}
                             <FaRegHeart />
                         </div>
                     </div>
                     <div className={kondisiKeranjang ? styles.animasi : null}>
                         <CustomLinkA href={'/cart'} aria-label={'cart'}>
-                            <div className={styles.icon}>
+                            <div className={styles.iconkeranjang}>
                                 {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
                                 <LuShoppingCart />
                             </div>

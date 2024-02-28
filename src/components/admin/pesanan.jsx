@@ -23,6 +23,12 @@ export default function Pesanan() {
     const status = searchParams.get('status')
     const router = useRouter()
 
+    const statussekarang = status == "belum-diproses" && 'Belum Proses'
+        || status == "sudah-diproses" && 'Sudah di Proses' ||
+        status == "sudah-berhasil" && 'Sudah berhasil' ||
+        status == "true" && 'Sudah Bayar' ||
+        status == "false" && 'Belum Bayar' || ''
+
     const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const datalistpesanan = useStoreListDataProduct((state) => state.datalistpesanan)
     const setOpenDetailDataPesanan = useStore((state) => state.setOpenDetailDataPesanan)
@@ -32,16 +38,23 @@ export default function Pesanan() {
     const setDataPesanan = useStoreCRUDadmin((state) => state.setDataPesanan)
     const setTakePesanan = useStoreCRUDadmin((state) => state.setTakePesanan)
     const setSkipPesanan = useStoreCRUDadmin((state) => state.setSkipPesanan)
+    const setCariPesanan = useStoreCRUDadmin((state) => state.setCariPesanan)
+    const cariPesanan = useStoreCRUDadmin((state) => state.cariPesanan)
 
     useEffect(() => {
-        fetchdatalistpesanan(take, skip)
+        // fetchdatalistpesanan(take, skip)
+        fetchdatalistpesanan(take, skip, iscari, status)
     }, [fetchdatalistpesanan])
 
-    const omset = datalistpesanan?.total_omset
-    const totalterjual = datalistpesanan?.total_terjual
     const total_array = datalistpesanan?.total_array
-    const dataTruePayment = datalistpesanan?.dataTruePayment
-    const dataFalsePayment = datalistpesanan?.dataFalsePayment
+
+    const total_omsetP = datalistpesanan?.total_omsetP
+    const total_barangP = datalistpesanan?.total_barangP
+    const dataFalsePaymentP = datalistpesanan?.dataFalsePaymentP
+
+    const total_omsetS = datalistpesanan?.total_omsetS
+    const total_barangS = datalistpesanan?.total_barangS
+    const dataTruePaymentS = datalistpesanan?.dataTruePaymentS
 
     const HandlePesanan = (e) => {
         setDataPesanan(e)
@@ -65,17 +78,17 @@ export default function Pesanan() {
     }
 
     const handlePencarian = (e) => {
-        setIsCari(e.target.value)
+        setCariPesanan(e.target.value)
     }
 
     const [iscari, setIsCari] = useState('')
     const [isLoading, setIsLoading] = useState(false)
-    const debouncedSearchTerm = useDebounce(iscari, 300);
+    const debouncedSearchTerm = useDebounce(cariPesanan, 300);
     useEffect(() => {
         const searchHN = async () => {
             setIsLoading(true)
             if (debouncedSearchTerm) {
-                fetchdatalistpesanan(10, 0, iscari)
+                fetchdatalistpesanan(10, 0, cariPesanan)
             }
             setIsLoading(false)
         }
@@ -102,25 +115,33 @@ export default function Pesanan() {
         }),
             setValueStatusPesanan([])
     }
-    valueStatusPesanan == [] || valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
+
+    useEffect(() => {
+        valueStatusPesanan == [] || valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
+    }, [valueStatusPesanan])
 
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.history}>
                     <div className={styles.jumlah}>
-                        Data :&nbsp;  <div className={styles.number}>{total_array} </div>&nbsp;|
-                        Total Terjual :&nbsp;  <div className={styles.number}>{totalterjual} </div>&nbsp;|
-                        &nbsp;Omset :&nbsp;<div className={styles.number}>{omset}</div>&nbsp; |
-                        &nbsp;Sudah Bayar :&nbsp;<div className={styles.number}>{dataTruePayment}</div>
-                        &nbsp; | &nbsp;Belum Bayar :&nbsp;<div className={styles.number}>{dataFalsePayment}</div>
+                        <div className={styles.pending}>
+                            Data :&nbsp;  <div className={styles.number}>{dataFalsePaymentP} </div>&nbsp;|
+                            Total Terjual :&nbsp;  <div className={styles.number}>{total_barangP} </div>&nbsp;|
+                            &nbsp;Omset :&nbsp;<div className={styles.number}>{total_omsetP}</div>
+                        </div>
+                        <div className={styles.sukses}>
+                            Data :&nbsp;  <div className={styles.number}>{dataTruePaymentS} </div>&nbsp;|
+                            Total Terjual :&nbsp;  <div className={styles.number}>{total_barangS} </div>&nbsp;|
+                            &nbsp;Omset :&nbsp;<div className={styles.number}>{total_omsetS}</div>
+                        </div>
                     </div>
                     <div className={styles.pencarian}>
                         <input
                             type="text"
-                            placeholder='cari nota...'
+                            placeholder={'cari nota... (' + total_array + ' data)'}
                             onChange={(e) => handlePencarian(e)}
-                            value={iscari}
+                            value={cariPesanan}
                         />
                         <IoFilterSharp size={30} onClick={() => setStatusFilter(!statusFilter)} />
                     </div>
@@ -132,7 +153,8 @@ export default function Pesanan() {
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('sudah-berhasil')}>Pesanan berhasil</div>
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('belum-diproses')}>Pesanan blm di proses</div>
                     <div className={styles.datafilter} onClick={() => HandleFilterPesanan('reset')}><GrPowerReset /></div>
-                </div>}
+                </div> || <div className={styles.statussekarang}>{statussekarang && 'Data'} {statussekarang}</div>}
+
                 <div className={styles.judul}>
                     <div className={styles.tanggalinput}>Tanggal </div>
                     <div className={styles.totaljumlah}>Total Jumlah</div>

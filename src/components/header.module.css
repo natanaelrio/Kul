@@ -106,8 +106,24 @@
     align-items: center;
 }
 
-.pilihan .icon {
-    margin-right: 25px;
+.pilihan .iconlove {
+    padding: 10px;
+    color: var(--color-sekunder);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+    position: relative;
+}
+
+.pilihan .iconkeranjang {
+    margin: 0 20px;
     padding: 10px;
     color: var(--color-sekunder);
     font-size: 1.2rem;
@@ -125,7 +141,6 @@
 
 .pilihan .animasi {
     animation: Shake 0.5s;
-
 }
 
 
@@ -152,7 +167,7 @@
 }
 
 
-.pilihan .icon .number {
+.pilihan .number {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -167,7 +182,11 @@
     background-color: var(--color-high);
 }
 
-.pilihan .icon:hover {
+.pilihan .iconkeranjang:hover {
+    border-radius: 100%;
+    background-color: var(--color-grey);
+}
+.pilihan .iconlove:hover {
     border-radius: 100%;
     background-color: var(--color-grey);
 }
