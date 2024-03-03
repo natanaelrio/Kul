@@ -82,16 +82,18 @@ export default function Pencarian({ kondisiatas }) {
                         </Suspense> :
                             <>
                                 <div className={styles.judul}>Pencarian Populer</div>
-                                {dataPopuler.map((data) => {
+                                {dataPopuler.map((data, i) => {
                                     return (
-                                        <CustomLink href={`/search?query=${data.search}`} title={data?.nama_barang}>
-                                            <div className={styles.list}
-                                                onClick={() => { setOpenPencarian() }}
-                                            >
-                                                <CiSearch className={styles.logopopuler} />
-                                                <div className={styles.text}>{data.search}</div>
-                                            </div>
-                                        </CustomLink >
+                                        <div key={i}>
+                                            <CustomLink href={`/search?query=${data.search}`} title={data?.nama_barang}>
+                                                <div className={styles.list}
+                                                    onClick={() => { setOpenPencarian() }}
+                                                >
+                                                    <CiSearch className={styles.logopopuler} />
+                                                    <div className={styles.text}>{data.search}</div>
+                                                </div>
+                                            </CustomLink >
+                                        </div>
                                     )
                                 })}
                             </>

@@ -17,25 +17,27 @@ export default async function ListPencarianProduk({ data, value, totalarray }) {
         <>
             {data?.length ? <div className={styles.result}>   <div className={styles.judul}>Produk</div> &nbsp; <span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult}, dari {totalarray} data</div>
                 : <div className={styles.result}>   <div className={styles.judul}>Produk</div> &nbsp;<span style={{ color: 'var(--color-high)' }}>{value}</span>, {lengthResult} data</div>}
-            {data?.map((data) => {
+            {data?.map((data, i) => {
                 return (
-                    <CustomLink href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
-                        <div className={styles.listproduk} onClick={() => setOpenPencarian()}>
-                            <div className={styles.produk}>
-                                <div className={styles.gambar}>
-                                    <Image src={data.gambar_barang} width={150} height={150} />
-                                </div>
-                                <div className={styles.text}>
-                                    <div className={styles.textdetail} dangerouslySetInnerHTML={{ __html: HighlightText(data?.nama_barang) }}>
+                    <div key={i}>
+                        <CustomLink href={`/products/${data?.slug_barang}`} title={data?.nama_barang}>
+                            <div className={styles.listproduk} onClick={() => setOpenPencarian()}>
+                                <div className={styles.produk}>
+                                    <div className={styles.gambar}>
+                                        <Image src={data.gambar_barang} width={150} height={150} />
                                     </div>
-                                    <div className={styles.harga}>
-                                        <div className={styles.hargadetail}>Rp.20.000</div>
-                                        <div className={styles.hargadiskon}>{data.harga_barang}</div>
+                                    <div className={styles.text}>
+                                        <div className={styles.textdetail} dangerouslySetInnerHTML={{ __html: HighlightText(data?.nama_barang) }}>
+                                        </div>
+                                        <div className={styles.harga}>
+                                            <div className={styles.hargadetail}>Rp.20.000</div>
+                                            <div className={styles.hargadiskon}>{data.harga_barang}</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </CustomLink>
+                        </CustomLink>
+                    </div>
                 )
             })}
             {Boolean(data?.length) &&
