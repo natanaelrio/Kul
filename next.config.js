@@ -4,6 +4,7 @@ const nextConfig = {
   images: {
     domains: [
       'localhost',
+      'localhost:3000',
       'd3544la1u8djza.cloudfront.net',
       'ik.imagekit.io',
       'kul.vercel.app',
@@ -23,26 +24,7 @@ const nextConfig = {
         ]
       }
     ]
-  },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.plugins.push(
-      new webpack.DefinePlugin({
-        'process.env.FLUENTFFMPEG_COV': false
-      })
-    )
-
-    return config
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '*',
-        port: '',
-        pathname: '/**',
-      },
-    ],
-  },
+  }
 }
 
 module.exports = nextConfig

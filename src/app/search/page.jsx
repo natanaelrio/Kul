@@ -20,7 +20,7 @@ export async function generateMetadata({ searchParams }) {
 
 export default function Search() {
     return (
-        <HeaderFooter kondisiFalseSearch={false}>
+        <HeaderFooter >
             <Suspense>
                 <ListProductsearch />
             </Suspense>

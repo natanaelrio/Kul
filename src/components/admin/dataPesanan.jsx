@@ -10,7 +10,7 @@ import { useSearchParams } from 'next/navigation'
 export default function DataPesanan({ data, take, skip, cariPesanan }) {
     const searchParams = useSearchParams()
     const status = searchParams.get('status')
-    
+
     const setValueStatusPesanan = useStore((state) => state.setValueStatusPesanan)
     const fetchdatalistpesanan = useStoreListDataProduct((state) => state.fetchdatalistpesanan)
     const totalJumlahBarang = data?.dataPesanan?.map((data) => data?.jumlah_barang_user).reduce((acc, curr) => acc + curr, 0)
@@ -137,6 +137,16 @@ export default function DataPesanan({ data, take, skip, cariPesanan }) {
                 judul={'Data Pesanan'}
             >
                 <div className={styles.informasi}>
+                    <div className={styles.atas} style={{ fontWeight: 700 }}>
+                        <div className={styles.containerinformasi}>
+                            <div className={styles.tablesatu}>Nota ID: </div>
+                            <div className={styles.tabledua}>{data?.nota_user} </div>
+                        </div>
+                        <div className={styles.containerinformasi}>
+                            <div className={styles.tablesatu}>Payment: </div>
+                            <div className={styles.tabledua} style={data?.payment ? { color: 'green', fontWeight: '700' } : { color: 'red', fontWeight: '700' }}>{data?.payment.toString()} </div>
+                        </div>
+                    </div>
                     <div className={styles.containerinformasi}>
                         <div className={styles.tablesatu}>Pemesan: </div>
                         <div className={styles.tabledua}>{data?.nama_lengkap_user} </div>
@@ -157,10 +167,7 @@ export default function DataPesanan({ data, take, skip, cariPesanan }) {
                         <div className={styles.tablesatu}>Catatan: </div>
                         <div className={styles.tabledua}>{data?.catatan_user} </div>
                     </div>
-                    <div className={styles.containerinformasi}>
-                        <div className={styles.tablesatu}>Payment: </div>
-                        <div className={styles.tabledua}>{data?.payment.toString()} </div>
-                    </div>
+
                 </div>
 
                 <div className='deskop'>

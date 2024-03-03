@@ -1,0 +1,73 @@
+.judul {
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.result {
+    display: flex;
+}
+
+.listproduk {
+    display: flex;
+    flex-direction: column;
+}
+
+.listproduk:hover {
+    cursor: pointer;
+}
+
+.listproduk:hover .textdetail {
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.listproduk .gambar {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.listproduk .gambar img {
+    width: 50px;
+    height: 50px;
+}
+
+.listproduk .produk {
+    margin: 10px 0 10px 0;
+    display: flex;
+}
+
+.listproduk .textdetail {
+    opacity: 0.8;
+}
+
+.listproduk .harga {
+    margin-top: 5px;
+    display: flex;
+}
+
+.listproduk .harga .hargadetail {
+    margin-right: 10px;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.listproduk .harga .hargadiskon {
+    text-decoration: line-through;
+}
+
+.carilebih {
+    margin-top: 20px;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carilebih:hover {
+    background-color: var(--color-primary);
+    cursor: pointer;
+    color: var(--color-white);
+}

@@ -14,7 +14,7 @@ import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSignsPost } from "react-icons/fa6";
 import { IoShieldOutline } from "react-icons/io5";
-import useSnap from '../lib/useSnap'
+import useSnap from '@/lib/useSnap'
 
 export default function FormPembelian({ dataFormLangsung }) {
     const id = uidRio()
@@ -190,7 +190,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                 <div className={styles.loadingpayment}>
                     <div className={styles.textalertatas}>Jika Error, silahkan ulang!!</div>
                     <div className={styles.gambar}>
-                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} alt={'loadinggeneratepayment'} width={150} height={150}></Image>
+                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} alt={'loadinggeneratepayment'} width={150} height={150}/>
                     </div>
                     <div className={styles.text}>Generate Payment</div>
                     <div className={styles.textalertbawah}>Jika Error, silahkan ulang!!</div>

@@ -1,0 +1,148 @@
+.container {
+    position: relative;
+    z-index: 100;
+    position: absolute;
+    width: 100vw;
+    height: 100dvh;
+    top: 0;
+    font-size: 0.7rem;
+}
+
+.dalam {
+    position: relative;
+}
+
+.hitam {
+    background-color: black;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100dvh;
+    z-index: 1;
+}
+
+.content {
+    position: absolute;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
+    background-color: var(--color-white);
+    z-index: 20;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    flex-direction: column;
+}
+
+.content .back {
+    width: 50px;
+    padding: 10px 40px 10px 20px;
+    display: none;
+}
+
+.content .input {
+    display: flex;
+    justify-content: center;
+}
+
+.content .input form {
+    width: 700px;
+    height: 50px;
+    position: relative;
+    padding: 10px 20px;
+}
+
+.content .input input {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    font-size: 0.7rem;
+    font-weight: 500;
+    background-color: var(--color-grey);
+    color: var(--color-sekunder);
+    border: none;
+    padding: 0 10px 0 50px;
+    border-radius: 20px;
+}
+
+.content .input .logocari .logocaridalam {
+    position: absolute;
+    top: 20px;
+    bottom: 0;
+    left: 30px;
+    margin: auto;
+    font-size: 1rem;
+}
+
+.content .logopopuler {
+    font-weight: 300;
+    font-size: 1rem;
+    margin-right: 20px;
+}
+
+.rekomendasi {
+    width: 100%;
+    padding: 20px 30px 30px 30px;
+}
+
+.rekomendasi .judul {
+    font-weight: 600;
+}
+
+.rekomendasi .list {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+
+.rekomendasi .list:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+    .content {
+        position: fixed;
+        min-height: 100dvh;
+        width: 100vw;
+        border-radius: 0;
+    }
+
+    .content .input form {
+        width: 90vw
+    }
+
+    .content .back {
+        display: block;
+    }
+
+    .content .input input {
+        padding: 0 10px 0 40px;
+    }
+}
+
+
+@media only screen and (max-width: 480px) {
+    .content {
+        min-height: 100dvh;
+        width: 100vw;
+        border-radius: 0;
+    }
+
+    .content .input form {
+        width: 90vw
+    }
+
+    .content .back {
+        display: block;
+    }
+
+    .content .input input {
+        padding: 0 10px 0 40px;
+    }
+}

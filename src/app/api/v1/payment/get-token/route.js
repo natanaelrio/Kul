@@ -2,7 +2,7 @@ import midtransClient from 'midtrans-client'
 import { ResponseData } from '@/lib/ResponseData'
 
 let snap = new midtransClient.Snap({
-    isProduction: false,
+    isProduction: true,
     serverKey: process.env.SERVER_MIDSTRANS,
     // clientKey: process.env.NEXT_PUBLIC_SECREET_MIDSTRANS
 })

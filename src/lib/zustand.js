@@ -32,6 +32,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openPencarian: false,
+    setOpenPencarian: () => {
+        set((state) => ({
+            openPencarian: !state.openPencarian
+        })
+        )
+    },
 
     //ADMIN
     openDetailProdukAdmin: false,

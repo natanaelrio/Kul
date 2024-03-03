@@ -5,26 +5,19 @@ import { LuShoppingCart } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import styles from '@/components/header.module.css'
 import CustomLink from '@/lib/customLink'
-import Pencariannew from '@/components/pencariannew';
-import SkletonSearch from "@/components/skletonSearch"
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import { useRouter } from 'next/navigation';
-import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
-import { useDebounce } from "@uidotdev/usehooks";
 import Introduction from '@/components/introduction'
 import CustomLinkA from '@/lib/customLinkA';
 
-export default function Header({ kondisiFalseSearch, kondisiatas }) {
-    const router = useRouter()
+export default function Header({ kondisiatas }) {
     const setOpenLove = useStore((state) => state.setOpenLove)
+    const setOpenPencarian = useStore((state) => state.setOpenPencarian)
+
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
     const kondisiLove = useStoreDataFront((state) => state.kondisiLove)
     const kondisiKeranjang = useStoreDataFront((state) => state.kondisiKeranjang)
-
-    const fetchdatasearch = useStoreListDataProduct((state) => state.fetchdatasearch)
-    const datasearch = useStoreListDataProduct((state) => state.datasearch)
 
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
@@ -35,7 +28,6 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
         setKeranjang(keranjangZ)
     }, [loveZ, keranjangZ])
 
-
     // SCROLL EFFECK
     const [change, setChange] = useState(true)
     useEffect(() => {
@@ -44,48 +36,6 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
         }
         window.addEventListener('scroll', windowScroll)
     }, [setChange, keranjangZ]);
-
-    const [klikcari, setKlikcari] = useState(false)
-    const [border, setBorder] = useState(false)
-    const [searchTerm, setSearchTerm] = useState('');
-    const [value, setValue] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const debouncedSearchTerm = useDebounce(searchTerm, 300);
-
-    const handleChange = (e) => {
-        setSearchTerm(e.target.value)
-        setValue(e.target.value)
-    };
-
-    useEffect(() => {
-        setIsLoading(true);
-        const searchHN = async () => {
-            if (debouncedSearchTerm) {
-                fetchdatasearch(debouncedSearchTerm, searchTerm?.length ? 3 : 0)
-                setIsLoading(false);
-            }
-        }
-        searchHN()
-    }, [debouncedSearchTerm, searchTerm])
-
-    const results = datasearch?.data
-
-    useEffect(() => {
-        // Jika Value Kosong
-        !searchTerm.length ?
-            kondisiFalseSearch && setKlikcari(false) || setBorder(false)
-            //  || fetchdatasearch(searchTerm)
-            : kondisiFalseSearch && setKlikcari(true) || setBorder(kondisiFalseSearch ? true : false)
-    }, [searchTerm, kondisiFalseSearch])
-
-
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-            // setKlikcari(false)
-            // setBorder(false)
-            setSearchTerm('')
-        }
-    }
 
     return (
         <>
@@ -97,21 +47,16 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                     <TbDiamond className={styles.logogambardalam} />
                 </CustomLinkA>
                 <div className={styles.pencarian} >
-                    <div className={styles.dalampencarian}
-                        onClick={() => {
-                            kondisiFalseSearch ? setKlikcari(true) : setKlikcari(false),
-                                setBorder(border)
-                        }}
-                    >
+                    <div className={styles.dalampencarian}>
                         <div className={styles.input}>
-                            <form onSubmit={(e) => { e.preventDefault(), router.push(`/search?query=${value}`) }} >
+                            <form>
                                 <input
-                                    style={{ borderRadius: border ? '15px 15px 0 0' : '15px' }}
+                                    onClick={() => {
+                                        setOpenPencarian()
+                                    }}
                                     type="search"
                                     placeholder="cari produk..."
                                     className={styles.inputtrue}
-                                    onChange={handleChange}
-                                    onKeyDown={handleKeyDown}
                                 />
                             </form>
                         </div>
@@ -121,13 +66,6 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                             </div>
                         </div>
                     </div>
-                    {kondisiFalseSearch && searchTerm.length && isLoading ? <div className={styles.skletoncontainer}>
-                        <SkletonSearch />
-                    </div> : kondisiFalseSearch && Boolean(searchTerm.length) && <Pencariannew
-                        data={results}
-                        value={searchTerm}
-                        totalarray={datasearch.total_array}
-                    />}
 
 
                 </div>
@@ -154,13 +92,6 @@ export default function Header({ kondisiFalseSearch, kondisiatas }) {
                     </CustomLink>
                 </div>
             </nav >
-            {klikcari ? <div className={styles.hilangkan} onClick={() => {
-                setKlikcari(false),
-                    setSearchTerm(''),
-                    setBorder(false)
-            }
-            }></div>
-                : null}
         </>
     )
 }

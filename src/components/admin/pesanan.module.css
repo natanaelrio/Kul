@@ -8,17 +8,19 @@
 .judul {
     display: flex;
     font-weight: 700;
-    padding: 10px 0;
+    padding: 10px 20px;
     background-color: var(--color-primary);
     color: var(--color-white);
     /* border-radius: 7px 7px 0 0; */
     flex: 1;
+    justify-content: space-between;
 }
 
 .content {
     display: flex;
-    padding: 10px 0;
+    padding: 10px 20px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .content:nth-child(even) {
@@ -45,7 +47,7 @@
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
-    background-color: yellow    ;
+    background-color: yellow;
 }
 
 .history .jumlah .sukses {
@@ -65,33 +67,46 @@
 }
 
 .tanggalinput {
-    width: 30%;
+    width: 20%;
     padding: 5px;
 }
 
-.totaljumlah {
-    width: 30%;
+.proses {
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    white-space: nowrap;
     padding: 5px;
 }
 
-.totalbiaya {
-    width: 30%;
+.selesai {
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    white-space: nowrap;
     padding: 5px;
 }
 
 .datapesanan {
-    width: 10%;
+    /* width: 10%; */
     padding: 5px;
     text-align: center;
+    display: flex;
+    justify-content: flex-end;
 }
 
 
 .content .datapesanan button {
     padding: 10px;
-    background-color: var(--color-sekunder);
+    background-color: black;
     color: var(--color-white);
     border-radius: 7px;
     cursor: pointer;
+    display: flex;
 }
 
 .pagination {
@@ -123,6 +138,7 @@
 .pencarian {
     display: flex;
     align-items: center;
+    padding: 0 20px;
 }
 
 .filter {
@@ -130,13 +146,14 @@
     margin: 5px 0;
     width: 100%;
     display: flex;
+    padding: 0 20px;
     /* justify-content: flex-end; */
 }
 
 .statussekarang {
     font-size: 1rem;
     font-weight: 700;
-    /* padding: 20px 0; */
+    padding: 0 20px;
 }
 
 .filter .datafilter {
@@ -156,7 +173,8 @@
 }
 
 .filter .datafilter:nth-child(3) {
-    background-color: blue;
+    background-color: yellow;
+    color: black;
 }
 
 .filter .datafilter:nth-child(4) {
@@ -195,11 +213,11 @@
         width: 30%;
     }
 
-    .totaljumlah {
+    .proses {
         width: 25%;
     }
 
-    .totalbiaya {
+    .selesai {
         width: 25%;
     }
 
@@ -232,11 +250,11 @@
         width: 30%;
     }
 
-    .totaljumlah {
+    .proses {
         width: 20%;
     }
 
-    .totalbiaya {
+    .selesai {
         width: 25%;
     }
 
@@ -246,7 +264,7 @@
 
 
     .datapesanan {
-        text-align: right;
+        text-align: center;
     }
 
 

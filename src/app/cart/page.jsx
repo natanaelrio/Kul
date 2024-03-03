@@ -24,7 +24,7 @@ export const metadata = {
 
 export default function CartNota() {
     return (
-        <HeaderFooter kondisiFalseSearch={true}>
+        <HeaderFooter>
             <Keranjang />
         </HeaderFooter>
     )
