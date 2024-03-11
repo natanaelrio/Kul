@@ -57,7 +57,7 @@ export default async function Products({ params }) {
   dataID.status == 500 ? notFound() : null
 
   return (
-    <HeaderFooter data={dataID} slug={params.uid}>
+    <HeaderFooter data={dataID} slug={params.uid} kondisidetailproduk={true}>
       <Suspense fallback={<SkletonProdukID />}>
         <Produk data={dataID} />
       </Suspense>

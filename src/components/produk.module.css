@@ -333,6 +333,10 @@
     .gambar .gambardalam {
         top: 0
     }
+    
+    .bawahaksi {
+        display: none;
+    }
 }
 
 
@@ -394,5 +398,9 @@
     
     .gambar .gambardalam {
         top: 0
+    }
+    
+    .bawahaksi {
+        display: none;
     }
 }

@@ -163,7 +163,7 @@ export default function Produk(props) {
                                 </div>
                             </div>
 
-                            <div>
+                            <div className={styles.bawahaksi}>
                                 <div className={styles.jumlahbarang}>stok : {jumlahBarang}</div>
                                 {keranjang?.length === 1 ?
                                     keranjang?.map((data) => {

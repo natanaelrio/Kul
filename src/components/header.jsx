@@ -7,10 +7,9 @@ import styles from '@/components/header.module.css'
 import CustomLink from '@/lib/customLink'
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
-import Introduction from '@/components/introduction'
 import CustomLinkA from '@/lib/customLinkA';
 
-export default function Header({ kondisiatas }) {
+export default function Header() {
     const setOpenLove = useStore((state) => state.setOpenLove)
     const setOpenPencarian = useStore((state) => state.setOpenPencarian)
 
@@ -39,7 +38,6 @@ export default function Header({ kondisiatas }) {
 
     return (
         <>
-            {kondisiatas && <Introduction />}
             <nav className={styles.nav}
                 style={change ? { boxShadow: 'none' } : { boxShadow: '0 1px 3px #0000001a, 0 1px 2px #0000000f' }}
             >
