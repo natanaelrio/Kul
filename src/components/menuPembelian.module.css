@@ -6,7 +6,7 @@
     bottom: 0;
     width: 100%;
     background-color: var(--color-white);
-    padding: 20px;
+    padding: 10px 20px;
     z-index: 10;
     font-size: 0.7rem;
     display: none;
@@ -35,6 +35,7 @@
     align-items: center;
     font-weight: 700;
     border-radius: 12px;
+    text-align: center;
 }
 
 .keranjang:hover {
@@ -53,6 +54,7 @@
     align-items: center;
     font-weight: 700;
     border-radius: 12px;
+    text-align: center;
 }
 
 .belilangsung:hover {
