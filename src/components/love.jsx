@@ -47,7 +47,7 @@ export default function Love() {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const harga = (data.harga_total_barang - (((((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_total_barang)) - data.harga_total_barang)).toLocaleString('id-ID', {
+                            const harga = (data.harga_total_barang - (((((data.harga_total_barang * (data?.kondisi_diskon_barang && data.diskon_barang)) / 100) + data.harga_total_barang)) - data.harga_total_barang)).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
@@ -85,7 +85,7 @@ export default function Love() {
                                                 <div className={styles.judul}>{data.nama_barang}</div>
                                                 <div className={styles.harga}>
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>
-                                                    <div className={styles.hargadiskon}>{diskonharga}</div>
+                                                    {data?.kondisi_diskon_barang && <div className={styles.hargadiskon}>{diskonharga}</div>}
                                                 </div>
                                                 Detail Produk...
                                             </div>

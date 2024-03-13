@@ -30,7 +30,7 @@ export default function FormPembelian({ dataFormLangsung }) {
     const kodePost = useStoreFormUsers((state) => state.kodePost)
 
     const kuponBarang = dataFormLangsung.map((data) => data.kupon_barang)[0]?.toString()
-    const hargaBarangDiskonNormal = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
+    const hargaBarangDiskonNormal = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * (data?.kondisi_diskon_barang && data?.diskon_barang)) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
     const hargaBarangDiskonKupon = dataFormLangsung.map((data) => ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang)).reduce((acc, curr) => acc + curr, 0)
 
     const [kupon, setKupon] = useState('')
@@ -116,7 +116,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             const item_details = dataFormLangsung.map((data) =>
             ({
                 id: data?.id,
-                price: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100) : data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100),
+                price: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100) : data?.harga_barang - ((data?.harga_barang * (data?.kondisi_diskon_barang && data?.diskon_barang)) / 100),
                 quantity: data?.value_barang,
                 name: data?.nama_barang,
             }))
@@ -132,8 +132,8 @@ export default function FormPembelian({ dataFormLangsung }) {
                 id_user: data?.id,
                 nama_barang_user: data?.nama_barang,
                 jumlah_barang_user: data?.value_barang,
-                harga_barang_satuan: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100) : data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100),
-                harga_barang_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang) : ((data?.harga_barang - ((data?.harga_barang * data?.diskon_barang) / 100)) * data?.value_barang),
+                harga_barang_satuan: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100) : data?.harga_barang - ((data?.harga_barang * (data?.kondisi_diskon_barang && data?.diskon_barang)) / 100),
+                harga_barang_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang) : ((data?.harga_barang - ((data?.harga_barang * (data?.kondisi_diskon_barang && data?.diskon_barang)) / 100)) * data?.value_barang),
                 kupon_user: kupon,
                 validasi_kupon_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? true : false
             })
@@ -190,7 +190,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                 <div className={styles.loadingpayment}>
                     <div className={styles.textalertatas}>Jika Error, silahkan ulang!!</div>
                     <div className={styles.gambar}>
-                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} alt={'loadinggeneratepayment'} width={150} height={150}/>
+                        <Image src={`${process.env.NEXT_PUBLIC_URL}/payment.gif`} alt={'loadinggeneratepayment'} width={150} height={150} />
                     </div>
                     <div className={styles.text}>Generate Payment</div>
                     <div className={styles.textalertbawah}>Jika Error, silahkan ulang!!</div>

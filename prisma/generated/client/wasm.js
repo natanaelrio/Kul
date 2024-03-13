@@ -117,10 +117,12 @@ exports.Prisma.AdminScalarFieldEnum = {
   tag_barang: 'tag_barang',
   harga_barang: 'harga_barang',
   diskon_barang: 'diskon_barang',
+  kondisi_diskon_barang: 'kondisi_diskon_barang',
   rating_barang: 'rating_barang',
   jumlah_barang: 'jumlah_barang',
   total_penjualan_barang: 'total_penjualan_barang',
   diskripsi_barang: 'diskripsi_barang',
+  detail_deskripsi_barang: 'detail_deskripsi_barang',
   gambar_barang: 'gambar_barang',
   slug_barang: 'slug_barang',
   kupon_barang: 'kupon_barang',
@@ -159,6 +161,12 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -174,12 +182,6 @@ exports.Prisma.adminOrderByRelevanceFieldEnum = {
   slug_barang: 'slug_barang',
   kupon_barang: 'kupon_barang',
   link_barang: 'link_barang'
-};
-
-exports.Prisma.JsonNullValueFilter = {
-  DbNull: Prisma.DbNull,
-  JsonNull: Prisma.JsonNull,
-  AnyNull: Prisma.AnyNull
 };
 
 exports.Prisma.formPembelianOrderByRelevanceFieldEnum = {

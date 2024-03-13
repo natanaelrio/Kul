@@ -1,13 +1,9 @@
 .containerform {
-    /* width: 1200px; */
-    width: 100%;
-    /* background-color: yellow; */
+    width: 90%;
+    padding: 20px;
 }
 
 .form {
-    /* width: 500px; */
-    /* display: flex;
-    flex-direction: column; */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(405px, 1fr));
     gap: 10px;
@@ -18,12 +14,10 @@
 
 .form .kotak1 {
     width: 100%;
-    /* background-color: red; */
 }
 
 .form .kotak2 {
     width: 100%;
-    /* background-color: blue; */
 }
 
 .form label {
@@ -52,25 +46,17 @@
     outline: none;
     border-radius: 0px;
     box-shadow: 0;
-    /* border: 1px solid var(--color-primary); */
     border: 0;
     font-size: 0.6rem;
     width: 100%;
 }
 
 .form textarea:focus {
-    /* outline: none;
-    border: 2px solid var(--color-primary); */
     color: var(--color-primary);
-    /* height: auto !important;
-    font-size: 0.6rem; */
 }
 
 
 .form input:focus {
-    /* font-size: 0.6rem;
-    outline: none;
-    border: 2px solid var(--color-primary); */
     color: var(--color-primary);
 }
 
@@ -160,28 +146,106 @@
     background-color: red;
     height: 5px;
     width: 100%;
+    overflow: hidden;
+}
+
+
+.kategoristock {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.kategoristock .button {
+    height: max-content;
+    margin: 0;
+    padding: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.kategoristock .button:hover {
+    background-color: var(--color-sekunder);
+}
+
+.kategoristockeditdel {
+    font-size: 1rem;
+    display: flex;
+    margin-top: 10px;
+    gap: 5px;
+    text-align: center;
+    width: 100%;
+}
+
+.kategoristockeditdel .editdel {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.kategoristockeditdel .editdel:hover {
+    background-color: var(--color-sekunder);
+    cursor: pointer;
+}
+
+.kategoristockeditdel .listkategori {
+    width: 40%;
+    border: 1px solid var(--color-sekunder);
+    position: relative;
+}
+
+.kategoristockeditdel .listkategori::after {
+    content: 'type';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.4rem;
+}
+
+.kategoristockeditdel .datastock {
+    width: 40%;
+    border: 1px solid var(--color-sekunder);
+    position: relative;
+}
+
+.kategoristockeditdel .datastock::after {
+    content: 'stock';
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 0.4rem;
+}
+
+.kategoristockeditdel .edit {
+    width: 20%;
+}
+
+.kategoristockeditdel .delete {
+    width: 20%;
 }
 
 
 @media only screen and (max-width: 1200px) {
-    /* .containerform {
-        width: 95%;
-    } */
 
     .form {
-        /* gap: 0; */
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     }
 }
 
 @media only screen and (max-width: 768px) {
-    /* .containerform {
-        width: 95%;
-    } */
 
     .form {
         gap: 0;
         grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    }
+
+    .containerform {
+        width: 100%;
     }
 }
 
@@ -196,14 +260,6 @@
         margin-top: 10px;
     }
 
-    /* .containerform {
-        width: 95%;
-    } */
-
-    /* .form :placeholder-shown {
-        font-size: 14px;
-    } */
-
     .form input {
         width: 100%;
         padding: 10px;
@@ -211,27 +267,26 @@
         border-radius: 0px;
         box-shadow: 0;
         border: 1px solid var(--color-sekunder);
-        /* font-size: 18px; */
     }
 
     .form textarea {
-        /* padding: 10px; */
         outline: none;
         border-radius: 0px;
         box-shadow: 0;
-        /* border: 1px solid var(--color-primary); */
-        /* font-size: 18px; */
         width: 100%;
     }
 
 
     .form {
-        /* width: 500px; */
-        /* display: flex;
-        flex-direction: column; */
-        /* display: grid; */
         grid-template-columns: 1fr;
-        /* gap: 10px; */
     }
 
+
+    .kategoristock .button {
+        padding: 5px 10px;
+    }
+
+    .containerform {
+        width: 100%;
+    }
 }

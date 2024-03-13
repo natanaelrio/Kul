@@ -15,7 +15,8 @@ export async function AmbilDataUsers(cari, kondisiSortBy) {
             slug_barang: true,
             diskon_barang: true,
             like_barang: true,
-            jumlah_barang: true
+            jumlah_barang: true,
+            kondisi_diskon_barang: true
         },
         where: {
             nama_barang: {

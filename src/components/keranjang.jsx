@@ -28,7 +28,7 @@ export default function Keranjang() {
     const searchParams = useSearchParams()
     const transaction_status = searchParams.get('transaction_status')
 
-    const totalBarang = keranjangZ.map((data) => (data.harga_total_barang - ((data.harga_total_barang * data.diskon_barang) / 100))).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
+    const totalBarang = keranjangZ.map((data) => (data.harga_total_barang - ((data.harga_total_barang * (data?.kondisi_diskon_barang && data.diskon_barang)) / 100))).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     });
@@ -63,6 +63,7 @@ export default function Keranjang() {
             nama_barang: data.nama_barang,
             harga_barang: data.harga_barang,
             diskon_barang: data.diskon_barang,
+            kondisi_diskon_barang: data?.kondisi_diskon_barang,
             kupon_barang: data.kupon_barang,
             value_barang: data.value,
         }))
@@ -111,7 +112,7 @@ export default function Keranjang() {
                                         style: 'currency',
                                         currency: 'IDR'
                                     })
-                                    const harga = (data.harga_total_barang - (((((data.harga_total_barang * data.diskon_barang) / 100) + data.harga_total_barang)) - data.harga_total_barang)).toLocaleString('id-ID', {
+                                    const harga = (data.harga_total_barang - (((((data.harga_total_barang * (data?.kondisi_diskon_barang && data.diskon_barang)) / 100) + data.harga_total_barang)) - data.harga_total_barang)).toLocaleString('id-ID', {
                                         style: 'currency',
                                         currency: 'IDR'
                                     })
@@ -129,7 +130,7 @@ export default function Keranjang() {
                                                         <div className={styles.judul}>{data.nama_barang}</div>
                                                         <div className={styles.harga}>
                                                             <div className={styles.hargadalam}>{harga}&nbsp;</div>
-                                                            <div className={styles.hargadiskon}>{diskonharga}</div>
+                                                            {data?.kondisi_diskon_barang && <div className={styles.hargadiskon}>{diskonharga}</div>}
                                                         </div>
                                                     </div>
                                                     <div className={styles.jumlahbarang}>

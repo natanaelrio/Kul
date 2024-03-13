@@ -3,6 +3,7 @@ import HeaderFooter from '@/components/Layout/headerFooter'
 import { Suspense } from 'react'
 
 // import Todo from '@/components/todo'
+// import TodoDua from '@/components/todo2'
 // import RouteLoader from '@/components/cek';
 // import Loading from '@/components/Loading';
 // export const dynamic = 'force-dynamic'
@@ -34,6 +35,7 @@ export default function Home() {
     <>
       <HeaderFooter kondisiatas={true}>
         {/* <Todo /> */}
+        {/* <TodoDua /> */}
         <Suspense>
           <ListProductMain />
         </Suspense>

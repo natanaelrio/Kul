@@ -17,6 +17,7 @@ export async function AmbilDataUsers(take) {
             like_barang: true,
             jumlah_barang: true,
             kupon_barang: true,
+            kondisi_diskon_barang: true
         },
         orderBy:
             { id: 'desc' },

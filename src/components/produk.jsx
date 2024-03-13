@@ -73,7 +73,7 @@ export default function Produk(props) {
 
     // Data OFF
     const hargatotal = data.harga_barang * ValueKeranjang
-    const hargadiskon = ((((hargatotal * data.diskon_barang) / 100) + hargatotal)) - hargatotal
+    const hargadiskon = ((((hargatotal * (data.kondisi_diskon_barang && data.diskon_barang)) / 100) + hargatotal)) - hargatotal
     const harga = (hargatotal - hargadiskon).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -89,7 +89,7 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
-    const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * data.diskon_barang) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
+    const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * (data.kondisi_diskon_barang && data.diskon_barang)) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
     const hargaKeranjang = (keranjangZ[0]?.harga_total_barang - hargadiskonKeranjang).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -104,6 +104,7 @@ export default function Produk(props) {
             harga_barang: data?.harga_barang,
             diskon_barang: data?.diskon_barang,
             kupon_barang: data?.kupon_barang,
+            kondisi_diskon_barang: data?.kondisi_diskon_barang,
             value_barang: ValueKeranjang
         }]
 
@@ -132,13 +133,13 @@ export default function Produk(props) {
                                                 </Suspense>
                                             </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                         </div>
-                                        <div className={styles.diskon}>
+                                        {data.kondisi_diskon_barang && <div className={styles.diskon}>
                                             <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
                                             &nbsp;
                                             <div className={styles.hargadiskon}>
                                                 {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga}
                                             </div>
-                                        </div>
+                                        </div>}
                                     </div>
 
                                     {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?

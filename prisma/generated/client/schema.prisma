@@ -19,10 +19,12 @@ model admin {
   tag_barang             String?
   harga_barang           Int?
   diskon_barang          Int?
+  kondisi_diskon_barang  Boolean   @default(false) 
   rating_barang          Int?
   jumlah_barang          Int?
   total_penjualan_barang Int?
   diskripsi_barang       String?
+  detail_deskripsi_barang Json?
   gambar_barang          String?
   slug_barang            String?   @unique
   kupon_barang           String?

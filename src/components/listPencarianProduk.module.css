@@ -71,3 +71,15 @@
     cursor: pointer;
     color: var(--color-white);
 }
+
+.hargadiskonnya {
+    margin-left: 5px;
+    background-color: var(--color-high);
+    font-size: 0.4rem;
+    border-radius: 3px;
+    padding: 2px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-white)
+}

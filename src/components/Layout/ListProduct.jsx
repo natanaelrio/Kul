@@ -79,7 +79,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                 style: 'currency',
                                 currency: 'IDR'
                             })
-                            const harga = (data.harga_barang - (((((data.harga_barang * data.diskon_barang) / 100) + data.harga_barang)) - data.harga_barang)).toLocaleString('id-ID', {
+                            const harga = (data.harga_barang - (((((data.harga_barang * (data.kondisi_diskon_barang && data.diskon_barang)) / 100) + data.harga_barang)) - data.harga_barang)).toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
                             })
@@ -94,7 +94,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                                 alt={data?.nama_barang}
                                             />
                                         </CustomLink>
-                                        <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>
+                                        {data.kondisi_diskon_barang && <div className={styles.diskon}> <MdDiscount />{data?.diskon_barang}%</div>}
                                         <div className={styles.love}>
                                             {data.id == loveZ.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
                                                 <div className={styles.bgicon}
@@ -127,9 +127,10 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                                         <div className={styles.hargadalam}>{harga}</div>
                                                     </div>
                                                 </div>
-                                                <div className={styles.hargadiskon}>
+                                                {data.kondisi_diskon_barang && <div className={styles.hargadiskon}>
                                                     {diskonharga}
-                                                </div>
+                                                </div>}
+
                                             </div>
 
                                             <div className={styles.ratingterjual}>

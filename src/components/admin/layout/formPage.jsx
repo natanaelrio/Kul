@@ -6,12 +6,15 @@ import { useEffect, useState } from 'react';
 import BarLoader from "react-spinners/BarLoader";
 import { BiSolidCategory } from "react-icons/bi";
 import { MdDriveFileRenameOutline } from "react-icons/md";
+import { FaPlusSquare } from "react-icons/fa";
 import { BsTagsFill } from "react-icons/bs";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
+import uidRio from "@/lib/uidRio"
 import { FaLink } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 import { ContentState, convertFromHTML, convertToRaw, EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
@@ -19,21 +22,87 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "draft-js/dist/Draft.css";
 import draftToHtml from "draftjs-to-html";
 
-export default function FormPage({ urlFetch, method, data, change, value, kondisi }) {
+export default function FormPage({ urlFetch, method, data, change, value, kondisi, submit }) {
     const router = useRouter()
     const [matikan, setMatikan] = useState(false)
+    const [diskon, setDiskon] = useState(data?.kondisi_diskon_barang ? true : false)
 
+    const uid = uidRio()
+
+    //TODOS
+    const [todo, setTodo] = useState(data ? data?.detail_deskripsi_barang?.typeKategori : [])
+
+    //KATEGORI 
+    const [kategori, setKategori] = useState([])
+    const [todoKategori, setTodoKategori] = useState(data ? data?.detail_deskripsi_barang?.kategori : [])
+
+    const [validasiKategori, setValidasiKategori] = useState(false)
+    const handleKategori = () => {
+        kategori == '' ? setValidasiKategori(true) : setTodoKategori([...new Set([...todoKategori, kategori])]) || setValidasiKategori(false)
+    }
+
+    console.log()
+
+    // LIST KATEGORI
+    const [typeKategori, setTypeKategori] = useState('')
+    const [stock, setStock] = useState(1)
+
+    const handleTypeKategori = (kategori) => {
+        setTodo([...todo, { uid, kategori, typeKategori, stock }])
+    }
+
+
+    const handleDeleteKategori = (e) => {
+        const newTodos = todo.filter((data) => data.uid !== e)
+        setTodo(newTodos)
+    }
+
+    const handleDeleteListKategori = (dataKategori) => {
+        const newTodos = todo.filter((data) => data.kategori !== dataKategori)
+        const newTodosKategori = todoKategori.filter((data) => data !== dataKategori)
+        setTodo(newTodos)
+        setTodoKategori(newTodosKategori)
+    }
+
+
+    const [kondisiList, setKondisiList] = useState(false)
+    const [id, setID] = useState('')
+    const [valueUpdateTypeKategori, setValueUpdateTypeKategori] = useState('')
+    const [valueUpdateStock, setValueUpdateStock] = useState('')
+    const handleUpdateKategori = (e) => {
+        setTodo(todo.map((data) => data.uid == e ?
+            {
+                ...data,
+                typeKategori: valueUpdateTypeKategori,
+                stock: valueUpdateStock
+            }
+            : data))
+    }
+
+
+    const handleEdit = (e, typeKategori, stock) => {
+        setID(e)
+        setValueUpdateTypeKategori(typeKategori)
+        setValueUpdateStock(stock)
+    }
+
+    const [resetTypeKategori, setResetTypeKategori] = useState(false)
+    const dataGabungFinal = {
+        kategori: resetTypeKategori ? [] : todoKategori,
+        typeKategori: resetTypeKategori ? [] : todo
+    }
+
+
+
+    const kategoriData = dataGabungFinal.kategori
+    const typeKategoriData = dataGabungFinal.typeKategori
+
+
+
+    // TEXT EDITOR
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
-    // const [text, setText] = useState();
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState)
-        // const { blocks } = convertToRaw(editorState.getCurrentContent());
-        // let text = blocks.reduce((acc, item) => {
-        //   acc = acc + item.text;
-        //   return acc;
-        // }, "");
-        // let text = editorState.getCurrentContent().getPlainText("\u0001");
-        // setText(text);
     };
 
     // VALIDASI ERROR DAN BERHASIL
@@ -61,12 +130,22 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
 
     useEffect(() => { kondisi && edit() }, [kondisi])
 
+
+    const ResetDeskripsi = () => {
+        const blocksFromHTML = convertFromHTML('&nbsp;')
+        const state = ContentState.createFromBlockArray(
+            blocksFromHTML.contentBlocks,
+            blocksFromHTML.entityMap,
+        )
+        setEditorState(EditorState.createWithContent(state))
+    }
+
     const formik = useFormik({
         initialValues: {
             nama_barang: data ? data?.nama_barang : '',
             kategori_barang: data ? data?.kategori_barang : '',
             harga_barang: data ? data?.harga_barang : '',
-            diskon_barang: data ? data?.diskon_barang : '',
+            diskon_barang: data ? data?.diskon_barang : 100,
             rating_barang: data ? data?.rating_barang : '',
             total_penjualan_barang: data ? data?.total_penjualan_barang : '',
             // diskripsi_barang: data ? data?.diskripsi_barang : '',
@@ -89,9 +168,9 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
             harga_barang: Yup.number()
                 .max(2000000000, 'harus 2000000000 karakter')
                 .required('require'),
-            diskon_barang: Yup.number()
-                .max(100, 'harus 100 karakter')
-                .required('require'),
+            // diskon_barang: Yup.number()
+            //     .max(100, 'harus 100 karakter')
+            //     .required('require'),
             rating_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
@@ -119,11 +198,23 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                 end: null,
                 btoa: uuidv4(),
                 slug_barang: values.nama_barang.split(' ').join('-').toLowerCase(),
-                diskripsi_barang: draftToHtml(convertToRaw(editorState.getCurrentContent()))
+                diskripsi_barang: draftToHtml(convertToRaw(editorState.getCurrentContent())),
+                detail_deskripsi_barang: dataGabungFinal,
+                kondisi_diskon_barang: diskon
             }
 
             const DataUtama = values
             const GabungData = { ...DataUtama, ...DataLain }
+
+            const resetData = () => {
+                formik.resetForm(),
+                    setResetTypeKategori(true),
+                    setKategori(''),
+                    ResetDeskripsi()
+                Berhasil()
+            }
+
+
 
             try {
                 const res = await fetch(`${process.env.NEXT_PUBLIC_URL}` + urlFetch, {
@@ -135,7 +226,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                     }
                 })
                 const data = await res.json()
-                data.status == 200 && Berhasil() || data.status == 500 && Gagal()
+                data.status == 200 && value ? resetData() : router.push('/admin/list') || data.status == 500 && Gagal()
             }
             catch (e) {
                 Gagal()
@@ -145,18 +236,16 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                 setMatikan(false)
             }, 3000)
 
-            value ? formik.resetForm() : router.push('/admin/list')
+
         },
 
     });
 
 
+
     return (
         <>
             <div className={styles.containerform}>
-                {/* <div>{draftToHtml(convertToRaw(editorState.getCurrentContent()))}</div> */}
-                {/* {<div style={{ height: "80px", overflow: "auto" }}>{text}</div>} */}
-                {/* <div style={{ margin: '10px 0', fontSize: '0.7rem' }}>Diskripsi</div> */}
                 <Editor
                     editorState={editorState}
                     toolbarClassName="toolbarClassName"
@@ -221,7 +310,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                 </div>
                             </div>
                             <div className={styles.diskon}>
-                                <label htmlFor="diskon_barang">Diskon
+                                <label htmlFor="diskon_barang" onClick={() => setDiskon(!diskon)} >Diskon &nbsp;<FaCheck color={diskon ? 'green' : 'red'} />
                                     {formik.touched.diskon_barang && formik.errors.diskon_barang ? (
                                         <div style={{ color: 'red' }}>&nbsp;*</div>
                                     ) : null}
@@ -236,6 +325,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                         value={formik.values.diskon_barang}
                                         placeholder='50'
                                         style={formik.touched.diskon_barang && formik.errors.diskon_barang ? { border: '1px solid red' } : null}
+                                        disabled={!diskon}
                                     />
                                     <div className={styles.text}>%</div>
                                 </div>
@@ -295,23 +385,6 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                     </div>
 
                     <div className={styles.kotak2}>
-                        {/* <label htmlFor="diskripsi_barang">Diskripsi
-                            {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
-                                <div style={{ color: 'red' }}>&nbsp;*</div>
-                            ) : null}
-                        </label>
-                        <div className={styles.inputicon}>
-                            <div className={styles.text}><MdDriveFileRenameOutline /></div>
-                            <textarea
-                                id="diskripsi_barang"
-                                name="diskripsi_barang"
-                                type="text"
-                                onChange={formik.handleChange}
-                                value={formik.values.diskripsi_barang}
-                                placeholder='ex: terserah'
-                                style={formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? { border: '1px solid red' } : null}
-                            />
-                        </div> */}
                         <label htmlFor="link_barang">Koneksi
                             {formik.touched.link_barang && formik.errors.link_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -346,6 +419,51 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                 style={formik.touched.kupon_barang && formik.errors.kupon_barang ? { border: '1px solid red' } : null}
                             />
                         </div>
+
+                        <label >Kategori  </label>
+                        <div className={styles.kategoristock}>
+                            <input style={validasiKategori ? { border: '1px solid red' } : {}} type="text" placeholder="nama kategori(warna, ukuran)" value={kategori} onChange={(e) => setKategori(e.target.value)} />
+                            <div className={styles.button} onClick={() => handleKategori()}><FaPlusSquare /></div>
+                        </div>
+
+                        {kondisiList &&
+                            <>
+                                <div className={styles.kategoristock} style={{ marginTop: '10px' }}>
+                                    <input type="text" value={valueUpdateTypeKategori} placeholder="Kategori" onChange={(e) => setValueUpdateTypeKategori(e.target.value)} />
+                                    <input type="number" value={valueUpdateStock} placeholder="Stock" onChange={(e) => setValueUpdateStock(e.target.value)} />
+                                    <div className={styles.button} onClick={() => { handleUpdateKategori(id), setKondisiList(false) }}>Update</div>
+                                </div>
+                            </>
+                        }
+
+                        {kategoriData.map((dataKategori) => {
+                            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+                            return (
+                                <>
+                                    <label style={{ borderBottom: `3px solid  ${randomColor}`, marginBottom: '3px', fontSize: '1rem', display: 'flex', justifyContent: 'space-between' }} ><span>{dataKategori}</span>  <span className={styles.editdel} style={{ background: 'var(--color-high)', color: 'var(--color-white)', padding: '4px', marginBottom: '5px', font: '0.7rem' }} onClick={() => handleDeleteListKategori(dataKategori)}>Del</span></label>
+                                    <div className={styles.kategoristock}>
+                                        <input type="text" placeholder="Type" onChange={(e) => setTypeKategori(e.target.value)} />
+                                        <input type="number" placeholder="Stock" onChange={(e) => setStock(e.target.value)} />
+                                        <div className={styles.button} onClick={() => handleTypeKategori(dataKategori)}>Kirim</div >
+                                    </div >
+
+                                    {typeKategoriData?.map((data, i) => {
+                                        return (
+                                            data.kategori == dataKategori &&
+                                            <>
+                                                <div key={i} className={styles.kategoristockeditdel}>
+                                                    <div className={styles.listkategori}>{data.typeKategori}</div>
+                                                    <div className={styles.datastock}>{data.stock}</div>
+                                                    <div className={styles.edit}> <div className={styles.editdel} onClick={() => { handleEdit(data.uid, data.typeKategori, data.stock), setKondisiList(true) }}>Edit</div ></div>
+                                                    <div className={styles.delete}> <div className={styles.editdel} style={{ background: 'var(--color-high)' }} onClick={() => handleDeleteKategori(data.uid)}>Del</div ></div>
+                                                </div>
+                                            </>
+                                        )
+                                    })}
+                                </>
+                            )
+                        }
+                        )}
 
                         <label htmlFor="rating_barang">Rating
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
@@ -395,7 +513,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                         <div className={styles.dalamsubmit}>
 
                             <div className={styles.isisum}>
-                                <button type='submit' disabled={matikan}>Submit</button>
+                                <button type='submit' style={matikan ? { background: 'var(--hover-color-grey)' } : {}} disabled={matikan}>{submit}</button>
                                 {matikan ?
                                     <div className={styles.loading}>
                                         <BarLoader
@@ -411,7 +529,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
 
                             </div>
                         </div>
-                    </div>
+                    </div >
 
                 </form>
             </div>

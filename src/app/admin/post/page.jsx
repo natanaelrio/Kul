@@ -25,6 +25,7 @@ export default function Post() {
           method={'POST'}
           change={' di Posting 😁'}
           value={true}
+          submit={'Posting'}
         />
       </Header>
     </Auth>

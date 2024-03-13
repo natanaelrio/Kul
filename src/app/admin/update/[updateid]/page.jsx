@@ -33,6 +33,7 @@ export default async function Page({ params }) {
           change={' di Rubuah 😁'}
           value={false}
           kondisi={true}
+          submit={'Edit'}
         />
       </Header>
     </Auth>
