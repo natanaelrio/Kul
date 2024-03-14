@@ -39,6 +39,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openIsScrollPast: false,
+    setOpenIsScrollPast: (e) => {
+        set((state) => ({
+            openIsScrollPast: e
+        })
+        )
+    },
 
     //ADMIN
     openDetailProdukAdmin: false,

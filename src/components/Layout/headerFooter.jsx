@@ -11,6 +11,7 @@ import MenuPembelian from '../menuPembelian';
 export default function HeaderFooter({ children, kondisiatas, kondisidetailproduk, data }) {
   const openLove = useStore((state) => state.openLove)
   const openPencarian = useStore((state) => state.openPencarian)
+  const openIsScrollPast = useStore((state) => state.openIsScrollPast)
 
   return (
     <>
@@ -23,7 +24,7 @@ export default function HeaderFooter({ children, kondisiatas, kondisidetailprodu
         <Footer />
         {openLove && <Love />}
         {openPencarian && <Pencarian kondisiatas={kondisiatas} />}
-        {kondisidetailproduk && <MenuPembelian data={data} />}
+        {openIsScrollPast && <MenuPembelian data={data} />}
       </div>
     </>
   )

@@ -2,7 +2,7 @@
 import styles from '@/components/produk.module.css'
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { IoShieldOutline } from "react-icons/io5";
@@ -26,6 +26,7 @@ export default function Produk(props) {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
     const openFormPending = useStore((state) => state.openFormPending)
+    const setOpenIsScrollPast = useStore((state) => state.setOpenIsScrollPast)
 
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
     const setDeleteLoveZ = useStoreDataFront((state) => state.setDeleteLoveZ)
@@ -151,6 +152,24 @@ export default function Produk(props) {
     const jumlahBarang = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock ? TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock : data.jumlah_barang
 
 
+    //HIDDEN ELEMET MOBILE PEMBELIAN
+    const targetRef = useRef(null);
+    // const [isScrollPast, setIsScrollPast] = useState(false);
+
+
+    useEffect(() => {
+        function handleScroll() {
+            const { top } = targetRef.current.getBoundingClientRect();
+            // Jika posisi top lebih kecil dari 0, berarti scroll telah melewati target
+            setOpenIsScrollPast(top < 0)
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     //DATA FORM 
     const dataFormLangsung =
         [{
@@ -175,7 +194,7 @@ export default function Produk(props) {
                         <div className={styles.reviewproduk}>
                             <div className={styles.containerreview}>
 
-                                <div className={styles.atas}>
+                                <div className={styles.atas}  >
                                     <div className={styles.judulterjual}>
                                         <div className={styles.judul}>{data?.nama_barang}</div>
                                         <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
@@ -256,11 +275,11 @@ export default function Produk(props) {
                                     )
                                 })}
 
-                                <div className={styles.jumlahbarang}>stok : {jumlahBarang}</div>
+                                <div className={styles.jumlahbarang} ref={targetRef} >stok : {jumlahBarang}</div>
                                 {keranjang?.length === 1 ?
                                     keranjang?.map((data) => {
                                         return (
-                                            <div key={data.id} className={styles.jumlah}>
+                                            <div key={data.id} className={styles.jumlah} >
                                                 <div className={styles.kata}>Kuantitas</div>
                                                 <div className={styles.button}>
                                                     <button onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}
@@ -297,13 +316,13 @@ export default function Produk(props) {
                                         <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
                                     </div>
                                 }
-                                <div className={styles.belisekarang}>
+                                <div className={styles.belisekarang}   >
                                     <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
                                 </div>
                                 <div className={styles.powerby}>
                                     Checkout powered by Midstrans
                                 </div>
-                                <div className={styles.juduldeskripsi}>Description</div>
+                                <div className={styles.juduldeskripsi} >Description</div>
                                 <div className={viewMore ? styles.deskripsiMore : styles.deskripsi} dangerouslySetInnerHTML={{ __html: data?.diskripsi_barang }}>
                                 </div>
                                 <div className={styles.viewmore} onClick={() => handleViewMoreDeskripsi()}>{!viewMore ? 'viewmore' : 'lessmore'}</div>
