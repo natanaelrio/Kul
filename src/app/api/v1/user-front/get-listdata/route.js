@@ -1,9 +1,10 @@
 import { ResponseData } from '@/lib/ResponseData'
 import { prisma } from "@/lib/prisma"
 
-export async function AmbilDataUsers(take) {
+export async function AmbilDataUsers(sortby, take) {
+    const kondisiSortBy = sortby == 'price_high_to_low' || sortby == 'price_low_to_high'
     const data = await prisma.admin.findMany({
-        take: take ? Number(take) : 5,
+        take: take ? Number(take) : 8,
         select: {
             id: true,
             nama_barang: true,
@@ -22,6 +23,7 @@ export async function AmbilDataUsers(take) {
         orderBy:
             { id: 'desc' },
         // { view_barang: 'asc' },
+        orderBy: kondisiSortBy ? { harga_barang: sortby == 'price_low_to_high' && 'asc' || sortby == 'price_high_to_low' && 'desc' || 'asc' } : { id: 'desc' }
     })
     return data
 }
@@ -30,6 +32,7 @@ export async function AmbilDataUsers(take) {
 export async function GET(req) {
     const searchParams = req.nextUrl.searchParams;
     const take = searchParams.get('take');
+    const sortby = searchParams.get('sortby');
     const authorization = req.headers.get('authorization')
 
     const informasi = await prisma.admin.findMany({
@@ -42,7 +45,7 @@ export async function GET(req) {
         total_array: total_length,
     }
 
-    const data = await AmbilDataUsers(take)
+    const data = await AmbilDataUsers(sortby, take)
     const res = await ResponseData(data, authorization, tambahan)
     return res
 }

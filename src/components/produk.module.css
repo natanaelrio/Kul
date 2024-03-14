@@ -10,7 +10,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    grid-template-columns: 1fr;
 }
 
 .navigasi {
@@ -28,18 +28,32 @@
     color: var(--color-primary);
 }
 
+
 /* REVIEW PRODUK */
 .reviewproduk {
+    grid-area: 1/2/3/3;
     padding: 30px;
     color: var(--color-sekunder);
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     font-size: 0.7rem;
+    width: 400px;
+}
+
+.judulterjual {
+    display: flex;
+    flex-direction: column;
+}
+
+.atas {
+    display: flex;
+    justify-content: space-between;
 }
 
 .reviewproduk .judul {
     font-weight: 700;
+
 }
 
 .reviewproduk .terjual {
@@ -82,6 +96,7 @@
 }
 
 .reviewproduk .icon {
+    height: 40px;
     font-size: 0.9rem;
     padding: 10px;
     display: flex;
@@ -100,6 +115,7 @@
 /* LOVE */
 
 .lovebg {
+    height: 40px;
     font-size: 0.9rem !important;
     padding: 10px;
     display: flex;
@@ -115,6 +131,30 @@
 
 .reviewproduk .deskripsi {
     margin-bottom: 10px;
+    overflow: hidden;
+    display: block;
+    -webkit-line-clamp: 7;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.reviewproduk .deskripsiMore {
+    margin-bottom: 10px;
+    overflow: hidden;
+    display: block;
+    -webkit-line-clamp: inherit;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.reviewproduk .viewmore {
+    margin-top: -6px;
+    color: var(--color-sekunder);
+    font-weight: 500;
 }
 
 .reviewproduk .tersedia {
@@ -132,6 +172,62 @@
     width: 100%;
     text-align: right;
     color: var(--color-diskon);
+    margin-top: 10px;
+    font-size: 0.6rem;
+}
+
+.juduldeskripsi {
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.powerby {
+    color: var(--color-sekunder);
+    font-weight: 300;
+    font-size: 0.6rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.ListKategoriSemuanya {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--color-grey);
+    position: relative;
+}
+
+.ListKategoriSemuanya .ListKategori {
+    display: flex;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.ListKategoriSemuanya .ListKategori .simbol {
+    transform: rotate(270deg);
+}
+
+.ListKategoriSemuanya .TypeKategori {
+    width: 100%;
+    position: absolute;
+    /* background-color: forestgreen; */
+}
+
+.ListKategoriSemuanya select {
+    width: 100%;
+    text-align: right;
+    padding: 10px 0;
+    border: 0;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.ListKategoriSemuanya select option {
+    text-align: left;
+    font-size: 0.7rem;
 }
 
 
@@ -140,19 +236,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: 700;
 }
 
 .reviewproduk .button {
     display: flex;
     align-items: center;
     border: 3px solid var(--color-grey);
+    background-color: var(--color-grey);
     font-weight: 700;
+    border-radius: 12px;
 }
 
 .reviewproduk .button button {
-    background-color: var(--color-white);
+    background-color: var(--color-grey);
     color: var(--color-sekunder);
-    padding: 10px 20px;
+    padding: 5px 15px;
     cursor: pointer;
     outline: none;
     border: 0;
@@ -223,17 +322,22 @@
 /* GAMBAR */
 
 .gambar {
+    grid-area: 1/1/3/2;
     min-height: max-content;
     display: flex;
     justify-content: center;
     padding: 30px;
+    /* background-color: rebeccapurple; */
 }
 
 .gambar img {
     height: 400px;
-    width: 400px;
+    width: 600px;
     border-radius: 8px;
-    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f
+    box-shadow: 0 1px 3px #0000001a, 0 1px 2px #0000000f;
+    background-position: center;
+    object-position: top;
+    object-fit: contain;
 }
 
 .gambar .gambardalam {
@@ -263,9 +367,9 @@
         width: 100vw;
     }
 
-    .grid {
+    /* .grid {
         grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    }
+    } */
 
 
     .gambar img {
@@ -297,6 +401,7 @@
         grid-area: 2/1/3/3;
         padding: 20px;
         padding: 10px 30px 30px 30px;
+        width: 100%;
     }
 
 
@@ -333,10 +438,10 @@
     .gambar .gambardalam {
         top: 0
     }
-    
-    .bawahaksi {
+
+    /* .bawahaksi {
         display: none;
-    }
+    } */
 }
 
 
@@ -362,6 +467,7 @@
         grid-area: 2/1/3/3;
         padding: 20px;
         padding: 10px 20px 20px 20px;
+        width: 100%;
     }
 
 
@@ -395,12 +501,12 @@
         padding: 10px 20px;
         border-radius: 0 10px 10px 0;
     }
-    
+
     .gambar .gambardalam {
         top: 0
     }
-    
-    .bawahaksi {
+
+    /* .bawahaksi {
         display: none;
-    }
+    } */
 }

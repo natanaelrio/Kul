@@ -4,8 +4,8 @@ export const useStoreListDataProduct = create((set) => ({
 
     // List UMUM
     datalist: [],
-    fetchdatalist: async (e) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-listdata?take=${e ? e : 5}`, {
+    fetchdatalist: async (sortby, take) => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-listdata?sortby=${sortby == null ? '' : sortby}&take=${take ? take : 8}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const useStoreListDataProduct = create((set) => ({
 
     datasearchfilter: {},
     fetchdatasearchfilter: async (search, sortby, take) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${search}&sortby=${sortby == null ? '' : sortby}&take=${take ? take : 5}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-search?cari=${search}&sortby=${sortby == null ? '' : sortby}&take=${take ? take : 8}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

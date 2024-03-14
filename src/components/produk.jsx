@@ -7,6 +7,8 @@ import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
@@ -39,7 +41,7 @@ export default function Produk(props) {
     const setTambahValueKeranjang = useKeranjangCount((state) => state.setTambahValueKeranjang)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
-    const jumlahBarang = data.jumlah_barang
+    // const jumlahBarang = data.jumlah_barang
 
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
@@ -95,6 +97,60 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
+    const [viewMore, setViewMore] = useState(false)
+    const handleViewMoreDeskripsi = () => {
+        setViewMore(!viewMore)
+    }
+
+
+    //DETAIL LAINNYA
+    const ListKategori = data?.detail_deskripsi_barang?.kategori
+    const TypeKategori = data?.detail_deskripsi_barang?.typeKategori
+
+    const ListKategoriSemuanya = ListKategori?.map((dataKategori) => {
+        return (
+            {
+                kategori: dataKategori,
+                typeKategori: TypeKategori.filter((data) => data.kategori == dataKategori)
+            }
+        )
+    })
+
+
+    const dataAwalDefault = ListKategoriSemuanya.map((data) => data.typeKategori).map((data) => data[0])
+
+    const [valueDefault, setValueDefault] = useState(dataAwalDefault)
+    const [selectedOption, setSelectedOption] = useState(ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori);
+    const [gabungValueKategori, setGabungValueKategori] = useState([])
+    const handleChangeSelect = (event, data, pilihan) => {
+        setSelectedOption(event.target.value);
+        resetValueKeranjang()
+        const cek = data.typeKategori.filter((data) => data.typeKategori == event.target.value)[0]
+
+        setValueDefault([...valueDefault, cek])
+    }
+
+
+
+    useEffect(() => {
+        setGabungValueKategori([...new Set([...gabungValueKategori, valueDefault])])
+    }, [valueDefault])
+
+
+    const dataListKategoriType = ListKategori.map((data) => {
+        return (
+            gabungValueKategori.slice(-1)[0]?.filter((dataku) => dataku.kategori == data).slice(-1)[0]
+        )
+    }
+    )
+
+
+    const GabungDataKategoriType = dataListKategoriType.map((data) => {
+        return ({ nama: data?.kategori, type: data?.typeKategori })
+    })
+
+    const jumlahBarang = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock ? TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock : data.jumlah_barang
+
 
     //DATA FORM 
     const dataFormLangsung =
@@ -105,8 +161,10 @@ export default function Produk(props) {
             diskon_barang: data?.diskon_barang,
             kupon_barang: data?.kupon_barang,
             kondisi_diskon_barang: data?.kondisi_diskon_barang,
-            value_barang: ValueKeranjang
+            value_barang: ValueKeranjang,
+            GabungDataKategoriType: GabungDataKategoriType
         }]
+
 
 
     return (
@@ -117,8 +175,31 @@ export default function Produk(props) {
                     <div className={styles.grid}>
                         <div className={styles.reviewproduk}>
                             <div className={styles.containerreview}>
-                                <div className={styles.judul}>{data?.nama_barang}</div>
-                                <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
+
+                                <div className={styles.atas}>
+                                    <div className={styles.judulterjual}>
+                                        <div className={styles.judul}>{data?.nama_barang}</div>
+                                        <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
+                                    </div >
+                                    {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
+                                        <button
+                                            className={styles.lovebg}
+                                            onClick={() => setDeleteLoveZ(data.id)}
+                                            aria-label={'logoheart'}
+                                        >
+                                            <FaRegHeart />
+                                        </button>
+                                        :
+                                        <button className={styles.icon}
+                                            onClick={() => setdataLoveZ(data, data.harga_barang, false)}
+                                            aria-label={'logoheart'}
+                                        >
+                                            <FaRegHeart />
+                                        </button>
+                                    }
+                                </div>
+
+
 
                                 <div className={styles.section}>
                                     <div className={styles.wkwk}>
@@ -142,29 +223,40 @@ export default function Produk(props) {
                                         </div>}
                                     </div>
 
-                                    {data.id == love?.filter((todo) => todo.id == data.id).map((data) => data.id).toString() ?
-                                        <button
-                                            className={styles.lovebg}
-                                            onClick={() => setDeleteLoveZ(data.id)}
-                                            aria-label={'logoheart'}
-                                        >
-                                            <FaRegHeart />
-                                        </button>
-                                        :
-                                        <button className={styles.icon}
-                                            onClick={() => setdataLoveZ(data, data.harga_barang, false)}
-                                            aria-label={'logoheart'}
-                                        >
-                                            <FaRegHeart />
-                                        </button>
-                                    }
+
 
                                 </div>
-                                <div className={styles.deskripsi} dangerouslySetInnerHTML={{ __html: data?.diskripsi_barang }}>
-                                </div>
+
+
+
                             </div>
 
                             <div className={styles.bawahaksi}>
+                                {ListKategoriSemuanya?.map((data, i) => {
+
+                                    const Pilihan = valueDefault.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori ? valueDefault.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori : TypeKategori.filter((dataku) => dataku.kategori == data.kategori)[0].typeKategori
+
+                                    return (
+                                        <div className={styles.ListKategoriSemuanya} key={i}>
+                                            <div className={styles.ListKategori} >{data?.kategori}</div>
+                                            <div className={styles.ListKategori} >
+                                                <div className={styles.text}>{Pilihan}</div> &nbsp;
+                                                <div className={styles.simbol}><IoIosArrowBack style={{ marginRight: '-10px' }} /> <IoIosArrowForward /></div>
+                                            </div>
+                                            <div className={styles.TypeKategori}>
+                                                <select value={selectedOption} onChange={(e) => handleChangeSelect(e, data, Pilihan)}>
+                                                    {data?.typeKategori.map((data) => {
+                                                        return (
+                                                            <option value={data.typeKategori}>{data.typeKategori}</option>
+                                                        )
+                                                    }
+                                                    )}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+
                                 <div className={styles.jumlahbarang}>stok : {jumlahBarang}</div>
                                 {keranjang?.length === 1 ?
                                     keranjang?.map((data) => {
@@ -209,6 +301,14 @@ export default function Produk(props) {
                                 <div className={styles.belisekarang}>
                                     <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
                                 </div>
+                                <div className={styles.powerby}>
+                                    Checkout powered by Midstrans
+                                </div>
+                                <div className={styles.juduldeskripsi}>Description</div>
+                                <div className={viewMore ? styles.deskripsiMore : styles.deskripsi} dangerouslySetInnerHTML={{ __html: data?.diskripsi_barang }}>
+                                </div>
+                                <div className={styles.viewmore} onClick={() => handleViewMoreDeskripsi()}>{!viewMore ? 'viewmore' : 'lessmore'}</div>
+
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
                             </div>
                         </div>

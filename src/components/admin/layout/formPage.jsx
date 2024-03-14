@@ -30,18 +30,17 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
     const uid = uidRio()
 
     //TODOS
-    const [todo, setTodo] = useState(data ? data?.detail_deskripsi_barang?.typeKategori : [])
+    const [todo, setTodo] = useState(data?.detail_deskripsi_barang?.typeKategori ? data?.detail_deskripsi_barang?.typeKategori : [])
 
     //KATEGORI 
     const [kategori, setKategori] = useState([])
-    const [todoKategori, setTodoKategori] = useState(data ? data?.detail_deskripsi_barang?.kategori : [])
+    const [todoKategori, setTodoKategori] = useState(data?.detail_deskripsi_barang?.kategori ? data?.detail_deskripsi_barang?.kategori : [])
 
     const [validasiKategori, setValidasiKategori] = useState(false)
     const handleKategori = () => {
         kategori == '' ? setValidasiKategori(true) : setTodoKategori([...new Set([...todoKategori, kategori])]) || setValidasiKategori(false)
     }
 
-    console.log()
 
     // LIST KATEGORI
     const [typeKategori, setTypeKategori] = useState('')
@@ -436,7 +435,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             </>
                         }
 
-                        {kategoriData.map((dataKategori) => {
+                        {kategoriData?.map((dataKategori) => {
                             const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
                             return (
                                 <>

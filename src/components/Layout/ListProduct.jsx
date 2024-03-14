@@ -45,11 +45,11 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
     const [isLoading, setIsLoading] = useState(false)
     const handleFetchPagination = () => {
         data?.length != data?.length + 1 && setIsLoading(true)
-        fetchSearch && fetchdatasearchfilter(query, sortby, data?.length + 1) || fetchdatalist(data?.length + 1)
+        fetchSearch && fetchdatasearchfilter(query, sortby, data?.length + 4) || fetchMain && fetchdatalist(sortby, data?.length + 4)
     }
 
     useEffect(() => {
-        data?.length == data?.length + 1 == setIsLoading(false)
+        data?.length == data?.length + 4 == setIsLoading(false)
     }, [data?.length])
 
     return (
@@ -59,11 +59,13 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                     <div className={styles.judulatas} style={fetchSearch ? { fontSize: '0.7rem', fontWeight: '500' } : {}} dangerouslySetInnerHTML={{ __html: judul }}>
                     </div>
                     <div>
-                        {fetchSearch &&
+                        {true &&
                             <Suspense fallback={<span style={{ fontSize: '0.6rem' }}>Loading....</span>}>
                                 <ListProductsearchFilter
                                     query={query}
                                     sortby={sortby}
+                                    fetchMain={fetchMain}
+                                    fetchSearch={fetchSearch}
                                 />
                             </Suspense>
                         }
