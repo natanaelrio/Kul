@@ -14,7 +14,7 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import ListProductsearchFilter from '@/components/listProductsearchFilter'
 
-export default function ListProduk({ data, judul, fetchMain, fetchSearch, query, sortby, lengthdata }) {
+export default function ListProduk({ data, judul, fetchMain, fetchSearch, query, sortby, lengthdata, kondisiProduk }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
     const fetchdatasearchfilter = useStoreListDataProduct((state) => state.fetchdatasearchfilter)
 
@@ -59,7 +59,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                     <div className={styles.judulatas} style={fetchSearch ? { fontSize: '0.7rem', fontWeight: '500' } : {}} dangerouslySetInnerHTML={{ __html: judul }}>
                     </div>
                     <div>
-                        {true &&
+                        {kondisiProduk &&
                             <Suspense fallback={<span style={{ fontSize: '0.6rem' }}>Loading....</span>}>
                                 <ListProductsearchFilter
                                     query={query}

@@ -28,7 +28,8 @@ export default function ListProductsearch() {
                 query={query}
                 sortby={sortby}
                 judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearchfilter?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${datasearchfilter?.total_array}`}`}
-            />
+                kondisiProduk={true}
+          />
             {openFilter && <FilterBlur />}
         </>
     )

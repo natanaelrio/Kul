@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import ListProduk from '@/components/Layout/ListProduct'
 import { useSearchParams } from 'next/navigation'
 
-export default function ListProductMain() {
+export default function ListProductMain({ kondisiProduk }) {
     const searchParams = useSearchParams()
     const sortby = searchParams.get('sortby')
     const datalist = useStoreListDataProduct((state) => state.datalist)
@@ -20,6 +20,8 @@ export default function ListProductMain() {
             lengthdata={datalist?.total_array}
             fetchMain={true}
             sortby={sortby}
-            judul={`Produk Terbaru`} />
+            judul={`Produk Terbaru`}
+            kondisiProduk={kondisiProduk}
+            />
     )
 }

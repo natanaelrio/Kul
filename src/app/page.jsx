@@ -1,7 +1,6 @@
 import ListProductMain from '@/components/listProductMain'
 import HeaderFooter from '@/components/Layout/headerFooter'
-import { Suspense } from 'react'
-import Latihan from '@/components/latihan'
+// import Latihan from '@/components/latihan'
 
 // import Todo from '@/components/todo'
 // import TodoDua from '@/components/todo2'
@@ -37,10 +36,8 @@ export default function Home() {
       <HeaderFooter kondisiatas={true}>
         {/* <Todo /> */}
         {/* <TodoDua /> */}
-        <Latihan />
-        <Suspense>
-          <ListProductMain />
-        </Suspense>
+        {/* <Latihan /> */}
+        <ListProductMain kondisiProduk={true} />
       </HeaderFooter>
     </>
   )

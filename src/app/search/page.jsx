@@ -1,6 +1,5 @@
 import ListProductsearch from "@/components/listProductsearch"
 import HeaderFooter from '@/components/Layout/headerFooter'
-import { Suspense } from 'react'
 
 export const viewport = {
     width: 'device-width',
@@ -21,9 +20,7 @@ export async function generateMetadata({ searchParams }) {
 export default function Search() {
     return (
         <HeaderFooter >
-            <Suspense>
-                <ListProductsearch />
-            </Suspense>
+            <ListProductsearch />
         </HeaderFooter>
     )
 }

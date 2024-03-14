@@ -159,7 +159,7 @@ export default function Produk(props) {
 
     useEffect(() => {
         function handleScroll() {
-            const { top } = targetRef.current.getBoundingClientRect();
+            const { top } = targetRef.current.getBoundingClientRect() || '';
             // Jika posisi top lebih kecil dari 0, berarti scroll telah melewati target
             setOpenIsScrollPast(top < 0)
         }
