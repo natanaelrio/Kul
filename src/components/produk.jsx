@@ -122,7 +122,7 @@ export default function Produk(props) {
     const [valueDefault, setValueDefault] = useState(dataAwalDefault)
     const [selectedOption, setSelectedOption] = useState(ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori);
     const [gabungValueKategori, setGabungValueKategori] = useState([])
-    const handleChangeSelect = (event, data, pilihan) => {
+    const handleChangeSelect = (event, data) => {
         setSelectedOption(event.target.value);
         resetValueKeranjang()
         const cek = data.typeKategori.filter((data) => data.typeKategori == event.target.value)[0]
@@ -134,7 +134,7 @@ export default function Produk(props) {
 
     useEffect(() => {
         setGabungValueKategori([...new Set([...gabungValueKategori, valueDefault])])
-    }, [valueDefault])
+    }, [valueDefault, setGabungValueKategori])
 
 
     const dataListKategoriType = ListKategori.map((data) => {
@@ -143,7 +143,6 @@ export default function Produk(props) {
         )
     }
     )
-
 
     const GabungDataKategoriType = dataListKategoriType.map((data) => {
         return ({ nama: data?.kategori, type: data?.typeKategori })
@@ -245,9 +244,9 @@ export default function Produk(props) {
                                             </div>
                                             <div className={styles.TypeKategori}>
                                                 <select value={selectedOption} onChange={(e) => handleChangeSelect(e, data, Pilihan)}>
-                                                    {data?.typeKategori.map((data) => {
+                                                    {data?.typeKategori.map((data, i) => {
                                                         return (
-                                                            <option value={data.typeKategori}>{data.typeKategori}</option>
+                                                            <option key={i} value={data.typeKategori}>{data.typeKategori}</option>
                                                         )
                                                     }
                                                     )}
