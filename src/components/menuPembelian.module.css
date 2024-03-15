@@ -25,6 +25,10 @@
     align-items: center;
 }
 
+.chatlogo {
+    font-size: 24px;
+}
+
 .keranjang {
     background-color: var(--color-primary);
     color: var(--color-white);

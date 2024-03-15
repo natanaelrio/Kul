@@ -150,11 +150,51 @@
 }
 
 
+.kategoristockinputan .dalaminput {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
+.kategoristockinputan .dalaminput .inputanpalingdalam {
+    position: relative;
+    width: 100%;
+}
+
+.kategoristockinputan .dalaminput .inputanpalingdalam .cekdiskon {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+    border: 1px solid var(--color-sekunder);
+    cursor: pointer;
+    padding: 2px;
+}
+
 .kategoristock {
     display: flex;
     align-items: center;
     gap: 5px;
 }
+
+.diskonnya input {
+    width: 50%;
+}
+
+.kategoristockinputan .button {
+    height: max-content;
+    margin: 0;
+    margin-top: 5px;
+    padding: 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
 
 .kategoristock .button {
     height: max-content;

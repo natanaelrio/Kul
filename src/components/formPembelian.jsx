@@ -77,8 +77,6 @@ export default function FormPembelian({ dataFormLangsung }) {
         setIsLoadingGagal(false)
     }
 
-    console.log()
-
 
     const formik = useFormik({
         initialValues: {
@@ -86,7 +84,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             no_hp_user: noHP ? Number(noHP) : '',
             alamat_lengkap_user: alamat ? alamat : '',
             kode_pos_user: kodePost ? Number(kodePost) : '',
-            catatan_user: dataFormLangsung[0].GabungDataKategoriType.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() ? dataFormLangsung[0].GabungDataKategoriType.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() : ''
+            catatan_user: dataFormLangsung[0].GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() ? dataFormLangsung[0].GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() : ''
         },
         validationSchema: Yup.object({
             nama_lengkap_user: Yup.string()

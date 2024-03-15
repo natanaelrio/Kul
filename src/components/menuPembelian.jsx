@@ -30,7 +30,7 @@ export default function MenuPembelian(props) {
         <div className={styles.container}>
             <div className={styles.width}>
                 <div className={styles.chat}>
-                    <CiChat2 /> Chat
+                    <CiChat2 className={styles.chatlogo} /> Chat
                 </div>
                 {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                     <div className={styles.keranjang}

@@ -8,7 +8,8 @@ const nextConfig = {
       'd3544la1u8djza.cloudfront.net',
       'ik.imagekit.io',
       'kul.vercel.app',
-      'shop.forem.com'
+      'shop.forem.com',
+      'images.unsplash.com'
     ],
   },
   async headers() {

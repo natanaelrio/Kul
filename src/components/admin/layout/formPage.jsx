@@ -25,7 +25,7 @@ import draftToHtml from "draftjs-to-html";
 export default function FormPage({ urlFetch, method, data, change, value, kondisi, submit }) {
     const router = useRouter()
     const [matikan, setMatikan] = useState(false)
-    const [diskon, setDiskon] = useState(data?.kondisi_diskon_barang ? true : false)
+    const [diskonValue, setDiskonValue] = useState(data?.kondisi_diskon_barang ? true : false)
 
     const uid = uidRio()
 
@@ -42,13 +42,21 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
     }
 
 
+
     // LIST KATEGORI
     const [typeKategori, setTypeKategori] = useState('')
     const [stock, setStock] = useState(1)
+    const [harga, setHarga] = useState(1)
+    const [diskon, seDiskon] = useState(100)
+    const [kondisiDiskon, setKondisiDiskon] = useState(false)
+    const [gambar, setGambar] = useState('')
 
     const handleTypeKategori = (kategori) => {
-        setTodo([...todo, { uid, kategori, typeKategori, stock }])
+        setTodo([...todo, { uid, kategori, typeKategori, stock, harga, diskon, kondisiDiskon, gambar }])
     }
+
+    // console.log(todo)
+    // console.log(kondisiDiskon)
 
 
     const handleDeleteKategori = (e) => {
@@ -68,21 +76,34 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
     const [id, setID] = useState('')
     const [valueUpdateTypeKategori, setValueUpdateTypeKategori] = useState('')
     const [valueUpdateStock, setValueUpdateStock] = useState('')
+    const [valueUpdateHarga, setValueUpdateHarga] = useState(1)
+    const [valueUpdateDiskon, setValueUpdateDiskon] = useState(100)
+    const [valueUpdatekondisiDiskon, setValueUpdateKondisiDiskon] = useState(false)
+    const [valueUpdategambar, setUpdateGambar] = useState('')
+
     const handleUpdateKategori = (e) => {
         setTodo(todo.map((data) => data.uid == e ?
             {
                 ...data,
                 typeKategori: valueUpdateTypeKategori,
-                stock: valueUpdateStock
+                stock: valueUpdateStock,
+                harga: valueUpdateHarga,
+                diskon: valueUpdateDiskon,
+                kondisiDiskon: valueUpdatekondisiDiskon,
+                gambar: valueUpdategambar
             }
             : data))
     }
 
 
-    const handleEdit = (e, typeKategori, stock) => {
+    const handleEdit = (e, typeKategori, stock, harga, diskon, kondisiDiskon, gambar) => {
         setID(e)
         setValueUpdateTypeKategori(typeKategori)
         setValueUpdateStock(stock)
+        setValueUpdateHarga(harga)
+        setValueUpdateDiskon(diskon)
+        setValueUpdateKondisiDiskon(kondisiDiskon)
+        setUpdateGambar(gambar)
     }
 
     const [resetTypeKategori, setResetTypeKategori] = useState(false)
@@ -199,7 +220,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                 slug_barang: values.nama_barang.split(' ').join('-').toLowerCase(),
                 diskripsi_barang: draftToHtml(convertToRaw(editorState.getCurrentContent())),
                 detail_deskripsi_barang: dataGabungFinal,
-                kondisi_diskon_barang: diskon
+                kondisi_diskon_barang: diskonValue
             }
 
             const DataUtama = values
@@ -309,7 +330,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                 </div>
                             </div>
                             <div className={styles.diskon}>
-                                <label htmlFor="diskon_barang" onClick={() => setDiskon(!diskon)} >Diskon &nbsp;<FaCheck color={diskon ? 'green' : 'red'} />
+                                <label htmlFor="diskon_barang" onClick={() => setDiskonValue(!diskonValue)} >Diskon &nbsp;<FaCheck color={diskonValue ? 'green' : 'red'} />
                                     {formik.touched.diskon_barang && formik.errors.diskon_barang ? (
                                         <div style={{ color: 'red' }}>&nbsp;*</div>
                                     ) : null}
@@ -324,7 +345,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                         value={formik.values.diskon_barang}
                                         placeholder='50'
                                         style={formik.touched.diskon_barang && formik.errors.diskon_barang ? { border: '1px solid red' } : null}
-                                        disabled={!diskon}
+                                        disabled={!diskonValue}
                                     />
                                     <div className={styles.text}>%</div>
                                 </div>
@@ -381,9 +402,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             placeholder='ex: http://google.com/kucing.png'
                             style={formik.touched.gambar_barang && formik.errors.gambar_barang ? { border: '1px solid red' } : null}
                         />
-                    </div>
 
-                    <div className={styles.kotak2}>
                         <label htmlFor="link_barang">Koneksi
                             {formik.touched.link_barang && formik.errors.link_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -419,50 +438,6 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             />
                         </div>
 
-                        <label >Kategori  </label>
-                        <div className={styles.kategoristock}>
-                            <input style={validasiKategori ? { border: '1px solid red' } : {}} type="text" placeholder="nama kategori(warna, ukuran)" value={kategori} onChange={(e) => setKategori(e.target.value)} />
-                            <div className={styles.button} onClick={() => handleKategori()}><FaPlusSquare /></div>
-                        </div>
-
-                        {kondisiList &&
-                            <>
-                                <div className={styles.kategoristock} style={{ marginTop: '10px' }}>
-                                    <input type="text" value={valueUpdateTypeKategori} placeholder="Kategori" onChange={(e) => setValueUpdateTypeKategori(e.target.value)} />
-                                    <input type="number" value={valueUpdateStock} placeholder="Stock" onChange={(e) => setValueUpdateStock(e.target.value)} />
-                                    <div className={styles.button} onClick={() => { handleUpdateKategori(id), setKondisiList(false) }}>Update</div>
-                                </div>
-                            </>
-                        }
-
-                        {kategoriData?.map((dataKategori) => {
-                            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
-                            return (
-                                <>
-                                    <label style={{ borderBottom: `3px solid  ${randomColor}`, marginBottom: '3px', fontSize: '1rem', display: 'flex', justifyContent: 'space-between' }} ><span>{dataKategori}</span>  <span className={styles.editdel} style={{ background: 'var(--color-high)', color: 'var(--color-white)', padding: '4px', marginBottom: '5px', font: '0.7rem' }} onClick={() => handleDeleteListKategori(dataKategori)}>Del</span></label>
-                                    <div className={styles.kategoristock}>
-                                        <input type="text" placeholder="Type" onChange={(e) => setTypeKategori(e.target.value)} />
-                                        <input type="number" placeholder="Stock" onChange={(e) => setStock(e.target.value)} />
-                                        <div className={styles.button} onClick={() => handleTypeKategori(dataKategori)}>Kirim</div >
-                                    </div >
-
-                                    {typeKategoriData?.map((data, i) => {
-                                        return (
-                                            data.kategori == dataKategori &&
-                                            <>
-                                                <div key={i} className={styles.kategoristockeditdel}>
-                                                    <div className={styles.listkategori}>{data.typeKategori}</div>
-                                                    <div className={styles.datastock}>{data.stock}</div>
-                                                    <div className={styles.edit}> <div className={styles.editdel} onClick={() => { handleEdit(data.uid, data.typeKategori, data.stock), setKondisiList(true) }}>Edit</div ></div>
-                                                    <div className={styles.delete}> <div className={styles.editdel} style={{ background: 'var(--color-high)' }} onClick={() => handleDeleteKategori(data.uid)}>Del</div ></div>
-                                                </div>
-                                            </>
-                                        )
-                                    })}
-                                </>
-                            )
-                        }
-                        )}
 
                         <label htmlFor="rating_barang">Rating
                             {formik.touched.diskripsi_barang && formik.errors.diskripsi_barang ? (
@@ -509,6 +484,109 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             placeholder='opsional'
                             style={formik.touched.jumlah_barang && formik.errors.jumlah_barang ? { border: '1px solid red' } : null}
                         />
+                    </div>
+
+                    <div className={styles.kotak2}>
+
+
+                        <label >Kategori  </label>
+                        <div className={styles.kategoristock}>
+                            <input style={validasiKategori ? { border: '1px solid red' } : {}} type="text" placeholder="nama kategori(warna, ukuran)" value={kategori} onChange={(e) => setKategori(e.target.value)} />
+                            <div className={styles.button} onClick={() => handleKategori()}><FaPlusSquare /></div>
+                        </div>
+
+                        {kondisiList &&
+                            <>
+                                <div className={styles.kategoristockinputan} style={{ marginTop: '10px' }}>
+                                    <div className={styles.dalaminput}>
+                                        <div className={styles.inputanpalingdalam}>
+                                            <label>Type</label>
+                                            <input type="text" value={valueUpdateTypeKategori} onChange={(e) => setValueUpdateTypeKategori(e.target.value)} />
+                                        </div>
+                                        <div className={styles.inputanpalingdalam}>
+                                            <label>Stock</label>
+                                            <input type="number" value={valueUpdateStock} onChange={(e) => setValueUpdateStock(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className={styles.dalaminput}>
+                                        <div className={styles.inputanpalingdalam}>
+                                            <label>Harga</label>
+                                            <input type="number" value={valueUpdateHarga} onChange={(e) => setValueUpdateHarga(e.target.value)} />
+                                        </div>
+                                        <div className={styles.inputanpalingdalam}>
+                                            <label>Diskon</label>
+                                            <input type="number" value={valueUpdateDiskon} disabled={!valueUpdatekondisiDiskon} onChange={(e) => setValueUpdateDiskon(e.target.value)} />
+                                            <div className={styles.cekdiskon} onClick={() => setValueUpdateKondisiDiskon(!valueUpdatekondisiDiskon)} style={valueUpdatekondisiDiskon ? { color: 'green', border: ' 1px solid green' } : { color: 'red', border: ' 1px solid red' }} > Diskon &nbsp;<FaCheck color={valueUpdatekondisiDiskon ? 'green' : 'red'} /></div>
+                                        </div>
+
+                                    </div>
+                                    <div className={styles.dalaminputgambar}>
+                                        <div className={styles.inputanpalingdalam}>
+                                            <label>Url Gambar</label>
+                                            <input type="text" value={valueUpdategambar} onChange={(e) => setUpdateGambar(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className={styles.button} onClick={() => { handleUpdateKategori(id), setKondisiList(false) }}>Update</div>
+                                </div >
+                            </>
+                        }
+
+                        {kategoriData?.map((dataKategori) => {
+                            const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+                            return (
+                                <>
+                                    <label style={{ borderBottom: `3px solid  ${randomColor}`, marginBottom: '3px', fontSize: '1rem', display: 'flex', justifyContent: 'space-between' }} ><span>{dataKategori}</span>  <span className={styles.editdel} style={{ background: 'var(--color-high)', color: 'var(--color-white)', padding: '4px', marginBottom: '5px', font: '0.7rem' }} onClick={() => handleDeleteListKategori(dataKategori)}>Del</span></label>
+                                    <div className={styles.kategoristockinputan}>
+                                        <div className={styles.dalaminput}>
+                                            <div className={styles.inputanpalingdalam}>
+                                                <label>Type</label>
+                                                <input type="text" placeholder="Type" onChange={(e) => setTypeKategori(e.target.value)} />
+                                            </div>
+                                            <div className={styles.inputanpalingdalam}>
+                                                <label>Stock</label>
+                                                <input type="number" placeholder="Stock" onChange={(e) => setStock(e.target.value)} />
+                                            </div>
+                                        </div>
+                                        <div className={styles.dalaminput}>
+                                            <div className={styles.inputanpalingdalam}>
+                                                <label>Harga</label>
+                                                <input type="number" placeholder="Harga" onChange={(e) => setHarga(e.target.value)} />
+                                            </div>
+                                            <div className={styles.inputanpalingdalam}>
+                                                <label>Diskon</label>
+                                                <input type="number" placeholder="Diskon" disabled={!kondisiDiskon} onChange={(e) => seDiskon(e.target.value)} />
+                                                <div className={styles.cekdiskon} onClick={() => setKondisiDiskon(!kondisiDiskon)} style={kondisiDiskon ? { color: 'green', border: ' 1px solid green' } : { color: 'red', border: ' 1px solid red' }} > Diskon &nbsp;<FaCheck color={kondisiDiskon ? 'green' : 'red'} /></div>
+                                            </div>
+
+                                        </div>
+                                        <div className={styles.dalaminputgambar}>
+                                            <div className={styles.inputanpalingdalam}>
+                                                <label>Url Gambar</label>
+                                                <input type="text" placeholder="Gambar" onChange={(e) => setGambar(e.target.value)} />
+                                            </div>
+                                        </div>
+                                        <div className={styles.button} onClick={() => handleTypeKategori(dataKategori)}>Kirim</div >
+                                    </div >
+
+                                    {typeKategoriData?.map((data, i) => {
+                                        return (
+                                            data.kategori == dataKategori &&
+                                            <>
+                                                <div key={i} className={styles.kategoristockeditdel}>
+                                                    <div className={styles.listkategori}>{data.typeKategori}</div>
+                                                    <div className={styles.datastock}>{data.stock}</div>
+                                                    <div className={styles.edit}> <div className={styles.editdel} onClick={() => { handleEdit(data.uid, data.typeKategori, data.stock, data.harga, data.diskon, data.kondisiDiskon, data.gambar), setKondisiList(true) }}>Edit</div ></div>
+                                                    <div className={styles.delete}> <div className={styles.editdel} style={{ background: 'var(--color-high)' }} onClick={() => handleDeleteKategori(data.uid)}>Del</div ></div>
+                                                </div>
+                                            </>
+                                        )
+                                    })}
+                                </>
+                            )
+                        }
+                        )}
+
+
                         <div className={styles.dalamsubmit}>
 
                             <div className={styles.isisum}>

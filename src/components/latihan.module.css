@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container button {
+    height: 50px;
+    padding: 0 24px;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.container .tombolnextprev {
+    display: flex;
+}
