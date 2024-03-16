@@ -175,6 +175,7 @@ export default function DataPesanan({ data, take, skip, cariPesanan }) {
                         <div className={styles.namapesanan}>Pesan</div>
                         <div className={styles.jumlahpesanan}>Jumlah</div>
                         <div className={styles.hargapesanan}>Harga</div>
+                        <div className={styles.catatanku}>Catatan</div>
                         <div className={styles.link}>Link</div>
                         <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status/Resi</div>
                     </div>
@@ -186,6 +187,7 @@ export default function DataPesanan({ data, take, skip, cariPesanan }) {
                                 <div className={styles.namapesanan}>Pesan</div>
                                 <div className={styles.jumlahpesanan}>Jumlah</div>
                                 <div className={styles.hargapesanan}>Harga</div>
+                                <div className={styles.catatanku}>Catatan</div>
                                 <div className={styles.link}>Link</div>
                                 <div className={styles.status} style={{ justifyContent: 'flex-start' }}>Status</div>
                             </div>
@@ -200,6 +202,7 @@ export default function DataPesanan({ data, take, skip, cariPesanan }) {
                                         style: 'currency',
                                         currency: 'IDR'
                                     })}</div>
+                                    <div className={styles.catatanku}>{data?.catatan ? data?.catatan : 'tidak ada'}</div>
                                     <div className={styles.link} onClick={() => handleLink(data?.id_user)} >{linkData?.data?.id == data?.id_user ? linkData?.data?.link_barang : <div className={styles.eye}><IoEyeOutline />lihat</div>}</div>
                                     <div className={styles.status}>
                                         <div className={styles.dalamstatus}>

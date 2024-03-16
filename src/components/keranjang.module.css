@@ -130,6 +130,9 @@
     text-align: left;
     margin-bottom: 5px;
 }
+.list .detail .catatan {
+    margin-bottom: 5px;
+}
 
 .list .harga {
     margin-bottom: 5px;

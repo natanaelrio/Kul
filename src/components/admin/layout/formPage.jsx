@@ -42,7 +42,6 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
     }
 
 
-
     // LIST KATEGORI
     const [typeKategori, setTypeKategori] = useState('')
     const [stock, setStock] = useState(1)
@@ -106,12 +105,11 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
         setUpdateGambar(gambar)
     }
 
-    const [resetTypeKategori, setResetTypeKategori] = useState(false)
+    // const [resetTypeKategori, setResetTypeKategori] = useState(false)
     const dataGabungFinal = {
-        kategori: resetTypeKategori ? [] : todoKategori,
-        typeKategori: resetTypeKategori ? [] : todo
+        kategori: todoKategori,
+        typeKategori: todo
     }
-
 
 
     const kategoriData = dataGabungFinal.kategori
@@ -160,19 +158,20 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
         setEditorState(EditorState.createWithContent(state))
     }
 
+
     const formik = useFormik({
         initialValues: {
             nama_barang: data ? data?.nama_barang : '',
             kategori_barang: data ? data?.kategori_barang : '',
-            harga_barang: data ? data?.harga_barang : '',
-            diskon_barang: data ? data?.diskon_barang : 100,
+            // harga_barang: data ? data?.harga_barang : '',
+            // diskon_barang: data ? data?.diskon_barang : 100,
             rating_barang: data ? data?.rating_barang : '',
             total_penjualan_barang: data ? data?.total_penjualan_barang : '',
             // diskripsi_barang: data ? data?.diskripsi_barang : '',
             gambar_barang: data ? data?.gambar_barang : '',
             kupon_barang: data ? data?.kupon_barang : '',
             tag_barang: data ? data?.tag_barang : '',
-            jumlah_barang: data ? data?.jumlah_barang : '',
+            // jumlah_barang: data ? data?.jumlah_barang : '',
             link_barang: data ? data?.link_barang : '',
         },
         validationSchema: Yup.object({
@@ -185,9 +184,9 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
             tag_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
-            harga_barang: Yup.number()
-                .max(2000000000, 'harus 2000000000 karakter')
-                .required('require'),
+            // harga_barang: Yup.number()
+            //     .max(2000000000, 'harus 2000000000 karakter')
+            //     .required('require'),
             // diskon_barang: Yup.number()
             //     .max(100, 'harus 100 karakter')
             //     .required('require'),
@@ -203,9 +202,9 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
             kupon_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
-            jumlah_barang: Yup.number()
-                .max(2000000000, 'harus 2000000000 karakter')
-                .required('require'),
+            // jumlah_barang: Yup.number()
+            //     .max(2000000000, 'harus 2000000000 karakter')
+            //     .required('require'),
             link_barang: Yup.string()
                 .max(20000, 'harus 200 karakter')
                 .required('require'),
@@ -220,7 +219,10 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                 slug_barang: values.nama_barang.split(' ').join('-').toLowerCase(),
                 diskripsi_barang: draftToHtml(convertToRaw(editorState.getCurrentContent())),
                 detail_deskripsi_barang: dataGabungFinal,
-                kondisi_diskon_barang: diskonValue
+                kondisi_diskon_barang: todo[0].kondisiDiskon,
+                harga_barang: Number(todo[0].harga),
+                jumlah_barang: Number(todo[0].stock),
+                diskon_barang: Number(todo[0].diskon)
             }
 
             const DataUtama = values
@@ -228,12 +230,12 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
 
             const resetData = () => {
                 formik.resetForm(),
-                    setResetTypeKategori(true),
+                    setTodoKategori([]),
+                    setTodo([]),
                     setKategori(''),
                     ResetDeskripsi()
                 Berhasil()
             }
-
 
 
             try {
@@ -260,7 +262,6 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
         },
 
     });
-
 
 
     return (
@@ -308,7 +309,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                 style={formik.touched.nama_barang && formik.errors.nama_barang ? { border: '1px solid red' } : null}
                             />
                         </div>
-                        <div className={styles.bagi2}>
+                        {/* <div className={styles.bagi2}>
 
                             <div className={styles.harga}>
                                 <label htmlFor="harga_barang">Harga
@@ -350,7 +351,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                     <div className={styles.text}>%</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
 
 
                         <label htmlFor="kategori_barang">Kategori
@@ -470,7 +471,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                         />
 
 
-                        <label htmlFor="jumlah_barang">Jumlah Barang
+                        {/* <label htmlFor="jumlah_barang">Jumlah Barang
                             {formik.touched.jumlah_barang && formik.errors.jumlah_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
@@ -483,7 +484,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             value={formik.values.jumlah_barang}
                             placeholder='opsional'
                             style={formik.touched.jumlah_barang && formik.errors.jumlah_barang ? { border: '1px solid red' } : null}
-                        />
+                        /> */}
                     </div>
 
                     <div className={styles.kotak2}>

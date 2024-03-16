@@ -71,7 +71,7 @@ export default function Love() {
                                                 </div>
                                                 :
                                                 <div className={styles.keranjanggambar}
-                                                    onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
+                                                    onClick={() => setdataKeranjangZ(data, data.harga_barang, 1, data.kondisi_diskon_barang, data.diskon_barang)}>
                                                     <div className={styles.kotak1}></div>
                                                     <div className={styles.kotak2}>
                                                         <div className={styles.bgkotak2}></div>

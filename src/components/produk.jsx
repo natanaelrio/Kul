@@ -54,50 +54,9 @@ export default function Produk(props) {
     }, [loveZ, keranjangZ])
 
 
-    // Data OFF
-    const handleAngkaKurang = () => {
-        ValueKeranjang > 1 ? setKurangValueKeranjang() : null
-    }
-    const handleAngkaTambah = () => {
-        ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
-    }
+    console.log(keranjangZ)
 
-    const handleKeranjangdanResetValue = (e) => {
-        setDeleteKeranjangZ(e), resetValueKeranjang()
-    }
-
-
-    const handleCountKeranjang = (id, value) => {
-        if (value > 0) {
-            value > jumlahBarang ? null :
-                setdataKeranjangCountZ(id, value)
-        }
-    }
-
-    // Data OFF
-    const hargatotal = data.harga_barang * ValueKeranjang
-    const hargadiskon = ((((hargatotal * (data.kondisi_diskon_barang && data.diskon_barang)) / 100) + hargatotal)) - hargatotal
-    const harga = (hargatotal - hargadiskon).toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-    const diskonharga = (hargatotal).toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-
-    // DATA KERANJANG
-    const diskonhargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-
-    const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * (data.kondisi_diskon_barang && data.diskon_barang)) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
-    const hargaKeranjang = (keranjangZ[0]?.harga_total_barang - hargadiskonKeranjang).toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
-
+    //VIEWMORE
     const [viewMore, setViewMore] = useState(false)
     const handleViewMoreDeskripsi = () => {
         setViewMore(!viewMore)
@@ -123,10 +82,11 @@ export default function Produk(props) {
     const [valueDefault, setValueDefault] = useState(dataAwalDefault)
     const [selectedOption, setSelectedOption] = useState(ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori);
     const [gabungValueKategori, setGabungValueKategori] = useState([])
-    const handleChangeSelect = (event, data) => {
+    const handleChangeSelect = (event, dataku) => {
         setSelectedOption(event.target.value);
         resetValueKeranjang()
-        const cek = data.typeKategori.filter((data) => data.typeKategori == event.target.value)[0]
+        setDeleteKeranjangZ(data?.id)
+        const cek = dataku.typeKategori.filter((data) => data.typeKategori == event.target.value)[0]
 
         setValueDefault([...valueDefault, cek])
     }
@@ -154,8 +114,6 @@ export default function Produk(props) {
 
     //HIDDEN ELEMET MOBILE PEMBELIAN
     const targetRef = useRef(null);
-    // const [isScrollPast, setIsScrollPast] = useState(false);
-
 
     useEffect(() => {
         function handleScroll() {
@@ -170,20 +128,69 @@ export default function Produk(props) {
         };
     }, []);
 
+
+    // Data OFF
+    const handleAngkaKurang = () => {
+        ValueKeranjang > 1 ? setKurangValueKeranjang() : null
+    }
+    const handleAngkaTambah = () => {
+        ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
+    }
+
+    const handleKeranjangdanResetValue = (e) => {
+        setDeleteKeranjangZ(e), resetValueKeranjang()
+    }
+
+    const handleCountKeranjang = (id, value) => {
+        if (value > 0) {
+            value > jumlahBarang ? null :
+                setdataKeranjangCountZ(id, value)
+        }
+    }
+
+    // Data OFF
+    const kondisiDiskon = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].kondisiDiskon
+    const angkaDiskon = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].diskon
+    const hargatotal = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].harga * ValueKeranjang
+
+
+    const hargadiskon = ((((hargatotal * (kondisiDiskon && angkaDiskon)) / 100) + hargatotal)) - hargatotal
+    const harga = (hargatotal - hargadiskon).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+    const diskonharga = (hargatotal).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+
+    // DATA KERANJANG
+    const diskonhargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+
+    const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * (kondisiDiskon && angkaDiskon)) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
+    const hargaKeranjang = (keranjangZ[0]?.harga_total_barang - hargadiskonKeranjang).toLocaleString('id-ID', {
+        style: 'currency',
+        currency: 'IDR'
+    })
+
+    const catatan = GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString()
+
     //DATA FORM 
     const dataFormLangsung =
         [{
             id: data?.id,
             nama_barang: data?.nama_barang,
-            harga_barang: data?.harga_barang,
-            diskon_barang: data?.diskon_barang,
+            harga_barang: hargatotal,
+            diskon_barang: Number(angkaDiskon),
             kupon_barang: data?.kupon_barang,
-            kondisi_diskon_barang: data?.kondisi_diskon_barang,
+            kondisi_diskon_barang: kondisiDiskon,
             value_barang: ValueKeranjang,
-            GabungDataKategoriType: GabungDataKategoriType
+            GabungDataKategoriType: GabungDataKategoriType,
+            catatan: catatan
         }]
-
-
 
     return (
         <>
@@ -232,8 +239,8 @@ export default function Produk(props) {
                                                 </Suspense>
                                             </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                         </div>
-                                        {data.kondisi_diskon_barang && <div className={styles.diskon}>
-                                            <div className={styles.angkadiskon}>{data?.diskon_barang}%</div>
+                                        {kondisiDiskon && <div className={styles.diskon}>
+                                            <div className={styles.angkadiskon}>{angkaDiskon}%</div>
                                             &nbsp;
                                             <div className={styles.hargadiskon}>
                                                 {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga}
@@ -313,7 +320,7 @@ export default function Produk(props) {
                                             }>Hapus Keranjang</button>
                                     </div> :
                                     <div className={styles.keranjang}>
-                                        <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang)}>Tambahkan Keranjang</button>
+                                        <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan)}>Tambahkan Keranjang</button>
                                     </div>
                                 }
                                 <div className={styles.belisekarang}   >

@@ -66,6 +66,7 @@ export default function Keranjang() {
             kondisi_diskon_barang: data?.kondisi_diskon_barang,
             kupon_barang: data.kupon_barang,
             value_barang: data.value,
+            catatan: data.catatan
         }))
 
     return (
@@ -108,7 +109,7 @@ export default function Keranjang() {
                             </div>
                             <div className={styles.container}>
                                 {keranjangZ.map((data, i) => {
-                                    const diskonharga = data.harga_total_barang.toLocaleString('id-ID', {
+                                    const diskonharga = data?.harga_total_barang?.toLocaleString('id-ID', {
                                         style: 'currency',
                                         currency: 'IDR'
                                     })
@@ -128,6 +129,7 @@ export default function Keranjang() {
                                                 <div className={styles.detail}>
                                                     <div>
                                                         <div className={styles.judul}>{data.nama_barang}</div>
+                                                        {data.catatan && <div className={styles.catatan}>{data.catatan}</div>}
                                                         <div className={styles.harga}>
                                                             <div className={styles.hargadalam}>{harga}&nbsp;</div>
                                                             {data?.kondisi_diskon_barang && <div className={styles.hargadiskon}>{diskonharga}</div>}

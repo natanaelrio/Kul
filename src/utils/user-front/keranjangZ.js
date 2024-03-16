@@ -41,12 +41,15 @@ export const useStoreDataFront = create(
             // KERANJANG
             keranjangZ: [],
             kondisiKeranjang: false,
-            setdataKeranjangZ: (keranjangZ, harga_barang, ValueKeranjang) => {
+            setdataKeranjangZ: (keranjangZ, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan) => {
                 set((state) => ({
                     keranjangZ: [...new Set([...state.keranjangZ, {
                         ...keranjangZ, ...{
                             value: Number(ValueKeranjang ? ValueKeranjang : 1),
                             harga_total_barang: harga_barang,
+                            kondisi_diskon_barang: kondisiDiskon,
+                            diskon_barang: angkaDiskon,
+                            catatan: catatan ? catatan : '',
                             kondisi: true
                         }
                     }].reverse())]
