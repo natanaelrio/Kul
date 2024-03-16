@@ -43,56 +43,6 @@
 }
 
 
-/* KERANJANG GAMBAR */
-.list .keranjanggambar {
-    position: absolute;
-    top: 0;
-    height: 90px;
-    width: 100px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.list .keranjanggambar .kotak1 {
-    top: 0;
-    height: 90px;
-    width: 100px;
-    border-radius: 3px;
-    position: relative;
-}
-
-.list .keranjanggambar .kotak2 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    padding: 2px;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-}
-
-.list .keranjanggambar .kotak2 .bgkotak2 {
-    position: relative;
-    background-color: var(--color-sekunder);
-    opacity: 0.5;
-    height: 30px;
-    width: 30px;
-    border-radius: 3px;
-}
-
-.list .keranjanggambar .kotak2 .logo {
-    padding: 1px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    margin: auto;
-    color: var(--color-white);
-}
-
-
 /* Detail PRODUK */
 .list .detail {
     padding: 0 10px 10px 10px;
@@ -161,6 +111,71 @@
     transition: 0.2s ease all;
 }
 
+.keranjang {
+    width: fit-content;
+    margin: 0 10px 10px 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.keranjang .tombolkeranjangminus:hover {
+    background-color: var(--color-white);
+    color: var(--color-high);
+    border: 1px solid var(--color-high);
+    transition: all ease 0.2s;
+}
+
+.keranjang .tombolkeranjangminus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 7px;
+    padding: 0 24px;
+    background-color: var(--color-high);
+    cursor: pointer;
+    color: var(--color-white);
+    white-space: nowrap;
+}
+
+.keranjang .tombolkeranjangplus:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    transition: all ease 0.2s;
+}
+
+.keranjang .tombolkeranjangplus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 7px;
+    padding: 0 12px;
+    background-color: var(--color-primary);
+    cursor: pointer;
+    color: var(--color-white);
+    white-space: nowrap;
+}
+
+.keranjang .detailproduk:hover {
+    background-color: var(--color-white);
+    color: var(--color-sekunder);
+    border: 1px solid var(--color-sekunder);
+    transition: all ease 0.2s;
+}
+
+.keranjang .detailproduk {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 7px;
+    padding: 0 12px;
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
+    white-space: nowrap;
+}
 
 .action {
     display: flex;

@@ -164,8 +164,8 @@ export default function DataPesanan({ data, take, skip, cariPesanan }) {
                         <div className={styles.tabledua}>{data?.no_hp_user.toString()} </div>
                     </div>
                     <div className={styles.containerinformasi}>
-                        <div className={styles.tablesatu}>Catatan: </div>
-                        <div className={styles.tabledua}>{data?.catatan_user} </div>
+                        <div className={styles.tablesatu}>Catatan Umum: </div>
+                        <div className={styles.tabledua}>{data?.catatan_user ? data?.catatan_user : 'tidak ada'} </div>
                     </div>
 
                 </div>

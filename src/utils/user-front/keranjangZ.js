@@ -8,13 +8,14 @@ export const useStoreDataFront = create(
             // LOVE
             loveZ: [],
             kondisiLove: false,
-            setdataLoveZ: async (loveZ, harga_barang, kondisi) => {
+            setdataLoveZ: async (loveZ, harga_barang, kondisi, catatan) => {
                 set((state) => ({
                     loveZ: [...new Set([...state.loveZ, {
                         ...loveZ, ...{
                             value: Number(1),
                             harga_total_barang: harga_barang,
-                            kondisiLove: true
+                            kondisiLove: true,
+                            catatan: catatan
                         }
                     }].reverse())],
                 })),

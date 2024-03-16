@@ -22,8 +22,8 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
 
-    const HandlePushLove = (e) => {
-        setdataLoveZ(e, e.harga_barang, true)
+    const HandlePushLove = (e, catatan) => {
+        setdataLoveZ(e, e.harga_barang, true, catatan)
     }
 
     const HandleDeleteLove = (e) => {
@@ -77,6 +77,10 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
                         {data?.map((data, i) => {
+
+                            const catatanKategori = data.detail_deskripsi_barang.typeKategori[0].kategori
+                            const catatanType = data.detail_deskripsi_barang.typeKategori[0].typeKategori
+                            const catatan = catatanKategori + ' ( ' + catatanType + ' )'
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'
@@ -108,7 +112,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                                 </div>
                                                 :
                                                 <div className={styles.iconlogo}
-                                                    onClick={() => HandlePushLove(data)}
+                                                    onClick={() => HandlePushLove(data, catatan)}
                                                     aria-label={'logoheart'}
                                                 >
                                                     <FaRegHeart className={styles.logo} />

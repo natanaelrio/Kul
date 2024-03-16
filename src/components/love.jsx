@@ -31,6 +31,7 @@ export default function Love() {
         setUidDelete(e)
     }
 
+
     return (
         <FloatingBlur setOpen={setOpenLove} judul={`List Favorit`} >
             {loveZ && loveZ.length == 0 ? <div className={styles.notfound}>
@@ -59,37 +60,27 @@ export default function Love() {
                                                 width={150}
                                                 height={100}
                                                 alt={data?.nama_barang} />
-                                            {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
-                                                <div className={styles.keranjanggambar}
-                                                    onClick={() => setDeleteKeranjangZ(data.id)}>
-                                                    <div className={styles.kotak1}></div>
-                                                    <div className={styles.kotak2}>
-                                                        <div className={styles.bgkotak2}
-                                                            style={{ background: 'var(--color-high' }}></div>
-                                                        <TbShoppingBagX size={20} className={styles.logo} />
-                                                    </div>
-                                                </div>
-                                                :
-                                                <div className={styles.keranjanggambar}
-                                                    onClick={() => setdataKeranjangZ(data, data.harga_barang, 1, data.kondisi_diskon_barang, data.diskon_barang)}>
-                                                    <div className={styles.kotak1}></div>
-                                                    <div className={styles.kotak2}>
-                                                        <div className={styles.bgkotak2}></div>
-                                                        <TbShoppingBagPlus size={20} className={styles.logo} />
-                                                    </div>
-                                                </div>
-                                            }
                                         </div>
-                                        <CustomLink href={`/products/${data.slug_barang}`}>
+                                        <div className={styles.detailsemua}>
                                             <div className={styles.detail} onClick={setOpenLove}>
                                                 <div className={styles.judul}>{data.nama_barang}</div>
                                                 <div className={styles.harga}>
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>
                                                     {data?.kondisi_diskon_barang && <div className={styles.hargadiskon}>{diskonharga}</div>}
                                                 </div>
-                                                Detail Produk...
                                             </div>
-                                        </CustomLink>
+                                            <div className={styles.keranjang}>
+                                                <CustomLink href={`/products/${data.slug_barang}`}>
+                                                    <div className={styles.detailproduk}>Detail Produk</div>
+                                                </CustomLink>
+                                                {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
+                                                    <div className={styles.tombolkeranjangminus} onClick={() => setDeleteKeranjangZ(data.id)}>Keranjang -</div>
+                                                    :
+                                                    <div className={styles.tombolkeranjangplus} onClick={() => setdataKeranjangZ(data, data.harga_barang, 1, data.kondisi_diskon_barang, data.diskon_barang, data.catatan)}>Keranjang +</div>
+                                                }
+
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className={styles.action}>
                                         <div className={styles.delete} >

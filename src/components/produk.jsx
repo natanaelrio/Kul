@@ -54,8 +54,6 @@ export default function Produk(props) {
     }, [loveZ, keranjangZ])
 
 
-    console.log(keranjangZ)
-
     //VIEWMORE
     const [viewMore, setViewMore] = useState(false)
     const handleViewMoreDeskripsi = () => {
@@ -216,7 +214,7 @@ export default function Produk(props) {
                                         </button>
                                         :
                                         <button className={styles.icon}
-                                            onClick={() => setdataLoveZ(data, data.harga_barang, false)}
+                                            onClick={() => setdataLoveZ(data, data.harga_barang, false, catatan)}
                                             aria-label={'logoheart'}
                                         >
                                             <FaRegHeart />

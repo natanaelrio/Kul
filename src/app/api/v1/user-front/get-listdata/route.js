@@ -18,7 +18,8 @@ export async function AmbilDataUsers(sortby, take) {
             like_barang: true,
             jumlah_barang: true,
             kupon_barang: true,
-            kondisi_diskon_barang: true
+            kondisi_diskon_barang: true,
+            detail_deskripsi_barang: true,
         },
         orderBy:
             { id: 'desc' },
