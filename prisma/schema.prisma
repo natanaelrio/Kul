@@ -10,27 +10,29 @@ datasource db {
 }
 
 model admin {
-  id                     Int       @id @default(autoincrement())
-  btoa                   String?   @unique
-  start                  DateTime  @default(now())
-  end                    DateTime? @updatedAt
-  nama_barang            String?
-  kategori_barang        String?
-  tag_barang             String?
-  harga_barang           Int?
-  diskon_barang          Int?
-  kondisi_diskon_barang  Boolean   @default(false) 
-  rating_barang          Int?
-  jumlah_barang          Int?
-  total_penjualan_barang Int?
-  diskripsi_barang       String?
+  id                      Int       @id @default(autoincrement())
+  btoa                    String?   @unique
+  start                   DateTime  @default(now())
+  end                     DateTime? @updatedAt
+  nama_barang             String?
+  kategori_barang         String?
+  tag_barang              String?
+  harga_barang            Int?
+  diskon_barang           Int?
+  kondisi_diskon_barang   Boolean   @default(false)
+  rating_barang           Int?
+  jumlah_barang           Int?
+  total_penjualan_barang  Int?
+  diskripsi_barang        String?
   detail_deskripsi_barang Json?
-  gambar_barang          String?
-  slug_barang            String?   @unique
-  kupon_barang           String?
-  view_barang            Int?
-  like_barang            Int?
-  link_barang            String?
+  gambar_barang           String?
+  slug_barang             String?   @unique
+  kupon_barang            String?
+  view_barang             Int?
+  like_barang             Int?
+  link_barang             String?
+  id_namabarang           String?
+  warna_barang            String?
 }
 
 model formPembelian {
@@ -45,5 +47,5 @@ model formPembelian {
   catatan_user        String?
   status_pesanan      String?
   dataPesanan         Json?
-  payment             Boolean   @default(false) 
+  payment             Boolean   @default(false)
 }

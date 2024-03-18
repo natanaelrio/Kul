@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
-const CustomLink = ({ href, arialabel, children }) => {
+const CustomLink = ({ href, arialabel, children, onClick }) => {
     useEffect(() => {
         return () => {
             NProgress.done().configure({ showSpinner: false, minimum: 0.7, easing: 'ease', speed: 1000 })
@@ -12,7 +12,7 @@ const CustomLink = ({ href, arialabel, children }) => {
     }, [])
 
     return (
-        <Link href={href} aria-label={arialabel ? arialabel : 'no-label'} onClick={() => NProgress.configure({ showSpinner: false }).start()}>
+        <Link href={href} aria-label={arialabel ? arialabel : 'no-label'} onClick={() => { NProgress.configure({ showSpinner: false }).start(), onClick }}>
             {children}
         </Link>
     )

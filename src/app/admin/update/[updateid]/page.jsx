@@ -1,5 +1,6 @@
 import Header from '@/components/admin/layout/header';
 import { GetListDataID } from "@/utils/admin/getListDataID";
+import { GetIDnamabarang } from '@/utils/admin/getIDnamabarang';
 import FormPage from '@/components/admin/layout/formPage';
 import Auth from '@/lib/Auth'
 
@@ -22,6 +23,7 @@ export function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const getListDataID = await GetListDataID(params.updateid)
+  const data = await GetIDnamabarang()
 
   return (
     <Auth>
@@ -29,6 +31,7 @@ export default async function Page({ params }) {
         <FormPage
           urlFetch={`/api/v1/admin/update?id=${getListDataID.data.id}`}
           method={'PUT'}
+          IDListdata={data?.data}
           data={getListDataID.data}
           change={' di Rubuah 😁'}
           value={false}

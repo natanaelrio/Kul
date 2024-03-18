@@ -128,7 +128,9 @@ exports.Prisma.AdminScalarFieldEnum = {
   kupon_barang: 'kupon_barang',
   view_barang: 'view_barang',
   like_barang: 'like_barang',
-  link_barang: 'link_barang'
+  link_barang: 'link_barang',
+  id_namabarang: 'id_namabarang',
+  warna_barang: 'warna_barang'
 };
 
 exports.Prisma.FormPembelianScalarFieldEnum = {
@@ -181,7 +183,9 @@ exports.Prisma.adminOrderByRelevanceFieldEnum = {
   gambar_barang: 'gambar_barang',
   slug_barang: 'slug_barang',
   kupon_barang: 'kupon_barang',
-  link_barang: 'link_barang'
+  link_barang: 'link_barang',
+  id_namabarang: 'id_namabarang',
+  warna_barang: 'warna_barang'
 };
 
 exports.Prisma.formPembelianOrderByRelevanceFieldEnum = {

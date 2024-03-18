@@ -87,6 +87,7 @@
 }
 
 
+
 .inputicon {
     display: flex;
     align-items: center;
@@ -95,6 +96,7 @@
     font-weight: 700;
     border: 1px solid var(--color-sekunder);
 }
+
 
 
 .inputicon .text {

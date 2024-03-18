@@ -4,6 +4,7 @@ import Produk from '@/components/produk'
 import { GetListProductID } from '@/utils/user-front/getListProductID'
 import { notFound } from 'next/navigation'
 import { GetListProduct } from '@/utils/user-front/getListProduct'
+import { GetListWarnaProductID } from '@/utils/user-front/getListWarnaProductID'
 
 export const viewport = {
   width: 'device-width',
@@ -18,7 +19,7 @@ export async function generateMetadata({ params }) {
 
   const dataID = await GetListProductID(params.uid)
   return {
-    title: `${dataID?.data?.nama_barang}`,
+    title: `${dataID?.data?.nama_barang}` + `${dataID?.data?.warna_barang ? ' ( ' + dataID?.data?.warna_barang + ' )' : ''}`,
     description: `${dataID?.data?.diskripsi_barang}`,
     category: `${dataID?.data?.kategori_barang}`,
     keywords: [dataID?.data?.tag_barang],
@@ -50,12 +51,13 @@ export async function generateMetadata({ params }) {
 
 export default async function Products({ params }) {
   const dataID = await GetListProductID(params.uid)
+  const WarnaID = await GetListWarnaProductID(dataID?.data?.id_namabarang)
   const dataList = await GetListProduct()
   dataID.status == 500 ? notFound() : null
 
   return (
     <HeaderFooter data={dataID} slug={params.uid} kondisidetailproduk={true}>
-      <Produk data={dataID} />
+      <Produk data={dataID} warnaID={WarnaID} />
       <ListProductMain data={dataList} kondisiProduk={false} />
     </HeaderFooter>
   )

@@ -84,7 +84,7 @@ export default function FormPembelian({ dataFormLangsung }) {
             no_hp_user: noHP ? Number(noHP) : '',
             alamat_lengkap_user: alamat ? alamat : '',
             kode_pos_user: kodePost ? Number(kodePost) : '',
-            catatan_user: dataFormLangsung[0].GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() ? dataFormLangsung[0].GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() : ''
+            // catatan_user: dataFormLangsung[0].GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() ? dataFormLangsung[0].GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() : ''
         },
         validationSchema: Yup.object({
             nama_lengkap_user: Yup.string()
@@ -135,10 +135,10 @@ export default function FormPembelian({ dataFormLangsung }) {
                 harga_barang_satuan: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100) : data?.harga_barang - ((data?.harga_barang * (data?.kondisi_diskon_barang && data?.diskon_barang)) / 100),
                 harga_barang_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? ((data?.harga_barang - ((data?.harga_barang * process.env.NEXT_PUBLIC_DISKON) / 100)) * data?.value_barang) : ((data?.harga_barang - ((data?.harga_barang * (data?.kondisi_diskon_barang && data?.diskon_barang)) / 100)) * data?.value_barang),
                 kupon_user: kupon,
-                validasi_kupon_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? true : false
+                validasi_kupon_user: kupon == kuponBarang + process.env.NEXT_PUBLIC_DISKON ? true : false,
+                catatan: data?.catatan
             })
             )
-
 
             const dataTambahanNew = { dataPesanan }
             const dataUtama = values

@@ -228,6 +228,7 @@
 .ListKategoriSemuanya select option {
     text-align: left;
     font-size: 0.7rem;
+    text-transform: capitalize;
 }
 
 

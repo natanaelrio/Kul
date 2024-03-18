@@ -62,7 +62,7 @@ export default function Love() {
                                                 alt={data?.nama_barang} />
                                         </div>
                                         <div className={styles.detailsemua}>
-                                            <div className={styles.detail} onClick={setOpenLove}>
+                                            <div className={styles.detail}>
                                                 <div className={styles.judul}>{data.nama_barang}</div>
                                                 <div className={styles.harga}>
                                                     <div className={styles.hargadalam}>{harga}&nbsp;</div>
@@ -70,9 +70,13 @@ export default function Love() {
                                                 </div>
                                             </div>
                                             <div className={styles.keranjang}>
-                                                <CustomLink href={`/products/${data.slug_barang}`}>
-                                                    <div className={styles.detailproduk}>Detail Produk</div>
-                                                </CustomLink>
+                                                <div className={styles.detailproduk}>
+                                                    <CustomLink href={`/products/${data.slug_barang}`}>
+                                                        <div onClick={setOpenLove}>
+                                                            Detail Produk
+                                                        </div>
+                                                    </CustomLink>
+                                                </div>
                                                 {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                                                     <div className={styles.tombolkeranjangminus} onClick={() => setDeleteKeranjangZ(data.id)}>Keranjang -</div>
                                                     :

@@ -22,10 +22,9 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import "draft-js/dist/Draft.css";
 import draftToHtml from "draftjs-to-html";
 
-export default function FormPage({ urlFetch, method, data, change, value, kondisi, submit }) {
+export default function FormPage({ urlFetch, method, data, IDListdata, change, value, kondisi, submit }) {
     const router = useRouter()
     const [matikan, setMatikan] = useState(false)
-    const [diskonValue, setDiskonValue] = useState(data?.kondisi_diskon_barang ? true : false)
 
     const uid = uidRio()
 
@@ -158,17 +157,19 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
         setEditorState(EditorState.createWithContent(state))
     }
 
+    const [warna, setWarna] = useState(data ? data?.warna_barang : '')
 
     const formik = useFormik({
         initialValues: {
             nama_barang: data ? data?.nama_barang : '',
+            // warna_barang: data ? data?.warna_barang : '',
             kategori_barang: data ? data?.kategori_barang : '',
             // harga_barang: data ? data?.harga_barang : '',
             // diskon_barang: data ? data?.diskon_barang : 100,
             rating_barang: data ? data?.rating_barang : '',
             total_penjualan_barang: data ? data?.total_penjualan_barang : '',
             // diskripsi_barang: data ? data?.diskripsi_barang : '',
-            gambar_barang: data ? data?.gambar_barang : '',
+            // gambar_barang: data ? data?.gambar_barang : '',
             kupon_barang: data ? data?.kupon_barang : '',
             tag_barang: data ? data?.tag_barang : '',
             // jumlah_barang: data ? data?.jumlah_barang : '',
@@ -178,6 +179,9 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
             nama_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
+            // warna_barang: Yup.string()
+            //     .max(200, 'harus 200 karakter')
+            //     .required('require'),
             kategori_barang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
@@ -212,17 +216,20 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
 
         onSubmit: async values => {
             setMatikan(true)
-            // setGagal(false)
             const DataLain = {
                 end: null,
                 btoa: uuidv4(),
-                slug_barang: values.nama_barang.split(' ').join('-').toLowerCase(),
+                id_namabarang: values.nama_barang,
+                warna_barang: warna,
+                nama_barang: values.nama_barang,
+                slug_barang: values.nama_barang.split(' ').join('-').toLowerCase() + `${warna ? '-' + warna : ''}`,
                 diskripsi_barang: draftToHtml(convertToRaw(editorState.getCurrentContent())),
                 detail_deskripsi_barang: dataGabungFinal,
                 kondisi_diskon_barang: todo[0].kondisiDiskon,
                 harga_barang: Number(todo[0].harga),
                 jumlah_barang: Number(todo[0].stock),
-                diskon_barang: Number(todo[0].diskon)
+                diskon_barang: Number(todo[0].diskon),
+                gambar_barang: todo[0].gambar
             }
 
             const DataUtama = values
@@ -299,8 +306,9 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                         </label>
                         <div className={styles.inputicon}>
                             <div className={styles.text}><MdDriveFileRenameOutline /></div>
-                            <textarea
-                                id="nama_barang"
+                            <input
+                                list="nama_barang"
+                                // id="nama_barang" 
                                 name="nama_barang"
                                 type="text"
                                 onChange={formik.handleChange}
@@ -308,7 +316,30 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                 placeholder='Baju Santai'
                                 style={formik.touched.nama_barang && formik.errors.nama_barang ? { border: '1px solid red' } : null}
                             />
+                            <datalist id="nama_barang">
+                                {IDListdata.map((data, i) => {
+                                    return (
+                                        <option key={i} value={data.id_namabarang}></option>
+                                    )
+                                }
+                                )}
+                            </datalist>
                         </div>
+
+                        <label htmlFor="warna_barang">Warna
+                        </label>
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><MdDriveFileRenameOutline /></div>
+                            <input
+                                type="text"
+                                onChange={(e) => { setWarna(e.target.value) }}
+                                value={warna}
+                                placeholder='merah'
+
+                            />
+
+                        </div>
+
                         {/* <div className={styles.bagi2}>
 
                             <div className={styles.harga}>
@@ -389,7 +420,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             />
                         </div>
 
-                        <label htmlFor="gambar_barang">Gambar
+                        {/* <label htmlFor="gambar_barang">Gambar
                             {formik.touched.gambar_barang && formik.errors.gambar_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
                             ) : null}
@@ -402,7 +433,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                             value={formik.values.gambar_barang}
                             placeholder='ex: http://google.com/kucing.png'
                             style={formik.touched.gambar_barang && formik.errors.gambar_barang ? { border: '1px solid red' } : null}
-                        />
+                        /> */}
 
                         <label htmlFor="link_barang">Koneksi
                             {formik.touched.link_barang && formik.errors.link_barang ? (
@@ -566,7 +597,7 @@ export default function FormPage({ urlFetch, method, data, change, value, kondis
                                                 <input type="text" placeholder="Gambar" onChange={(e) => setGambar(e.target.value)} />
                                             </div>
                                         </div>
-                                        <div className={styles.button} onClick={() => handleTypeKategori(dataKategori)}>Kirim</div >
+                                        <div className={styles.button} onClick={() => handleTypeKategori(dataKategori)}>Tambahkan</div >
                                     </div >
 
                                     {typeKategoriData?.map((data, i) => {

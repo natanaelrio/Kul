@@ -993,6 +993,8 @@ export namespace Prisma {
     view_barang: number | null
     like_barang: number | null
     link_barang: string | null
+    id_namabarang: string | null
+    warna_barang: string | null
   }
 
   export type AdminMaxAggregateOutputType = {
@@ -1016,6 +1018,8 @@ export namespace Prisma {
     view_barang: number | null
     like_barang: number | null
     link_barang: string | null
+    id_namabarang: string | null
+    warna_barang: string | null
   }
 
   export type AdminCountAggregateOutputType = {
@@ -1040,6 +1044,8 @@ export namespace Prisma {
     view_barang: number
     like_barang: number
     link_barang: number
+    id_namabarang: number
+    warna_barang: number
     _all: number
   }
 
@@ -1087,6 +1093,8 @@ export namespace Prisma {
     view_barang?: true
     like_barang?: true
     link_barang?: true
+    id_namabarang?: true
+    warna_barang?: true
   }
 
   export type AdminMaxAggregateInputType = {
@@ -1110,6 +1118,8 @@ export namespace Prisma {
     view_barang?: true
     like_barang?: true
     link_barang?: true
+    id_namabarang?: true
+    warna_barang?: true
   }
 
   export type AdminCountAggregateInputType = {
@@ -1134,6 +1144,8 @@ export namespace Prisma {
     view_barang?: true
     like_barang?: true
     link_barang?: true
+    id_namabarang?: true
+    warna_barang?: true
     _all?: true
   }
 
@@ -1245,6 +1257,8 @@ export namespace Prisma {
     view_barang: number | null
     like_barang: number | null
     link_barang: string | null
+    id_namabarang: string | null
+    warna_barang: string | null
     _count: AdminCountAggregateOutputType | null
     _avg: AdminAvgAggregateOutputType | null
     _sum: AdminSumAggregateOutputType | null
@@ -1288,6 +1302,8 @@ export namespace Prisma {
     view_barang?: boolean
     like_barang?: boolean
     link_barang?: boolean
+    id_namabarang?: boolean
+    warna_barang?: boolean
   }, ExtArgs["result"]["admin"]>
 
   export type adminSelectScalar = {
@@ -1312,6 +1328,8 @@ export namespace Prisma {
     view_barang?: boolean
     like_barang?: boolean
     link_barang?: boolean
+    id_namabarang?: boolean
+    warna_barang?: boolean
   }
 
 
@@ -1340,6 +1358,8 @@ export namespace Prisma {
       view_barang: number | null
       like_barang: number | null
       link_barang: string | null
+      id_namabarang: string | null
+      warna_barang: string | null
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -1755,6 +1775,8 @@ export namespace Prisma {
     readonly view_barang: FieldRef<"admin", 'Int'>
     readonly like_barang: FieldRef<"admin", 'Int'>
     readonly link_barang: FieldRef<"admin", 'String'>
+    readonly id_namabarang: FieldRef<"admin", 'String'>
+    readonly warna_barang: FieldRef<"admin", 'String'>
   }
     
 
@@ -3062,7 +3084,9 @@ export namespace Prisma {
     kupon_barang: 'kupon_barang',
     view_barang: 'view_barang',
     like_barang: 'like_barang',
-    link_barang: 'link_barang'
+    link_barang: 'link_barang',
+    id_namabarang: 'id_namabarang',
+    warna_barang: 'warna_barang'
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
@@ -3136,7 +3160,9 @@ export namespace Prisma {
     gambar_barang: 'gambar_barang',
     slug_barang: 'slug_barang',
     kupon_barang: 'kupon_barang',
-    link_barang: 'link_barang'
+    link_barang: 'link_barang',
+    id_namabarang: 'id_namabarang',
+    warna_barang: 'warna_barang'
   };
 
   export type adminOrderByRelevanceFieldEnum = (typeof adminOrderByRelevanceFieldEnum)[keyof typeof adminOrderByRelevanceFieldEnum]
@@ -3270,6 +3296,8 @@ export namespace Prisma {
     view_barang?: IntNullableFilter<"admin"> | number | null
     like_barang?: IntNullableFilter<"admin"> | number | null
     link_barang?: StringNullableFilter<"admin"> | string | null
+    id_namabarang?: StringNullableFilter<"admin"> | string | null
+    warna_barang?: StringNullableFilter<"admin"> | string | null
   }
 
   export type adminOrderByWithRelationAndSearchRelevanceInput = {
@@ -3294,6 +3322,8 @@ export namespace Prisma {
     view_barang?: SortOrderInput | SortOrder
     like_barang?: SortOrderInput | SortOrder
     link_barang?: SortOrderInput | SortOrder
+    id_namabarang?: SortOrderInput | SortOrder
+    warna_barang?: SortOrderInput | SortOrder
     _relevance?: adminOrderByRelevanceInput
   }
 
@@ -3322,6 +3352,8 @@ export namespace Prisma {
     view_barang?: IntNullableFilter<"admin"> | number | null
     like_barang?: IntNullableFilter<"admin"> | number | null
     link_barang?: StringNullableFilter<"admin"> | string | null
+    id_namabarang?: StringNullableFilter<"admin"> | string | null
+    warna_barang?: StringNullableFilter<"admin"> | string | null
   }, "id" | "btoa" | "slug_barang">
 
   export type adminOrderByWithAggregationInput = {
@@ -3346,6 +3378,8 @@ export namespace Prisma {
     view_barang?: SortOrderInput | SortOrder
     like_barang?: SortOrderInput | SortOrder
     link_barang?: SortOrderInput | SortOrder
+    id_namabarang?: SortOrderInput | SortOrder
+    warna_barang?: SortOrderInput | SortOrder
     _count?: adminCountOrderByAggregateInput
     _avg?: adminAvgOrderByAggregateInput
     _max?: adminMaxOrderByAggregateInput
@@ -3378,6 +3412,8 @@ export namespace Prisma {
     view_barang?: IntNullableWithAggregatesFilter<"admin"> | number | null
     like_barang?: IntNullableWithAggregatesFilter<"admin"> | number | null
     link_barang?: StringNullableWithAggregatesFilter<"admin"> | string | null
+    id_namabarang?: StringNullableWithAggregatesFilter<"admin"> | string | null
+    warna_barang?: StringNullableWithAggregatesFilter<"admin"> | string | null
   }
 
   export type formPembelianWhereInput = {
@@ -3491,6 +3527,8 @@ export namespace Prisma {
     view_barang?: number | null
     like_barang?: number | null
     link_barang?: string | null
+    id_namabarang?: string | null
+    warna_barang?: string | null
   }
 
   export type adminUncheckedCreateInput = {
@@ -3515,6 +3553,8 @@ export namespace Prisma {
     view_barang?: number | null
     like_barang?: number | null
     link_barang?: string | null
+    id_namabarang?: string | null
+    warna_barang?: string | null
   }
 
   export type adminUpdateInput = {
@@ -3538,6 +3578,8 @@ export namespace Prisma {
     view_barang?: NullableIntFieldUpdateOperationsInput | number | null
     like_barang?: NullableIntFieldUpdateOperationsInput | number | null
     link_barang?: NullableStringFieldUpdateOperationsInput | string | null
+    id_namabarang?: NullableStringFieldUpdateOperationsInput | string | null
+    warna_barang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type adminUncheckedUpdateInput = {
@@ -3562,6 +3604,8 @@ export namespace Prisma {
     view_barang?: NullableIntFieldUpdateOperationsInput | number | null
     like_barang?: NullableIntFieldUpdateOperationsInput | number | null
     link_barang?: NullableStringFieldUpdateOperationsInput | string | null
+    id_namabarang?: NullableStringFieldUpdateOperationsInput | string | null
+    warna_barang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type adminCreateManyInput = {
@@ -3586,6 +3630,8 @@ export namespace Prisma {
     view_barang?: number | null
     like_barang?: number | null
     link_barang?: string | null
+    id_namabarang?: string | null
+    warna_barang?: string | null
   }
 
   export type adminUpdateManyMutationInput = {
@@ -3609,6 +3655,8 @@ export namespace Prisma {
     view_barang?: NullableIntFieldUpdateOperationsInput | number | null
     like_barang?: NullableIntFieldUpdateOperationsInput | number | null
     link_barang?: NullableStringFieldUpdateOperationsInput | string | null
+    id_namabarang?: NullableStringFieldUpdateOperationsInput | string | null
+    warna_barang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type adminUncheckedUpdateManyInput = {
@@ -3633,6 +3681,8 @@ export namespace Prisma {
     view_barang?: NullableIntFieldUpdateOperationsInput | number | null
     like_barang?: NullableIntFieldUpdateOperationsInput | number | null
     link_barang?: NullableStringFieldUpdateOperationsInput | string | null
+    id_namabarang?: NullableStringFieldUpdateOperationsInput | string | null
+    warna_barang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type formPembelianCreateInput = {
@@ -3857,6 +3907,8 @@ export namespace Prisma {
     view_barang?: SortOrder
     like_barang?: SortOrder
     link_barang?: SortOrder
+    id_namabarang?: SortOrder
+    warna_barang?: SortOrder
   }
 
   export type adminAvgOrderByAggregateInput = {
@@ -3891,6 +3943,8 @@ export namespace Prisma {
     view_barang?: SortOrder
     like_barang?: SortOrder
     link_barang?: SortOrder
+    id_namabarang?: SortOrder
+    warna_barang?: SortOrder
   }
 
   export type adminMinOrderByAggregateInput = {
@@ -3914,6 +3968,8 @@ export namespace Prisma {
     view_barang?: SortOrder
     like_barang?: SortOrder
     link_barang?: SortOrder
+    id_namabarang?: SortOrder
+    warna_barang?: SortOrder
   }
 
   export type adminSumOrderByAggregateInput = {

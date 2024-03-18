@@ -3,7 +3,7 @@ import styles from '@/components/produk.module.css'
 import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
@@ -19,9 +19,12 @@ import PaymentErrorPending from '@/components/paymenterrorpending';
 
 export default function Produk(props) {
     const data = props.data?.data
+    const warna = props?.warnaID?.data
+    const router = useRouter()
 
     const searchParams = useSearchParams()
     const transaction_status = searchParams.get('transaction_status')
+    const varianID = searchParams.get('varianID')
 
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
@@ -74,21 +77,22 @@ export default function Produk(props) {
         )
     })
 
-
-    const dataAwalDefault = ListKategoriSemuanya.map((data) => data.typeKategori).map((data) => data[0])
+    const dataAwalDefault = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori)[0]
+    const defaultSelectOption = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0].typeKategori : ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori
 
     const [valueDefault, setValueDefault] = useState(dataAwalDefault)
-    const [selectedOption, setSelectedOption] = useState(ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori);
+    const [selectedOption, setSelectedOption] = useState(defaultSelectOption);
     const [gabungValueKategori, setGabungValueKategori] = useState([])
     const handleChangeSelect = (event, dataku) => {
         setSelectedOption(event.target.value);
         resetValueKeranjang()
         setDeleteKeranjangZ(data?.id)
         const cek = dataku.typeKategori.filter((data) => data.typeKategori == event.target.value)[0]
-
         setValueDefault([...valueDefault, cek])
-    }
 
+        const uid = dataku.typeKategori.filter((data) => data.typeKategori == event.target.value)[0].uid
+        router.push(`${process.env.NEXT_PUBLIC_URL}/products/${data?.slug_barang}/?varianID=${uid}`)
+    }
 
 
     useEffect(() => {
@@ -109,6 +113,14 @@ export default function Produk(props) {
 
     const jumlahBarang = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock ? TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock : data.jumlah_barang
 
+
+    //warna
+    const [selectedOptionWarna, setSelectedOptionWarna] = useState(data?.warna_barang);
+    const handleChangeSelectWarna = (event, dataku) => {
+        setSelectedOptionWarna(event.target.value)
+        const slugurl = dataku.filter((data) => data.warna_barang == event.target.value)[0].slug_barang
+        router.push(`${process.env.NEXT_PUBLIC_URL}/products/${slugurl}`)
+    }
 
     //HIDDEN ELEMET MOBILE PEMBELIAN
     const targetRef = useRef(null);
@@ -146,17 +158,21 @@ export default function Produk(props) {
         }
     }
 
+
     // Data OFF
     const kondisiDiskon = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].kondisiDiskon
     const angkaDiskon = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].diskon
     const hargatotal = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].harga * ValueKeranjang
+    const hargaSatuan = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0].harga
 
 
     const hargadiskon = ((((hargatotal * (kondisiDiskon && angkaDiskon)) / 100) + hargatotal)) - hargatotal
+
     const harga = (hargatotal - hargadiskon).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
+
     const diskonharga = (hargatotal).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
@@ -168,27 +184,29 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
+
     const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * (kondisiDiskon && angkaDiskon)) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
     const hargaKeranjang = (keranjangZ[0]?.harga_total_barang - hargadiskonKeranjang).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     })
 
-    const catatan = GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString()
+    const catatan = GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
 
     //DATA FORM 
     const dataFormLangsung =
         [{
             id: data?.id,
             nama_barang: data?.nama_barang,
-            harga_barang: hargatotal,
+            harga_barang: hargaSatuan,
             diskon_barang: Number(angkaDiskon),
             kupon_barang: data?.kupon_barang,
             kondisi_diskon_barang: kondisiDiskon,
             value_barang: ValueKeranjang,
             GabungDataKategoriType: GabungDataKategoriType,
-            catatan: catatan
+            catatan: catatan + `${data?.warna_barang ? ', ' + 'Warna ' + '( ' + data?.warna_barang + ' )' : ''}`
         }]
+
 
     return (
         <>
@@ -241,7 +259,8 @@ export default function Produk(props) {
                                             <div className={styles.angkadiskon}>{angkaDiskon}%</div>
                                             &nbsp;
                                             <div className={styles.hargadiskon}>
-                                                {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga}
+                                                {/* {keranjang?.length === 1 ? diskonhargaKeranjang : diskonharga} */}
+                                                {diskonharga}
                                             </div>
                                         </div>}
                                     </div>
@@ -255,10 +274,28 @@ export default function Produk(props) {
                             </div>
 
                             <div className={styles.bawahaksi}>
+
+                                {Boolean(warna.length) && warna[0]?.warna_barang !== '' &&
+                                    <div className={styles.ListKategoriSemuanya}>
+                                        <div className={styles.ListKategori} >Warna</div>
+                                        <div className={styles.ListKategori} >
+                                            <div className={styles.text}>{selectedOptionWarna}</div> &nbsp;
+                                            <div className={styles.simbol}><IoIosArrowBack style={{ marginRight: '-10px' }} /> <IoIosArrowForward /></div>
+                                        </div>
+                                        <div className={styles.TypeKategori}>
+                                            <select value={selectedOptionWarna} onChange={(e) => handleChangeSelectWarna(e, warna)}>
+                                                {warna?.map((data, i) => {
+                                                    return (
+                                                        <option key={i} value={data.warna_barang}>{data.warna_barang}</option>
+                                                    )
+                                                }
+                                                )}
+                                            </select>
+                                        </div>
+                                    </div>
+                                }
                                 {ListKategoriSemuanya?.map((data, i) => {
-
                                     const Pilihan = valueDefault.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori ? valueDefault.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori : TypeKategori.filter((dataku) => dataku.kategori == data.kategori)[0].typeKategori
-
                                     return (
                                         <div className={styles.ListKategoriSemuanya} key={i}>
                                             <div className={styles.ListKategori} >{data?.kategori}</div>
@@ -281,8 +318,8 @@ export default function Produk(props) {
                                 })}
 
                                 <div className={styles.jumlahbarang} ref={targetRef} >stok : {jumlahBarang}</div>
-                                {keranjang?.length === 1 ?
-                                    keranjang?.map((data) => {
+                                {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
+                                    data.id && keranjang?.filter((e) => e.id == data.id)?.map((data) => {
                                         return (
                                             <div key={data.id} className={styles.jumlah} >
                                                 <div className={styles.kata}>Kuantitas</div>

@@ -2,6 +2,7 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSwiper } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -14,16 +15,18 @@ import styles from '@/components/latihan.module.css'
 // import required modules
 import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
+import SlideNextButton from './SlideNextButton';
 
 export default function Latihan() {
+    const swiper = useSwiper();
+    const [angka, setAngka] = useState(0)
 
     const gallerySwiperParams = {
         pagination: {
-            el: '.swiper-pagination',
             type: 'fraction'
         },
-
-        navigation: false,
+        initialSlide: angka,
+        navigation: true,
         modules: [Pagination, Navigation]
     };
 
@@ -66,10 +69,13 @@ export default function Latihan() {
                 <SwiperSlide>Slide 7</SwiperSlide>
                 <SwiperSlide>Slide 8</SwiperSlide>
                 <SwiperSlide>Slide 9</SwiperSlide>
+                <SlideNextButton />
             </Swiper>
+
             <div className={styles.tombolnextprev}>
                 <button onClick={goPrev}>Prev</button>
                 <button onClick={goNext}>Next</button>
+                <button onClick={() => setAngka(3)}>wlwlw</button>
             </div>
 
         </div>

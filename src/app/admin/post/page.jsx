@@ -1,6 +1,7 @@
 import FormPage from '@/components/admin/layout/formPage';
 import Header from '@/components/admin/layout/header';
 import Auth from '@/lib/Auth'
+import { GetIDnamabarang } from '@/utils/admin/getIDnamabarang';
 
 export const viewport = {
   width: 'device-width',
@@ -16,13 +17,15 @@ export const metadata = {
   description: 'Admin POST',
 }
 
-export default function Post() {
+export default async function Post() {
+  const data = await GetIDnamabarang()
   return (
     <Auth>
       <Header judul={'POST ADMIN'}>
         <FormPage
           urlFetch={'/api/v1/admin/post'}
           method={'POST'}
+          IDListdata={data?.data}
           change={' di Posting 😁'}
           value={true}
           submit={'Posting'}
