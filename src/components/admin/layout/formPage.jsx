@@ -319,7 +319,7 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
                             <datalist id="nama_barang">
                                 {IDListdata?.map((data, i) => {
                                     return (
-                                        <option key={i} value={data.id_namabarang}></option>
+                                        <option key={i} value={data?.id_namabarang}></option>
                                     )
                                 }
                                 )}
