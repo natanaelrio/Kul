@@ -18,14 +18,14 @@ export const metadata = {
 }
 
 export default async function Post() {
-  const GetIDnamabarang = await GetIDnamabarang()
+  const getIDnamabarang = await GetIDnamabarang()
   return (
     <Auth>
       <Header judul={'POST ADMIN'}>
         <FormPage
           urlFetch={'/api/v1/admin/post'}
           method={'POST'}
-          IDListdata={GetIDnamabarang?.data}
+          IDListdata={getIDnamabarang?.data}
           change={' di Posting 😁'}
           value={true}
           submit={'Posting'}

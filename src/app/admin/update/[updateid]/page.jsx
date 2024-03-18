@@ -23,7 +23,7 @@ export function generateMetadata({ params }) {
 
 export default async function Page({ params }) {
   const getListDataID = await GetListDataID(params.updateid)
-  const GetIDnamabarang = await GetIDnamabarang()
+  const getIDnamabarang = await GetIDnamabarang()
 
   return (
     <Auth>
@@ -31,7 +31,7 @@ export default async function Page({ params }) {
         <FormPage
           urlFetch={`/api/v1/admin/update?id=${getListDataID.data.id}`}
           method={'PUT'}
-          IDListdata={GetIDnamabarang?.data}
+          IDListdata={getIDnamabarang?.data}
           data={getListDataID.data}
           change={' di Rubuah 😁'}
           value={false}
