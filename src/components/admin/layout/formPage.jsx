@@ -317,12 +317,12 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
                                 style={formik.touched.nama_barang && formik.errors.nama_barang ? { border: '1px solid red' } : null}
                             />
                             <datalist id="nama_barang">
-                                {/* {IDListdata?.map((data, i) => {
+                                {IDListdata?.map((data, i) => {
                                     return (
                                         <option key={i} value={data?.id_namabarang}></option>
                                     )
                                 }
-                                )} */}
+                                )}
                             </datalist>
                         </div>
 
