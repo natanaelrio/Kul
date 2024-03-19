@@ -199,7 +199,7 @@
     justify-content: center;
     align-items: center;
     padding: 10px 24px;
-    border-radius: 12px;
+    border-radius: 10px;
     font-weight: 700;
     white-space: nowrap;
     font-size: 0.7rem;
@@ -266,8 +266,8 @@
     /* NAVIGASI */
     .nav {
         grid-template-columns: 60px 1fr 1fr;
-        padding: 20px 20px 10px 20px;
-        gap: 15px;
+        padding: 10px 20px 10px 20px;
+        gap: 10px;
     }
 
     .pilihan {
