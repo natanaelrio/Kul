@@ -57,11 +57,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 .atasjudul .icon:hover {
     opacity: 0.9;
+    background-color: var(--color-grey);
+    color: var(--color-sekunder);
+    border-radius: 4px;
+    transition: all ease 0.2s;
 }
 
 @media only screen and (max-width: 768px) {

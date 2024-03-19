@@ -162,6 +162,7 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
     const formik = useFormik({
         initialValues: {
             nama_barang: data ? data?.nama_barang : '',
+            id_namabarang: data ? data?.id_namabarang : '',
             // warna_barang: data ? data?.warna_barang : '',
             kategori_barang: data ? data?.kategori_barang : '',
             // harga_barang: data ? data?.harga_barang : '',
@@ -177,6 +178,9 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
         },
         validationSchema: Yup.object({
             nama_barang: Yup.string()
+                .max(200, 'harus 200 karakter')
+                .required('require'),
+            id_namabarang: Yup.string()
                 .max(200, 'harus 200 karakter')
                 .required('require'),
             // warna_barang: Yup.string()
@@ -219,7 +223,7 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
             const DataLain = {
                 end: null,
                 btoa: uuidv4(),
-                id_namabarang: values.nama_barang,
+                // id_namabarang: values.nama_barang,
                 warna_barang: warna,
                 nama_barang: values.nama_barang,
                 slug_barang: values.nama_barang.split(' ').join('-').toLowerCase() + `${warna ? '-' + warna : ''}`,
@@ -299,6 +303,33 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
 
                 <form onSubmit={formik.handleSubmit} className={styles.form}>
                     <div className={styles.kotak1}>
+
+                        <label htmlFor="id_namabarang">ID PRODUK
+                            {formik.touched.id_namabarang && formik.errors.id_namabarang ? (
+                                <div style={{ color: 'red' }}>&nbsp;*</div>
+                            ) : null}
+                        </label>
+                        <div className={styles.inputicon}>
+                            <div className={styles.text}><MdDriveFileRenameOutline /></div>
+                            <input
+                                list="id_namabarang"
+                                name="id_namabarang"
+                                type="text"
+                                onChange={formik.handleChange}
+                                value={formik.values.id_namabarang}
+                                placeholder='Pilih atau sesuai datalist'
+                                style={formik.touched.id_namabarang && formik.errors.id_namabarang ? { border: '1px solid red' } : null}
+                            />
+                            <datalist id="id_namabarang">
+                                {IDListdata?.map((data, i) => {
+                                    return (
+                                        <option key={i} value={data?.id_namabarang}></option>
+                                    )
+                                }
+                                )}
+                            </datalist>
+                        </div>
+
                         <label htmlFor="nama_barang">Nama
                             {formik.touched.nama_barang && formik.errors.nama_barang ? (
                                 <div style={{ color: 'red' }}>&nbsp;*</div>
@@ -307,8 +338,7 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
                         <div className={styles.inputicon}>
                             <div className={styles.text}><MdDriveFileRenameOutline /></div>
                             <input
-                                list="nama_barang"
-                                // id="nama_barang" 
+                                id="nama_barang"
                                 name="nama_barang"
                                 type="text"
                                 onChange={formik.handleChange}
@@ -316,14 +346,7 @@ export default function FormPage({ urlFetch, method, data, IDListdata, change, v
                                 placeholder='Baju Santai'
                                 style={formik.touched.nama_barang && formik.errors.nama_barang ? { border: '1px solid red' } : null}
                             />
-                            <datalist id="nama_barang">
-                                {IDListdata?.map((data, i) => {
-                                    return (
-                                        <option key={i} value={data?.id_namabarang}></option>
-                                    )
-                                }
-                                )}
-                            </datalist>
+
                         </div>
 
                         <label htmlFor="warna_barang">Warna

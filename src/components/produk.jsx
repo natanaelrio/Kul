@@ -77,8 +77,9 @@ export default function Produk(props) {
         )
     })
 
-    const dataAwalDefault = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori)[0]
-    const defaultSelectOption = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0].typeKategori : ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori
+    const dataAwalDefault = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori)[0] : ListKategoriSemuanya.map((data) => data.typeKategori)[0]
+    const defaultSelectOption = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0]?.typeKategori ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0]?.typeKategori : ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori :
+        ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori
 
     const [valueDefault, setValueDefault] = useState(dataAwalDefault)
     const [selectedOption, setSelectedOption] = useState(defaultSelectOption);
@@ -210,14 +211,14 @@ export default function Produk(props) {
 
     return (
         <>
-            <div className={styles.container}>
+            <div className={styles.container} id="penutup2"  >
                 <div className={styles.width}>
 
-                    <div className={styles.grid}>
-                        <div className={styles.reviewproduk}>
-                            <div className={styles.containerreview}>
+                    <div className={styles.grid}  >
+                        <div className={styles.reviewproduk} >
+                            <div className={styles.containerreview} >
 
-                                <div className={styles.atas}  >
+                                <div className={styles.atas} id="penutup" >
                                     <div className={styles.judulterjual}>
                                         <div className={styles.judul}>{data?.nama_barang}</div>
                                         <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
@@ -295,7 +296,8 @@ export default function Produk(props) {
                                     </div>
                                 }
                                 {ListKategoriSemuanya?.map((data, i) => {
-                                    const Pilihan = valueDefault.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori ? valueDefault.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori : TypeKategori.filter((dataku) => dataku.kategori == data.kategori)[0].typeKategori
+                                    const Pilihan = valueDefault.filter((dataku) => dataku.kategori == data.kategori)[0]?.typeKategori ? valueDefault.filter((dataku) => dataku.kategori == data.kategori)[0]?.typeKategori : TypeKategori.filter((dataku) => dataku.kategori == data.kategori)[0].typeKategori
+
                                     return (
                                         <div className={styles.ListKategoriSemuanya} key={i}>
                                             <div className={styles.ListKategori} >{data?.kategori}</div>

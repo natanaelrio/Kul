@@ -27,7 +27,7 @@ export default function MenuPembelian(props) {
         setDeleteKeranjangZ(e)
     }
     return (
-        <div className={styles.container}>
+        <div className={styles.container} >
             <div className={styles.width}>
                 <div className={styles.chat}>
                     <CiChat2 className={styles.chatlogo} /> Chat
@@ -38,12 +38,13 @@ export default function MenuPembelian(props) {
                         onClick={() => handleKeranjangdanResetValue(data.id)
                         }>Hapus Keranjang
                     </div> :
-                    <div className={styles.keranjang}
-                        onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
-                        Tambahkan Keranjang
+                    <div className={styles.keranjang} >
+                        <a href="#penutup"> Tambahkan Keranjang</a>
                     </div>
                 }
-                <div className={styles.belilangsung} onClick={setOpenFormPembelian}>Beli Sekarang</div>
+                <div className={styles.belilangsung} >
+                    <a href="#penutup2">Beli Sekarang</a>
+                </div>
             </div>
         </div>
     )

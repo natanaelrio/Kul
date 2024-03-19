@@ -72,7 +72,7 @@
 
 .form input {
     padding: 10px;
-    border-radius: 0 7px 7px 0;
+    border-radius: 0 4px 4px 0;
     /* border: 1px solid var(--color-primary); */
     width: 100%;
     border: 0;
@@ -82,7 +82,7 @@
 .form textarea {
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 7px;
+    border-radius: 4px;
     border: 1px solid var(--color-primary);
     height: 70px;
     outline: none;
@@ -92,25 +92,29 @@
 .form textarea:focus {
     color: var(--color-primary);
     font-size: 0.7rem;
+    font-weight: 700;
 }
 
 .form input:nth-child(12) {
     margin-bottom: 10px;
     padding: 10px;
-    border-radius: 7px;
+    border-radius: 4px;
     border: 1px solid var(--color-primary);
 }
 
 .form input:focus {
     color: var(--color-primary);
     outline: none;
+    font-weight: 700;
 }
 
 
 .form button {
     background-color: var(--color-primary);
     color: var(--color-white);
-    padding: 15px 50px;
+    /* padding: 15px 50px; */
+    padding: 0 30px;
+    height: 50px;
     cursor: pointer;
     border-radius: 7px;
     outline: none;
@@ -124,7 +128,8 @@
 
 .form button:hover {
     opacity: 0.9;
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
+    border: 2px solid var(--color-primary);
 }
 
 .form .logoluar {
@@ -133,7 +138,7 @@
     align-items: center;
     border: 1px solid var(--color-primary);
     width: 100%;
-    border-radius: 7px;
+    border-radius: 4px;
 }
 
 
@@ -143,7 +148,7 @@
     align-items: flex-end;
     height: fit-content;
     background-color: var(--color-grey);
-    border-radius: 7px 0 0 7px;
+    border-radius: 4px 0 0 4px;
 }
 
 
