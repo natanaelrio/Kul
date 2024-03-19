@@ -38,8 +38,9 @@ export default function MenuPembelian(props) {
                         onClick={() => handleKeranjangdanResetValue(data.id)
                         }>Hapus Keranjang
                     </div> :
-                    <div className={styles.keranjang} >
-                        <a href="#penutup"> Tambahkan Keranjang</a>
+                    <div className={styles.keranjang}
+                        onClick={() => setdataKeranjangZ(data, data.harga_barang)}>
+                        <a href="#penutup2"> Tambahkan Keranjang</a>
                     </div>
                 }
                 <div className={styles.belilangsung} >

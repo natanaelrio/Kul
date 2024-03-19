@@ -218,7 +218,7 @@ export default function Produk(props) {
                         <div className={styles.reviewproduk} >
                             <div className={styles.containerreview} >
 
-                                <div className={styles.atas} id="penutup" >
+                                <div className={styles.atas}>
                                     <div className={styles.judulterjual}>
                                         <div className={styles.judul}>{data?.nama_barang}</div>
                                         <div className={styles.terjual}>Terjual {data?.total_penjualan_barang} • <FaStar size={12} />{data?.rating_barang}</div>
