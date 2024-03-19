@@ -8,7 +8,10 @@ export async function AmbilDataUsers(id) {
             warna_barang: true,
             gambar_barang: true,
             slug_barang: true,
-            id_namabarang: true
+            id_namabarang: true,
+            detail_deskripsi_barang: true,
+            harga_barang: true,
+            nama_barang: true
         },
         where: {
             id_namabarang: {
@@ -16,6 +19,8 @@ export async function AmbilDataUsers(id) {
                 mode: 'insensitive'
             }
         },
+        orderBy:
+            { id: 'desc' },
     })
     return data
 }

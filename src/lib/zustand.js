@@ -46,6 +46,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openFormPilihan: false,
+    setOpenFormPilihan: () => {
+        set((state) => ({
+            openFormPilihan: !state.openFormPilihan
+        })
+        )
+    },
 
     //ADMIN
     openDetailProdukAdmin: false,

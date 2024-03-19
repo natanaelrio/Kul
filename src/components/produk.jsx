@@ -13,9 +13,9 @@ import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
-import FormPembelian from '@/components/formPembelian';
 import ProdukHarga from '@/components/produkHarga';
 import PaymentErrorPending from '@/components/paymenterrorpending';
+import FormPilihan from '@/components/formPilihan';
 
 export default function Produk(props) {
     const data = props.data?.data
@@ -26,8 +26,9 @@ export default function Produk(props) {
     const transaction_status = searchParams.get('transaction_status')
     const varianID = searchParams.get('varianID')
 
-    const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
-    const openFormPembelian = useStore((state) => state.openFormPembelian)
+    const openFormPilihan = useStore((state) => state.openFormPilihan)
+    const setOpenFormPilihan = useStore((state) => state.setOpenFormPilihan)
+
     const openFormPending = useStore((state) => state.openFormPending)
     const setOpenIsScrollPast = useStore((state) => state.setOpenIsScrollPast)
 
@@ -114,7 +115,6 @@ export default function Produk(props) {
 
     const jumlahBarang = TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock ? TypeKategori?.filter((data) => data.typeKategori == selectedOption)[0]?.stock : data.jumlah_barang
 
-
     //warna
     const [selectedOptionWarna, setSelectedOptionWarna] = useState(data?.warna_barang);
     const handleChangeSelectWarna = (event, dataku) => {
@@ -122,6 +122,7 @@ export default function Produk(props) {
         const slugurl = dataku.filter((data) => data.warna_barang == event.target.value)[0].slug_barang
         router.push(`${process.env.NEXT_PUBLIC_URL}/products/${slugurl}`)
     }
+
 
     //HIDDEN ELEMET MOBILE PEMBELIAN
     const targetRef = useRef(null);
@@ -361,7 +362,7 @@ export default function Produk(props) {
                                     </div>
                                 }
                                 <div className={styles.belisekarang}   >
-                                    <button onClick={setOpenFormPembelian}>Beli Sekarang</button>
+                                    <button onClick={setOpenFormPilihan}>Beli Sekarang</button>
                                 </div>
                                 <div className={styles.powerby}>
                                     Checkout powered by Midstrans
@@ -392,7 +393,11 @@ export default function Produk(props) {
                 </div >
             </div >
             {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />}
-            {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}
+            {/* {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />} */}
+            {openFormPilihan && <FormPilihan
+                warna={warna}
+                dataid={data.id}
+                dataID={data} />}
         </>
     )
 }

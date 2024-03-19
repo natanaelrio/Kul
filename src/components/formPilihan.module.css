@@ -1,0 +1,180 @@
+.container {
+    padding: 20px;
+    min-height: 80dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.7rem;
+}
+
+.atas {
+    display: flex;
+}
+
+.atas .gambar {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    border: 1px solid var(--color-sekunder);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.atas .gambar img {
+    width: 80px;
+    height: 80px;
+}
+
+.atas .detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.atas .detail .harga {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.atas .detail .diskon {
+    text-decoration: line-through;
+}
+
+.atas .diskonpersen {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.atas .diskonpersen .persen {
+    font-size: 0.5rem;
+    background-color: var(--color-high);
+    color: var(--color-white);
+    padding: 3px 6px;
+    border-radius: 3px;
+}
+
+
+.pilihan {
+    font-size: 0.7rem;
+}
+
+/* //PILIHANWARNA */
+.pilihanwarna .judul {
+    color: var(--color-sekunder);
+    margin-bottom: 10px;
+}
+
+.pilihanwarna .detail {
+    display: flex;
+}
+
+.pilihanwarna .gambar {
+    width: 35px;
+    height: 35px;
+}
+
+.pilihanwarna .gambar img {
+    width: 35px;
+    height: 35px;
+}
+
+.pilihanwarna .detaildalam {
+    display: flex;
+    padding: 3px;
+    margin-right: 5px;
+    border: 1px solid var(--color-grey);
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.pilihanwarna .deskripsi {
+    padding: 3px;
+    margin-left: 3px;
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+
+/* PILIHAN ACAK */
+.pilihanacak {
+    font-size: 0.7rem;
+    margin: 20px 0;
+}
+
+.pilihanacak .judul {
+    color: var(--color-sekunder);
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.pilihanacak .detail {
+    display: flex;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.pilihanacak .detaildalam {
+    display: flex;
+    align-items: center;
+    margin-right: 5px;
+    padding: 0 24px;
+    height: 35px;
+    border: 1px solid var(--color-grey);
+}
+
+
+/* KUANTITAS */
+.kuantitas {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.kuantitas .angka {
+    font-weight: 700;
+    padding: 0 20px;
+}
+
+.kuantitas .tombol {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-grey);
+}
+
+.kuantitas .tombol .button {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    padding: 0 14px;
+    cursor: pointer;
+    border: 1px solid var(--color-grey);
+}
+
+.kuantitas .sampingkanan {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.kuantitas .stock {
+    color: var(--color-high);
+}
+
+/* KONFIRMASI */
+.konfirmasi {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 7px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
