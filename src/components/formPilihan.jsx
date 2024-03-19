@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import FormPembelian from '@/components/formPembelian';
-import { boolean } from 'yup';
 
 export default function FormPilihan({ warna, dataID, dataid }) {
 
@@ -138,10 +137,10 @@ export default function FormPilihan({ warna, dataID, dataid }) {
                         <div className={styles.pilihanwarna}>
                             <div className={styles.judul}>Warna</div>
                             <div className={styles.detail}>
-                                {warna?.map((data) => {
+                                {warna?.map((data, i) => {
                                     return (
                                         <>
-                                            <div style={data.warna_barang == warnaDetail ? { borderColor: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleDetail(data)}>
+                                            <div key={i} style={data.warna_barang == warnaDetail ? { borderColor: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleDetail(data)}>
                                                 <div className={styles.gambar}>
                                                     <Image src={data.gambar_barang} width={50} height={50} alt={data.id_namabarang}></Image>
                                                 </div>
@@ -155,20 +154,22 @@ export default function FormPilihan({ warna, dataID, dataid }) {
                     }
 
                     <div className={styles.pilihanacak}>
-                        {ListKategoriSemuanya?.map((data) => {
+                        {ListKategoriSemuanya?.map((data, i) => {
                             const cek = DataGabunganKategori.map((dataku) => dataku.typeKategori[0]).filter((dataku) => dataku?.kategori == data?.kategori)[0]?.typeKategori
                             return (
                                 <>
-                                    <div className={styles.judul}>{data.kategori}</div>
-                                    <div className={styles.detail}>
-                                        {data?.typeKategori.map((dataku) => {
-                                            return (
-                                                <div style={cek == dataku.typeKategori ? { borderColor: 'var(--color-primary)', fontWeight: 700, color: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleKategori(dataku)}>
-                                                    {dataku.typeKategori}
-                                                </div>
-                                            )
-                                        }
-                                        )}
+                                    <div key={i}>
+                                        <div className={styles.judul}>{data.kategori}</div>
+                                        <div className={styles.detail}>
+                                            {data?.typeKategori.map((dataku, i) => {
+                                                return (
+                                                    <div key={i} style={cek == dataku.typeKategori ? { borderColor: 'var(--color-primary)', fontWeight: 700, color: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleKategori(dataku)}>
+                                                        {dataku.typeKategori}
+                                                    </div>
+                                                )
+                                            }
+                                            )}
+                                        </div>
                                     </div>
                                 </>
                             )
