@@ -1,6 +1,7 @@
 .container {
     position: fixed;
     top: 0;
+    left: 0;
     z-index: 99991;
     min-height: 100dvh;
     display: flex;
