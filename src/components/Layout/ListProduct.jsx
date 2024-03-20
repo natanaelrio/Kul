@@ -77,10 +77,14 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                 <div className={styles.listproduk}>
                     <div className={styles.gridlist}>
                         {data?.map((data, i) => {
-
-                            const catatanKategori = data.detail_deskripsi_barang.typeKategori[0].kategori
-                            const catatanType = data.detail_deskripsi_barang.typeKategori[0].typeKategori
-                            const catatan = catatanKategori + ' ( ' + catatanType + ' )' + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
+                            const dataListDefault = data.detail_deskripsi_barang.kategori.map((dataq) => {
+                                return (
+                                    data.detail_deskripsi_barang.typeKategori.filter((dataku) => dataku.kategori == dataq).map((data) => data)[0]
+                                )
+                            }
+                            )
+                            const gabungCatatan = dataListDefault.map((data) => data.kategori + ' ( ' + data.typeKategori + ' )').toString()
+                            const catatan = gabungCatatan + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'

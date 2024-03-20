@@ -78,13 +78,20 @@ export default function Produk(props) {
         )
     })
 
-    const dataAwalDefault = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori)[0] : ListKategoriSemuanya.map((data) => data.typeKategori)[0]
+
+    // const dataAwalDefault = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori)[0] : ListKategoriSemuanya.map((data) => data.typeKategori)[0]
+    const dataAwalDefault = varianID ? TypeKategori.filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori).map((data) => data[0])
+
+    // console.log(ListKategoriSemuanya.map((data) => data.typeKategori).map((data) => data[0]));
     const defaultSelectOption = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0]?.typeKategori ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0]?.typeKategori : ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori :
         ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori
 
+    // console.log(ListKategoriSemuanya.map((data) => data.typeKategori));
+    // console.log()
     const [valueDefault, setValueDefault] = useState(dataAwalDefault)
     const [selectedOption, setSelectedOption] = useState(defaultSelectOption);
     const [gabungValueKategori, setGabungValueKategori] = useState([])
+
     const handleChangeSelect = (event, dataku) => {
         setSelectedOption(event.target.value);
         resetValueKeranjang()
@@ -95,7 +102,6 @@ export default function Produk(props) {
         const uid = dataku.typeKategori.filter((data) => data.typeKategori == event.target.value)[0].uid
         router.push(`${process.env.NEXT_PUBLIC_URL}/products/${data?.slug_barang}/?varianID=${uid}`)
     }
-
 
     useEffect(() => {
         setGabungValueKategori([...new Set([...gabungValueKategori, valueDefault])])
@@ -193,7 +199,7 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
-    const catatan = GabungDataKategoriType?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
+    const catatan = GabungDataKategoriType.filter((data) => data.nama)?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
 
     //DATA FORM 
     const dataFormLangsung =
@@ -297,8 +303,7 @@ export default function Produk(props) {
                                     </div>
                                 }
                                 {ListKategoriSemuanya?.map((data, i) => {
-                                    const Pilihan = valueDefault.filter((dataku) => dataku.kategori == data.kategori)[0]?.typeKategori ? valueDefault.filter((dataku) => dataku.kategori == data.kategori)[0]?.typeKategori : TypeKategori.filter((dataku) => dataku.kategori == data.kategori)[0].typeKategori
-
+                                    const Pilihan = valueDefault?.filter((dataku) => dataku.kategori == data.kategori).slice(-1)[0]?.typeKategori
                                     return (
                                         <div className={styles.ListKategoriSemuanya} key={i}>
                                             <div className={styles.ListKategori} >{data?.kategori}</div>
