@@ -16,10 +16,12 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import ProdukHarga from '@/components/produkHarga';
 import PaymentErrorPending from '@/components/paymenterrorpending';
 import FormPilihan from '@/components/formPilihan';
+import FormKeranjang from './formKeranjang';
 
 export default function Produk(props) {
     const data = props.data?.data
     const warna = props?.warnaID?.data
+
     const router = useRouter()
 
     const searchParams = useSearchParams()
@@ -28,6 +30,9 @@ export default function Produk(props) {
 
     const openFormPilihan = useStore((state) => state.openFormPilihan)
     const setOpenFormPilihan = useStore((state) => state.setOpenFormPilihan)
+
+    const openFormKeranjang = useStore((state) => state.openFormKeranjang)
+    const setOpenFormKeranjang = useStore((state) => state.setOpenFormKeranjang)
 
     const openFormPending = useStore((state) => state.openFormPending)
     const setOpenIsScrollPast = useStore((state) => state.setOpenIsScrollPast)
@@ -187,10 +192,10 @@ export default function Produk(props) {
     })
 
     // DATA KERANJANG
-    const diskonhargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
-        style: 'currency',
-        currency: 'IDR'
-    })
+    // const diskonhargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
+    //     style: 'currency',
+    //     currency: 'IDR'
+    // })
 
 
     const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * (kondisiDiskon && angkaDiskon)) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
@@ -200,6 +205,16 @@ export default function Produk(props) {
     })
 
     const catatan = GabungDataKategoriType.filter((data) => data.nama)?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
+
+
+
+    const handleTambahkanKeranjang = () => {
+        setOpenFormKeranjang()
+    }
+
+
+
+
 
     //DATA FORM 
     const dataFormLangsung =
@@ -216,14 +231,15 @@ export default function Produk(props) {
         }]
 
 
+
     return (
         <>
-            <div className={styles.container} id="penutup2"  >
+            <div className={styles.container}>
                 <div className={styles.width}>
 
-                    <div className={styles.grid}  >
-                        <div className={styles.reviewproduk} >
-                            <div className={styles.containerreview} >
+                    <div className={styles.grid}>
+                        <div className={styles.reviewproduk}>
+                            <div className={styles.containerreview}>
 
                                 <div className={styles.atas}>
                                     <div className={styles.judulterjual}>
@@ -326,46 +342,24 @@ export default function Produk(props) {
                                 })}
 
                                 <div className={styles.jumlahbarang} ref={targetRef} >stok : {jumlahBarang}</div>
-                                {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
-                                    data.id && keranjang?.filter((e) => e.id == data.id)?.map((data) => {
-                                        return (
-                                            <div key={data.id} className={styles.jumlah} >
-                                                <div className={styles.kata}>Kuantitas</div>
-                                                <div className={styles.button}>
-                                                    <button onClick={() => { handleCountKeranjang(data.id, data.value - 1) }}
-                                                        style={data.value <= 1 ? { color: '#c2c2c2' } : null}>-</button>
-                                                    <div className={styles.angka}>{data.value}</div>
-                                                    <button
-                                                        style={data.value >= jumlahBarang ? { color: '#c2c2c2' } : null}
-                                                        onClick={() => { handleCountKeranjang(data.id, data.value + 1) }}>+</button>
-                                                </div>
-                                            </div>)
-                                    })
-                                    :
-                                    <div className={styles.jumlah}>
-                                        <div className={styles.kata}>Kuantitas</div>
-                                        <div className={styles.button}>
-                                            <button onClick={() => handleAngkaKurang()}
-                                                style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
-                                                }>-</button>
-                                            <div className={styles.angka}>{ValueKeranjang}</div>
-                                            <button
-                                                style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
-                                                onClick={() => handleAngkaTambah()}>+</button>
-                                        </div>
-                                    </div>
-                                }
 
-                                {data.id && keranjang?.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
-                                    <div className={styles.keranjang}>
-                                        <button style={{ background: 'var(--color-high' }}
-                                            onClick={() => handleKeranjangdanResetValue(data.id)
-                                            }>Hapus Keranjang</button>
-                                    </div> :
-                                    <div className={styles.keranjang}>
-                                        <button onClick={() => setdataKeranjangZ(data, hargatotal, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan)}>Tambahkan Keranjang</button>
+                                <div className={styles.jumlah}>
+                                    <div className={styles.kata}>Kuantitas</div>
+                                    <div className={styles.button}>
+                                        <button onClick={() => handleAngkaKurang()}
+                                            style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
+                                            }>-</button>
+                                        <div className={styles.angka}>{ValueKeranjang}</div>
+                                        <button
+                                            style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                            onClick={() => handleAngkaTambah()}>+</button>
                                     </div>
-                                }
+                                </div>
+
+
+                                <div className={styles.keranjang}>
+                                    <button onClick={() => handleTambahkanKeranjang()}>Tambahkan Keranjang</button>
+                                </div>
                                 <div className={styles.belisekarang}   >
                                     <button onClick={setOpenFormPilihan}>Beli Sekarang</button>
                                 </div>
@@ -403,6 +397,12 @@ export default function Produk(props) {
                 warna={warna}
                 dataid={data.id}
                 dataID={data} />}
+            {openFormKeranjang && <FormKeranjang
+                warna={warna}
+                dataid={data.id}
+                dataID={data}
+            />}
+
         </>
     )
 }

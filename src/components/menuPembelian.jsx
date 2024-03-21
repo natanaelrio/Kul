@@ -4,6 +4,12 @@ import { useStore } from '@/lib/zustand'
 
 export default function MenuPembelian() {
     const setOpenFormPilihan = useStore((state) => state.setOpenFormPilihan)
+    const setOpenFormKeranjang = useStore((state) => state.setOpenFormKeranjang)
+
+    const handleOnTop = () => {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
 
     return (
         <div className={styles.container} >
@@ -13,10 +19,10 @@ export default function MenuPembelian() {
                 </div>
 
                 <div className={styles.keranjang}>
-                    <a href="#penutup2"> Tambahkan Keranjang</a>
+                    <div onClick={() => { setOpenFormKeranjang(), handleOnTop() }}> Tambahkan Keranjang</div>
                 </div>
-                <div className={styles.belilangsung} onClick={setOpenFormPilihan} >
-                    <a href="#penutup2">Beli Sekarang</a>
+                <div className={styles.belilangsung} onClick={() => { setOpenFormPilihan(), handleOnTop() }} >
+                    Beli Sekarang
                 </div>
             </div>
         </div >

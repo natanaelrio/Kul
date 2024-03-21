@@ -53,6 +53,14 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openFormKeranjang: false,
+    setOpenFormKeranjang: () => {
+        set((state) => ({
+            openFormKeranjang: !state.openFormKeranjang
+        })
+        )
+    },
+
 
     //ADMIN
     openDetailProdukAdmin: false,

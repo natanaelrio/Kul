@@ -6,7 +6,7 @@ import Love from '@/components/love';
 import Pencarian from '@/components/pencarian';
 import { useStore } from '@/lib/zustand'
 import Introduction from '@/components/introduction'
-import MenuPembelian from '../menuPembelian';
+import MenuPembelian from '@/components/menuPembelian';
 
 export default function HeaderFooter({ children, kondisiatas, kondisidetailproduk, data }) {
   const openLove = useStore((state) => state.openLove)

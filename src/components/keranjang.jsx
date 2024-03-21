@@ -28,10 +28,12 @@ export default function Keranjang() {
     const searchParams = useSearchParams()
     const transaction_status = searchParams.get('transaction_status')
 
+
     const totalBarang = keranjangZ.map((data) => (data.harga_total_barang - ((data.harga_total_barang * (data?.kondisi_diskon_barang && data.diskon_barang)) / 100))).reduce((acc, curr) => acc + curr, 0).toLocaleString('id-ID', {
         style: 'currency',
         currency: 'IDR'
     });
+
 
     const handleCountKeranjang = (data, kondisi) => {
         const id = data.id
@@ -108,7 +110,7 @@ export default function Keranjang() {
                                 </CustomBack>
                             </div>
                             <div className={styles.container}>
-                                {keranjangZ.map((data, i) => {
+                                {keranjangZ?.map((data, i) => {
                                     const diskonharga = data?.harga_total_barang?.toLocaleString('id-ID', {
                                         style: 'currency',
                                         currency: 'IDR'
