@@ -131,7 +131,7 @@ export default function FormEditKeranjang({ warna, dataID, dataid, value }) {
 
     const hargaTotalSemua = hargaDetail * ValueKeranjang
 
-    const catatan = `${warnaDetail}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
+    const catatan = `${warnaDetail ? warnaDetail : ''}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
 
     const handleTambahkanKeranjang = () => {
         setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, ValueKeranjang, kondisiDiskonDetail, diskonDetail, catatan)
