@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation'
 import { MdDelete } from "react-icons/md";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
@@ -14,11 +15,15 @@ import KeranjangTotal from '@/components/keranjangtotal';
 import FormPembelian from '@/components/formPembelian';
 import CustomBack from '@/lib/customBack';
 import PaymentErrorPending from '@/components/paymenterrorpending';
+import FormEditKeranjang from './formEditKeranjang';
 
 export default function Keranjang() {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
     const openFormPending = useStore((state) => state.openFormPending)
+
+    const openFormEditKeranjang = useStore((state) => state.openFormEditKeranjang)
+    const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
 
     const setdataKeranjangCountZ = useStoreDataFront((state) => state.setdataKeranjangCountZ)
     const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
@@ -59,6 +64,12 @@ export default function Keranjang() {
     }
 
 
+    const [editKeranjang, setEditKeranjang] = useState([])
+    const handleEditKeranjang = (e) => {
+        setOpenFormEditKeranjang()
+        setEditKeranjang(e)
+    }
+
     const dataFormKeranjang = keranjangZ.map((data) => (
         {
             id: data.id,
@@ -70,6 +81,7 @@ export default function Keranjang() {
             value_barang: data.value,
             catatan: data.catatan
         }))
+
 
     return (
         <>
@@ -129,40 +141,45 @@ export default function Keranjang() {
                                                         alt={data?.nama_barang} />
                                                 </div>
                                                 <div className={styles.detail}>
-                                                    <div>
-                                                        <div className={styles.judul}>{data.nama_barang}</div>
-                                                        {data.catatan && <div className={styles.catatan}>{data.catatan}</div>}
+                                                    <div className={styles.judul}>{data.nama_barang}</div>
+                                                    {data.catatan && <div className={styles.catatan} onClick={() => handleEditKeranjang(data)}>{data.catatan}  &nbsp; <IoIosArrowDown /></div>}
+
+                                                    <div className={styles.bawah}>
                                                         <div className={styles.harga}>
                                                             <div className={styles.hargadalam}>{harga}&nbsp;</div>
                                                             {data?.kondisi_diskon_barang && <div className={styles.hargadiskon}>{diskonharga}</div>}
                                                         </div>
-                                                    </div>
-                                                    <div className={styles.jumlahbarang}>
-                                                        <div className={styles.tambahkurang}>
-                                                            <button className={styles.kurang}
-                                                                style={data.value <= 1 ? { color: '#c2c2c2' } : null}
-                                                                onClick={() => { handleCountKeranjang(data, false) }}>-</button>
-                                                            <button className={styles.nilai}>{data.value}</button>
-                                                            <button className={styles.tambah}
-                                                                style={data.value >= data.jumlah_barang ? { color: '#c2c2c2' } : null}
-                                                                onClick={() => { handleCountKeranjang(data, true) }}>+</button>
+                                                        <div className={styles.jumlahbarang}>
+                                                            <div className={styles.tambahkurang}>
+                                                                <button className={styles.kurang}
+                                                                    style={data.value <= 1 ? { color: '#c2c2c2' } : null}
+                                                                    onClick={() => { handleCountKeranjang(data, false) }}>-</button>
+                                                                <button className={styles.nilai}>{data.value}</button>
+                                                                <button className={styles.tambah}
+                                                                    style={data.value >= data.jumlah_barang ? { color: '#c2c2c2' } : null}
+                                                                    onClick={() => { handleCountKeranjang(data, true) }}>+</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div className={styles.action}>
-                                                <div className={styles.delete} >
-                                                    <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleValidasiDelete(data.id)} />
-                                                    {data.id == uidDelete && isValidasiDelete && <div className={styles.validasi}>
-                                                        <div className={styles.yes} onClick={() => handleDeleteLove(data.id)}>YES</div>
-                                                        <div className={styles.no} onClick={() => handleValidasiDelete()}>NO</div>
+
+                                                <div className={styles.action}>
+                                                    <div className={styles.delete} >
+                                                        <MdDelete style={{ cursor: 'pointer' }} onClick={() => handleValidasiDelete(data.id)} />
+                                                        {data.id == uidDelete && isValidasiDelete && <div className={styles.validasi}>
+                                                            <div className={styles.yes} onClick={() => handleDeleteLove(data.id)}>YES</div>
+                                                            <div className={styles.no} onClick={() => handleValidasiDelete()}>NO</div>
+                                                        </div>
+                                                        }
+
                                                     </div>
-                                                    }
-
                                                 </div>
+                                                <div className={styles.stokbarang} style={!data?.kondisi_diskon_barang ? { bottom: '10px' } : {}}>{data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
+
                                             </div>
-                                            <div className={styles.stokbarang}>{data.value >= data.jumlah_barang ? <span>max: {data.jumlah_barang}</span> : data.value <= 1 && <span>min: 1</span>}</div>
+
+
                                         </div>
                                     )
                                 })}
@@ -173,6 +190,12 @@ export default function Keranjang() {
             {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />}
             {openFormPembelian &&
                 <FormPembelian dataFormLangsung={dataFormKeranjang} />}
+
+            {openFormEditKeranjang && <FormEditKeranjang
+                warna={editKeranjang?.dataEditKeranjang?.warna}
+                dataid={editKeranjang?.dataEditKeranjang?.dataid}
+                dataID={editKeranjang?.dataEditKeranjang?.dataID}
+            />}
         </>
     )
 }

@@ -1,8 +1,6 @@
 import styles from '@/components/love.module.css'
 import Image from 'next/image'
 import { MdDelete } from "react-icons/md";
-import { TbShoppingBagPlus } from "react-icons/tb";
-import { TbShoppingBagX } from "react-icons/tb";
 import { FaRegHeart } from "react-icons/fa";
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import CustomLink from '@/lib/customLink'
@@ -80,7 +78,7 @@ export default function Love() {
                                                 {data.id && keranjangZ.filter((e) => e.id == data.id).map((e) => e.id).toString() ?
                                                     <div className={styles.tombolkeranjangminus} onClick={() => setDeleteKeranjangZ(data.id)}>Keranjang -</div>
                                                     :
-                                                    <div className={styles.tombolkeranjangplus} onClick={() => setdataKeranjangZ(data, data.harga_barang, 1, data.kondisi_diskon_barang, data.diskon_barang, data.catatan)}>Keranjang +</div>
+                                                    <div className={styles.tombolkeranjangplus} onClick={() => setdataKeranjangZ(data, data.harga_barang, 1, data.kondisi_diskon_barang, data.diskon_barang, data.catatan, data.dataEditKeranjang)}>Keranjang +</div>
                                                 }
 
                                             </div>

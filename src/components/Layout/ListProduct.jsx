@@ -22,8 +22,35 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
     const loveZ = useStoreDataFront((state) => state.loveZ)
     const setdataLoveZ = useStoreDataFront((state) => state.setdataLoveZ)
 
-    const HandlePushLove = (e, catatan) => {
-        setdataLoveZ(e, e.harga_barang, true, catatan)
+    const HandlePushLove = async (e, catatan) => {
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-warna-produk?id=${e.id_namabarang}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': process.env.NEXT_PUBLIC_SECREET
+            },
+            next: { revalidate: 0 }
+        })
+
+        const data = await res.json()
+
+        const dataEditKeranjang = {
+            dataID: {
+                detail_deskripsi_barang: e?.detail_deskripsi_barang,
+                diskon_barang: e?.diskon_barang,
+                gambar_barang: e?.gambar_barang,
+                harga_barang: e?.harga_barang,
+                id: e?.id,
+                jumlah_barang: e?.jumlah_barang,
+                kondisi_diskon_barang: e?.kondisi_diskon_barang,
+                nama_barang: e?.nama_barang,
+                warna_barang: e?.warna_barang
+            },
+            dataid: e?.id,
+            warna: data?.data
+        }
+        setdataLoveZ(e, e.harga_barang, true, catatan, dataEditKeranjang)
     }
 
     const HandleDeleteLove = (e) => {
@@ -83,8 +110,8 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                 )
                             }
                             )
-                            const gabungCatatan = dataListDefault.map((data) => data.kategori + ' ( ' + data.typeKategori + ' )').toString()
-                            const catatan = gabungCatatan + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
+                            const gabungCatatan = dataListDefault.map((data) => data.typeKategori).toString()
+                            const catatan = `${data?.warna_barang ? data?.warna_barang : ''}` + ',' + gabungCatatan
                             const diskonharga = data.harga_barang.toLocaleString('id-ID', {
                                 style: 'currency',
                                 currency: 'IDR'

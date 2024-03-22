@@ -22,6 +22,25 @@ export default function Produk(props) {
     const data = props.data?.data
     const warna = props?.warnaID?.data
 
+    const dataFrom = {
+        detail_deskripsi_barang: data?.detail_deskripsi_barang,
+        nama_barang: data?.nama_barang,
+        gambar_barang: data?.gambar_barang,
+        warna_barang: data?.warna_barang,
+        harga_barang: data?.harga_barang,
+        diskon_barang: data?.diskon_barang,
+        kondisi_diskon_barang: data?.kondisi_diskon_barang,
+        id: data.id,
+        jumlah_barang: data.jumlah_barang
+    }
+
+
+    const dataEditKeranjang = {
+        dataID: dataFrom,
+        dataid: data.id,
+        warna: warna
+    }
+
     const router = useRouter()
 
     const searchParams = useSearchParams()
@@ -204,17 +223,11 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
-    const catatan = GabungDataKategoriType.filter((data) => data.nama)?.map((data) => data.nama + `${` ( `}` + `${(data.type)}` + `${` )`}`).toString() + `${data?.warna_barang ? ', ' + 'warna ' + '( ' + data?.warna_barang + ' )' : ''}`
-
-
+    const catatan = `${data?.warna_barang ? data?.warna_barang : ''}` + ', ' + GabungDataKategoriType.filter((data) => data.nama)?.map((data) => `${(data.type)}`).toString()
 
     const handleTambahkanKeranjang = () => {
         setOpenFormKeranjang()
     }
-
-
-
-
 
     //DATA FORM 
     const dataFormLangsung =
@@ -256,7 +269,7 @@ export default function Produk(props) {
                                         </button>
                                         :
                                         <button className={styles.icon}
-                                            onClick={() => setdataLoveZ(data, data.harga_barang, false, catatan)}
+                                            onClick={() => setdataLoveZ(data, data.harga_barang, false, catatan, dataEditKeranjang)}
                                             aria-label={'logoheart'}
                                         >
                                             <FaRegHeart />
@@ -396,11 +409,11 @@ export default function Produk(props) {
             {openFormPilihan && <FormPilihan
                 warna={warna}
                 dataid={data.id}
-                dataID={data} />}
+                dataID={dataFrom} />}
             {openFormKeranjang && <FormKeranjang
                 warna={warna}
                 dataid={data.id}
-                dataID={data}
+                dataID={dataFrom}
             />}
 
         </>

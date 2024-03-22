@@ -7,7 +7,7 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import FormPembelian from '@/components/formPembelian';
 
-export default function FormKeranjang({ warna, dataID, dataid }) {
+export default function FormEditKeranjang({ warna, dataID, dataid }) {
 
     const dataEditKeranjang = {
         warna,
@@ -15,7 +15,7 @@ export default function FormKeranjang({ warna, dataID, dataid }) {
         dataid
     }
 
-    const setOpenFormKeranjang = useStore((state) => state.setOpenFormKeranjang)
+    const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
 
     const openFormPembelian = useStore((state) => state.openFormPembelian)
 
@@ -131,13 +131,13 @@ export default function FormKeranjang({ warna, dataID, dataid }) {
     const catatan = `${warnaDetail}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
 
     const handleTambahkanKeranjang = () => {
-        setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, ValueKeranjang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
-        setOpenFormKeranjang()
+        setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, ValueKeranjang, kondisiDiskonDetail, diskonDetail, catatan)
+        setOpenFormEditKeranjang()
     }
 
     const handleUpdateKeranjang = () => {
-        setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, ValueKeranjang, kondisiDiskonDetail, diskonDetail, catatan)
-        setOpenFormKeranjang()
+        setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, ValueKeranjang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
+        setOpenFormEditKeranjang()
     }
 
     //DATA FORM 
@@ -155,7 +155,7 @@ export default function FormKeranjang({ warna, dataID, dataid }) {
 
 
     return (
-        <FloatingBlur setOpen={setOpenFormKeranjang} judul={'Pilih Varian'} >
+        <FloatingBlur setOpen={setOpenFormEditKeranjang} judul={'Edit Pilih Varian'} >
             <div className={styles.container}>
 
                 <div className={styles.atas}>
@@ -176,7 +176,7 @@ export default function FormKeranjang({ warna, dataID, dataid }) {
                     </div>
                 </div>
                 <div className={styles.pilihan}>
-                    {Boolean(warna.length) &&
+                    {false && Boolean(warna.length) &&
                         <div className={styles.pilihanwarna}>
                             <div className={styles.judul}>Warna</div>
                             <div className={styles.detail}>

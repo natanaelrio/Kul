@@ -157,21 +157,19 @@ export default function FormPilihan({ warna, dataID, dataid }) {
                         {ListKategoriSemuanya?.map((data, i) => {
                             const cek = DataGabunganKategori.map((dataku) => dataku.typeKategori[0]).filter((dataku) => dataku?.kategori == data?.kategori)[0]?.typeKategori
                             return (
-                                <>
-                                    <div key={i}>
-                                        <div className={styles.judul}>{data.kategori}</div>
-                                        <div className={styles.detail}>
-                                            {data?.typeKategori.map((dataku, i) => {
-                                                return (
-                                                    <div key={i} style={cek == dataku.typeKategori ? { borderColor: 'var(--color-primary)', fontWeight: 700, color: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleKategori(dataku)}>
-                                                        {dataku.typeKategori}
-                                                    </div>
-                                                )
-                                            }
-                                            )}
-                                        </div>
+                                <div key={i}>
+                                    <div className={styles.judul}>{data.kategori}</div>
+                                    <div className={styles.detail}>
+                                        {data?.typeKategori.map((dataku, i) => {
+                                            return (
+                                                <div key={i} style={cek == dataku.typeKategori ? { borderColor: 'var(--color-primary)', fontWeight: 700, color: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleKategori(dataku)}>
+                                                    {dataku.typeKategori}
+                                                </div>
+                                            )
+                                        }
+                                        )}
                                     </div>
-                                </>
+                                </div>
                             )
                         })}
                     </div>

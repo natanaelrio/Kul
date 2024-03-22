@@ -60,6 +60,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    openFormEditKeranjang: false,
+    setOpenFormEditKeranjang: () => {
+        set((state) => ({
+            openFormEditKeranjang: !state.openFormEditKeranjang
+        })
+        )
+    },
 
 
     //ADMIN

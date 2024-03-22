@@ -8,14 +8,15 @@ export const useStoreDataFront = create(
             // LOVE
             loveZ: [],
             kondisiLove: false,
-            setdataLoveZ: async (loveZ, harga_barang, kondisi, catatan) => {
+            setdataLoveZ: async (loveZ, harga_barang, kondisi, catatan, dataEditKeranjang) => {
                 set((state) => ({
                     loveZ: [...new Set([...state.loveZ, {
                         ...loveZ, ...{
                             value: Number(1),
                             harga_total_barang: harga_barang,
                             kondisiLove: true,
-                            catatan: catatan
+                            catatan: catatan,
+                            dataEditKeranjang: dataEditKeranjang
                         }
                     }].reverse())],
                 })),
@@ -42,7 +43,7 @@ export const useStoreDataFront = create(
             // KERANJANG
             keranjangZ: [],
             kondisiKeranjang: false,
-            setdataKeranjangZ: (keranjangZ, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan) => {
+            setdataKeranjangZ: (keranjangZ, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan, dataEditKeranjang) => {
                 set((state) => ({
                     keranjangZ: [...new Set([...state.keranjangZ, {
                         ...keranjangZ, ...{
@@ -51,7 +52,8 @@ export const useStoreDataFront = create(
                             kondisi_diskon_barang: kondisiDiskon,
                             diskon_barang: angkaDiskon,
                             catatan: catatan ? catatan : '',
-                            kondisi: true
+                            kondisi: true,
+                            dataEditKeranjang: dataEditKeranjang
                         }
                     }].reverse())]
                 })),
@@ -73,7 +75,7 @@ export const useStoreDataFront = create(
                             : data)
                 }))
             },
-            setUpdateKeranjangZ: (datanya, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan) => {
+            setUpdateKeranjangZ: (datanya, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan, dataEditKeranjang) => {
                 set((state) => ({
                     keranjangZ:
                         state.keranjangZ.map((data) => data.id == datanya.id ?
@@ -84,7 +86,8 @@ export const useStoreDataFront = create(
                                 kondisi_diskon_barang: kondisiDiskon,
                                 diskon_barang: angkaDiskon,
                                 catatan: catatan ? catatan : '',
-                                kondisi: true
+                                kondisi: true,
+                                dataEditKeranjang: dataEditKeranjang ? dataEditKeranjang : ''
                             }
                             : data)
                 }))

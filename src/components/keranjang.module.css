@@ -15,7 +15,7 @@
 }
 
 .container {
-    padding: 15px 20px;
+    /* padding: 15px 20px; */
     /* height: 60dvh;
     overflow-y: scroll; */
     margin-bottom: 10dvh;
@@ -38,8 +38,8 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    padding: 1dvh 30px 30px 30px;
-    font-size: 0.7rem;
+    padding: 1dvh 20px 20px 20px;
+    font-size: 0.8rem;
     position: sticky;
     top: 89dvh;
     bottom: 0;
@@ -85,15 +85,17 @@
 
 .list .stokbarang {
     position: absolute;
-    right: 0;
     font-size: 0.6rem;
     bottom: 20px;
     color: var(--color-high);
+    right: 20px;
 }
 
 .detailluar {
     display: flex;
     width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
+    padding: 20px 0 20px 20px;
 }
 
 .list .gambar {
@@ -109,12 +111,12 @@
 }
 
 .list .detail {
-    padding: 0 10px 10px 10px;
+    padding: 0 20px 10px 10px;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     width: 100%;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     color: var(--color-sekunder);
     font-weight: 500;
 }
@@ -122,7 +124,7 @@
 .list .detail .judul {
     overflow: hidden;
     display: block;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
@@ -130,9 +132,27 @@
     text-align: left;
     margin-bottom: 5px;
 }
+
 .list .detail .catatan {
     margin-bottom: 5px;
-    font-weight: 400;
+    border: 1px solid var(--color-grey);
+    padding: 5px 10px;
+    width: fit-content;
+    cursor: pointer;
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    background-color: var(--color-grey);
+    color: var(--color-grey-love);
+    border-radius: 3px;
+}
+
+.list .detail .bawah {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+    align-items: flex-start;
 }
 
 .list .harga {
@@ -141,6 +161,8 @@
 
 .list .detail .harga {
     display: flex;
+    flex-direction: column;
+    width: fit-content;
 }
 
 .list .detail .hargadalam {
@@ -154,17 +176,19 @@
 .list .tambahkurang {
     border: 2px solid var(--color-grey);
     width: fit-content;
-    border-radius: 7px;
+    border-radius: 3px;
     padding: 2px;
 }
 
 .list .tambahkurang .tambah {
+    font-weight: 700;
     padding: 5px 10px;
     cursor: pointer;
     background-color: var(--color-white);
 }
 
 .list .tambahkurang .kurang {
+    font-weight: 700;
     padding: 5px 10px;
     cursor: pointer;
     background-color: var(--color-white);
@@ -181,8 +205,7 @@
     align-items: center;
     justify-content: space-between;
     color: var(--color-high);
-    width: 100%;
-
+    /* width: 100%; */
 }
 
 
@@ -191,6 +214,8 @@
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+    position: absolute;
+    right: 10px;
 }
 
 .action .delete {
@@ -296,9 +321,9 @@
         padding: 0 10px 10px 10px;
     }
 
-    .container {
+    /* .container {
         padding: 0 20px 20px 20px;
-    }
+    } */
 
     /* .total {
         top: 92dvh;
