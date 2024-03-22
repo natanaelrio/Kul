@@ -195,6 +195,7 @@ export default function Keranjang() {
                 warna={editKeranjang?.dataEditKeranjang?.warna}
                 dataid={editKeranjang?.dataEditKeranjang?.dataid}
                 dataID={editKeranjang?.dataEditKeranjang?.dataID}
+                value={editKeranjang?.value}
             />}
         </>
     )

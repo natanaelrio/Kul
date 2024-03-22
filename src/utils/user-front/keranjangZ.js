@@ -75,13 +75,13 @@ export const useStoreDataFront = create(
                             : data)
                 }))
             },
-            setUpdateKeranjangZ: (datanya, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan, dataEditKeranjang) => {
+            setUpdateKeranjangZ: (datanya, harga_barang, ValueKeranjang, kondisiDiskon, angkaDiskon, catatan, dataEditKeranjang, kondisiList) => {
                 set((state) => ({
                     keranjangZ:
                         state.keranjangZ.map((data) => data.id == datanya.id ?
                             {
                                 ...datanya,
-                                value: data.value >= data.jumlah_barang ? data.jumlah_barang : ValueKeranjang + data.value,
+                                value: kondisiList ? ValueKeranjang : data.value >= data.jumlah_barang ? data.jumlah_barang : ValueKeranjang + data.value,
                                 harga_total_barang: harga_barang,
                                 kondisi_diskon_barang: kondisiDiskon,
                                 diskon_barang: angkaDiskon,

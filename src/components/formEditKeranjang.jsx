@@ -7,13 +7,14 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import FormPembelian from '@/components/formPembelian';
 
-export default function FormEditKeranjang({ warna, dataID, dataid }) {
+export default function FormEditKeranjang({ warna, dataID, dataid, value }) {
 
     const dataEditKeranjang = {
         warna,
         dataID,
         dataid
     }
+
 
     const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
 
@@ -109,11 +110,13 @@ export default function FormEditKeranjang({ warna, dataID, dataid }) {
     // KUANTITAS
     const jumlahBarang = gabungDataKategori.slice(-1)[0]?.stock ? gabungDataKategori.slice(-1)[0].stock : dataID?.jumlah_barang
     // Data OFF
+
+    const [tambahTambahKurang, setTambahKurang] = useState(value)
     const handleAngkaKurang = () => {
-        ValueKeranjang > 1 ? setKurangValueKeranjang() : null
+        tambahTambahKurang > 1 ? setTambahKurang(tambahTambahKurang - 1) : null
     }
     const handleAngkaTambah = () => {
-        ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
+        tambahTambahKurang >= jumlahBarang ? null : setTambahKurang(tambahTambahKurang + 1)
     }
 
 
@@ -136,9 +139,10 @@ export default function FormEditKeranjang({ warna, dataID, dataid }) {
     }
 
     const handleUpdateKeranjang = () => {
-        setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, ValueKeranjang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
+        setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, tambahTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true)
         setOpenFormEditKeranjang()
     }
+
 
     //DATA FORM 
     const dataFormLangsung =
@@ -226,11 +230,11 @@ export default function FormEditKeranjang({ warna, dataID, dataid }) {
                             <div className={styles.tombol}>
                                 <div className={styles.button}
                                     onClick={() => handleAngkaKurang()}
-                                    style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
+                                    style={tambahTambahKurang <= 1 ? { color: '#c2c2c2' } : null
                                     }>-</div>
-                                <div className={styles.angka}>{ValueKeranjang}</div>
+                                <div className={styles.angka}>{tambahTambahKurang}</div>
                                 <div className={styles.button}
-                                    style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                    style={tambahTambahKurang >= jumlahBarang ? { color: '#c2c2c2' } : null}
                                     onClick={() => handleAngkaTambah()}>+</div>
                             </div>
                         </div>
