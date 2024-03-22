@@ -112,12 +112,12 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     // KUANTITAS
     const jumlahBarang = gabungDataKategori.slice(-1)[0]?.stock ? gabungDataKategori.slice(-1)[0].stock : dataID?.jumlah_barang
     // Data OFF
-    // const handleAngkaKurang = () => {
-    //     ValueKeranjang > 1 ? setKurangValueKeranjang() : null
-    // }
-    // const handleAngkaTambah = () => {
-    //     ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
-    // }
+    const handleAngkaKurangProduk = () => {
+        ValueKeranjang > 1 ? setKurangValueKeranjang() : null
+    }
+    const handleAngkaTambahProduk = () => {
+        ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
+    }
 
     const [valueTambahKurang, setValueTambahKurang] = useState(value ? value : 1)
     const handleAngkaKurang = () => {
@@ -251,7 +251,8 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                         <div className={styles.judul}>Kuantitas </div>
                         <div className={styles.sampingkanan}>
                             <div className={styles.stock}>stok: {jumlahBarang}</div>
-                            <div className={styles.tombol}>
+
+                            {kondisiEditKeranjang && <div className={styles.tombol}>
                                 <div className={styles.button}
                                     onClick={() => handleAngkaKurang()}
                                     style={valueTambahKurang <= 1 ? { color: '#c2c2c2' } : null
@@ -260,7 +261,29 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                                 <div className={styles.button}
                                     style={valueTambahKurang >= jumlahBarang ? { color: '#c2c2c2' } : null}
                                     onClick={() => handleAngkaTambah()}>+</div>
-                            </div>
+                            </div>}
+
+                            {kondisiKeranjang && <div className={styles.tombol}>
+                                <div className={styles.button}
+                                    onClick={() => handleAngkaKurangProduk()}
+                                    style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
+                                    }>-</div>
+                                <div className={styles.angka}>{ValueKeranjang}</div>
+                                <div className={styles.button}
+                                    style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                    onClick={() => handleAngkaTambahProduk()}>+</div>
+                            </div>}
+
+                            {kondisiPilihan && <div className={styles.tombol}>
+                                <div className={styles.button}
+                                    onClick={() => handleAngkaKurangProduk()}
+                                    style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
+                                    }>-</div>
+                                <div className={styles.angka}>{ValueKeranjang}</div>
+                                <div className={styles.button}
+                                    style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                    onClick={() => handleAngkaTambahProduk()}>+</div>
+                            </div>}
                         </div>
                     </div>
                 </div>
