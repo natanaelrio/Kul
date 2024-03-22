@@ -408,16 +408,18 @@ export default function Produk(props) {
             {openFormPilihan && <FormPilihan
                 warna={warna}
                 dataid={data.id}
-                dataID={dataFrom} 
+                dataID={dataFrom}
                 kondisiPilihan={true}
-                />}
+                value={ValueKeranjang}
+            />}
 
             {openFormKeranjang && <FormPilihan
                 warna={warna}
                 dataid={data.id}
                 dataID={dataFrom}
                 kondisiKeranjang={true}
-                />}
+                value={ValueKeranjang}
+            />}
 
         </>
     )
