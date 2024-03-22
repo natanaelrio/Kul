@@ -2,32 +2,54 @@ import styles from '@/components/formPilihan.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
+import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import FormPembelian from '@/components/formPembelian';
 
-export default function FormPilihan({ warna, dataID, dataid }) {
+export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kondisiKeranjang, kondisiEditKeranjang, value }) {
 
+    const dataEditKeranjang = {
+        warna,
+        dataID,
+        dataid
+    }
+
+    const setOpenFormKeranjang = useStore((state) => state.setOpenFormKeranjang)
     const setOpenFormPilihan = useStore((state) => state.setOpenFormPilihan)
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
+    const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
+    const openFormEditKeranjang = useStore((state) => state.openFormEditKeranjang)
+
 
     const ValueKeranjang = useKeranjangCount((state) => state.ValueKeranjang)
     const setKurangValueKeranjang = useKeranjangCount((state) => state.setKurangValueKeranjang)
     const setTambahValueKeranjang = useKeranjangCount((state) => state.setTambahValueKeranjang)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
+    const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
+    const setUpdateKeranjangZ = useStoreDataFront((state) => state.setUpdateKeranjangZ)
+    const keranjangZ = useStoreDataFront((state) => state.keranjangZ)
 
-    const [kategoriDetail, setKategoriDetail] = useState(dataID?.detail_deskripsi_barang.kategori)
+    const [kategoriDetail, setKategoriDetail] = useState(dataID?.detail_deskripsi_barang?.kategori)
     const [typeKategoriDetail, setTypeKategoriDetail] = useState(dataID?.detail_deskripsi_barang.typeKategori)
 
     const [namaBarangDetail, setNamaBarangDetail] = useState(dataID?.nama_barang)
     const [gambarDetail, setGambarDetail] = useState(dataID?.gambar_barang)
-    const [warnaDetail, setWarnaDetail] = useState(dataID?.warna_barang)
+    const [warnaDetail, setWarnaDetail] = useState(warna.filter((data) => data.id == dataid)[0].warna_barang)
 
     const [hargaDetail, setHargaDetail] = useState(dataID?.harga_barang)
     const [diskonDetail, setDiskonDetail] = useState(dataID?.diskon_barang)
     const [kondisiDiskonDetail, setKondisiDiskonDetail] = useState(dataID?.kondisi_diskon_barang)
+    const [id, setID] = useState(dataID?.id)
+
+    // MATCH SERVER DAN CLIENT
+    const [keranjang, setKeranjang] = useState([])
+
+    useEffect(() => {
+        setKeranjang(keranjangZ)
+    }, [keranjangZ])
 
 
     const ListKategoriSemuanya = kategoriDetail?.map((dataKategori) => {
@@ -41,7 +63,7 @@ export default function FormPilihan({ warna, dataID, dataid }) {
 
     const HandleDetail = (data) => {
         setNamaBarangDetail(data?.nama_barang)
-
+        setID(data.id)
         setGambarDetail(data.gambar_barang)
         setWarnaDetail(data.warna_barang)
         setHargaDetail(data.detail_deskripsi_barang.typeKategori[0].harga)
@@ -90,11 +112,43 @@ export default function FormPilihan({ warna, dataID, dataid }) {
     // KUANTITAS
     const jumlahBarang = gabungDataKategori.slice(-1)[0]?.stock ? gabungDataKategori.slice(-1)[0].stock : dataID?.jumlah_barang
     // Data OFF
+    // const handleAngkaKurang = () => {
+    //     ValueKeranjang > 1 ? setKurangValueKeranjang() : null
+    // }
+    // const handleAngkaTambah = () => {
+    //     ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
+    // }
+
+    const [valueTambahKurang, setValueTambahKurang] = useState(value ? value : 1)
     const handleAngkaKurang = () => {
-        ValueKeranjang > 1 ? setKurangValueKeranjang() : null
+        valueTambahKurang > 1 ? setValueTambahKurang(valueTambahKurang - 1) : null
     }
     const handleAngkaTambah = () => {
-        ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
+        valueTambahKurang >= jumlahBarang ? null : setValueTambahKurang(valueTambahKurang + 1)
+    }
+
+
+    // EKSEKUSI KERANJANG
+    const dataFormKeranjang = {
+        id: id,
+        jumlah_barang: Number(jumlahBarang),
+        nama_barang: namaBarangDetail,
+        gambar_barang: gambarDetail,
+        harga_barang: hargaDetail
+    }
+
+    const hargaTotalSemua = hargaDetail * valueTambahKurang
+
+    const catatan = `${warnaDetail}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
+
+    const handleTambahkanKeranjang = () => {
+        setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
+        setOpenFormKeranjang()
+    }
+
+    const handleUpdateKeranjang = () => {
+        kondisiKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang) || setOpenFormKeranjang()
+        kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true) || setOpenFormEditKeranjang()
     }
 
     //DATA FORM 
@@ -106,13 +160,13 @@ export default function FormPilihan({ warna, dataID, dataid }) {
             diskon_barang: Number(diskonDetail),
             kupon_barang: '2wkwk',
             kondisi_diskon_barang: kondisiDiskonDetail,
-            value_barang: ValueKeranjang,
-            catatan: `${warnaDetail}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
+            value_barang: valueTambahKurang,
+            catatan: catatan
         }]
 
 
     return (
-        <FloatingBlur setOpen={setOpenFormPilihan} judul={'Pilih Varian'} >
+        <FloatingBlur setOpen={kondisiPilihan && setOpenFormPilihan || kondisiKeranjang && setOpenFormKeranjang || kondisiEditKeranjang && setOpenFormEditKeranjang} judul={'Pilih Varian'} >
             <div className={styles.container}>
 
                 <div className={styles.atas}>
@@ -133,7 +187,26 @@ export default function FormPilihan({ warna, dataID, dataid }) {
                     </div>
                 </div>
                 <div className={styles.pilihan}>
-                    {Boolean(warna.length) &&
+                    {kondisiPilihan && Boolean(warna.length) &&
+                        <div className={styles.pilihanwarna}>
+                            <div className={styles.judul}>Warna</div>
+                            <div className={styles.detail}>
+                                {warna?.map((data, i) => {
+                                    return (
+                                        <>
+                                            <div key={i} style={data.warna_barang == warnaDetail ? { borderColor: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleDetail(data)}>
+                                                <div className={styles.gambar}>
+                                                    <Image src={data.gambar_barang} width={50} height={50} alt={data.id_namabarang}></Image>
+                                                </div>
+                                                <div className={styles.deskripsi} style={data.warna_barang == warnaDetail ? { fontWeight: 700, color: 'var(--color-primary)' } : {}}>{data.warna_barang}</div>
+                                            </div>
+                                        </>
+                                    )
+                                })}
+                            </div>
+                        </div>
+                    }
+                    {kondisiKeranjang && Boolean(warna.length) &&
                         <div className={styles.pilihanwarna}>
                             <div className={styles.judul}>Warna</div>
                             <div className={styles.detail}>
@@ -181,18 +254,25 @@ export default function FormPilihan({ warna, dataID, dataid }) {
                             <div className={styles.tombol}>
                                 <div className={styles.button}
                                     onClick={() => handleAngkaKurang()}
-                                    style={ValueKeranjang <= 1 ? { color: '#c2c2c2' } : null
+                                    style={valueTambahKurang <= 1 ? { color: '#c2c2c2' } : null
                                     }>-</div>
-                                <div className={styles.angka}>{ValueKeranjang}</div>
+                                <div className={styles.angka}>{valueTambahKurang}</div>
                                 <div className={styles.button}
-                                    style={ValueKeranjang >= jumlahBarang ? { color: '#c2c2c2' } : null}
+                                    style={valueTambahKurang >= jumlahBarang ? { color: '#c2c2c2' } : null}
                                     onClick={() => handleAngkaTambah()}>+</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {kondisiPilihan && <div className={styles.konfirmasi} onClick={setOpenFormPembelian}>Beli Sekarang</div>}
 
-                <div className={styles.konfirmasi} onClick={setOpenFormPembelian}>Beli Sekarang</div>
+
+                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>Konfirmasi ++</div>
+                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>Konfirmasi</div>}
+
+                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>Konfirmasi ++</div>
+                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>Konfirmasi</div>}
+
             </div>
             {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}
         </FloatingBlur >

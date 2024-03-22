@@ -16,7 +16,6 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import ProdukHarga from '@/components/produkHarga';
 import PaymentErrorPending from '@/components/paymenterrorpending';
 import FormPilihan from '@/components/formPilihan';
-import FormKeranjang from './formKeranjang';
 
 export default function Produk(props) {
     const data = props.data?.data
@@ -409,12 +408,16 @@ export default function Produk(props) {
             {openFormPilihan && <FormPilihan
                 warna={warna}
                 dataid={data.id}
-                dataID={dataFrom} />}
-            {openFormKeranjang && <FormKeranjang
+                dataID={dataFrom} 
+                kondisiPilihan={true}
+                />}
+
+            {openFormKeranjang && <FormPilihan
                 warna={warna}
                 dataid={data.id}
                 dataID={dataFrom}
-            />}
+                kondisiKeranjang={true}
+                />}
 
         </>
     )

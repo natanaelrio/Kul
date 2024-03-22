@@ -15,7 +15,7 @@ import KeranjangTotal from '@/components/keranjangtotal';
 import FormPembelian from '@/components/formPembelian';
 import CustomBack from '@/lib/customBack';
 import PaymentErrorPending from '@/components/paymenterrorpending';
-import FormEditKeranjang from './formEditKeranjang';
+import FormPilihan from '@/components/formPilihan';
 
 export default function Keranjang() {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
@@ -50,7 +50,6 @@ export default function Keranjang() {
         }
     }
 
-
     const [isValidasiDelete, setIsValidasiDelete] = useState(false)
     const handleDeleteLove = (id) => {
         setDeleteKeranjangZ(id), resetValueKeranjang()
@@ -69,6 +68,19 @@ export default function Keranjang() {
         setOpenFormEditKeranjang()
         setEditKeranjang(e)
     }
+
+    const dataFrom = {
+        detail_deskripsi_barang: editKeranjang?.dataEditKeranjang?.dataID?.detail_deskripsi_barang,
+        nama_barang: editKeranjang?.nama_barang,
+        gambar_barang: editKeranjang?.gambar_barang,
+        warna_barang: editKeranjang?.warna_barang,
+        harga_barang: editKeranjang?.harga_barang,
+        diskon_barang: editKeranjang?.diskon_barang,
+        kondisi_diskon_barang: editKeranjang?.kondisi_diskon_barang,
+        id: editKeranjang.id,
+        jumlah_barang: editKeranjang.jumlah_barang
+    }
+
 
     const dataFormKeranjang = keranjangZ.map((data) => (
         {
@@ -191,12 +203,14 @@ export default function Keranjang() {
             {openFormPembelian &&
                 <FormPembelian dataFormLangsung={dataFormKeranjang} />}
 
-            {openFormEditKeranjang && <FormEditKeranjang
+            {openFormEditKeranjang && <FormPilihan
                 warna={editKeranjang?.dataEditKeranjang?.warna}
-                dataid={editKeranjang?.dataEditKeranjang?.dataid}
-                dataID={editKeranjang?.dataEditKeranjang?.dataID}
+                dataid={editKeranjang?.id}
+                dataID={dataFrom}
+                kondisiEditKeranjang={true}
                 value={editKeranjang?.value}
             />}
+
         </>
     )
 }
