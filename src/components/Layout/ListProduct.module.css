@@ -43,13 +43,11 @@
     font-size: 0.6rem;
 }
 
-/* .produk {
-    box-shadow: 0 1px 10px #0000001a, 0 1px 10px #0000000f;
-}
 
 .produk:hover {
-    box-shadow: 0 1px 20px #0000001a, 0 1px 20px #0000000f;
-} */
+    transform: translate(0, -10px);
+    transition: all ease 0.2s;
+}
 
 .produk .gambar {
     height: 180px;
@@ -78,7 +76,6 @@
     bottom: 15px;
     right: 15px;
     z-index: 1;
-    /* background-color: var(--color-grey-love); */
     border-radius: 50%;
 }
 
@@ -133,10 +130,6 @@
     object-fit: contain;
 }
 
-.produk:hover img {
-    transition: all ease 0.3s;
-    scale: 1.1;
-}
 
 .produk .tengah {
     padding: 7px;

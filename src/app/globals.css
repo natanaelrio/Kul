@@ -284,6 +284,11 @@ datalist option:hover, datalist option:focus {
     width: 100vw !important;
     min-height: 90dvh !important;
   }
+
+  .swiper-pagination-fraction {
+    padding: 3px 7px;
+    font-size: 10px;
+  }
 }
 
 @media only screen and (max-width: 480px) {

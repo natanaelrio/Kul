@@ -15,7 +15,7 @@ import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import ProdukHarga from '@/components/produkHarga';
 import PaymentErrorPending from '@/components/paymenterrorpending';
-import FormPilihan from '@/components/formPilihan';
+import FormPilihan from '@/components/Layout/formPilihan';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Thumbs } from 'swiper/modules';
 import 'swiper/css';
@@ -402,7 +402,7 @@ export default function Produk(props) {
                                     >
                                         {warna.map((data, i) => {
                                             return (
-                                                <SwiperSlide key={i}><Image src={data.gambar_barang} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
+                                                <SwiperSlide key={i}><Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
                                             )
                                         })}
                                     </Swiper>
@@ -421,7 +421,7 @@ export default function Produk(props) {
                                         >
                                             {warna.map((data, i) => {
                                                 return (
-                                                    <SwiperSlide key={i}><Image src={data.gambar_barang} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
+                                                    <SwiperSlide key={i}><Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
                                                 )
                                             })}
 

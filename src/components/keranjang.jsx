@@ -15,7 +15,7 @@ import KeranjangTotal from '@/components/keranjangtotal';
 import FormPembelian from '@/components/formPembelian';
 import CustomBack from '@/lib/customBack';
 import PaymentErrorPending from '@/components/paymenterrorpending';
-import FormPilihan from '@/components/formPilihan';
+import FormPilihan from '@/components/Layout/formPilihan';
 
 export default function Keranjang() {
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)

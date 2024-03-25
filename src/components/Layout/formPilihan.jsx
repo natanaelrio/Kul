@@ -1,4 +1,4 @@
-import styles from '@/components/formPilihan.module.css'
+import styles from '@/components/Layout/formPilihan.module.css'
 import FloatingBlur from '@/components/Layout/floatingBlur';
 import { useStore } from '@/lib/zustand'
 import Image from 'next/image';
@@ -20,12 +20,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
-    const openFormEditKeranjang = useStore((state) => state.openFormEditKeranjang)
 
-
-    const ValueKeranjang = useKeranjangCount((state) => state.ValueKeranjang)
-    const setKurangValueKeranjang = useKeranjangCount((state) => state.setKurangValueKeranjang)
-    const setTambahValueKeranjang = useKeranjangCount((state) => state.setTambahValueKeranjang)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
     const setdataKeranjangZ = useStoreDataFront((state) => state.setdataKeranjangZ)
@@ -112,12 +107,6 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     // KUANTITAS
     const jumlahBarang = gabungDataKategori.slice(-1)[0]?.stock ? gabungDataKategori.slice(-1)[0].stock : dataID?.jumlah_barang
     // Data OFF
-    // const handleAngkaKurang = () => {
-    //     ValueKeranjang > 1 ? setKurangValueKeranjang() : null
-    // }
-    // const handleAngkaTambah = () => {
-    //     ValueKeranjang >= jumlahBarang ? null : setTambahValueKeranjang(jumlahBarang)
-    // }
 
     const [valueTambahKurang, setValueTambahKurang] = useState(value ? value : 1)
     const handleAngkaKurang = () => {
@@ -170,7 +159,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
             <div className={styles.container}>
 
                 <div className={styles.atas}>
-                    <div className={styles.gambar}><Image src={gambarDetail} width={150} height={150} alt={gambarDetail}></Image></div>
+                    <div className={styles.gambar}><Image src={gambarDetail ? gambarDetail : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={150} height={150} alt={gambarDetail}></Image></div>
                     <div className={styles.detail}>
                         <div>
                             <div className={styles.harga}>{hargaTotalRP}</div>
@@ -196,7 +185,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                                         <>
                                             <div key={i} style={data.warna_barang == warnaDetail ? { borderColor: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleDetail(data)}>
                                                 <div className={styles.gambar}>
-                                                    <Image src={data.gambar_barang} width={50} height={50} alt={data.id_namabarang}></Image>
+                                                    <Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={50} height={50} alt={data.id_namabarang}></Image>
                                                 </div>
                                                 <div className={styles.deskripsi} style={data.warna_barang == warnaDetail ? { fontWeight: 700, color: 'var(--color-primary)' } : {}}>{data.warna_barang}</div>
                                             </div>
@@ -215,7 +204,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                                         <>
                                             <div key={i} style={data.warna_barang == warnaDetail ? { borderColor: 'var(--color-primary)' } : {}} className={styles.detaildalam} onClick={() => HandleDetail(data)}>
                                                 <div className={styles.gambar}>
-                                                    <Image src={data.gambar_barang} width={50} height={50} alt={data.id_namabarang}></Image>
+                                                    <Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={50} height={50} alt={data.id_namabarang}></Image>
                                                 </div>
                                                 <div className={styles.deskripsi} style={data.warna_barang == warnaDetail ? { fontWeight: 700, color: 'var(--color-primary)' } : {}}>{data.warna_barang}</div>
                                             </div>
