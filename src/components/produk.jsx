@@ -16,6 +16,13 @@ import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import ProdukHarga from '@/components/produkHarga';
 import PaymentErrorPending from '@/components/paymenterrorpending';
 import FormPilihan from '@/components/formPilihan';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Thumbs } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Pagination, FreeMode } from 'swiper/modules';
+import useWindowDimensions from '@/lib/getWindowDimension'
 
 export default function Produk(props) {
     const data = props.data?.data
@@ -69,8 +76,6 @@ export default function Produk(props) {
     const setTambahValueKeranjang = useKeranjangCount((state) => state.setTambahValueKeranjang)
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
-    // const jumlahBarang = data.jumlah_barang
-
     // MATCH SERVER DAN CLIENT
     const [love, setLove] = useState([])
     const [keranjang, setKeranjang] = useState([])
@@ -102,15 +107,11 @@ export default function Produk(props) {
     })
 
 
-    // const dataAwalDefault = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori)[0] : ListKategoriSemuanya.map((data) => data.typeKategori)[0]
     const dataAwalDefault = varianID ? TypeKategori.filter((data) => data.uid == varianID) : ListKategoriSemuanya.map((data) => data.typeKategori).map((data) => data[0])
 
-    // console.log(ListKategoriSemuanya.map((data) => data.typeKategori).map((data) => data[0]));
     const defaultSelectOption = varianID ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0]?.typeKategori ? ListKategoriSemuanya.map((data) => data.typeKategori)[0].filter((data) => data.uid == varianID)[0]?.typeKategori : ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori :
         ListKategoriSemuanya[0]?.typeKategori[0]?.typeKategori
 
-    // console.log(ListKategoriSemuanya.map((data) => data.typeKategori));
-    // console.log()
     const [valueDefault, setValueDefault] = useState(dataAwalDefault)
     const [selectedOption, setSelectedOption] = useState(defaultSelectOption);
     const [gabungValueKategori, setGabungValueKategori] = useState([])
@@ -209,12 +210,6 @@ export default function Produk(props) {
         currency: 'IDR'
     })
 
-    // DATA KERANJANG
-    // const diskonhargaKeranjang = keranjangZ[0]?.harga_total_barang.toLocaleString('id-ID', {
-    //     style: 'currency',
-    //     currency: 'IDR'
-    // })
-
 
     const hargadiskonKeranjang = (((((keranjangZ[0]?.harga_total_barang) * (kondisiDiskon && angkaDiskon)) / 100) + (keranjangZ[0]?.harga_total_barang)) - (keranjangZ[0]?.harga_total_barang))
     const hargaKeranjang = (keranjangZ[0]?.harga_total_barang - hargadiskonKeranjang).toLocaleString('id-ID', {
@@ -228,21 +223,25 @@ export default function Produk(props) {
         setOpenFormKeranjang()
     }
 
-    //DATA FORM 
-    const dataFormLangsung =
-        [{
-            id: data?.id,
-            nama_barang: data?.nama_barang,
-            harga_barang: hargaSatuan,
-            diskon_barang: Number(angkaDiskon),
-            kupon_barang: data?.kupon_barang,
-            kondisi_diskon_barang: kondisiDiskon,
-            value_barang: ValueKeranjang,
-            GabungDataKategoriType: GabungDataKategoriType,
-            catatan: catatan + `${data?.warna_barang ? ', ' + 'Warna ' + '( ' + data?.warna_barang + ' )' : ''}`
-        }]
 
+    // SWIPEER
+    const swiperRef = useRef(null);
+    const goNext = () => {
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slideNext();
+        }
+    };
+    const goPrev = () => {
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slidePrev();
+        }
+    };
+    const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
+    const { height, width } = useWindowDimensions()
+    const kondisiLebar = width <= 768 && width || width <= 1133 && width - 532
+
+    const kondisiLebarTumb = width <= 1133 && width - 607
 
     return (
         <>
@@ -387,39 +386,80 @@ export default function Produk(props) {
                             </div>
                         </div>
                         <div className={styles.gambar}>
-                            <div className={styles.gambardalam}>
-                                <Image
-                                    src={data?.gambar_barang ? data?.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`}
-                                    width={500}
-                                    height={500}
-                                    alt={data?.nama_barang}
-                                />
-                                <div className={styles.gratisongkir}>
-                                    Gratis Ongkir
-                                </div>
-                            </div>
+                            <div className={styles.containerswipper}>
+                                <div className={styles.containerdalamswipper} style={{ width: kondisiLebar }}>
+                                    <Swiper
+                                        modules={[FreeMode, Thumbs, Pagination]}
+                                        thumbs={{ swiper: thumbsSwiper }}
+                                        pagination={{
+                                            type: 'fraction',
+                                        }}
+                                        ref={swiperRef}
+                                        loop={true}
+                                        zoom={true}
+                                        className='mySwipper2'
 
+                                    >
+                                        {warna.map((data, i) => {
+                                            return (
+                                                <SwiperSlide key={i}><Image src={data.gambar_barang} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
+                                            )
+                                        })}
+                                    </Swiper>
+
+                                    <div className={styles.bawah}>
+                                        <Swiper
+                                            loop={false}
+                                            onSwiper={setThumbsSwiper}
+                                            spaceBetween={5}
+                                            slidesPerView={'auto'}
+                                            freeMode={true}
+                                            watchSlidesProgress={true}
+                                            modules={[FreeMode, Thumbs]}
+                                            className='mySwipper'
+                                            style={{ width: kondisiLebarTumb }}
+                                        >
+                                            {warna.map((data, i) => {
+                                                return (
+                                                    <SwiperSlide key={i}><Image src={data.gambar_barang} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
+                                                )
+                                            })}
+
+                                        </Swiper>
+
+                                        <div className={styles.tombolnextprev}>
+                                            <div onClick={goPrev}><IoIosArrowBack className={styles.logo} /></div>
+                                            <div onClick={goNext}><IoIosArrowForward className={styles.logo} /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div >
                         </div>
                     </div>
                 </div >
             </div >
-            {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />}
+            {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />
+            }
             {/* {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />} */}
-            {openFormPilihan && <FormPilihan
-                warna={warna}
-                dataid={data.id}
-                dataID={dataFrom}
-                kondisiPilihan={true}
-                value={ValueKeranjang}
-            />}
+            {
+                openFormPilihan && <FormPilihan
+                    warna={warna}
+                    dataid={data.id}
+                    dataID={dataFrom}
+                    kondisiPilihan={true}
+                    value={ValueKeranjang}
+                />
+            }
 
-            {openFormKeranjang && <FormPilihan
-                warna={warna}
-                dataid={data.id}
-                dataID={dataFrom}
-                kondisiKeranjang={true}
-                value={ValueKeranjang}
-            />}
+            {
+                openFormKeranjang && <FormPilihan
+                    warna={warna}
+                    dataid={data.id}
+                    dataID={dataFrom}
+                    kondisiKeranjang={true}
+                    value={ValueKeranjang}
+                />
+            }
 
         </>
     )

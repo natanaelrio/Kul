@@ -4,18 +4,22 @@ import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSwiper } from 'swiper/react';
 
+import { Controller } from 'swiper/modules';
+import { Thumbs } from 'swiper/modules';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import styles from '@/components/latihan.module.css'
-// import './styles.css';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation, FreeMode } from 'swiper/modules';
 import Image from 'next/image';
-import SlideNextButton from './SlideNextButton';
+
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 
 export default function Latihan() {
     const swiper = useSwiper();
@@ -49,35 +53,62 @@ export default function Latihan() {
         },
     };
 
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
     return (
-        <div className={styles.container}>
-            <Swiper
-                ref={swiperRef}
-                {...gallerySwiperParams}
-            >
-                <SwiperSlide><Image src={`https://images.unsplash.com/photo-1593720213428-28a5b9e94613`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
-                <SwiperSlide><Image src={`https://images.unsplash.com/photo-1593720213428-28a5b9e94613`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
-                <SwiperSlide><Image src={`https://images.unsplash.com/photo-1593720213428-28a5b9e94613`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
-                <SwiperSlide><Image src={`https://images.unsplash.com/photo-1593720213428-28a5b9e94613`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
-                <SwiperSlide><Image src={`https://images.unsplash.com/photo-1593720213428-28a5b9e94613`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
-                <SwiperSlide><Image src={`https://images.unsplash.com/photo-1593720213428-28a5b9e94613`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
-                <SlideNextButton />
-            </Swiper>
+        <div className={styles.containerswipper}>
+            <div className={styles.containerdalamswipper}>
+                <Swiper
+                    modules={[FreeMode, Thumbs, Navigation]}
+                    thumbs={{ swiper: thumbsSwiper }}
+                    ref={swiperRef}
+                    // navigation={true}
+                    loop={true}
+                    className='mySwipper2'
+                >
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v1`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v2`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v3`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v4`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v5`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v6`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v7`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v8`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                    <SwiperSlide><Image src={`https://picsum.photos/320/240?v9`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                </Swiper>
 
-            <div className={styles.tombolnextprev}>
-                <button onClick={goPrev}>Prev</button>
-                <button onClick={goNext}>Next</button>
-                <button onClick={() => setAngka(3)}>wlwlw</button>
+                <div className={styles.bawah}>
+                    <Swiper
+                        loop={true}
+                        onSwiper={setThumbsSwiper}
+                        spaceBetween={5}
+                        slidesPerView={5}
+                        freeMode={true}
+                        watchSlidesProgress={true}
+                        modules={[FreeMode, Thumbs, Navigation]}
+                        className='mySwipper'
+                        // style={{ width: '300px!important' }}
+                    >
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v1`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v2`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v3`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v4`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v5`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v6`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v7`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v8`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+                        <SwiperSlide><Image src={`https://picsum.photos/320/240?v9`} width={500} height={500} alt='siapp'></Image></SwiperSlide>
+
+                    </Swiper>
+
+                    <div className={styles.tombolnextprev}>
+                        <div onClick={goPrev}><IoIosArrowBack className={styles.logo} /></div>
+                        <div onClick={goNext}><IoIosArrowForward className={styles.logo} /></div>
+                    </div>
+                </div>
+
+
             </div>
-
-        </div>
+        </div >
     )
 }

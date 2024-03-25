@@ -9,7 +9,9 @@ const nextConfig = {
       'ik.imagekit.io',
       'kul.vercel.app',
       'shop.forem.com',
-      'images.unsplash.com'
+      'images.unsplash.com',
+      'picsum.photos',
+      'fastly.picsum.photos'
     ],
   },
   async headers() {

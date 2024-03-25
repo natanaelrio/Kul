@@ -161,33 +161,86 @@ button {
 }
 
 
-
+/* SWIPPER */
 .swiper {
-  width: 500px;
-  height: 300px;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  background-color: red;
   /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.swiper-slide img {
+.mySwipper2 {
+  margin-bottom: 20px;
+  background-color: var(--color-grey);
+  border-radius: 12px;
+  position: relative;
+}
+
+.mySwipper2 .swiper-slide {
+  height: 400px;
+  width: 100%;
+}
+
+.mySwipper2 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
-.swiper-pagination {
-  background-color: blue;
-  color: white !important;
+.mySwipper {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: 525px;
+}
+
+
+.mySwipper .swiper-slide {
+  width: 70px !important;
+  height: 59px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.mySwipper .swiper-slide:hover {
+  border: 3px solid var(--color-sekunder);
+  transition: all ease 0.1s;
+}
+
+.mySwipper .swiper-slide img {
+  width: 71px;
+  height: 61px;
+  object-fit: contain;
+  border-radius: 7px;
+}
+
+/* .mySwipper .swiper-slide {} */
+
+.mySwipper .swiper-slide-thumb-active {
+  width: min-content !important;
+  border: 3px solid var(--color-sekunder);
+}
+
+
+.swiper-pagination-fraction {
+  background-color: var(--color-sekunder) !important;
+  color: var(--color-white) !important;
+  bottom: 10px !important;
+  left: 20px !important;
+  width: fit-content !important;
+  height: fit-content !important;
+  position: absolute !important;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 14px;
 }
 
 /* <datalist> and <option> styling */
