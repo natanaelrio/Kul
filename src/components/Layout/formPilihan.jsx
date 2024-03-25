@@ -32,7 +32,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
 
     const [namaBarangDetail, setNamaBarangDetail] = useState(dataID?.nama_barang)
     const [gambarDetail, setGambarDetail] = useState(dataID?.gambar_barang)
-    const [warnaDetail, setWarnaDetail] = useState(warna.filter((data) => data.id == dataid)[0].warna_barang)
+    const [warnaDetail, setWarnaDetail] = useState(warna.filter((data) => data.id == dataid)[0]?.warna_barang)
 
     const [hargaDetail, setHargaDetail] = useState(dataID?.harga_barang)
     const [diskonDetail, setDiskonDetail] = useState(dataID?.diskon_barang)

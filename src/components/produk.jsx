@@ -387,7 +387,9 @@ export default function Produk(props) {
                         </div>
                         <div className={styles.gambar}>
                             <div className={styles.containerswipper}>
-                                <div className={styles.containerdalamswipper} style={{ width: kondisiLebar }}>
+                                <div className={styles.containerdalamswipper} style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}>
+
+                                    {warna.length == 0 && <Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={400} alt={data.nama_barang}></Image>}
                                     <Swiper
                                         modules={[FreeMode, Thumbs, Pagination]}
                                         thumbs={{ swiper: thumbsSwiper }}
@@ -406,32 +408,33 @@ export default function Produk(props) {
                                             )
                                         })}
                                     </Swiper>
+                                    {!warna.length == 0 &&
+                                        <div className={styles.bawah}>
+                                            <Swiper
+                                                loop={false}
+                                                onSwiper={setThumbsSwiper}
+                                                spaceBetween={5}
+                                                slidesPerView={'auto'}
+                                                freeMode={true}
+                                                watchSlidesProgress={true}
+                                                modules={[FreeMode, Thumbs]}
+                                                className='mySwipper'
+                                                style={{ width: kondisiLebarTumb }}
+                                            >
+                                                {warna.map((data, i) => {
+                                                    return (
+                                                        <SwiperSlide key={i}><Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
+                                                    )
+                                                })}
 
-                                    <div className={styles.bawah}>
-                                        <Swiper
-                                            loop={false}
-                                            onSwiper={setThumbsSwiper}
-                                            spaceBetween={5}
-                                            slidesPerView={'auto'}
-                                            freeMode={true}
-                                            watchSlidesProgress={true}
-                                            modules={[FreeMode, Thumbs]}
-                                            className='mySwipper'
-                                            style={{ width: kondisiLebarTumb }}
-                                        >
-                                            {warna.map((data, i) => {
-                                                return (
-                                                    <SwiperSlide key={i}><Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={500} alt={data.nama_barang}></Image></SwiperSlide>
-                                                )
-                                            })}
-
-                                        </Swiper>
-
-                                        <div className={styles.tombolnextprev}>
-                                            <div onClick={goPrev}><IoIosArrowBack className={styles.logo} /></div>
-                                            <div onClick={goNext}><IoIosArrowForward className={styles.logo} /></div>
+                                            </Swiper>
+                                            <div className={styles.tombolnextprev}>
+                                                <div onClick={goPrev}><IoIosArrowBack className={styles.logo} /></div>
+                                                <div onClick={goNext}><IoIosArrowForward className={styles.logo} /></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
+
                                 </div>
                             </div >
                         </div>
