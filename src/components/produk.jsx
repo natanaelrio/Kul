@@ -472,7 +472,6 @@ export default function Produk(props) {
             </div >
             {transaction_status == 'pending' && !openFormPending && <PaymentErrorPending />
             }
-            {/* {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />} */}
             {
                 openFormPilihan && <FormPilihan
                     warna={warna}
