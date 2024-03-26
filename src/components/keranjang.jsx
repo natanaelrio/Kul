@@ -78,7 +78,7 @@ export default function Keranjang() {
         diskon_barang: editKeranjang?.diskon_barang,
         kondisi_diskon_barang: editKeranjang?.kondisi_diskon_barang,
         id: editKeranjang.id,
-        jumlah_barang: editKeranjang.jumlah_barang
+        jumlah_barang: editKeranjang.jumlah_barang,
     }
 
 

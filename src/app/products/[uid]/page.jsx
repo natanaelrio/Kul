@@ -56,7 +56,7 @@ export default async function Products({ params }) {
   dataID.status == 500 ? notFound() : null
 
   return (
-    <HeaderFooter data={dataID} slug={params.uid} kondisidetailproduk={true}>
+    <HeaderFooter data={dataID} slug={params.uid} textNotif={'Telah ditambahkan Keranjang'} >
       <Produk data={dataID} warnaID={WarnaID} />
       <ListProductMain data={dataList} kondisiProduk={false} />
     </HeaderFooter>

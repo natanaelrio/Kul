@@ -67,6 +67,13 @@ export const useStore = create((set) => ({
         })
         )
     },
+    isLoading: false,
+    setIsLoading: (e) => {
+        set((state) => ({
+            isLoading: e
+        })
+        )
+    },
 
 
     //ADMIN

@@ -13,6 +13,7 @@ import CustomLink from '@/lib/customLink'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
 import ListProductsearchFilter from '@/components/listProductsearchFilter'
+import { motion } from "framer-motion"
 
 export default function ListProduk({ data, judul, fetchMain, fetchSearch, query, sortby, lengthdata, kondisiProduk }) {
     const fetchdatalist = useStoreListDataProduct((state) => state.fetchdatalist)
@@ -121,7 +122,17 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                 currency: 'IDR'
                             })
                             return (
-                                <div key={i} className={styles.produk}>
+                                <motion.div
+                                    initial={{ y: 20, }}
+                                    animate={{ y: 0 }}
+                                    whileHover={{
+                                        y: -10,
+                                        transition: { duration: 0.1 },
+                                    }}
+                                    // exit={{ y: -100, opacity: 0 }}
+                                    transition={{ duration:  0.2 }}
+                                    key={i}
+                                    className={styles.produk}>
                                     <div className={styles.gambar}>
                                         <CustomLink href={`/products/${data?.slug_barang}`} >
                                             <Image
@@ -177,7 +188,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                             </div>
                                         </div>
                                     </CustomLink>
-                                </div>
+                                </motion.div>
                             )
                         })}
                     </div>

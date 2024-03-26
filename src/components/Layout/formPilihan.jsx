@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import FormPembelian from '@/components/formPembelian';
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kondisiKeranjang, kondisiEditKeranjang, value }) {
 
@@ -20,6 +21,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     const setOpenFormPembelian = useStore((state) => state.setOpenFormPembelian)
     const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
+    const setIsLoading = useStore((state) => state.setIsLoading)
 
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
@@ -72,7 +74,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     }
 
     const [gabungDataKategori, setGabungDataKategori] = useState([])
-    const DataGabunganKategori = kategoriDetail?.map((dataKategori) => {
+    const DataGabunganKategori = kategoriDetail?.map((dataKategori, i) => {
         return (
             {
                 typeKategori: gabungDataKategori.filter((data) => data.kategori == dataKategori).slice(-1)
@@ -80,7 +82,9 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         )
     })
 
+
     const ukuran = DataGabunganKategori?.map((data) => data?.typeKategori[0]).map((data) => data?.typeKategori).toString() == ',' ? '' : DataGabunganKategori?.map((data) => data?.typeKategori[0]).map((data) => data?.typeKategori).toString()
+
 
     const HandleKategori = (data) => {
         setHargaDetail(data?.harga)
@@ -89,7 +93,6 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         setGabungDataKategori([...gabungDataKategori, data])
         resetValueKeranjang()
     }
-
 
 
     const hargaTotal = kondisiDiskonDetail ? (hargaDetail - ((hargaDetail * (kondisiDiskonDetail && diskonDetail)) / 100)) : hargaDetail
@@ -116,7 +119,6 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         valueTambahKurang >= jumlahBarang ? null : setValueTambahKurang(valueTambahKurang + 1)
     }
 
-
     // EKSEKUSI KERANJANG
     const dataFormKeranjang = {
         id: id,
@@ -130,15 +132,36 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
 
     const catatan = `${warnaDetail}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
 
+    const [loading, setLoading] = useState(false)
+    const [alert, setAlert] = useState(false)
     const handleTambahkanKeranjang = () => {
+        setLoading(true)
+        setAlert(false)
+        setTimeout(() => {
+            setLoading(false)
+            setIsLoading(true)
+        }, 2000);
         setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
-        setOpenFormKeranjang()
     }
 
     const handleUpdateKeranjang = () => {
-        kondisiKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang) || setOpenFormKeranjang()
-        kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true) || setOpenFormEditKeranjang()
+        setLoading(true)
+        setAlert(false)
+        setTimeout(() => {
+            setLoading(false)
+            setIsLoading(true)
+        }, 2000);
+
+        kondisiKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
+        kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true)
     }
+
+    useEffect(() => {
+        if (!loading) {
+            return kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
+        }
+    }, [loading])
+
 
     //DATA FORM 
     const dataFormLangsung =
@@ -154,27 +177,26 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         }]
 
 
-    return (
-        <FloatingBlur setOpen={kondisiPilihan && setOpenFormPilihan || kondisiKeranjang && setOpenFormKeranjang || kondisiEditKeranjang && setOpenFormEditKeranjang} judul={'Pilih Varian'} >
-            <div className={styles.container}>
 
-                <div className={styles.atas}>
-                    <div className={styles.gambar}><Image src={gambarDetail ? gambarDetail : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={150} height={150} alt={gambarDetail}></Image></div>
-                    <div className={styles.detail}>
-                        <div>
-                            <div className={styles.harga}>{hargaTotalRP}</div>
-                            {kondisiDiskonDetail &&
-                                <>
-                                    <div className={styles.diskonpersen}>
-                                        <div className={styles.diskon}>{hargaAsliRP}</div>
-                                        <div className={styles.persen}>{diskonDetail}%</div>
-                                    </div>
-                                </>
-                            }
-                        </div>
-                        <div className={styles.diskripsi}>{warnaDetail}{ukuran && ',' + ukuran}</div>
-                    </div>
+    return (
+        <FloatingBlur setOpen={kondisiPilihan && setOpenFormPilihan || kondisiKeranjang && setOpenFormKeranjang || kondisiEditKeranjang && setOpenFormEditKeranjang} judul={<div className={styles.atas}>
+            <div className={styles.gambar}><Image src={gambarDetail ? gambarDetail : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={150} height={150} alt={gambarDetail}></Image></div>
+            <div className={styles.detail}>
+                <div>
+                    <div className={styles.harga}>{hargaTotalRP}</div>
+                    {kondisiDiskonDetail &&
+                        <>
+                            <div className={styles.diskonpersen}>
+                                <div className={styles.diskon}>{hargaAsliRP}</div>
+                                <div className={styles.persen}>{diskonDetail}%</div>
+                            </div>
+                        </>
+                    }
                 </div>
+                <div className={styles.diskripsi}>{warnaDetail}{ukuran && ',' + ukuran}</div>
+            </div>
+        </div>} >
+            <div className={styles.container}>
                 <div className={styles.pilihan}>
                     {kondisiPilihan && Boolean(warna.length) &&
                         <div className={styles.pilihanwarna}>
@@ -253,14 +275,18 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                         </div>
                     </div>
                 </div>
+
+                {alert && <div className={styles.alert}>
+                    Siliahkan Pilih*
+                </div>}
                 {kondisiPilihan && <div className={styles.konfirmasi} onClick={setOpenFormPembelian}>Beli Sekarang</div>}
 
 
-                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>Konfirmasi ++</div>
-                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>Konfirmasi</div>}
+                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
+                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
 
-                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>Konfirmasi ++</div>
-                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>Konfirmasi</div>}
+                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
+                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
 
             </div>
             {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}

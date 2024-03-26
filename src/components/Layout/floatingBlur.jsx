@@ -1,15 +1,26 @@
 import styles from '@/components/Layout/floatingBlur.module.css'
 import { useLockBodyScroll } from "@uidotdev/usehooks";
 import { IoMdClose } from "react-icons/io";
+import { motion } from "framer-motion"
 
 export default function FloatingBlur({ judul, setOpen, children }) {
     useLockBodyScroll()
     return (
         <div className={styles.container}>
-            <div className={styles.backgroundblur}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className={styles.backgroundblur}
                 onClick={setOpen}>
-            </div>
-            <div className={styles.containerfloating}>
+            </motion.div>
+            <motion.div
+                initial={{ y: 10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -1000, opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className={styles.containerfloating}>
                 <div className={styles.containerfloatingdalam}>
                     <div className={styles.atasjudul}>
                         <div className={styles.icon} onClick={setOpen}><IoMdClose /></div>
@@ -18,7 +29,7 @@ export default function FloatingBlur({ judul, setOpen, children }) {
                     </div>
                     {children}
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }

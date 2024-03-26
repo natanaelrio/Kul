@@ -7,11 +7,18 @@ import Pencarian from '@/components/pencarian';
 import { useStore } from '@/lib/zustand'
 import Introduction from '@/components/introduction'
 import MenuPembelian from '@/components/menuPembelian';
+import Notifikasi from '@/components/notifikasi';
 
-export default function HeaderFooter({ children, kondisiatas, kondisidetailproduk, data }) {
+export default function HeaderFooter({ children, kondisiatas, textNotif, data }) {
   const openLove = useStore((state) => state.openLove)
   const openPencarian = useStore((state) => state.openPencarian)
   const openIsScrollPast = useStore((state) => state.openIsScrollPast)
+  const isLoading = useStore((state) => state.isLoading)
+  const setIsLoading = useStore((state) => state.setIsLoading)
+
+  setTimeout(() => {
+    setIsLoading(false)
+  }, 9000);
 
   return (
     <>
@@ -25,6 +32,7 @@ export default function HeaderFooter({ children, kondisiatas, kondisidetailprodu
         {openLove && <Love />}
         {openPencarian && <Pencarian kondisiatas={kondisiatas} />}
         {openIsScrollPast && <MenuPembelian data={data} />}
+        {isLoading && <Notifikasi textNotif={textNotif} />}
       </div>
     </>
   )

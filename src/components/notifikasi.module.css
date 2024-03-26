@@ -1,0 +1,19 @@
+.container {
+    position: fixed;
+    top: -220px;
+    z-index: 882828;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+.container .text {
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
+    font-size: 0.8rem;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transform: translate(0, -10px);
+    display: flex;
+    align-items: center;
+}

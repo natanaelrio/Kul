@@ -23,6 +23,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, FreeMode } from 'swiper/modules';
 import useWindowDimensions from '@/lib/getWindowDimension'
+import { motion } from "framer-motion"
 
 export default function Produk(props) {
     const data = props.data?.data
@@ -239,9 +240,28 @@ export default function Produk(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     const { height, width } = useWindowDimensions()
-    const kondisiLebar = width <= 768 && width || width <= 1133 && width - 532
-
+    const kondisiLebar = width <= 768 ? width : width <= 1133 && width - 532
     const kondisiLebarTumb = width <= 1133 && width - 607
+    const hasWindow = typeof window !== 'undefined';
+
+    const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)') : null
+    useEffect(() => {
+
+        if (mediaMatch.matches) {
+            document.getElementById("mysW").style.width = kondisiLebar + 'px'
+            document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
+
+            if (warna.length == 0) {
+                document.getElementById("mysWatas").style.display = 'flex'
+                document.getElementById("mysWatas").style.justifyContent = 'center'
+                document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
+            }
+        }
+    }, [])
+
+
+
+    // warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }
 
     return (
         <>
@@ -249,7 +269,12 @@ export default function Produk(props) {
                 <div className={styles.width}>
 
                     <div className={styles.grid}>
-                        <div className={styles.reviewproduk}>
+                        <motion.div
+                            initial={{ y: 10, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -100, opacity: 0 }}
+                            transition={{ duration: 0.7 }}
+                            className={styles.reviewproduk}>
                             <div className={styles.containerreview}>
 
                                 <div className={styles.atas}>
@@ -384,10 +409,17 @@ export default function Produk(props) {
 
                                 <div className={styles.garansi}> <IoShieldOutline /> &nbsp;30 day return guarantee</div>
                             </div>
-                        </div>
+                        </motion.div>
                         <div className={styles.gambar}>
                             <div className={styles.containerswipper}>
-                                <div className={styles.containerdalamswipper} style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}>
+                                <motion.div
+                                    initial={{ y: 10, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    exit={{ y: -100, opacity: 0 }}
+                                    transition={{ duration: 0.2 }}
+                                    className={styles.containerdalamswipper}
+                                    id='mysWatas'
+                                    style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}>
 
                                     {warna.length == 0 && <Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={400} alt={data.nama_barang}></Image>}
                                     <Swiper
@@ -400,7 +432,7 @@ export default function Produk(props) {
                                         loop={true}
                                         zoom={true}
                                         className='mySwipper2'
-
+                                        id='mysW'
                                     >
                                         {warna.map((data, i) => {
                                             return (
@@ -435,7 +467,7 @@ export default function Produk(props) {
                                         </div>
                                     }
 
-                                </div>
+                                </motion.div>
                             </div >
                         </div>
                     </div>

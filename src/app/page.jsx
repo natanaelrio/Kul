@@ -36,7 +36,10 @@ export default function Home() {
       <HeaderFooter kondisiatas={true}>
         {/* <Todo /> */}
         {/* <TodoDua /> */}
-        {/* <Latihan /> */}
+        {/* <Latihan
+
+          header={'wkwkwkkw'}
+          content={'contentnya'} /> */}
         <ListProductMain kondisiProduk={true} />
       </HeaderFooter>
     </>

@@ -1,5 +1,5 @@
 .container {
-    padding: 20px;
+    padding: 0 20px 20px 20px;
     min-height: 50dvh;
     display: flex;
     flex-direction: column;
@@ -9,6 +9,8 @@
 
 .atas {
     display: flex;
+    font-size: 0.7rem !important;
+    font-weight: normal !important;
 }
 
 .atas .gambar {
@@ -37,8 +39,8 @@
 }
 
 .atas .detail .harga {
-    font-weight: 700;
-    font-size: 1rem;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
 }
 
 .atas .detail .diskon {
@@ -52,7 +54,7 @@
 }
 
 .atas .diskonpersen .persen {
-    font-size: 0.5rem;
+    font-size: 0.5rem !important;
     background-color: var(--color-high);
     color: var(--color-white);
     padding: 3px 6px;
@@ -183,4 +185,9 @@
     font-size: 0.8rem;
     cursor: pointer;
     font-weight: 700;
+}
+
+
+.alert {
+    color: var(--color-high);
 }

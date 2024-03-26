@@ -8,7 +8,7 @@ export const viewport = {
     // userScalable: false,
     // Also supported by less commonly used
     // interactiveWidget: 'resizes-visual',
-  }
+}
 
 export const metadata = {
     title: 'Keranjang',
@@ -24,7 +24,7 @@ export const metadata = {
 
 export default function CartNota() {
     return (
-        <HeaderFooter>
+        <HeaderFooter textNotif={'Berhasil diubah'}>
             <Keranjang />
         </HeaderFooter>
     )
