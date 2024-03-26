@@ -130,7 +130,7 @@ export default function Produk(props) {
 
     useEffect(() => {
         setGabungValueKategori([...new Set([...gabungValueKategori, valueDefault])])
-    }, [valueDefault, setGabungValueKategori])
+    }, [valueDefault, setGabungValueKategori, gabungValueKategori])
 
 
     const dataListKategoriType = ListKategori.map((data) => {
@@ -169,7 +169,7 @@ export default function Produk(props) {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [setOpenIsScrollPast]);
 
 
     // Data OFF
@@ -257,11 +257,8 @@ export default function Produk(props) {
                 document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
             }
         }
-    }, [])
+    }, [kondisiLebar, mediaMatch.matches, warna.length])
 
-
-
-    // warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }
 
     return (
         <>
