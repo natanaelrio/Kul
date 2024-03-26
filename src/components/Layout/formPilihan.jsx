@@ -158,9 +158,9 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
 
     useEffect(() => {
         if (!loading) {
-            return kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
+            kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
         }
-    }, [loading, kondisiKeranjang, kondisiEditKeranjang])
+    }, [loading, setOpenFormKeranjang, setOpenFormEditKeranjang])
 
 
     //DATA FORM 
