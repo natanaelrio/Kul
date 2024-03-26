@@ -160,7 +160,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         if (!loading) {
             kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
         }
-    }, [loading, setOpenFormKeranjang, setOpenFormEditKeranjang])
+    }, [loading, setOpenFormKeranjang, setOpenFormEditKeranjang, kondisiKeranjang, kondisiEditKeranjang])
 
 
     //DATA FORM 
