@@ -22,6 +22,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     const setOpenFormEditKeranjang = useStore((state) => state.setOpenFormEditKeranjang)
     const openFormPembelian = useStore((state) => state.openFormPembelian)
     const setIsLoading = useStore((state) => state.setIsLoading)
+    const isLoading = useStore((state) => state.isLoading)
 
     const resetValueKeranjang = useKeranjangCount((state) => state.resetValueKeranjang)
 
@@ -157,13 +158,10 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     }
 
     useEffect(() => {
-        if (!loading) {
-            const jalankan = () => {
-                kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
-            }
-            jalankan()
+        if (isLoading) {
+            kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
         }
-    }, [loading, kondisiKeranjang, kondisiEditKeranjang])
+    }, [isLoading])
 
 
     //DATA FORM 
