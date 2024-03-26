@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
 import { useStoreListDataProduct } from '@/utils/user-front/getproductListZ'
@@ -17,7 +17,7 @@ export default function ListProductsearch() {
 
     useEffect(() => {
         fetchdatasearchfilter(query, sortby)
-    }, [query, sortby, fetchdatasearchfilter])
+    }, [query, sortby])
 
     return (
         <>

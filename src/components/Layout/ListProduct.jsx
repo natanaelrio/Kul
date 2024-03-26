@@ -1,6 +1,5 @@
-"use client"
 import Image from 'next/image'
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@/components/Layout/ListProduct.module.css'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { FaStar } from "react-icons/fa6";
@@ -88,14 +87,12 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                     </div>
                     <div>
                         {kondisiProduk &&
-                            <Suspense fallback={<span style={{ fontSize: '0.6rem' }}>Loading....</span>}>
-                                <ListProductsearchFilter
-                                    query={query}
-                                    sortby={sortby}
-                                    fetchMain={fetchMain}
-                                    fetchSearch={fetchSearch}
-                                />
-                            </Suspense>
+                            <ListProductsearchFilter
+                                query={query}
+                                sortby={sortby}
+                                fetchMain={fetchMain}
+                                fetchSearch={fetchSearch}
+                            />
                         }
                     </div>
                 </div>
@@ -130,7 +127,7 @@ export default function ListProduk({ data, judul, fetchMain, fetchSearch, query,
                                         transition: { duration: 0.1 },
                                     }}
                                     // exit={{ y: -100, opacity: 0 }}
-                                    transition={{ duration:  0.2 }}
+                                    transition={{ duration: 0.2 }}
                                     key={i}
                                     className={styles.produk}>
                                     <div className={styles.gambar}>

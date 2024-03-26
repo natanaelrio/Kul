@@ -1,3 +1,4 @@
+'use client'
 import styles from '@/components/listProductsearchFilter.module.css'
 import { useRouter } from 'next/navigation'
 import { useStore } from '@/lib/zustand'
@@ -6,7 +7,7 @@ import { FaSortNumericUp } from "react-icons/fa";
 import { FaSort } from "react-icons/fa";
 import { HiRefresh } from "react-icons/hi";
 
-export default async function ListProductsearchFilter({ query, sortby, fetchMain, fetchSearch }) {
+export default function ListProductsearchFilter({ query, sortby, fetchMain, fetchSearch }) {
     const router = useRouter()
 
     const setOpenFilter = useStore((state) => state.setOpenFilter)

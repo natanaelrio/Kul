@@ -49,8 +49,6 @@ export async function AmbilDataUsers(id, warna) {
 
     // const array3 = array1.concat(array2);
     const GabungData = [...new Set([...dataUtama, ...data])]
-
-    console.log(GabungData);
     return GabungData
 }
 

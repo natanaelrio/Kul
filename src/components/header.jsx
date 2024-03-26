@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 import { TbDiamond } from "react-icons/tb";
 import { FaSearch } from "react-icons/fa";

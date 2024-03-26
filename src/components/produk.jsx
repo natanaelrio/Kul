@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import styles from '@/components/produk.module.css'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
@@ -127,7 +127,7 @@ export default function Produk(props) {
 
     useEffect(() => {
         setGabungValueKategori([...new Set([...gabungValueKategori, valueDefault])])
-    }, [valueDefault, setGabungValueKategori, gabungValueKategori])
+    }, [valueDefault, setGabungValueKategori])
 
 
     const dataListKategoriType = ListKategori.map((data) => {
@@ -253,7 +253,7 @@ export default function Produk(props) {
                 document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
             }
         }
-    }, [kondisiLebar])
+    }, [])
 
     return (
         <>
