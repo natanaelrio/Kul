@@ -63,7 +63,7 @@ export default function List() {
         }
         searchHN()
         // valueCari == '' && fetchDataAdminProduk()
-    }, [debouncedSearchTerm, valueCari]);
+    }, [debouncedSearchTerm, valueCari, fetchDataAdminProduk]);
 
     return (
         <>

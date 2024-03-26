@@ -34,7 +34,7 @@ export default function Header() {
             window.scrollY <= 50 ? setChange(true) : setChange(false)
         }
         window.addEventListener('scroll', windowScroll)
-    }, [setChange, keranjangZ]);
+    }, [setChange]);
 
     return (
         <>

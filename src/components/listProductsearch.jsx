@@ -16,8 +16,8 @@ export default function ListProductsearch() {
     const datasearchfilter = useStoreListDataProduct((state) => state.datasearchfilter)
 
     useEffect(() => {
-       fetchdatasearchfilter(query, sortby)
-    }, [query, sortby])
+        fetchdatasearchfilter(query, sortby)
+    }, [query, sortby, fetchdatasearchfilter])
 
     return (
         <>
@@ -29,7 +29,7 @@ export default function ListProductsearch() {
                 sortby={sortby}
                 judul={`Hasil Pencarian <span style='color:var(--color-primary)'>${query}</span> ${datasearchfilter?.data?.length == 0 ? 'tidak ditemukan' : `ditemukan ${datasearchfilter?.total_array}`}`}
                 kondisiProduk={true}
-          />
+            />
             {openFilter && <FilterBlur />}
         </>
     )

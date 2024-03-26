@@ -46,7 +46,7 @@ export default function Pesanan() {
     useEffect(() => {
         // fetchdatalistpesanan(take, skip)
         fetchdatalistpesanan(take, skip, cariPesanan, status)
-    }, [fetchdatalistpesanan])
+    }, [fetchdatalistpesanan, take, skip, cariPesanan, status])
 
     const total_array = datalistpesanan?.total_array
 
@@ -91,7 +91,7 @@ export default function Pesanan() {
             }
         }
         searchHN()
-    }, [debouncedSearchTerm]);
+    }, [debouncedSearchTerm, cariPesanan, fetchdatalistpesanan]);
 
     // VALIDASI ERROR DAN BERHASIL
     const Berhasil = () => {
@@ -110,7 +110,7 @@ export default function Pesanan() {
 
     useEffect(() => {
         valueStatusPesanan == [] || valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
-    }, [valueStatusPesanan])
+    }, [valueStatusPesanan, Berhasil, Gagal])
 
     return (
         <>

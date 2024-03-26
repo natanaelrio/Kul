@@ -133,10 +133,10 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
     const catatan = `${warnaDetail}` + `${ukuran ? ' ,' + ukuran : ' ,' + typeKategoriDetail[0].typeKategori}`
 
     const [loading, setLoading] = useState(false)
-    // const [alert, setAlert] = useState(false)
+    const [alert, setAlert] = useState(false)
     const handleTambahkanKeranjang = () => {
         setLoading(true)
-        // setAlert(false)
+        setAlert(false)
         setTimeout(() => {
             setLoading(false)
             setIsLoading(true)
@@ -146,7 +146,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
 
     const handleUpdateKeranjang = () => {
         setLoading(true)
-        // setAlert(false)
+        setAlert(false)
         setTimeout(() => {
             setLoading(false)
             setIsLoading(true)
@@ -156,11 +156,11 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true)
     }
 
-    // useEffect(() => {
-    //     if (!loading) {
-    //         kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
-    //     }
-    // }, [loading, setOpenFormKeranjang, setOpenFormEditKeranjang, kondisiKeranjang, kondisiEditKeranjang])
+    if (!loading) {
+        () => {
+            kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
+        }
+    }
 
 
     //DATA FORM 
@@ -276,17 +276,17 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                     </div>
                 </div>
 
-                {/* {alert && <div className={styles.alert}>
+                {alert && <div className={styles.alert}>
                     Siliahkan Pilih*
-                </div>} */}
+                </div>}
                 {kondisiPilihan && <div className={styles.konfirmasi} onClick={setOpenFormPembelian}>Beli Sekarang</div>}
 
 
-                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
-                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
+                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
+                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
 
-                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
-                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
+                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
+                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
 
             </div>
             {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}

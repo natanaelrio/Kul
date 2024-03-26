@@ -31,7 +31,7 @@ export default function Pencarian({ kondisiatas }) {
             }
         }
         searchHN()
-    }, [debouncedSearchTerm, searchTerm])
+    }, [debouncedSearchTerm, searchTerm, fetchdatasearch])
 
     const handleChange = (e) => {
         setSearchTerm(e.target.value)

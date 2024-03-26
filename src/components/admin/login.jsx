@@ -24,7 +24,7 @@ export default function Login() {
     }
     useEffect(() => {
         if (status == 'authenticated' && session?.user.role === "admin") router.push('/admin/pesanan')
-    }, [status, session])
+    }, [status, session, router])
 
     if (session?.user.role === "user") {
         return <p>You are an User, welcome!</p>
