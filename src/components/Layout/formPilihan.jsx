@@ -282,11 +282,11 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                 {kondisiPilihan && <div className={styles.konfirmasi} onClick={setOpenFormPembelian}>Beli Sekarang</div>}
 
 
-                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
-                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
+                {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
+                    : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
 
-                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
-                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
+                {kondisiEditKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
+                    : kondisiEditKeranjang && <div className={styles.konfirmasi} onClick={() => handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}
 
             </div>
             {openFormPembelian && <FormPembelian dataFormLangsung={dataFormLangsung} />}
