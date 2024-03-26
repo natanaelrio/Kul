@@ -1,10 +1,8 @@
 "use client"
 import styles from '@/components/produk.module.css'
-import Skeleton from 'react-loading-skeleton'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
 import { IoShieldOutline } from "react-icons/io5";
 import { FaStar } from "react-icons/fa6";
 import { IoIosArrowBack } from "react-icons/io";
@@ -13,7 +11,6 @@ import { FaRegHeart } from "react-icons/fa";
 import { useStore } from '@/lib/zustand'
 import { useStoreDataFront } from '@/utils/user-front/keranjangZ'
 import { useKeranjangCount } from '@/utils/user-front/keranjangCountZ'
-import ProdukHarga from '@/components/produkHarga';
 import PaymentErrorPending from '@/components/paymenterrorpending';
 import FormPilihan from '@/components/Layout/formPilihan';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -246,7 +243,6 @@ export default function Produk(props) {
 
     const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)') : null
     useEffect(() => {
-
         if (mediaMatch.matches) {
             document.getElementById("mysW").style.width = kondisiLebar + 'px'
             document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
@@ -257,8 +253,7 @@ export default function Produk(props) {
                 document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
             }
         }
-    }, [kondisiLebar, mediaMatch.matches, warna.length])
-
+    }, [kondisiLebar])
 
     return (
         <>
@@ -303,13 +298,7 @@ export default function Produk(props) {
                                     <div className={styles.wkwk}>
                                         <div className={styles.reviewharga}>
                                             <div className={styles.harga}>
-                                                <Suspense fallback={<Skeleton width={200} />}>
-                                                    <ProdukHarga
-                                                        keranjang={keranjang}
-                                                        hargaKeranjang={hargaKeranjang}
-                                                        harga={harga}
-                                                    />
-                                                </Suspense>
+                                                {harga}
                                             </div> &nbsp;|&nbsp; <div className={styles.kategori}>#{data?.kategori_barang}</div>
                                         </div>
                                         {kondisiDiskon && <div className={styles.diskon}>

@@ -110,7 +110,7 @@ export default function Pesanan() {
 
     useEffect(() => {
         valueStatusPesanan == [] || valueStatusPesanan.status == 200 && Berhasil() || valueStatusPesanan.status == 500 && Gagal()
-    }, [valueStatusPesanan, Berhasil, Gagal])
+    }, [valueStatusPesanan])
 
     return (
         <>

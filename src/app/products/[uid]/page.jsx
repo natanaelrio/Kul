@@ -51,7 +51,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Products({ params }) {
   const dataID = await GetListProductID(params.uid)
-  const WarnaID = await GetListWarnaProductID(dataID?.data?.id_namabarang)
+  const WarnaID = await GetListWarnaProductID(dataID?.data?.id_namabarang, dataID?.data.warna_barang)
   const dataList = await GetListProduct()
   dataID.status == 500 ? notFound() : null
 

@@ -1,7 +1,7 @@
 'use server'
-export async function GetListWarnaProductID(id) {
+export async function GetListWarnaProductID(id, warna) {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-warna-produk?id=${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-warna-produk?id=${id}&warna=${warna}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
