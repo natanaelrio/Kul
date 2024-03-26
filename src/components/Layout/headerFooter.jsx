@@ -18,7 +18,7 @@ export default function HeaderFooter({ children, kondisiatas, textNotif, data })
 
   setTimeout(() => {
     setIsLoading(false)
-  }, 9000);
+  }, 7000);
 
   return (
     <>

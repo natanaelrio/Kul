@@ -156,11 +156,14 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
         kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true)
     }
 
-    if (!loading) {
-        () => {
-            kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
+    useEffect(() => {
+        if (!loading) {
+            const jalankan = () => {
+                kondisiKeranjang && setOpenFormKeranjang() || kondisiEditKeranjang && setOpenFormEditKeranjang() || setAlert(false)
+            }
+            jalankan()
         }
-    }
+    }, [loading])
 
 
     //DATA FORM 

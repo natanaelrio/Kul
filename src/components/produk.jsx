@@ -244,16 +244,16 @@ export default function Produk(props) {
     const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)') : null
     useEffect(() => {
         if (mediaMatch.matches) {
-            document.getElementById("mysW").style.width = kondisiLebar + 'px'
-            document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
+            document.getElementById("mysW").style.width = width + 'px'
+            document.getElementById("mysWatas").style.width = width + 'px'
 
             if (warna.length == 0) {
                 document.getElementById("mysWatas").style.display = 'flex'
                 document.getElementById("mysWatas").style.justifyContent = 'center'
-                document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
+                document.getElementById("mysWatas").style.width = width + 'px'
             }
         }
-    }, [])
+    }, [width])
 
     return (
         <>
@@ -310,13 +310,7 @@ export default function Produk(props) {
                                             </div>
                                         </div>}
                                     </div>
-
-
-
                                 </div>
-
-
-
                             </div>
 
                             <div className={styles.bawahaksi}>
@@ -364,7 +358,6 @@ export default function Produk(props) {
                                 })}
 
                                 <div className={styles.jumlahbarang} ref={targetRef} >stok : {jumlahBarang}</div>
-
                                 <div className={styles.jumlah}>
                                     <div className={styles.kata}>Kuantitas</div>
                                     <div className={styles.button}>
@@ -377,7 +370,6 @@ export default function Produk(props) {
                                             onClick={() => handleAngkaTambah()}>+</button>
                                     </div>
                                 </div>
-
 
                                 <div className={styles.keranjang}>
                                     <button onClick={() => handleTambahkanKeranjang()}>Tambahkan Keranjang</button>
