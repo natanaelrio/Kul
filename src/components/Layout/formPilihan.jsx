@@ -163,7 +163,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
             }
             jalankan()
         }
-    }, [loading])
+    }, [loading, kondisiKeranjang, kondisiEditKeranjang])
 
 
     //DATA FORM 

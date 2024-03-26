@@ -244,16 +244,16 @@ export default function Produk(props) {
     const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)') : null
     useEffect(() => {
         if (mediaMatch.matches) {
-            document.getElementById("mysW").style.width = width + 'px'
-            document.getElementById("mysWatas").style.width = width + 'px'
+            document.getElementById("mysW").style.width = kondisiLebar + 'px'
+            document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
 
             if (warna.length == 0) {
                 document.getElementById("mysWatas").style.display = 'flex'
                 document.getElementById("mysWatas").style.justifyContent = 'center'
-                document.getElementById("mysWatas").style.width = width + 'px'
+                document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
             }
         }
-    }, [width])
+    }, [])
 
     return (
         <>
