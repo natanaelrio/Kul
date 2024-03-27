@@ -237,7 +237,7 @@ export default function Produk(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     const { height, width } = useWindowDimensions()
-    // const kondisiLebar = width <= 768 ? width : width <= 1133 && width - 532
+    // const kondisiLebar = width <= 768 && width
     const kondisiLebarTumb = width <= 1133 && width - 607
     const hasWindow = typeof window !== 'undefined';
     const [kondisiLebar, setKondisiLebar] = useState('')
@@ -245,7 +245,7 @@ export default function Produk(props) {
     const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)').matches : null
 
     useEffect(() => {
-        const kondisiLebare = width <= 768 ? width - 120 : width <= 1133 && width - 532
+        const kondisiLebare = width <= 768 && width
         setKondisiLebar(kondisiLebare)
         if (mediaMatch) {
             document.getElementById("mysW").style.width = kondisiLebar + 'px!important'
@@ -257,7 +257,7 @@ export default function Produk(props) {
                 document.getElementById("mysWatas").style.width = kondisiLebar + 'px!important'
             }
         }
-    }, [mediaMatch, kondisiLebar, width])
+    }, [mediaMatch, kondisiLebar, width, document])
 
     // useEffect(() => {
     //     setTimeout(() => {

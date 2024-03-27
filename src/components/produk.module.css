@@ -389,6 +389,18 @@
 }
 
 
+@media only screen and (max-width: 1175px) {
+    .containerdalamswipper {
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 945px) {
+    .containerdalamswipper {
+        width: 350px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .container {
         display: flex;
