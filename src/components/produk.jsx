@@ -257,7 +257,7 @@ export default function Produk(props) {
                 document.getElementById("mysWatas").style.width = kondisiLebar + 'px!important'
             }
         }
-    }, [mediaMatch, kondisiLebar, width, document])
+    }, [mediaMatch, kondisiLebar, width])
 
     // useEffect(() => {
     //     setTimeout(() => {
