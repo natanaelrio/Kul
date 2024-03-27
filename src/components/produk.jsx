@@ -237,7 +237,6 @@ export default function Produk(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     const { height, width } = useWindowDimensions()
-    // const kondisiLebar = width <= 768 ? width : width <= 1133 && width - 532
     const kondisiLebarTumb = width <= 1133 && width - 607
     const hasWindow = typeof window !== 'undefined';
     const [kondisiLebar, setKondisiLebar] = useState('')
@@ -258,15 +257,6 @@ export default function Produk(props) {
             }
         }
     }, [mediaMatch, kondisiLebar, width])
-
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         // document.querySelector('.swiper-slide').style.width = kondisiLebar + 'px'
-    //         document.querySelector('.swiper-slide-active').style.width = kondisiLebar + 'px'
-    //         document.querySelector('.swiper-slide-next').style.width = kondisiLebar + 'px'
-    //     }, 3000)
-
-    // }, [])
 
     return (
         <>
