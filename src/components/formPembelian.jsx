@@ -56,15 +56,10 @@ export default function FormPembelian({ dataFormLangsung }) {
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
     const [payment, setPayment] = useState(false)
     const [isLoadingPayment, seIsLoadingPayment] = useState(false)
-    const [kirimBawah, setKirimBawah] = useState(false)
 
-    const handleKirim = () => {
-        setKirimBawah(true)
-    }
     const handleSuccess = (token) => {
         seIsLoadingPayment(true)
         setTimeout(() => {
-            setKirimBawah(false)
             seIsLoadingPayment(false)
             setPayment(true)
             snapEmbed(token, 'snap-container')
@@ -74,15 +69,11 @@ export default function FormPembelian({ dataFormLangsung }) {
     const handleGagal = () => {
         setIsLoading(false)
         setIsLoadingGagal(true)
-        setKirimBawah(false)
     }
 
     const handleKirimUlang = () => {
         setIsLoadingGagal(false)
     }
-
-
-
 
     const formik = useFormik({
         initialValues: {
@@ -352,8 +343,8 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     </div>
                                 </div>
 
-                                <button type="submit" disabled={isLoading && !isLoadingGagal} onClick={() => handleKirim()}>
-                                    {kirimBawah ? <BeatLoader size={10} color={'var(--color-white)'} /> : <CustomIcon value={'Bayar'} />}
+                                <button type="submit" disabled={isLoading && !isLoadingGagal} >
+                                    {isLoading ? <BeatLoader size={10} color={'var(--color-white)'} /> : <CustomIcon value={'Bayar'} />}
                                 </button>
                             </div>
                         </div>
