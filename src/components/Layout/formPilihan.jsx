@@ -135,26 +135,35 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
 
     const [loading, setLoading] = useState(false)
     const [alert, setAlert] = useState(false)
+
+    const handleBeliSekarang = () => {
+        setLoading(true)
+        setAlert(false)
+        setTimeout(() => {
+            setOpenFormPembelian()
+            setLoading(false)
+        }, 2000);
+    }
+
     const handleTambahkanKeranjang = () => {
         setLoading(true)
         setAlert(false)
         setTimeout(() => {
+            setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
             setLoading(false)
             setIsLoading(true)
         }, 2000);
-        setdataKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
     }
 
     const handleUpdateKeranjang = () => {
         setLoading(true)
         setAlert(false)
         setTimeout(() => {
+            kondisiKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
+            kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true)
             setLoading(false)
             setIsLoading(true)
         }, 2000);
-
-        kondisiKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang)
-        kondisiEditKeranjang && setUpdateKeranjangZ(dataFormKeranjang, hargaTotalSemua, valueTambahKurang, kondisiDiskonDetail, diskonDetail, catatan, dataEditKeranjang, true)
     }
 
     useEffect(() => {
@@ -280,8 +289,7 @@ export default function FormPilihan({ warna, dataID, dataid, kondisiPilihan, kon
                 {alert && <div className={styles.alert}>
                     Siliahkan Pilih*
                 </div>}
-                {kondisiPilihan && <div className={styles.konfirmasi} onClick={setOpenFormPembelian}>Beli Sekarang</div>}
-
+                {kondisiPilihan && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleBeliSekarang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Beli Sekarang'}</div>}
 
                 {kondisiKeranjang && id && keranjang?.filter((e) => e.id == id).map((e) => e.id).toString() ? <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleUpdateKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi +'}</div>
                     : kondisiKeranjang && <div className={styles.konfirmasi} onClick={() => gabungDataKategori.length == 0 ? setAlert(true) : handleTambahkanKeranjang()}>{loading ? <BeatLoader size={10} color={'var(--color-white)'} /> : 'Konfirmasi'}</div>}

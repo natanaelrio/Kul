@@ -237,23 +237,8 @@ export default function Produk(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     const { height, width } = useWindowDimensions()
-    const kondisiLebar = width <= 768 ? width : width <= 1133 && width - 532
+    const kondisiLebar = width <= 768 ? width : width <= 1133 ? width - 532 : 700
     const kondisiLebarTumb = width <= 1133 && width - 607
-    const hasWindow = typeof window !== 'undefined';
-
-    const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)') : null
-    useEffect(() => {
-        if (mediaMatch.matches) {
-            document.getElementById("mysW").style.width = kondisiLebar + 'px'
-            document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
-
-            if (warna.length == 0) {
-                document.getElementById("mysWatas").style.display = 'flex'
-                document.getElementById("mysWatas").style.justifyContent = 'center'
-                document.getElementById("mysWatas").style.width = kondisiLebar + 'px'
-            }
-        }
-    }, [])
 
     return (
         <>
@@ -389,7 +374,9 @@ export default function Produk(props) {
                             </div>
                         </motion.div>
                         <div className={styles.gambar}>
-                            <div className={styles.containerswipper}>
+                            <div className={styles.containerswipper}
+                                style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}
+                            >
                                 <motion.div
                                     initial={{ y: 10, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
@@ -397,7 +384,8 @@ export default function Produk(props) {
                                     transition={{ duration: 0.2 }}
                                     className={styles.containerdalamswipper}
                                     id='mysWatas'
-                                    style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}>
+                                    style={warna.length == 0 ? {} : { width: '100%' }}
+                                >
 
                                     {warna.length == 0 && <Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={400} alt={data.nama_barang}></Image>}
                                     <Swiper

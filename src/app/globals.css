@@ -183,7 +183,7 @@ button {
 
 .mySwipper2 .swiper-slide {
   height: 400px;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .mySwipper2 .swiper-slide img {

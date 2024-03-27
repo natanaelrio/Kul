@@ -1,5 +1,6 @@
 'use client';
 import MoonLoader from "react-spinners/MoonLoader";
+import BeatLoader from "react-spinners/BeatLoader";
 import { useState } from 'react';
 import Image from "next/image";
 import { useFormik } from 'formik';
@@ -13,8 +14,8 @@ import { FaUser } from "react-icons/fa";
 import { BiSolidContact } from "react-icons/bi";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaSignsPost } from "react-icons/fa6";
-import { IoShieldOutline } from "react-icons/io5";
 import useSnap from '@/lib/useSnap'
+import CustomIcon from "@/lib/customIcon";
 
 export default function FormPembelian({ dataFormLangsung }) {
     const id = uidRio()
@@ -55,27 +56,32 @@ export default function FormPembelian({ dataFormLangsung }) {
     const [isLoadingGagal, setIsLoadingGagal] = useState(false)
     const [payment, setPayment] = useState(false)
     const [isLoadingPayment, seIsLoadingPayment] = useState(false)
+    const [kirimBawah, setKirimBawah] = useState(false)
 
+    const handleKirim = () => {
+        setKirimBawah(true)
+    }
     const handleSuccess = (token) => {
         seIsLoadingPayment(true)
-        // setIsLoading(false)
-        // setOpenFormPembelian()
-        // localStorage.setItem("tokenpayment", token)
-        // router.push('/payment')
         setTimeout(() => {
+            setKirimBawah(false)
             seIsLoadingPayment(false)
             setPayment(true)
             snapEmbed(token, 'snap-container')
         }, 5000)
     }
+
     const handleGagal = () => {
         setIsLoading(false)
         setIsLoadingGagal(true)
+        setKirimBawah(false)
     }
 
     const handleKirimUlang = () => {
         setIsLoadingGagal(false)
     }
+
+
 
 
     const formik = useFormik({
@@ -183,9 +189,8 @@ export default function FormPembelian({ dataFormLangsung }) {
         },
     })
 
-
     return (
-        <FloatingBlur setOpen={setOpenFormPembelian} judul={'FORMULIR PENGIRIMAN'} >
+        <FloatingBlur setOpen={setOpenFormPembelian} judul={payment ? 'PEMBAYARAN' : 'FORMULIR PENGIRIMAN'} >
             {isLoadingPayment &&
                 <div className={styles.loadingpayment}>
                     <div className={styles.textalertatas}>Jika Error, silahkan ulang!!</div>
@@ -207,7 +212,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                         className={styles.form}
                         style={{ display: payment ? 'none' : 'block' }}
                     >
-                        {isLoading && <div className={styles.loading}>
+                        {false && <div className={styles.loading}>
                             <div className={styles.hitam}></div>
 
                             <div className={styles.logoloading}>
@@ -243,7 +248,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     onChange={(e) => { formik.handleChange(e); handleNamaLengkap(e) }}
                                     value={formik.values.nama_lengkap_user}
                                     placeholder='ex: natanael rio wijaya'
-
+                                    disabled={isLoading && !isLoadingGagal}
                                 />
                             </div>
 
@@ -262,6 +267,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     onChange={(e) => { formik.handleChange(e); handleNoHp(e) }}
                                     value={formik.values.no_hp_user}
                                     placeholder='ex: 0812488124004'
+                                    disabled={isLoading && !isLoadingGagal}
                                 />
                             </div>
 
@@ -280,6 +286,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     onChange={(e) => { formik.handleChange(e); handleAlamat(e) }}
                                     value={formik.values.alamat_lengkap_user}
                                     placeholder='ex: jl merdeka, rt 01/03. keboyan'
+                                    disabled={isLoading && !isLoadingGagal}
                                 />
                             </div>
 
@@ -297,6 +304,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     onChange={(e) => { formik.handleChange(e); handleKodePost(e) }}
                                     value={formik.values.kode_pos_user}
                                     placeholder='ex: 53235'
+                                    disabled={isLoading && !isLoadingGagal}
                                 />
                             </div>
 
@@ -309,6 +317,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                 onChange={formik.handleChange}
                                 value={formik.values.catatan_user}
                                 placeholder='opsional'
+                                disabled={isLoading && !isLoadingGagal}
                             />
 
                             <label htmlFor="kupon">Kupon &nbsp;<div className={styles.kuponharga}>({kuponBarang})</div></label>
@@ -320,6 +329,7 @@ export default function FormPembelian({ dataFormLangsung }) {
                                     onChange={HandleKupon}
                                     value={kupon}
                                     placeholder='opsional'
+                                    disabled={isLoading && !isLoadingGagal}
                                 />
                             </div>
                             <div className={styles.bawah}>
@@ -341,7 +351,9 @@ export default function FormPembelian({ dataFormLangsung }) {
                                         )}
                                     </div>
                                 </div>
-                                <button type="submit" disabled={isLoading && !isLoadingGagal} ><IoShieldOutline /> &nbsp;&nbsp;Bayar
+
+                                <button type="submit" disabled={isLoading && !isLoadingGagal} onClick={() => handleKirim()}>
+                                    {kirimBawah ? <BeatLoader size={10} color={'var(--color-white)'} /> : <CustomIcon value={'Bayar'} />}
                                 </button>
                             </div>
                         </div>
