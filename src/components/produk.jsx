@@ -237,7 +237,7 @@ export default function Produk(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     const { height, width } = useWindowDimensions()
-    // const kondisiLebar = width <= 768 && width
+    // const kondisiLebar = width <= 768 ? width : width <= 1133 && width - 532
     const kondisiLebarTumb = width <= 1133 && width - 607
     const hasWindow = typeof window !== 'undefined';
     const [kondisiLebar, setKondisiLebar] = useState('')
