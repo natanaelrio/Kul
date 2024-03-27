@@ -237,8 +237,36 @@ export default function Produk(props) {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     const { height, width } = useWindowDimensions()
-    const kondisiLebar = width <= 768 ? width : width <= 1133 ? width - 532 : 700
+    // const kondisiLebar = width <= 768 ? width : width <= 1133 && width - 532
     const kondisiLebarTumb = width <= 1133 && width - 607
+    const hasWindow = typeof window !== 'undefined';
+    const [kondisiLebar, setKondisiLebar] = useState('')
+
+    const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)').matches : null
+
+    useEffect(() => {
+        const kondisiLebare = width <= 768 ? width - 124 : width <= 1133 && width - 532
+        setKondisiLebar(kondisiLebare)
+        if (mediaMatch) {
+            document.getElementById("mysW").style.width = kondisiLebar + 'px!important'
+            document.getElementById("mysWatas").style.width = kondisiLebar + 'px!important'
+
+            if (warna.length == 0) {
+                document.getElementById("mysWatas").style.display = 'flex'
+                document.getElementById("mysWatas").style.justifyContent = 'center'
+                document.getElementById("mysWatas").style.width = kondisiLebar + 'px!important'
+            }
+        }
+    }, [mediaMatch, kondisiLebar, width])
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         // document.querySelector('.swiper-slide').style.width = kondisiLebar + 'px'
+    //         document.querySelector('.swiper-slide-active').style.width = kondisiLebar + 'px'
+    //         document.querySelector('.swiper-slide-next').style.width = kondisiLebar + 'px'
+    //     }, 3000)
+
+    // }, [])
 
     return (
         <>
@@ -374,9 +402,7 @@ export default function Produk(props) {
                             </div>
                         </motion.div>
                         <div className={styles.gambar}>
-                            <div className={styles.containerswipper}
-                                style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}
-                            >
+                            <div className={styles.containerswipper}>
                                 <motion.div
                                     initial={{ y: 10, opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
@@ -384,8 +410,7 @@ export default function Produk(props) {
                                     transition={{ duration: 0.2 }}
                                     className={styles.containerdalamswipper}
                                     id='mysWatas'
-                                    style={warna.length == 0 ? {} : { width: '100%' }}
-                                >
+                                    style={warna.length == 0 ? { display: 'flex', justifyContent: 'center', width: kondisiLebar } : { width: kondisiLebar }}>
 
                                     {warna.length == 0 && <Image src={data.gambar_barang ? data.gambar_barang : `${process.env.NEXT_PUBLIC_URL}/no-image.png`} width={500} height={400} alt={data.nama_barang}></Image>}
                                     <Swiper
