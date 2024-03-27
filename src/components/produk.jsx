@@ -245,7 +245,7 @@ export default function Produk(props) {
     const mediaMatch = hasWindow ? window.matchMedia('(max-width: 768px)').matches : null
 
     useEffect(() => {
-        const kondisiLebare = width <= 768 ? width - 124 : width <= 1133 && width - 532
+        const kondisiLebare = width <= 768 ? width - 120 : width <= 1133 && width - 532
         setKondisiLebar(kondisiLebare)
         if (mediaMatch) {
             document.getElementById("mysW").style.width = kondisiLebar + 'px!important'
