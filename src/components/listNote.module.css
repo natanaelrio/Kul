@@ -57,13 +57,14 @@
 
 .list .atas .kiri .icondalam {
     font-size: 20px;
+    color: var(--color-sekunder);
 }
 
 .list .atas .statusperjalanan {
     background-color: green;
     color: var(--color-white);
     height: 20px;
-    border-radius: 7px;
+    border-radius: 3px;
     padding: 0 10px;
     font-weight: 500;
     display: flex;
@@ -118,7 +119,7 @@
     background-color: var(--color-sekunder);
     color: var(--color-white);
     height: 25px;
-    border-radius: 7px;
+    border-radius: 3px;
     padding: 0 15px;
     font-weight: 500;
     display: flex;

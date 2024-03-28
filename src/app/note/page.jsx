@@ -4,10 +4,10 @@ import HeaderFooter from '@/components/Layout/headerFooter'
 
 export default async function Note() {
     const dataList = await getListNotifikasi('8971041460')
-    
+
     return (
         <HeaderFooter >
-            <ListNote data={dataList?.data} />
+            <ListNote dataID={dataList?.data} />
         </HeaderFooter>
     )
 }
