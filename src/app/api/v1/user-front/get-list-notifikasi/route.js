@@ -13,7 +13,7 @@ export async function AmbilDataUsers(no) {
             ],
         }
     })
-    return data.map((data) => data.dataPesanan)
+    return data
 }
 
 
