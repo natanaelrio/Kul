@@ -14,8 +14,13 @@ export async function AmbilDataUsers(no) {
         }
     })
 
+    BigInt.prototype.toJSON = function () {
+        return this.toString();
+    };
+
     return data.map((data) => data.dataPesanan)
 }
+
 
 export async function GET(req) {
     const searchParams = req.nextUrl.searchParams;
