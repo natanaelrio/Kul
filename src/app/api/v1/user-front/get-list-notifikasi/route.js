@@ -14,10 +14,6 @@ export async function AmbilDataUsers(no) {
         }
     })
 
-    BigInt.prototype.toJSON = function () {
-        return this.toString();
-    };
-
     return data.map((data) => data.dataPesanan)
 }
 
@@ -25,6 +21,11 @@ export async function AmbilDataUsers(no) {
 export async function GET(req) {
     const searchParams = req.nextUrl.searchParams;
     const no = searchParams.get('no');
+
+    BigInt.prototype.toJSON = function () {
+        return this.toString();
+    };
+    
     const authorization = req.headers.get('authorization')
     const data = await AmbilDataUsers(no)
     const res = await ResponseData(data, authorization)
