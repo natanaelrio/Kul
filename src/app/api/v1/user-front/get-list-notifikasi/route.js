@@ -4,7 +4,9 @@ import { prisma } from "@/lib/prisma"
 export async function AmbilDataUsers(no) {
     const data = await prisma.formPembelian.findMany({
         select: {
+            no_hp_user: true,
             dataPesanan: true,
+            payment: true,
         },
         where: {
             AND: [
@@ -13,6 +15,11 @@ export async function AmbilDataUsers(no) {
             ],
         }
     })
+
+    BigInt.prototype.toJSON = function () {
+        return this.toString();
+    };
+
     return data
 }
 
