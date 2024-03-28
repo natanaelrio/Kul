@@ -4,6 +4,7 @@ import { TbDiamond } from "react-icons/tb";
 import { FaSearch } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
+import { PiNotepadBold } from "react-icons/pi";
 import styles from '@/components/header.module.css'
 import CustomLink from '@/lib/customLink'
 import { useStore } from '@/lib/zustand'
@@ -80,6 +81,13 @@ export default function Header() {
                             <div className={styles.iconkeranjang}>
                                 {keranjang?.length ? <div className={styles.number}>{keranjang?.length}</div> : <div> </div>}
                                 <LuShoppingCart />
+                            </div>
+                        </CustomLinkA>
+                    </div>
+                    <div className={styles.animasi}>
+                        <CustomLinkA href={'/note'} aria-label={'note'}>
+                            <div className={styles.iconkeranjang}>
+                                <PiNotepadBold />
                             </div>
                         </CustomLinkA>
                     </div>

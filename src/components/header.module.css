@@ -105,6 +105,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 10px;
 }
 
 .pilihan .iconlove {
@@ -124,7 +125,6 @@
 }
 
 .pilihan .iconkeranjang {
-    margin: 0 10px;
     padding: 10px;
     color: var(--color-sekunder);
     font-size: 1.2rem;
@@ -262,6 +262,10 @@
 
 
 @media only screen and (max-width: 480px) {
+
+    .pilihan {
+        gap: 3px;
+    }
 
     /* NAVIGASI */
     .nav {

@@ -1,0 +1,142 @@
+.container {
+    display: flex;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: var(--color-sekunder);
+}
+
+.dalamcontainer {
+    width: 700px;
+    padding: 20px;
+}
+
+.atassendiri {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 10px 20px;
+}
+
+.atassendiri .judul {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.list {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+}
+
+.list .atas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-hr);
+    font-size: 0.5rem;
+}
+
+.list .atas .kiri {
+    display: flex;
+    align-items: center;
+}
+
+.list .atas .kiri .tanggalpesanan {
+    font-weight: 300;
+}
+
+.list .atas .kiri .text {
+    font-weight: 500;
+}
+
+.list .atas .kiri .icon {
+    margin-right: 10px;
+}
+
+.list .atas .kiri .icondalam {
+    font-size: 20px;
+}
+
+.list .atas .statusperjalanan {
+    background-color: green;
+    color: var(--color-white);
+    height: 20px;
+    border-radius: 7px;
+    padding: 0 10px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.list .tengah {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.list .tengah .gambar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 7px;
+}
+
+.list .tengah .gambar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 7px;
+}
+
+.list .tengah .deskripsi .judul {
+    font-weight: 700;
+}
+
+.list .tengah .deskripsi .totalbarang {
+    font-weight: 300;
+    font-size: 0.5rem;
+}
+
+.list .bawah {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list .bawah .totalbelanja .text {
+    font-weight: 300;
+    font-size: 0.5rem;
+}
+
+.list .bawah .totalbelanja .total {
+    font-weight: 500;
+}
+
+.list .bawah .belilagi {
+    background-color: var(--color-sekunder);
+    color: var(--color-white);
+    height: 25px;
+    border-radius: 7px;
+    padding: 0 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .dalamcontainer {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .dalamcontainer {
+        width: 700px;
+        padding: 10px;
+    }
+}
