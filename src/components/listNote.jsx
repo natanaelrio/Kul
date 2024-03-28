@@ -6,7 +6,6 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import CustomBack from '@/lib/customBack';
 
 export default function ListNote({ dataNote }) {
-    console.log(dataNote);
 
     return (
         <div className={styles.container}>
