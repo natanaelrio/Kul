@@ -87,11 +87,11 @@ export default function Nota({ dataNota }) {
                             <div key={i} className={styles.infoproduk}>
                                 <div className={styles.barang}>{data?.nama_barang_user}</div>
                                 <div className={styles.jumlah}>{data?.jumlah_barang_user}</div>
-                                <div className={styles.hargasatuan}>{(data?.harga_barang_satuan).toLocaleString('id-ID', {
+                                <div className={styles.hargasatuan}>{(data?.harga_barang_satuan)?.toLocaleString('id-ID', {
                                     style: 'currency',
                                     currency: 'IDR'
                                 })}</div>
-                                <div className={styles.totalharga}>{(data?.harga_barang_user).toLocaleString('id-ID', {
+                                <div className={styles.totalharga}>{(data?.harga_barang_user)?.toLocaleString('id-ID', {
                                     style: 'currency',
                                     currency: 'IDR'
                                 })}</div>
