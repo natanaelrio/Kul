@@ -8,11 +8,12 @@ export async function AmbilDataUsers(no) {
         },
         where: {
             AND: [
-                { no_hp_user: Number(no) },
+                { no_hp_user: BigInt(no) },
                 { payment: true }
             ],
         }
     })
+    console.log(data.map((data) => data.dataPesanan));
 
     return data.map((data) => data.dataPesanan)
 }
@@ -25,7 +26,7 @@ export async function GET(req) {
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
-    
+
     const authorization = req.headers.get('authorization')
     const data = await AmbilDataUsers(no)
     const res = await ResponseData(data, authorization)
