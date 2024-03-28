@@ -4,7 +4,8 @@ import { FaShoppingBag } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import CustomBack from '@/lib/customBack';
 
-export default function ListNote({ dataID }) {
+export default function ListNote({ dataNote }) {
+
     return (
         <div className={styles.container}>
             <div className={styles.dalamcontainer}>
@@ -17,7 +18,7 @@ export default function ListNote({ dataID }) {
                         </div>
                     </CustomBack>
                 </div>
-                <div>{dataID.map((dataku) => dataku.map((data) => {
+                <div>{dataNote?.map((dataku) => dataku?.map((data) => {
                     return (<>
                         <div className={styles.list}>
                             <div className={styles.atas}>

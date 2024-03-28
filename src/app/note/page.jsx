@@ -7,7 +7,7 @@ export default async function Note() {
 
     return (
         <HeaderFooter >
-            <ListNote dataID={dataList?.data} />
+            <ListNote dataNote={dataList?.data} />
         </HeaderFooter>
     )
 }
