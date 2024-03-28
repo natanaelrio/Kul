@@ -1,5 +1,5 @@
 'use server'
-export async function getListNotifikasi(id) {
+export async function GetListNotifikasi(id) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/v1/user-front/get-list-notifikasi?no=${id}`, {
             method: 'GET',

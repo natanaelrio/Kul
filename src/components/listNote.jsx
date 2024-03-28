@@ -18,7 +18,7 @@ export default function ListNote({ dataNote }) {
                         </div>
                     </CustomBack>
                 </div>
-                <div>{dataNote?.map((data) => data.dataPesanan)?.map((dataku) => dataku?.map((data, i) => {
+                <div>{dataNote?.map((dataku) => dataku?.map((data, i) => {
                     return (<>
                         <div key={i} className={styles.list}>
                             <div className={styles.atas}>
