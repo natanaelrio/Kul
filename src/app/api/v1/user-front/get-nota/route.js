@@ -10,7 +10,6 @@ export async function AmbilDataUsers(id) {
     return data
 }
 
-
 export async function GET(req) {
     const searchParams = req.nextUrl.searchParams;
     const id = searchParams.get('id')

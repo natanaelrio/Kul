@@ -6,6 +6,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import CustomBack from '@/lib/customBack';
 
 export default function ListNote({ dataNote }) {
+    console.log(dataNote);
 
     return (
         <div className={styles.container}>
@@ -19,7 +20,7 @@ export default function ListNote({ dataNote }) {
                         </div>
                     </CustomBack>
                 </div>
-                <div>{dataNote?.map((dataku) => dataku?.map((data, i) => {
+                <div>{dataNote?.map((data) => data?.dataPesanan)?.map((dataku) => dataku?.map((data, i) => {
                     return (<>
                         <div key={i} className={styles.list}>
                             <div className={styles.atas}>
