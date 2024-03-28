@@ -1,3 +1,4 @@
+'use client'
 import styles from "@/components/listNote.module.css"
 import Image from "next/image"
 import { FaShoppingBag } from "react-icons/fa";
@@ -18,7 +19,7 @@ export default function ListNote({ dataNote }) {
                         </div>
                     </CustomBack>
                 </div>
-                <div>{dataNote?.map((data) => data?.dataPesanan)?.map((dataku) => dataku?.map((data, i) => {
+                <div>{dataNote?.map((dataku) => dataku?.map((data, i) => {
                     return (<>
                         <div key={i} className={styles.list}>
                             <div className={styles.atas}>

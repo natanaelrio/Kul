@@ -14,7 +14,7 @@ export async function AmbilDataUsers(no) {
         }
     })
 
-    return data
+    return data.map((data) => data.dataPesanan)
 }
 
 export async function GET(req) {
