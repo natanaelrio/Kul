@@ -8,7 +8,7 @@ export async function AmbilDataUsers(no) {
         },
         where: {
             AND: [
-                { no_hp_user: no },
+                { no_hp_user: Number(no) },
                 { payment: true }
             ],
         }
