@@ -14,13 +14,10 @@ export async function AmbilDataUsers(no) {
         }
     })
 
-    return data.map((data) => data.dataPesanan)
+    return data
 }
 
-
 export async function GET(req) {
-
-
     const searchParams = req.nextUrl.searchParams;
     const no = searchParams.get('no');
     const authorization = req.headers.get('authorization')
